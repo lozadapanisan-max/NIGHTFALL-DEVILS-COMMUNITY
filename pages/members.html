@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Official NIGHTFALL DEVILS Community Members"
+    >
+
+    <title>NIGHTFALL DEVILS - Members</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           MEMBERS PAGE
+        ===================================================== */
+
+        .members-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(215, 25, 32, 0.18),
+                    transparent 35%
+                ),
+                #090909;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .members-hero {
+
+            padding:
+                80px 20px 45px;
+
+            text-align: center;
+        }
+
+        .members-hero h1 {
+
+            margin: 0 0 10px;
+
+            color: #ffffff;
+
+            font-size:
+                clamp(36px, 7vw, 60px);
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .members-hero h1 span {
+
+            color: #f5c542;
+        }
+
+        .members-hero p {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: #dddddd;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           MEMBER COUNT
+        ===================================================== */
+
+        .member-count {
+
+            margin-top: 18px;
+
+            color: #f5c542;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           CONTROLS
+        ===================================================== */
+
+        .members-controls {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin:
+                0 auto 30px;
+
+            padding:
+                0 20px;
+
+            box-sizing: border-box;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 220px;
+
+            gap: 15px;
+        }
+
+
+        .search-box,
+        .filter-box {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding:
+                14px 16px;
+
+            border:
+                2px solid #dddddd;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #171717;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+
+        .search-box:focus,
+        .filter-box:focus {
+
+            border-color:
+                #d71920;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(215, 25, 32, 0.12);
+        }
+
+
+        /* =====================================================
+           MEMBERS GRID
+        ===================================================== */
+
+        .members-container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin:
+                0 auto;
+
+            padding:
+                0 20px 70px;
+
+            box-sizing: border-box;
+        }
+
+
+        .members-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           MEMBER CARD
+        ===================================================== */
+
+        .member-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 25px 20px;
+
+            background: #ffffff;
+
+            border:
+                2px solid #f5c542;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0, 0, 0, 0.3);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .member-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* =====================================================
+           MEMBER AVATAR
+        ===================================================== */
+
+        .member-avatar {
+
+            width: 82px;
+            height: 82px;
+
+            margin:
+                0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #8f0d12
+                );
+
+            border:
+                3px solid #f5c542;
+
+            color: #ffffff;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 6px 20px
+                rgba(215, 25, 32, 0.25);
+        }
+
+
+        /* =====================================================
+           MEMBER NAME
+        ===================================================== */
+
+        .member-name {
+
+            margin:
+                0 0 5px;
+
+            color: #171717;
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           TIKTOK
+        ===================================================== */
+
+        .member-tiktok {
+
+            margin-bottom: 12px;
+
+            color: #777777;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           ROLE
+        ===================================================== */
+
+        .member-role {
+
+            display: inline-block;
+
+            margin-bottom: 12px;
+
+            padding:
+                6px 12px;
+
+            border-radius: 20px;
+
+            background:
+                #d71920;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing:
+                0.4px;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        /* =====================================================
+           MEMBER CODE
+        ===================================================== */
+
+        .member-code {
+
+            padding:
+                9px 10px;
+
+            background:
+                #f7f7f7;
+
+            border-radius:
+                7px;
+
+            color:
+                #555555;
+
+            font-family:
+                monospace;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           ACTIVE STATUS
+        ===================================================== */
+
+        .member-status {
+
+            margin-top:
+                12px;
+
+            color:
+                #27843c;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+        }
+
+        .member-status::before {
+
+            content: "";
+
+            display:
+                inline-block;
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            margin-right:
+                5px;
+
+            border-radius:
+                50%;
+
+            background:
+                #27843c;
+        }
+
+
+        /* =====================================================
+           NO RESULTS
+        ===================================================== */
+
+        .no-results {
+
+            display: none;
+
+            padding:
+                40px 20px;
+
+            color:
+                #ffffff;
+
+            text-align:
+                center;
+
+            font-size:
+                16px;
+        }
+
+
+        /* =====================================================
+           JOIN BUTTON
+        ===================================================== */
+
+        .members-join {
+
+            margin-top:
+                30px;
+
+            text-align:
+                center;
+        }
+
+
+        .members-join a {
+
+            display:
+                inline-block;
+
+            padding:
+                13px 25px;
+
+            border-radius:
+                9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
+
+            color:
+                #ffffff;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            box-shadow:
+                0 8px 20px
+                rgba(215, 25, 32, 0.25);
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .members-join a:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .members-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .members-hero {
+
+                padding:
+                    55px 16px 35px;
+            }
+
+
+            .members-hero h1 {
+
+                font-size:
+                    36px;
+            }
+
+
+            .members-controls {
+
+                grid-template-columns:
+                    1fr;
+
+                padding:
+                    0 16px;
+            }
+
+
+            .members-container {
+
+                padding:
+                    0 16px 50px;
+            }
+
+
+            .members-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    15px;
+            }
+
+
+            .member-card {
+
+                padding:
+                    22px 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="members-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="site-header">
+
+        <div class="container">
+
+            <a
+                href="../index.html"
+                class="logo"
+            >
+                NIGHTFALL DEVILS 👿
+            </a>
+
+
+            <nav class="nav-menu">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="join.html">
+                    Join
+                </a>
+
+                <a href="schedule.html">
+                    Schedule
+                </a>
+
+                <a
+                    href="members.html"
+                    class="active"
+                >
+                    Members
+                </a>
+
+            </nav>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open Menu"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <main>
+
+        <section class="members-hero">
+
+            <h1>
+                OUR
+                <span>MEMBERS</span>
+            </h1>
+
+            <p>
+                Meet the members of NIGHTFALL DEVILS.
+                We build friendship, support one another,
+                and grow together as a community.
+            </p>
+
+            <div
+                class="member-count"
+                id="memberCount"
+            >
+                6 Members
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SEARCH & FILTER
+        ================================================= -->
+
+        <section class="members-controls">
+
+            <input
+                type="search"
+                id="memberSearch"
+                class="search-box"
+                placeholder="🔎 Search member or TikTok username..."
+                autocomplete="off"
+            >
+
+
+            <select
+                id="roleFilter"
+                class="filter-box"
+            >
+
+                <option value="all">
+                    All Roles
+                </option>
+
+                <option value="Founder">
+                    Founder
+                </option>
+
+                <option value="Moderator">
+                    Moderator
+                </option>
+
+                <option value="Streamer">
+                    Streamer
+                </option>
+
+                <option value="Member">
+                    Member
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MEMBERS
+        ================================================= -->
+
+        <section class="members-container">
+
+            <div
+                class="members-grid"
+                id="membersGrid"
+            >
+
+
+                <!-- MEMBER 1 -->
+
+                <article
+                    class="member-card"
+                    data-name="ZERO"
+                    data-username="@zero"
+                    data-role="Founder"
+                >
+
+                    <div class="member-avatar">
+                        Z
+                    </div>
+
+                    <h2 class="member-name">
+                        ZERO
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @zero
+                    </div>
+
+                    <div class="member-role">
+                        Founder
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-FOU-001
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+
+                <!-- MEMBER 2 -->
+
+                <article
+                    class="member-card"
+                    data-name="JIN-WOO"
+                    data-username="@jinwoo"
+                    data-role="Founder"
+                >
+
+                    <div class="member-avatar">
+                        J
+                    </div>
+
+                    <h2 class="member-name">
+                        JIN-WOO
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @jinwoo
+                    </div>
+
+                    <div class="member-role">
+                        Founder
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-FOU-002
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+
+                <!-- MEMBER 3 -->
+
+                <article
+                    class="member-card"
+                    data-name="BASAGULERO"
+                    data-username="@basagulero"
+                    data-role="Moderator"
+                >
+
+                    <div class="member-avatar">
+                        B
+                    </div>
+
+                    <h2 class="member-name">
+                        BASAGULERO
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @basagulero
+                    </div>
+
+                    <div class="member-role">
+                        Moderator
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-MOD-738
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+
+                <!-- MEMBER 4 -->
+
+                <article
+                    class="member-card"
+                    data-name="KANE"
+                    data-username="@kane"
+                    data-role="Member"
+                >
+
+                    <div class="member-avatar">
+                        K
+                    </div>
+
+                    <h2 class="member-name">
+                        KANE
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @kane
+                    </div>
+
+                    <div class="member-role">
+                        Member
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-MEM-MJLN026
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+
+                <!-- MEMBER 5 -->
+
+                <article
+                    class="member-card"
+                    data-name="SHIN"
+                    data-username="@shin"
+                    data-role="Member"
+                >
+
+                    <div class="member-avatar">
+                        S
+                    </div>
+
+                    <h2 class="member-name">
+                        SHIN
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @shin
+                    </div>
+
+                    <div class="member-role">
+                        Member
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-MEM-SHIN
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+
+                <!-- MEMBER 6 -->
+
+                <article
+                    class="member-card"
+                    data-name="SHIKAGU"
+                    data-username="@shikagu"
+                    data-role="Streamer"
+                >
+
+                    <div class="member-avatar">
+                        S
+                    </div>
+
+                    <h2 class="member-name">
+                        SHIKAGU
+                    </h2>
+
+                    <div class="member-tiktok">
+                        @shikagu
+                    </div>
+
+                    <div class="member-role">
+                        Streamer
+                    </div>
+
+                    <div class="member-code">
+                        NFD-26-STR-SHIKAGU
+                    </div>
+
+                    <div class="member-status">
+                        Active Member
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+                😈 No member found.
+            </div>
+
+
+            <!-- JOIN -->
+
+            <div class="members-join">
+
+                <a href="join.html">
+                    👿 REQUEST TO JOIN
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 NIGHTFALL DEVILS
+            </p>
+
+            <p>
+                Formerly TEAM MALALA
+                • Established October 18, 2026
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- MAIN JAVASCRIPT -->
+
+    <script src="../js/script.js"></script>
+
+
+    <!-- =====================================================
+         MEMBER SEARCH
+    ===================================================== -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById(
+                "memberSearch"
+            );
+
+        const roleFilter =
+            document.getElementById(
+                "roleFilter"
+            );
+
+        const memberCards =
+            document.querySelectorAll(
+                ".member-card"
+            );
+
+        const noResults =
+            document.getElementById(
+                "noResults"
+            );
+
+        const memberCount =
+            document.getElementById(
+                "memberCount"
+            );
+
+
+        function filterMembers() {
+
+            const searchValue =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+            const selectedRole =
+                roleFilter.value;
+
+            let visibleCount = 0;
+
+
+            memberCards.forEach(
+                function(card) {
+
+                    const name =
+                        card.dataset.name
+                            .toLowerCase();
+
+                    const username =
+                        card.dataset.username
+                            .toLowerCase();
+
+                    const role =
+                        card.dataset.role;
+
+
+                    const matchesSearch =
+                        name.includes(
+                            searchValue
+                        ) ||
+                        username.includes(
+                            searchValue
+                        );
+
+
+                    const matchesRole =
+                        selectedRole === "all" ||
+                        role === selectedRole;
+
+
+                    if (
+                        matchesSearch &&
+                        matchesRole
+                    ) {
+
+                        card.style.display =
+                            "block";
+
+                        visibleCount++;
+
+                    } else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+
+            if (visibleCount === 0) {
+
+                noResults.style.display =
+                    "block";
+
+            } else {
+
+                noResults.style.display =
+                    "none";
+
+            }
+
+
+            memberCount.textContent =
+                visibleCount +
+                (
+                    visibleCount === 1
+                        ? " Member"
+                        : " Members"
+                );
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterMembers
+        );
+
+
+        roleFilter.addEventListener(
+            "change",
+            filterMembers
+        );
+
+    </script>
+
+
+</body>
+
+</html>
