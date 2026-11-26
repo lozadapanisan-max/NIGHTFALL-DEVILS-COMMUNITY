@@ -30,7 +30,8 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyAo19m_S4LUXkMF8itUBpzgt1nsR24sn98",
+    apiKey:
+        "AIzaSyAo19m_S4LUXkMF8itUBpzgt1nsR24sn98",
 
     authDomain:
         "nightfall-devils.firebaseapp.com",
