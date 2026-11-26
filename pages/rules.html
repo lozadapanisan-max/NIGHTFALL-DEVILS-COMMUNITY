@@ -11,137 +11,1423 @@
     >
 
     <meta
-        name="theme-color"
-        content="#050505"
+        name="description"
+        content="Official NIGHTFALL DEVILS Community Rules"
     >
 
     <meta
-        name="description"
-        content="NIGHTFALL DEVILS Community Rules"
+        name="theme-color"
+        content="#d71920"
     >
 
-    <title>
-        Community Rules | NIGHTFALL DEVILS
-    </title>
+    <title>Community Rules | NIGHTFALL DEVILS</title>
 
-    <!-- MAIN CSS -->
-    <!-- ../ means go back one folder -->
+
     <link
         rel="stylesheet"
         href="../css/style.css"
     >
 
+
+    <style>
+
+        /* =====================================================
+           NIGHTFALL DEVILS RULES PAGE
+           RED + WHITE + GOLD
+        ===================================================== */
+
+        :root {
+            --red: #d71920;
+            --red-dark: #9f1016;
+            --gold: #f5c542;
+            --white: #ffffff;
+            --black: #090909;
+            --dark: #111111;
+            --gray: #aaaaaa;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            background:
+                #090909;
+
+            color:
+                #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .site-header {
+
+            width: 100%;
+
+            position: relative;
+
+            z-index: 9999;
+
+            background:
+                #090909;
+
+            border-bottom:
+                1px solid
+                rgba(245, 197, 66, 0.35);
+        }
+
+
+        .header-container {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            min-height: 70px;
+
+            margin: 0 auto;
+
+            padding:
+                0 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            flex-shrink: 0;
+        }
+
+
+        .brand img {
+
+            width:
+                44px !important;
+
+            height:
+                44px !important;
+
+            object-fit:
+                contain;
+
+            display:
+                block;
+
+            border-radius:
+                8px;
+        }
+
+
+        .brand-name {
+
+            color:
+                #ffffff;
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.5px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .brand-name strong {
+
+            color:
+                var(--red);
+        }
+
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .nav-menu {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            margin-left:
+                auto;
+        }
+
+
+        .nav-menu a {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                10px 14px;
+
+            color:
+                #ffffff;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            border-radius:
+                7px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .nav-menu a:hover {
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(215, 25, 32, 0.15);
+        }
+
+
+        .nav-menu a.active {
+
+            color:
+                #ffffff;
+
+            background:
+                var(--red);
+        }
+
+
+
+        /* =====================================================
+           HAMBURGER
+        ===================================================== */
+
+        .menu-toggle {
+
+            width:
+                44px;
+
+            height:
+                44px;
+
+            margin-left:
+                auto;
+
+            display:
+                none;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            flex-direction:
+                column;
+
+            gap:
+                5px;
+
+            padding:
+                0;
+
+            background:
+                transparent;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.55);
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            z-index:
+                10001;
+
+            flex-shrink:
+                0;
+        }
+
+
+        .menu-toggle span {
+
+            width:
+                22px;
+
+            height:
+                2px;
+
+            display:
+                block;
+
+            background:
+                #ffffff;
+
+            border-radius:
+                5px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .menu-toggle:hover {
+
+            border-color:
+                var(--gold);
+
+            background:
+                rgba(215, 25, 32, 0.15);
+        }
+
+
+        .menu-toggle.active
+        span:nth-child(1) {
+
+            transform:
+                translateY(7px)
+                rotate(45deg);
+        }
+
+
+        .menu-toggle.active
+        span:nth-child(2) {
+
+            opacity:
+                0;
+        }
+
+
+        .menu-toggle.active
+        span:nth-child(3) {
+
+            transform:
+                translateY(-7px)
+                rotate(-45deg);
+        }
+
+
+
+        /* =====================================================
+           PAGE HERO
+        ===================================================== */
+
+        .rules-hero {
+
+            padding:
+                75px 20px 65px;
+
+            text-align:
+                center;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    rgba(215, 25, 32, 0.18),
+                    transparent 48%
+                ),
+
+                radial-gradient(
+                    circle at top right,
+                    rgba(245, 197, 66, 0.08),
+                    transparent 30%
+                ),
+
+                #090909;
+        }
+
+
+        .rules-badge {
+
+            display:
+                inline-block;
+
+            margin-bottom:
+                18px;
+
+            padding:
+                8px 16px;
+
+            border:
+                1px solid
+                var(--gold);
+
+            border-radius:
+                30px;
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(245, 197, 66, 0.08);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .rules-hero h1 {
+
+            margin:
+                0 0 15px;
+
+            font-size:
+                clamp(38px, 8vw, 65px);
+
+            line-height:
+                1.05;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .rules-hero h1 span {
+
+            color:
+                var(--red);
+
+            text-shadow:
+                0 0 20px
+                rgba(215, 25, 32, 0.35);
+        }
+
+
+        .rules-hero p {
+
+            max-width:
+                720px;
+
+            margin:
+                0 auto;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .established {
+
+            margin-top:
+                20px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+        }
+
+
+
+        /* =====================================================
+           RULES CONTENT
+        ===================================================== */
+
+        .rules-section {
+
+            padding:
+                70px 20px;
+
+            background:
+                #f7f7f7;
+        }
+
+
+        .rules-container {
+
+            width:
+                100%;
+
+            max-width:
+                1000px;
+
+            margin:
+                0 auto;
+        }
+
+
+        .rules-intro {
+
+            margin-bottom:
+                30px;
+
+            padding:
+                25px;
+
+            background:
+                #ffffff;
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                15px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .rules-intro h2 {
+
+            margin:
+                0 0 10px;
+
+            color:
+                #171717;
+
+            font-size:
+                23px;
+
+            font-weight:
+                900;
+        }
+
+
+        .rules-intro h2 span {
+
+            color:
+                var(--red);
+        }
+
+
+        .rules-intro p {
+
+            margin:
+                0;
+
+            color:
+                #555555;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+        }
+
+
+
+        /* =====================================================
+           RULE CARDS
+        ===================================================== */
+
+        .rules-list {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                18px;
+        }
+
+
+        .rule-card {
+
+            position:
+                relative;
+
+            padding:
+                25px 22px 25px 72px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid
+                #e4e4e4;
+
+            border-left:
+                5px solid
+                var(--red);
+
+            border-radius:
+                13px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.07);
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .rule-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                var(--gold);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .rule-number {
+
+            position:
+                absolute;
+
+            top:
+                22px;
+
+            left:
+                18px;
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            border-radius:
+                50%;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            box-shadow:
+                0 5px 12px
+                rgba(215, 25, 32, 0.25);
+        }
+
+
+        .rule-card h3 {
+
+            margin:
+                0 0 8px;
+
+            color:
+                #171717;
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+        }
+
+
+        .rule-card p {
+
+            margin:
+                0;
+
+            color:
+                #5d5d5d;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.65;
+        }
+
+
+
+        /* =====================================================
+           APPROVAL BOX
+        ===================================================== */
+
+        .approval-box {
+
+            margin-top:
+                25px;
+
+            padding:
+                28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7f7,
+                    #fffdf0
+                );
+
+            border:
+                2px solid
+                var(--red);
+
+            border-radius:
+                15px;
+
+            text-align:
+                center;
+        }
+
+
+        .approval-box h2 {
+
+            margin:
+                0 0 8px;
+
+            color:
+                var(--red);
+
+            font-size:
+                25px;
+
+            font-weight:
+                900;
+        }
+
+
+        .approval-box p {
+
+            max-width:
+                700px;
+
+            margin:
+                0 auto;
+
+            color:
+                #555555;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .approval-warning {
+
+            display:
+                inline-block;
+
+            margin-top:
+                18px;
+
+            padding:
+                11px 20px;
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            border-radius:
+                8px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.5px;
+        }
+
+
+
+        /* =====================================================
+           IMPORTANT NOTICE
+        ===================================================== */
+
+        .notice-section {
+
+            padding:
+                65px 20px;
+
+            background:
+                #090909;
+        }
+
+
+        .notice-container {
+
+            max-width:
+                900px;
+
+            margin:
+                0 auto;
+        }
+
+
+        .notice-box {
+
+            padding:
+                30px;
+
+            background:
+                #151515;
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                15px;
+
+            text-align:
+                center;
+        }
+
+
+        .notice-box h2 {
+
+            margin:
+                0 0 10px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                25px;
+
+            font-weight:
+                900;
+        }
+
+
+        .notice-box p {
+
+            margin:
+                0;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+        }
+
+
+
+        /* =====================================================
+           FINAL CTA
+        ===================================================== */
+
+        .rules-cta {
+
+            padding:
+                70px 20px;
+
+            text-align:
+                center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #8f0d12
+                );
+        }
+
+
+        .rules-cta h2 {
+
+            margin:
+                0 0 10px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                clamp(28px, 5vw, 42px);
+
+            font-weight:
+                900;
+        }
+
+
+        .rules-cta p {
+
+            max-width:
+                650px;
+
+            margin:
+                0 auto 25px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .cta-button {
+
+            display:
+                inline-block;
+
+            padding:
+                14px 28px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--red);
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                9px;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .cta-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                #fff9e5;
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+
+            padding:
+                25px 20px;
+
+            background:
+                #050505;
+
+            border-top:
+                1px solid
+                rgba(245, 197, 66, 0.25);
+
+            text-align:
+                center;
+        }
+
+
+        .site-footer p {
+
+            margin:
+                5px 0;
+
+            color:
+                #999999;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.5;
+        }
+
+
+        .site-footer p:first-child {
+
+            color:
+                #ffffff;
+
+            font-weight:
+                700;
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+
+            /* HEADER */
+
+            .header-container {
+
+                min-height:
+                    64px;
+
+                padding:
+                    0 14px;
+            }
+
+
+            .brand {
+
+                gap:
+                    8px;
+            }
+
+
+            .brand img {
+
+                width:
+                    40px !important;
+
+                height:
+                    40px !important;
+            }
+
+
+            .brand-name {
+
+                font-size:
+                    14px;
+            }
+
+
+            /* HAMBURGER */
+
+            .menu-toggle {
+
+                display:
+                    flex !important;
+
+                margin-left:
+                    auto !important;
+            }
+
+
+            /* NAV */
+
+            .nav-menu {
+
+                position:
+                    absolute;
+
+                top:
+                    64px;
+
+                left:
+                    10px;
+
+                right:
+                    10px;
+
+                display:
+                    none !important;
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+                gap:
+                    4px;
+
+                margin:
+                    0;
+
+                padding:
+                    10px;
+
+                background:
+                    #111111;
+
+                border:
+                    1px solid
+                    rgba(245, 197, 66, 0.45);
+
+                border-radius:
+                    10px;
+
+                box-shadow:
+                    0 15px 35px
+                    rgba(0, 0, 0, 0.45);
+            }
+
+
+            .nav-menu.show {
+
+                display:
+                    flex !important;
+            }
+
+
+            .nav-menu a {
+
+                width:
+                    100%;
+
+                justify-content:
+                    flex-start;
+
+                padding:
+                    13px 15px;
+            }
+
+
+            /* HERO */
+
+            .rules-hero {
+
+                padding:
+                    55px 16px;
+            }
+
+
+            .rules-hero p {
+
+                font-size:
+                    14px;
+            }
+
+
+            /* RULES */
+
+            .rules-section {
+
+                padding:
+                    50px 16px;
+            }
+
+
+            .rules-list {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    14px;
+            }
+
+
+            .rule-card {
+
+                padding:
+                    22px 18px 22px 65px;
+            }
+
+
+            .rule-number {
+
+                left:
+                    15px;
+
+                top:
+                    19px;
+            }
+
+
+            .rules-intro {
+
+                padding:
+                    20px;
+            }
+
+
+            .approval-box {
+
+                padding:
+                    22px 18px;
+            }
+
+
+            /* NOTICE */
+
+            .notice-section {
+
+                padding:
+                    50px 16px;
+            }
+
+
+            .notice-box {
+
+                padding:
+                    23px 18px;
+            }
+
+
+            /* CTA */
+
+            .rules-cta {
+
+                padding:
+                    55px 16px;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SMALL PHONE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .brand-name {
+
+                font-size:
+                    12px;
+            }
+
+
+            .brand img {
+
+                width:
+                    36px !important;
+
+                height:
+                    36px !important;
+            }
+
+
+            .menu-toggle {
+
+                width:
+                    40px;
+
+                height:
+                    40px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-<header class="site-header">
+    <header class="site-header">
 
-    <div class="nav">
-
-
-        <!-- LOGO -->
-
-        <a
-            href="../index.html"
-            class="logo"
-        >
-
-            NIGHTFALL
-            <span>DEVILS</span>
-            👿
-
-        </a>
+        <div class="header-container">
 
 
-        <!-- MOBILE MENU -->
+            <!-- BRAND -->
 
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            aria-label="Open Menu"
-        >
+            <a
+                href="../index.html"
+                class="brand"
+            >
 
-            ☰
+                <img
+                    src="../assets/logo/nightfall-devils-logo.png"
+                    alt="NIGHTFALL DEVILS Official Logo"
+                >
 
-        </button>
+
+                <span class="brand-name">
+
+                    NIGHTFALL
+                    <strong>DEVILS</strong>
+
+                </span>
+
+            </a>
 
 
-        <!-- NAVIGATION -->
 
-        <ul
-            class="nav-links"
-            id="navLinks"
-        >
+            <!-- NAVIGATION -->
 
-            <li>
+            <nav
+                class="nav-menu"
+                id="mainNav"
+            >
+
                 <a href="../index.html">
                     Home
                 </a>
-            </li>
 
-            <li>
-                <a href="rules.html">
+                <a
+                    href="rules.html"
+                    class="active"
+                >
                     Rules
                 </a>
-            </li>
 
-            <li>
                 <a href="join.html">
                     Join
                 </a>
-            </li>
 
-            <li>
                 <a href="schedule.html">
                     Schedule
                 </a>
-            </li>
 
-            <li>
                 <a href="members.html">
                     Members
                 </a>
-            </li>
 
-        </ul>
-
-
-    </div>
-
-</header>
+            </nav>
 
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+            <!-- HAMBURGER -->
 
-<main>
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+
+            </button>
 
 
-<!-- =====================================================
-     PAGE HERO
-===================================================== -->
+        </div>
 
-<section class="hero">
-
-    <div class="hero-content">
+    </header>
 
 
-        <div class="badge">
 
-            NIGHTFALL DEVILS
+    <!-- =====================================================
+         PAGE HERO
+    ===================================================== -->
 
-            <br>
+    <section class="rules-hero">
 
-            COMMUNITY GUIDELINES
+        <div class="rules-badge">
+
+            OFFICIAL COMMUNITY POLICY
 
         </div>
 
@@ -149,9 +1435,6 @@
         <h1>
 
             COMMUNITY
-
-            <br>
-
             <span>RULES</span>
 
         </h1>
@@ -159,473 +1442,750 @@
 
         <p>
 
-            Simple rules to keep our community
-            respectful, safe, organized, and united.
+            These rules are created to keep
+            NIGHTFALL DEVILS a safe, respectful,
+            united, and supportive community
+            for everyone.
 
         </p>
 
 
-    </div>
+        <div class="established">
 
-</section>
+            👿 NIGHTFALL DEVILS
+            • Established October 18, 2026
 
+        </div>
 
-
-<!-- =====================================================
-     RULES
-===================================================== -->
-
-<section class="section">
+    </section>
 
 
-    <div class="section-title">
+
+    <!-- =====================================================
+         RULES CONTENT
+    ===================================================== -->
+
+    <main class="rules-section">
+
+        <div class="rules-container">
+
+
+            <!-- INTRO -->
+
+            <div class="rules-intro">
+
+                <h2>
+
+                    OUR
+                    <span>COMMUNITY STANDARD</span>
+
+                </h2>
+
+
+                <p>
+
+                    Being part of NIGHTFALL DEVILS
+                    means choosing friendship,
+                    respect, support, privacy,
+                    and unity. Every member is
+                    expected to follow these rules
+                    both inside and outside community
+                    activities when representing
+                    NIGHTFALL DEVILS.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- RULES -->
+
+            <div class="rules-list">
+
+
+                <!-- RULE 1 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Respect Everyone
+                    </h3>
+
+                    <p>
+
+                        Treat all members, streamers,
+                        viewers, supporters, and other
+                        communities with respect.
+                        Different opinions are allowed,
+                        but disrespect is not.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 2 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        02
+                    </div>
+
+                    <h3>
+                        No Harassment or Personal Attacks
+                    </h3>
+
+                    <p>
+
+                        Personal attacks, bullying,
+                        harassment, insults, threats,
+                        humiliation, or intentionally
+                        hurting another member are
+                        not allowed.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 3 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        03
+                    </div>
+
+                    <h3>
+                        No Below-the-Belt Comments
+                    </h3>
+
+                    <p>
+
+                        Avoid comments or actions
+                        intended to embarrass, shame,
+                        provoke, or attack someone
+                        personally. Keep conversations
+                        respectful.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 4 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Protect Personal Information
+                    </h3>
+
+                    <p>
+
+                        Never disclose, share, post,
+                        or distribute another member's
+                        personal information without
+                        permission.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 5 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Keep Private Matters Private
+                    </h3>
+
+                    <p>
+
+                        Personal issues, disagreements,
+                        and sensitive matters should
+                        be handled privately and
+                        respectfully instead of being
+                        spread publicly.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 6 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        06
+                    </div>
+
+                    <h3>
+                        Do Not Involve Other Communities
+                    </h3>
+
+                    <p>
+
+                        NIGHTFALL DEVILS community
+                        issues should not be used to
+                        create conflict with other
+                        groups, teams, or communities.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 7 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        07
+                    </div>
+
+                    <h3>
+                        Support, Don't Bring Down
+                    </h3>
+
+                    <p>
+
+                        Support our members and
+                        streamers through positive
+                        engagement. Do not attack,
+                        insult, or intentionally bring
+                        down other creators.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 8 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        08
+                    </div>
+
+                    <h3>
+                        No Unnecessary Drama
+                    </h3>
+
+                    <p>
+
+                        Avoid creating arguments,
+                        spreading rumors, provoking
+                        conflict, or turning small
+                        disagreements into community
+                        problems.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 9 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        09
+                    </div>
+
+                    <h3>
+                        Membership Requires Approval
+                    </h3>
+
+                    <p>
+
+                        New members must be referred
+                        to Admin and reviewed before
+                        being officially added to the
+                        community.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 10 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        10
+                    </div>
+
+                    <h3>
+                        No Approval = No Adding
+                    </h3>
+
+                    <p>
+
+                        Do not add or invite someone
+                        as an official member without
+                        Admin approval. Please wait
+                        until the request has been
+                        reviewed.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 11 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        11
+                    </div>
+
+                    <h3>
+                        No Mandatory Payment or Gifts
+                    </h3>
+
+                    <p>
+
+                        Membership does not require
+                        payment, coins, gifts, or any
+                        mandatory financial contribution.
+                        Any support should always be
+                        voluntary.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 12 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        12
+                    </div>
+
+                    <h3>
+                        Follow TikTok and Platform Rules
+                    </h3>
+
+                    <p>
+
+                        All members must follow TikTok
+                        Community Guidelines and other
+                        applicable platform rules while
+                        participating in community
+                        activities.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 13 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        13
+                    </div>
+
+                    <h3>
+                        Handle Disputes Properly
+                    </h3>
+
+                    <p>
+
+                        If a problem happens between
+                        members, report it to Admin
+                        privately when necessary.
+                        Avoid public arguments and
+                        unnecessary escalation.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 14 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        14
+                    </div>
+
+                    <h3>
+                        Respect Admin Decisions
+                    </h3>
+
+                    <p>
+
+                        Admins are responsible for
+                        reviewing membership requests,
+                        maintaining order, and handling
+                        community concerns fairly.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 15 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        15
+                    </div>
+
+                    <h3>
+                        Represent NIGHTFALL DEVILS Properly
+                    </h3>
+
+                    <p>
+
+                        When representing the community,
+                        act responsibly and respectfully.
+                        Your actions can affect the
+                        reputation of the entire community.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- RULE 16 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        16
+                    </div>
+
+                    <h3>
+                        Help Maintain Unity
+                    </h3>
+
+                    <p>
+
+                        Encourage friendship, teamwork,
+                        support, and positive interaction.
+                        The goal is to build the community,
+                        not divide it.
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+
+            <!-- APPROVAL -->
+
+            <div class="approval-box">
+
+                <h2>
+
+                    👿 MEMBER APPROVAL POLICY
+
+                </h2>
+
+
+                <p>
+
+                    Before someone becomes an official
+                    NIGHTFALL DEVILS member, the person
+                    must provide their TikTok username,
+                    identify the member who referred them,
+                    and wait for Admin review.
+
+                </p>
+
+
+                <div class="approval-warning">
+
+                    NO APPROVAL = NO ADDING
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         IMPORTANT NOTICE
+    ===================================================== -->
+
+    <section class="notice-section">
+
+        <div class="notice-container">
+
+            <div class="notice-box">
+
+                <h2>
+
+                    🔒 PRIVACY FIRST
+
+                </h2>
+
+
+                <p>
+
+                    Never share another person's
+                    private information, personal
+                    details, account information,
+                    screenshots containing sensitive
+                    information, or other confidential
+                    matters without permission.
+
+                    <br><br>
+
+                    If you are unsure whether something
+                    is okay to share, ask Admin first.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ===================================================== -->
+
+    <section class="rules-cta">
 
         <h2>
-            👿 Our Community Rules
+
+            READY TO JOIN?
+
         </h2>
+
 
         <p>
 
-            NIGHTFALL DEVILS is built around
-            friendship, respect, support, and unity.
+            Read and understand the community rules
+            before submitting your membership request.
 
         </p>
-
-    </div>
-
-
-
-    <div class="grid">
-
-
-        <!-- RULE 01 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                01
-            </div>
-
-            <div>
-
-                <h3>
-                    Respect Everyone
-                </h3>
-
-                <p>
-
-                    Respect all members, streamers,
-                    viewers, and guests.
-
-                    Treat everyone with proper
-                    respect regardless of differences.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 02 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                02
-            </div>
-
-            <div>
-
-                <h3>
-                    No Below-the-Belt Comments
-                </h3>
-
-                <p>
-
-                    Avoid personal attacks, insulting
-                    remarks, harassment, or comments
-                    intended to hurt another person.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 03 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                03
-            </div>
-
-            <div>
-
-                <h3>
-                    Do Not Involve Other Communities
-                </h3>
-
-                <p>
-
-                    Personal issues should not be used
-                    to involve or attack another
-                    community or group.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 04 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                04
-            </div>
-
-            <div>
-
-                <h3>
-                    Support, Don't Bring Down
-                </h3>
-
-                <p>
-
-                    Support our streamers and members
-                    without attacking, insulting, or
-                    bringing other people down.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 05 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                05
-            </div>
-
-            <div>
-
-                <h3>
-                    Protect Privacy
-                </h3>
-
-                <p>
-
-                    Never share or disclose another
-                    member's personal information
-                    without permission.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 06 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                06
-            </div>
-
-            <div>
-
-                <h3>
-                    Follow Platform Rules
-                </h3>
-
-                <p>
-
-                    Follow TikTok's Community Guidelines
-                    and all applicable platform rules.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 07 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                07
-            </div>
-
-            <div>
-
-                <h3>
-                    Keep Private Matters Private
-                </h3>
-
-                <p>
-
-                    If there is a concern involving
-                    a member, contact an Admin or
-                    Moderator privately.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- RULE 08 -->
-
-        <article class="card rule">
-
-            <div class="number">
-                08
-            </div>
-
-            <div>
-
-                <h3>
-                    No Unnecessary Drama
-                </h3>
-
-                <p>
-
-                    Keep the community environment
-                    positive. Avoid unnecessary
-                    arguments and public conflicts.
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     IMPORTANT NOTICE
-===================================================== -->
-
-<section class="section">
-
-
-    <div class="card">
-
-
-        <div class="section-title">
-
-            <h2>
-                🛡️ IMPORTANT
-            </h2>
-
-            <p>
-
-                A problem involving one member
-                does not automatically represent
-                the entire NIGHTFALL DEVILS community.
-
-            </p>
-
-        </div>
-
-
-        <div class="notice">
-
-            ⚠️
-
-            <strong>
-                Handle personal concerns privately.
-            </strong>
-
-            <br><br>
-
-            Please contact an Admin or Moderator
-            instead of creating public conflict,
-            attacking another person, or involving
-            another community.
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     COMMUNITY PRINCIPLE
-===================================================== -->
-
-<section class="section">
-
-
-    <div class="section-title">
-
-        <h2>
-            OUR PRINCIPLE
-        </h2>
-
-        <p>
-
-            We are here to build a community,
-            not create unnecessary conflict.
-
-        </p>
-
-    </div>
-
-
-    <div class="process">
-
-
-        <div class="card step">
-
-            <strong>
-                🖤 RESPECT
-            </strong>
-
-            <p>
-
-                Respect people even when
-                you disagree.
-
-            </p>
-
-        </div>
-
-
-        <div class="card step">
-
-            <strong>
-                🤝 UNITY
-            </strong>
-
-            <p>
-
-                Support each other and
-                protect the community.
-
-            </p>
-
-        </div>
-
-
-        <div class="card step">
-
-            <strong>
-                🔥 SUPPORT
-            </strong>
-
-            <p>
-
-                Build people up instead
-                of bringing them down.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     BACK TO HOME
-===================================================== -->
-
-<section class="section">
-
-
-    <div class="buttons">
-
-        <a
-            href="../index.html"
-            class="btn secondary"
-        >
-
-            ← BACK TO HOME
-
-        </a>
 
 
         <a
             href="join.html"
-            class="btn primary"
+            class="cta-button"
         >
 
-            🔥 REQUEST TO JOIN
+            👿 REQUEST TO JOIN
 
         </a>
 
-    </div>
-
-</section>
-
-
-</main>
+    </section>
 
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
-<footer>
+    <footer class="site-footer">
 
-    <strong>
-        NIGHTFALL DEVILS COMMUNITY 👿
-    </strong>
+        <p>
+            © 2026 NIGHTFALL DEVILS
+        </p>
 
-    <br>
+        <p>
+            Formerly TEAM MALALA
+            • Established October 18, 2026
+        </p>
 
-    UNITY • RESPECT • FRIENDSHIP • SUPPORT
-
-    <br>
-
-    <small>
-
-        Established October 18, 2026
-        • Former Team Malala
-
-    </small>
-
-</footer>
+    </footer>
 
 
 
-<!-- JAVASCRIPT -->
+    <!-- =====================================================
+         HAMBURGER JAVASCRIPT
+    ===================================================== -->
 
-<script src="../js/script.js"></script>
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const menuToggle =
+                    document.getElementById(
+                        "menuToggle"
+                    );
+
+
+                const mainNav =
+                    document.getElementById(
+                        "mainNav"
+                    );
+
+
+
+                if (
+                    menuToggle &&
+                    mainNav
+                ) {
+
+
+                    /* OPEN / CLOSE */
+
+                    menuToggle.addEventListener(
+                        "click",
+                        function (event) {
+
+                            event.stopPropagation();
+
+
+                            const isOpen =
+                                mainNav.classList.toggle(
+                                    "show"
+                                );
+
+
+                            menuToggle.classList.toggle(
+                                "active"
+                            );
+
+
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                isOpen
+                                    ? "true"
+                                    : "false"
+                            );
+
+                        }
+                    );
+
+
+
+                    /* CLOSE AFTER CLICK */
+
+                    const navLinks =
+                        mainNav.querySelectorAll(
+                            "a"
+                        );
+
+
+                    navLinks.forEach(
+                        function (link) {
+
+                            link.addEventListener(
+                                "click",
+                                function () {
+
+                                    mainNav.classList.remove(
+                                        "show"
+                                    );
+
+
+                                    menuToggle.classList.remove(
+                                        "active"
+                                    );
+
+
+                                    menuToggle.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+
+                    /* CLOSE OUTSIDE */
+
+                    document.addEventListener(
+                        "click",
+                        function (event) {
+
+                            if (
+                                !event.target.closest(
+                                    ".site-header"
+                                )
+                            ) {
+
+                                mainNav.classList.remove(
+                                    "show"
+                                );
+
+
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
+
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
 
 
 </body>
