@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -9,480 +10,747 @@
     >
 
     <meta
-        name="theme-color"
-        content="#080808"
-    >
-
-    <meta
         name="description"
-        content="Request to join the NIGHTFALL DEVILS community."
+        content="NIGHTFALL DEVILS Community - Request to Join"
     >
 
-    <title>Join | NIGHTFALL DEVILS</title>
+    <title>Join NIGHTFALL DEVILS</title>
 
-    <link
-        rel="stylesheet"
-        href="../css/style.css"
-    >
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- PAGE CSS -->
+    <style>
+
+        /* =====================================================
+           JOIN PAGE
+        ===================================================== */
+
+        .join-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(215, 25, 32, 0.18),
+                    transparent 35%
+                ),
+                #090909;
+        }
+
+
+        /* =====================================================
+           PAGE HERO
+        ===================================================== */
+
+        .join-hero {
+            padding: 80px 20px 50px;
+            text-align: center;
+        }
+
+        .join-hero h1 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+
+            font-size: clamp(34px, 6vw, 58px);
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .join-hero h1 span {
+            color: #f5c542;
+        }
+
+        .join-hero p {
+            max-width: 700px;
+            margin: 0 auto;
+
+            color: #dddddd;
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           JOIN PROCESS
+        ===================================================== */
+
+        .join-process {
+            width: 100%;
+            max-width: 1000px;
+
+            margin: 0 auto 35px;
+
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            box-sizing: border-box;
+        }
+
+        .process-card {
+            padding: 22px 18px;
+
+            background: #ffffff;
+
+            border: 2px solid #f5c542;
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.25);
+        }
+
+        .process-number {
+            width: 42px;
+            height: 42px;
+
+            margin: 0 auto 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #d71920;
+
+            color: #ffffff;
+
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .process-card h3 {
+            margin: 0 0 8px;
+
+            color: #171717;
+
+            font-size: 18px;
+        }
+
+        .process-card p {
+            margin: 0;
+
+            color: #666;
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           APPROVAL NOTICE
+        ===================================================== */
+
+        .approval-notice {
+            width: calc(100% - 40px);
+            max-width: 760px;
+
+            margin: 0 auto 30px;
+
+            padding: 18px 20px;
+
+            box-sizing: border-box;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
+
+            border: 2px solid #f5c542;
+            border-radius: 12px;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(215, 25, 32, 0.25);
+        }
+
+        .approval-notice strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #f5c542;
+
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .approval-notice span {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           FORM WRAPPER
+        ===================================================== */
+
+        .join-form-wrapper {
+            width: 100%;
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            padding: 0 20px 70px;
+
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .join-form {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 35px;
+
+            background: #ffffff;
+
+            border: 2px solid #f5c542;
+            border-radius: 18px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =====================================================
+           FORM TITLE
+        ===================================================== */
+
+        .form-title {
+            margin-bottom: 28px;
+
+            text-align: center;
+        }
+
+        .form-title h2 {
+            margin: 0 0 8px;
+
+            color: #171717;
+
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .form-title h2 span {
+            color: #d71920;
+        }
+
+        .form-title p {
+            margin: 0;
+
+            color: #666;
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           FORM GROUP
+        ===================================================== */
+
+        .form-group {
+            width: 100%;
+
+            margin-bottom: 24px;
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .form-group label {
+            display: block;
+
+            width: 100%;
+
+            margin-bottom: 9px;
+
+            box-sizing: border-box;
+
+            color: #171717;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .form-group label .required {
+            color: #d71920;
+        }
+
+        .form-group label .optional {
+            margin-left: 5px;
+
+            color: #888;
+
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .form-group input,
+        .form-group textarea {
+            display: block;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border: 2px solid #dddddd;
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #171717;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        /* =====================================================
+           TEXT INPUT
+        ===================================================== */
+
+        .form-group input {
+            height: 54px;
+
+            padding:
+                0 16px;
+        }
+
+
+        /* =====================================================
+           TEXTAREA
+        ===================================================== */
+
+        .form-group textarea {
+            min-height: 180px;
+
+            padding: 14px 16px;
+
+            line-height: 1.6;
+
+            resize: vertical;
+        }
+
+
+        /* =====================================================
+           PLACEHOLDER
+        ===================================================== */
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999999;
+
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           FOCUS
+        ===================================================== */
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #d71920;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(215, 25, 32, 0.12);
+        }
+
+
+        /* =====================================================
+           CHARACTER COUNT
+        ===================================================== */
+
+        .character-count {
+            margin-top: 7px;
+
+            color: #777777;
+
+            font-size: 13px;
+
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           AGREEMENT
+        ===================================================== */
+
+        .agreement-box {
+            margin-top: 5px;
+            margin-bottom: 20px;
+
+            padding: 16px;
+
+            box-sizing: border-box;
+
+            background: #fff9e5;
+
+            border: 1px solid #f5c542;
+
+            border-radius: 10px;
+        }
+
+        .checkbox-label {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            margin: 0;
+
+            color: #333333;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            width: 20px;
+            height: 20px;
+
+            margin:
+                3px 0 0 0;
+
+            padding: 0;
+
+            flex-shrink: 0;
+
+            accent-color: #d71920;
+
+            cursor: pointer;
+        }
+
+        .checkbox-label strong {
+            color: #d71920;
+        }
+
+
+        /* =====================================================
+           PRIVACY NOTICE
+        ===================================================== */
+
+        .privacy-notice {
+            margin-bottom: 22px;
+
+            padding: 14px 15px;
+
+            box-sizing: border-box;
+
+            background: #f7f7f7;
+
+            border-left:
+                4px solid #f5c542;
+
+            border-radius: 6px;
+
+            color: #555555;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ===================================================== */
+
+        .join-submit-btn {
+            width: 100%;
+
+            min-height: 55px;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
+
+            color: #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(215, 25, 32, 0.25);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.25s ease;
+        }
+
+        .join-submit-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(215, 25, 32, 0.35);
+        }
+
+        .join-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .join-submit-btn:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .join-submit-btn span {
+            margin-right: 8px;
+        }
+
+
+        /* =====================================================
+           FORM STATUS
+        ===================================================== */
+
+        .form-status {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            line-height: 1.5;
+        }
+
+        .form-status.success {
+            display: block;
+
+            background: #eaf8ed;
+
+            border:
+                1px solid #58a96a;
+
+            color: #24703a;
+        }
+
+        .form-status.error {
+            display: block;
+
+            background: #fff0f0;
+
+            border:
+                1px solid #d71920;
+
+            color: #a80f15;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .join-hero {
+                padding:
+                    60px 16px 35px;
+            }
+
+            .join-hero h1 {
+                font-size: 36px;
+            }
+
+            .join-hero p {
+                font-size: 14px;
+            }
+
+            .join-process {
+                grid-template-columns: 1fr;
+
+                padding: 0 16px;
+
+                gap: 12px;
+            }
+
+            .process-card {
+                padding: 18px;
+            }
+
+            .approval-notice {
+                width: calc(100% - 32px);
+            }
+
+            .join-form-wrapper {
+                padding:
+                    0 16px 50px;
+            }
+
+            .join-form {
+                padding:
+                    24px 18px;
+
+                border-radius: 14px;
+            }
+
+            .form-title h2 {
+                font-size: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+            .form-group input {
+                height: 50px;
+
+                font-size: 15px;
+            }
+
+            .form-group textarea {
+                min-height: 160px;
+
+                font-size: 15px;
+            }
+
+            .checkbox-label {
+                font-size: 13px;
+            }
+
+            .join-submit-btn {
+                min-height: 52px;
+
+                font-size: 15px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .join-hero {
+                padding-top: 45px;
+            }
+
+            .join-hero h1 {
+                font-size: 31px;
+            }
+
+            .join-form {
+                padding:
+                    20px 14px;
+            }
+
+            .form-title h2 {
+                font-size: 22px;
+            }
+
+            .agreement-box {
+                padding: 13px;
+            }
+        }
+
+    </style>
+
 </head>
 
-<body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<body class="join-page">
 
-<header class="site-header">
 
-    <div class="container nav-container">
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-        <a
-            href="../index.html"
-            class="logo"
-        >
-            NIGHTFALL DEVILS
-            <span>👿</span>
-        </a>
+    <header class="site-header">
 
-        <button
-            class="menu-toggle"
-            id="menuBtn"
-            type="button"
-            aria-label="Open menu"
-        >
-            ☰
-        </button>
-
-        <nav
-            class="nav-links"
-            id="navLinks"
-        >
-
-            <a href="../index.html">
-                HOME
-            </a>
-
-            <a href="rules.html">
-                RULES
-            </a>
+        <div class="container">
 
             <a
-                href="join.html"
-                class="active"
+                href="../index.html"
+                class="logo"
             >
-                JOIN
+                NIGHTFALL DEVILS 👿
             </a>
 
-            <a href="schedule.html">
-                SCHEDULE
-            </a>
 
-            <a href="members.html">
-                MEMBERS
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-<!-- =========================
-     PAGE HERO
-========================= -->
-
-<section class="hero">
-
-    <div class="container hero-content">
-
-        <div class="hero-badge">
-            NIGHTFALL DEVILS COMMUNITY
-        </div>
-
-        <p class="hero-subtitle">
-            MEMBER REQUEST
-        </p>
-
-        <h1>
-            REQUEST
-            <span>TO JOIN</span>
-        </h1>
-
-        <p class="hero-description">
-            Become part of NIGHTFALL DEVILS.
-            Submit your request and wait for Admin approval.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     JOIN PROCESS
-========================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <p class="section-label">
-                HOW IT WORKS
-            </p>
-
-            <h2>
-                JOINING PROCESS
-            </h2>
-
-            <p>
-                Every new member must go through the
-                Admin approval process.
-            </p>
-
-        </div>
-
-
-        <div class="steps-grid">
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    01
-                </div>
-
-                <h3>
-                    REFER
-                </h3>
-
-                <p>
-                    Tell us your TikTok username and
-                    who referred you to NIGHTFALL DEVILS.
-                </p>
-
-            </div>
-
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    02
-                </div>
-
-                <h3>
-                    REVIEW
-                </h3>
-
-                <p>
-                    An Admin will review your request
-                    and the information you submitted.
-                </p>
-
-            </div>
-
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    03
-                </div>
-
-                <h3>
-                    APPROVED
-                </h3>
-
-                <p>
-                    After approval, an Admin may add
-                    you to the community.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="notice">
-
-            <strong>
-                ⚠️ NO APPROVAL = NO ADDING
-            </strong>
-
-            <p>
-                Do not add a new member without
-                Admin approval.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     REQUEST FORM
-========================= -->
-
-<section class="section section-dark">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <p class="section-label">
-                MEMBER APPLICATION
-            </p>
-
-            <h2>
-                SUBMIT YOUR REQUEST
-            </h2>
-
-            <p>
-                Complete the form below.
-                Your request will be reviewed by an Admin.
-            </p>
-
-        </div>
-
-
-        <div class="join-form-wrapper">
-
-            <form
-                id="joinForm"
-                class="join-form"
-            >
-
-                <!-- TikTok Username -->
-
-                <div class="form-group">
-
-                    <label for="tiktokUsername">
-                        TikTok Username
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="tiktokUsername"
-                        name="tiktokUsername"
-                        placeholder="@yourusername"
-                        maxlength="50"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Display Name -->
-
-                <div class="form-group">
-
-                    <label for="displayName">
-                        Display Name
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="displayName"
-                        name="displayName"
-                        placeholder="Your display name"
-                        maxlength="100"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Referred By -->
-
-                <div class="form-group">
-
-                    <label for="referredBy">
-                        Referred By
-                        <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="referredBy"
-                        name="referredBy"
-                        placeholder="TikTok username / member name"
-                        maxlength="100"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Message -->
-
-                <div class="form-group">
-
-                    <label for="message">
-                        Message to Admin
-                        <small>
-                            Optional
-                        </small>
-                    </label>
-
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="6"
-                        maxlength="500"
-                        placeholder="Tell the Admin why you would like to join..."
-                    ></textarea>
-
-                    <div class="character-count">
-                        Maximum 500 characters
-                    </div>
-
-                </div>
-
-
-                <!-- AGREEMENT -->
-
-                <div class="agreement-box">
-
-                    <label class="checkbox-label">
-
-                        <input
-                            type="checkbox"
-                            id="agreeRules"
-                            required
-                        >
-
-                        <span>
-                            I have read and agree to follow
-                            the NIGHTFALL DEVILS community
-                            rules, including the privacy
-                            and respect rules.
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <!-- PRIVACY NOTICE -->
-
-                <div class="privacy-box">
-
-                    <div class="privacy-icon">
-                        🛡️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            PRIVACY NOTICE
-                        </strong>
-
-                        <p>
-                            Never submit passwords, bank
-                            information, government ID numbers,
-                            home addresses, or other sensitive
-                            personal information through this form.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BUTTON -->
-
-                <button
-                    type="submit"
-                    class="btn btn-primary submit-btn"
-                >
-                    SUBMIT REQUEST 👿
-                </button>
-
-
-                <!-- STATUS -->
-
-                <div
-                    id="formStatus"
-                    class="form-status"
-                    aria-live="polite"
-                ></div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     IMPORTANT NOTICE
-========================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="cta-box">
-
-            <p class="section-label">
-                IMPORTANT
-            </p>
-
-            <h2>
-                RESPECT
-                <span>PRIVACY</span>
-            </h2>
-
-            <p>
-                NIGHTFALL DEVILS does not require mandatory
-                payments, gifts, coins, or contributions
-                to become a member.
-            </p>
-
-            <a
-                href="rules.html"
-                class="btn btn-outline"
-            >
-                READ COMMUNITY RULES
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    NIGHTFALL DEVILS 👿
-                </h3>
-
-                <p>
-                    Friendship • Support • Respect • Unity
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
+            <nav class="nav-menu">
 
                 <a href="../index.html">
                     Home
@@ -492,7 +760,10 @@
                     Rules
                 </a>
 
-                <a href="join.html">
+                <a
+                    href="join.html"
+                    class="active"
+                >
                     Join
                 </a>
 
@@ -504,215 +775,571 @@
                     Members
                 </a>
 
+            </nav>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open Menu"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <main>
+
+        <section class="join-hero">
+
+            <h1>
+                REQUEST TO
+                <span>JOIN</span>
+            </h1>
+
+            <p>
+                Welcome to the NIGHTFALL DEVILS community.
+                Submit your request below and wait for
+                Admin approval before being added.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             JOIN PROCESS
+        ================================================= -->
+
+        <section class="join-process">
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    1
+                </div>
+
+                <h3>
+                    REFER
+                </h3>
+
+                <p>
+                    A current member or Admin may
+                    refer you to the community.
+                </p>
+
             </div>
 
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    2
+                </div>
+
+                <h3>
+                    REVIEW
+                </h3>
+
+                <p>
+                    Admin will review your
+                    membership request.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    3
+                </div>
+
+                <h3>
+                    APPROVED
+                </h3>
+
+                <p>
+                    Only approved members may
+                    be added to the community.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             APPROVAL NOTICE
+        ================================================= -->
+
+        <div class="approval-notice">
+
+            <strong>
+                NO APPROVAL = NO ADDING
+            </strong>
+
+            <span>
+                Please wait for Admin approval
+                before joining the community.
+            </span>
+
         </div>
 
 
-        <div class="footer-bottom">
+
+        <!-- =================================================
+             FORM
+        ================================================= -->
+
+        <section class="join-form-wrapper">
+
+            <form
+                id="joinForm"
+                class="join-form"
+            >
+
+
+                <!-- FORM TITLE -->
+
+                <div class="form-title">
+
+                    <h2>
+                        MEMBER
+                        <span>REQUEST</span>
+                    </h2>
+
+                    <p>
+                        Please provide accurate information
+                        for Admin review.
+                    </p>
+
+                </div>
+
+
+
+                <!-- TIKTOK USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="tiktokUsername">
+
+                        TikTok Username
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="tiktokUsername"
+                        name="tiktokUsername"
+                        placeholder="@yourusername"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DISPLAY NAME -->
+
+                <div class="form-group">
+
+                    <label for="displayName">
+
+                        Display Name
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="displayName"
+                        name="displayName"
+                        placeholder="Your display name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- REFERRED BY -->
+
+                <div class="form-group">
+
+                    <label for="referredBy">
+
+                        Referred By
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="referredBy"
+                        name="referredBy"
+                        placeholder="TikTok username / member name"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label for="message">
+
+                        Message to Admin
+
+                        <span class="optional">
+                            Optional
+                        </span>
+
+                    </label>
+
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        maxlength="500"
+                        placeholder="Tell the Admin why you would like to join..."
+                    ></textarea>
+
+
+                    <div class="character-count">
+
+                        Maximum 500 characters
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AGREEMENT -->
+
+                <div class="agreement-box">
+
+                    <label
+                        class="checkbox-label"
+                        for="agreement"
+                    >
+
+                        <input
+                            type="checkbox"
+                            id="agreement"
+                            name="agreement"
+                            required
+                        >
+
+
+                        <span>
+
+                            I have read and agree to follow
+                            the
+                            <strong>
+                                NIGHTFALL DEVILS
+                            </strong>
+                            community rules, including the
+                            privacy and respect rules.
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- PRIVACY -->
+
+                <div class="privacy-notice">
+
+                    🔒 Your information will only be used
+                    for NIGHTFALL DEVILS membership review.
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="join-submit-btn"
+                    id="submitJoinBtn"
+                >
+
+                    <span>
+                        👿
+                    </span>
+
+                    SUBMIT REQUEST
+
+                </button>
+
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="formStatus"
+                    class="form-status"
+                    role="alert"
+                ></div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
 
             <p>
-                © 2026 NIGHTFALL DEVILS.
-                All rights reserved.
+                © 2026 NIGHTFALL DEVILS
             </p>
 
             <p>
-                Established October 18, 2026
+                Formerly TEAM MALALA
+                • Established October 18, 2026
             </p>
 
         </div>
 
-    </div>
-
-</footer>
+    </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
 
-<script src="../js/script.js"></script>
+    <!-- =====================================================
+         MAIN JAVASCRIPT
+    ===================================================== -->
 
-
-<script>
-
-const joinForm =
-    document.getElementById("joinForm");
-
-const formStatus =
-    document.getElementById("formStatus");
-
-const message =
-    document.getElementById("message");
+    <script src="../js/script.js"></script>
 
 
-/* Character counter */
+    <!-- =====================================================
+         JOIN FORM JAVASCRIPT
+         TEMPORARY VERSION
+    ===================================================== -->
 
-if (message) {
+    <script>
 
-    message.addEventListener(
-        "input",
-        function () {
+        const joinForm =
+            document.getElementById("joinForm");
 
-            const counter =
-                this.parentElement
-                    .querySelector(
-                        ".character-count"
+        const formStatus =
+            document.getElementById("formStatus");
+
+        const submitButton =
+            document.getElementById("submitJoinBtn");
+
+
+        joinForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                /* -----------------------------------------
+                   GET VALUES
+                ----------------------------------------- */
+
+                const tiktokUsername =
+                    document
+                        .getElementById("tiktokUsername")
+                        .value
+                        .trim();
+
+                const displayName =
+                    document
+                        .getElementById("displayName")
+                        .value
+                        .trim();
+
+                const referredBy =
+                    document
+                        .getElementById("referredBy")
+                        .value
+                        .trim();
+
+                const message =
+                    document
+                        .getElementById("message")
+                        .value
+                        .trim();
+
+                const agreement =
+                    document
+                        .getElementById("agreement")
+                        .checked;
+
+
+                /* -----------------------------------------
+                   VALIDATION
+                ----------------------------------------- */
+
+                if (
+                    !tiktokUsername ||
+                    !displayName ||
+                    !referredBy
+                ) {
+
+                    showStatus(
+                        "Please complete all required fields.",
+                        "error"
                     );
 
-            if (counter) {
+                    return;
 
-                counter.textContent =
-                    `${this.value.length}/500 characters`;
-
-            }
-
-        }
-    );
-
-}
+                }
 
 
-/* Form submit */
+                if (!agreement) {
 
-if (joinForm) {
+                    showStatus(
+                        "Please agree to the community rules before submitting.",
+                        "error"
+                    );
 
-    joinForm.addEventListener(
-        "submit",
-        function (event) {
+                    return;
 
-            event.preventDefault();
-
-            const username =
-                document
-                    .getElementById(
-                        "tiktokUsername"
-                    )
-                    .value
-                    .trim();
-
-            const displayName =
-                document
-                    .getElementById(
-                        "displayName"
-                    )
-                    .value
-                    .trim();
-
-            const referredBy =
-                document
-                    .getElementById(
-                        "referredBy"
-                    )
-                    .value
-                    .trim();
-
-            const agreed =
-                document
-                    .getElementById(
-                        "agreeRules"
-                    )
-                    .checked;
+                }
 
 
-            if (
-                !username ||
-                !displayName ||
-                !referredBy
-            ) {
+                /* -----------------------------------------
+                   BUTTON
+                ----------------------------------------- */
 
-                showStatus(
-                    "Please complete all required fields.",
-                    "error"
+                submitButton.disabled = true;
+
+                submitButton.innerHTML =
+                    "⏳ SUBMITTING...";
+
+
+                /* -----------------------------------------
+                   TEMPORARY REQUEST
+                ----------------------------------------- */
+
+                const requestData = {
+
+                    tiktokUsername:
+                        tiktokUsername,
+
+                    displayName:
+                        displayName,
+
+                    referredBy:
+                        referredBy,
+
+                    message:
+                        message,
+
+                    status:
+                        "pending",
+
+                    createdAt:
+                        new Date()
+                };
+
+
+                console.log(
+                    "NIGHTFALL DEVILS JOIN REQUEST:",
+                    requestData
                 );
 
-                return;
+
+                /* -----------------------------------------
+                   TEMPORARY SUCCESS
+                ----------------------------------------- */
+
+                setTimeout(function() {
+
+                    showStatus(
+                        "✅ Your membership request has been submitted for Admin review.",
+                        "success"
+                    );
+
+
+                    joinForm.reset();
+
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerHTML =
+                        "<span>👿</span> SUBMIT REQUEST";
+
+
+                }, 800);
 
             }
+        );
 
 
-            if (!agreed) {
+        /* =================================================
+           STATUS FUNCTION
+        ================================================= */
 
-                showStatus(
-                    "Please agree to the community rules.",
-                    "error"
-                );
+        function showStatus(
+            message,
+            type
+        ) {
 
-                return;
+            formStatus.textContent =
+                message;
 
-            }
+            formStatus.className =
+                "form-status " + type;
 
-
-            /*
-             * TEMPORARY DEMO
-             *
-             * Firebase will be connected
-             * in the next development step.
-             */
-
-            const requestData = {
-
-                tiktokUsername:
-                    username,
-
-                displayName:
-                    displayName,
-
-                referredBy:
-                    referredBy,
-
-                message:
-                    message.value.trim(),
-
-                status:
-                    "pending",
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-
-            console.log(
-                "NIGHTFALL DEVILS MEMBER REQUEST:",
-                requestData
-            );
-
-
-            showStatus(
-                "✓ Request received! Please wait for Admin approval.",
-                "success"
-            );
-
-
-            joinForm.reset();
+            formStatus.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
 
         }
-    );
 
-}
+    </script>
 
-
-/* Status message */
-
-function showStatus(
-    messageText,
-    type
-) {
-
-    if (!formStatus) {
-        return;
-    }
-
-    formStatus.textContent =
-        messageText;
-
-    formStatus.className =
-        "form-status " + type;
-
-}
-
-</script>
 
 </body>
+
 </html>
