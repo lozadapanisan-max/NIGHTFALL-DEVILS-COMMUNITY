@@ -1,1 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Admin Dashboard"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
+
+    <title>NIGHTFALL DEVILS | Admin Dashboard</title>
+
+
+    <style>
+
+        /* =====================================================
+           NIGHTFALL DEVILS
+           ADMIN DASHBOARD
+           RED + WHITE + GOLD
+        ===================================================== */
+
+        :root {
+
+            --red: #d71920;
+            --red-dark: #9f1016;
+            --red-light: #ff3b42;
+
+            --gold: #f5c542;
+            --gold-light: #ffe89a;
+
+            --white: #ffffff;
+
+            --black: #070707;
+            --dark: #0d0d0d;
+            --dark-2: #151515;
+            --dark-3: #1d1d1d;
+
+            --gray: #aaaaaa;
+            --gray-light: #dddddd;
+
+            --green: #22c55e;
+            --blue: #3b82f6;
+            --orange: #f59e0b;
+
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            background:
+                #090909;
+
+            color:
+                var(--white);
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+        }
+
+
+        a {
+
+            text-decoration: none;
+
+            -webkit-tap-highlight-color:
+                transparent;
+
+        }
+
+
+        button,
+        input {
+
+            font-family:
+                inherit;
+
+        }
+
+
+
+        /* =====================================================
+           TOP HEADER
+        ===================================================== */
+
+        .top-header {
+
+            position:
+                fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: 70px;
+
+            z-index: 1000;
+
+            background:
+                rgba(7, 7, 7, 0.97);
+
+            border-bottom:
+                1px solid
+                rgba(245, 197, 66, 0.35);
+
+            backdrop-filter:
+                blur(12px);
+
+        }
+
+
+        .top-header-inner {
+
+            width: 100%;
+
+            max-width:
+                1400px;
+
+            height: 100%;
+
+            margin: 0 auto;
+
+            padding:
+                0 22px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+        }
+
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            min-width:
+                230px;
+
+        }
+
+
+        .brand img {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            object-fit:
+                contain;
+
+            border-radius:
+                8px;
+
+            display:
+                block;
+
+        }
+
+
+        .brand-text {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            line-height:
+                1.1;
+
+        }
+
+
+        .brand-title {
+
+            color:
+                #ffffff;
+
+            font-size:
+                16px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.5px;
+
+        }
+
+
+        .brand-title span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .brand-subtitle {
+
+            margin-top:
+                3px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+
+        /* =====================================================
+           HEADER RIGHT
+        ===================================================== */
+
+        .header-right {
+
+            margin-left:
+                auto;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+        }
+
+
+        .admin-user {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-end;
+
+        }
+
+
+        .admin-label {
+
+            color:
+                var(--gray);
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .admin-email {
+
+            max-width:
+                260px;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
+
+            color:
+                #ffffff;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .logout-button {
+
+            padding:
+                9px 15px;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.55);
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(245, 197, 66, 0.06);
+
+            color:
+                var(--gold);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .logout-button:hover {
+
+            background:
+                var(--gold);
+
+            color:
+                #111111;
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE MENU BUTTON
+        ===================================================== */
+
+        .mobile-menu-button {
+
+            display:
+                none;
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            margin-left:
+                auto;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.45);
+
+            border-radius:
+                8px;
+
+            background:
+                transparent;
+
+            color:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            font-size:
+                20px;
+
+        }
+
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position:
+                fixed;
+
+            top:
+                70px;
+
+            left:
+                0;
+
+            bottom:
+                0;
+
+            width:
+                245px;
+
+            z-index:
+                900;
+
+            padding:
+                22px 15px;
+
+            background:
+                #0c0c0c;
+
+            border-right:
+                1px solid
+                rgba(245, 197, 66, 0.22);
+
+            overflow-y:
+                auto;
+
+        }
+
+
+        .sidebar-title {
+
+            margin:
+                0 10px 12px;
+
+            color:
+                #777777;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1.5px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .sidebar-link {
+
+            width:
+                100%;
+
+            margin-bottom:
+                5px;
+
+            padding:
+                12px 13px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                11px;
+
+            border:
+                1px solid
+                transparent;
+
+            border-radius:
+                8px;
+
+            color:
+                #cccccc;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .sidebar-link:hover {
+
+            background:
+                rgba(215, 25, 32, 0.12);
+
+            border-color:
+                rgba(215, 25, 32, 0.3);
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .sidebar-link.active {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(215, 25, 32, 0.24),
+                    rgba(215, 25, 32, 0.06)
+                );
+
+            border-left:
+                3px solid
+                var(--red);
+
+            border-top:
+                1px solid
+                rgba(215, 25, 32, 0.25);
+
+            border-right:
+                1px solid
+                rgba(215, 25, 32, 0.25);
+
+            border-bottom:
+                1px solid
+                rgba(215, 25, 32, 0.25);
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .sidebar-icon {
+
+            width:
+                25px;
+
+            text-align:
+                center;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .sidebar-badge {
+
+            margin-left:
+                auto;
+
+            min-width:
+                22px;
+
+            padding:
+                3px 6px;
+
+            border-radius:
+                20px;
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            text-align:
+                center;
+
+        }
+
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+
+            margin-left:
+                245px;
+
+            padding:
+                100px 25px 40px;
+
+            min-height:
+                100vh;
+
+        }
+
+
+        .content-wrapper {
+
+            width:
+                100%;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .page-header h1 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                clamp(25px, 4vw, 36px);
+
+            font-weight:
+                900;
+
+        }
+
+
+        .page-header h1 span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .page-header p {
+
+            margin:
+                0;
+
+            color:
+                var(--gray);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+
+        /* =====================================================
+           STATUS BAR
+        ===================================================== */
+
+        .system-status {
+
+            margin-bottom:
+                25px;
+
+            padding:
+                13px 16px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.25);
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(34, 197, 94, 0.06);
+
+            color:
+                #dddddd;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .status-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 10px
+                rgba(34, 197, 94, 0.55);
+
+        }
+
+
+        .system-status strong {
+
+            color:
+                var(--green);
+
+        }
+
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .stats-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                15px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .stat-card {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            min-height:
+                145px;
+
+            padding:
+                20px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171717,
+                    #0e0e0e
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .stat-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                var(--red);
+
+        }
+
+
+        .stat-card.gold::before {
+
+            background:
+                var(--gold);
+
+        }
+
+
+        .stat-card.green::before {
+
+            background:
+                var(--green);
+
+        }
+
+
+        .stat-card.blue::before {
+
+            background:
+                var(--blue);
+
+        }
+
+
+        .stat-icon {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            margin-bottom:
+                13px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(215, 25, 32, 0.12);
+
+            font-size:
+                20px;
+
+        }
+
+
+        .stat-card.gold .stat-icon {
+
+            background:
+                rgba(245, 197, 66, 0.10);
+
+        }
+
+
+        .stat-card.green .stat-icon {
+
+            background:
+                rgba(34, 197, 94, 0.10);
+
+        }
+
+
+        .stat-card.blue .stat-icon {
+
+            background:
+                rgba(59, 130, 246, 0.10);
+
+        }
+
+
+        .stat-number {
+
+            color:
+                #ffffff;
+
+            font-size:
+                28px;
+
+            font-weight:
+                900;
+
+            line-height:
+                1;
+
+        }
+
+
+        .stat-label {
+
+            margin-top:
+                6px;
+
+            color:
+                #999999;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+
+        /* =====================================================
+           DASHBOARD GRID
+        ===================================================== */
+
+        .dashboard-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.35fr 1fr;
+
+            gap:
+                18px;
+
+        }
+
+
+        .panel {
+
+            padding:
+                20px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius:
+                12px;
+
+            background:
+                #111111;
+
+        }
+
+
+        .panel-header {
+
+            margin-bottom:
+                18px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+        }
+
+
+        .panel-title {
+
+            margin:
+                0;
+
+            color:
+                #ffffff;
+
+            font-size:
+                16px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .panel-title span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .panel-link {
+
+            color:
+                var(--gold);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .panel-link:hover {
+
+            text-decoration:
+                underline;
+
+        }
+
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick-actions {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                10px;
+
+        }
+
+
+        .quick-action {
+
+            min-height:
+                90px;
+
+            padding:
+                16px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.18);
+
+            border-radius:
+                9px;
+
+            background:
+                #151515;
+
+            color:
+                #ffffff;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .quick-action:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                var(--gold);
+
+            background:
+                #191919;
+
+        }
+
+
+        .quick-action-icon {
+
+            margin-bottom:
+                8px;
+
+            font-size:
+                20px;
+
+        }
+
+
+        .quick-action-title {
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .quick-action-text {
+
+            margin-top:
+                3px;
+
+            color:
+                #888888;
+
+            font-size:
+                10px;
+
+        }
+
+
+
+        /* =====================================================
+           ACTIVITY
+        ===================================================== */
+
+        .activity-empty {
+
+            padding:
+                30px 15px;
+
+            text-align:
+                center;
+
+            color:
+                #777777;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .activity-empty-icon {
+
+            margin-bottom:
+                8px;
+
+            font-size:
+                30px;
+
+            opacity:
+                0.65;
+
+        }
+
+
+
+        /* =====================================================
+           WELCOME PANEL
+        ===================================================== */
+
+        .welcome-panel {
+
+            margin-top:
+                18px;
+
+            padding:
+                22px;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.25);
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(215, 25, 32, 0.16),
+                    rgba(245, 197, 66, 0.05)
+                );
+
+        }
+
+
+        .welcome-panel h2 {
+
+            margin:
+                0 0 8px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                18px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .welcome-panel h2 span {
+
+            color:
+                var(--gold);
+
+        }
+
+
+        .welcome-panel p {
+
+            margin:
+                0;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+
+        /* =====================================================
+           LOADING
+        ===================================================== */
+
+        .loading-screen {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                99999;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            flex-direction:
+                column;
+
+            gap:
+                12px;
+
+            background:
+                #070707;
+
+        }
+
+
+        .loading-logo {
+
+            width:
+                80px;
+
+            height:
+                80px;
+
+            object-fit:
+                contain;
+
+            border-radius:
+                15px;
+
+            animation:
+                pulse 1.2s infinite;
+
+        }
+
+
+        .loading-text {
+
+            color:
+                var(--gold);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(0.95);
+                opacity: 0.65;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.95);
+                opacity: 0.65;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE SIDEBAR OVERLAY
+        ===================================================== */
+
+        .sidebar-overlay {
+
+            display:
+                none;
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                850;
+
+            background:
+                rgba(0, 0, 0, 0.65);
+
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .top-header {
+
+                height:
+                    64px;
+
+            }
+
+
+            .top-header-inner {
+
+                padding:
+                    0 14px;
+
+            }
+
+
+            .brand {
+
+                min-width:
+                    0;
+
+            }
+
+
+            .brand img {
+
+                width:
+                    38px;
+
+                height:
+                    38px;
+
+            }
+
+
+            .brand-title {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .brand-subtitle {
+
+                font-size:
+                    8px;
+
+            }
+
+
+            .header-right {
+
+                display:
+                    none;
+
+            }
+
+
+            .mobile-menu-button {
+
+                display:
+                    block;
+
+            }
+
+
+            .sidebar {
+
+                top:
+                    64px;
+
+                width:
+                    270px;
+
+                transform:
+                    translateX(-100%);
+
+                transition:
+                    transform 0.25s ease;
+
+                z-index:
+                    950;
+
+            }
+
+
+            .sidebar.open {
+
+                transform:
+                    translateX(0);
+
+            }
+
+
+            .sidebar-overlay.show {
+
+                display:
+                    block;
+
+            }
+
+
+            .main-content {
+
+                margin-left:
+                    0;
+
+                padding:
+                    88px 14px 30px;
+
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap:
+                    10px;
+
+            }
+
+
+            .stat-card {
+
+                min-height:
+                    125px;
+
+                padding:
+                    15px;
+
+            }
+
+
+            .stat-number {
+
+                font-size:
+                    23px;
+
+            }
+
+
+            .stat-label {
+
+                font-size:
+                    10px;
+
+            }
+
+
+            .quick-actions {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .panel {
+
+                padding:
+                    16px;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .brand-text {
+
+                display:
+                    none;
+
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .quick-actions {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+         LOADING SCREEN
+    ===================================================== -->
+
+    <div
+        class="loading-screen"
+        id="loadingScreen"
+    >
+
+        <img
+            src="../assets/logo/nightfall-devils-logo.png"
+            alt="NIGHTFALL DEVILS"
+            class="loading-logo"
+        >
+
+        <div class="loading-text">
+            VERIFYING ADMIN ACCESS...
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="top-header">
+
+        <div class="top-header-inner">
+
+
+            <a
+                href="../index.html"
+                class="brand"
+            >
+
+                <img
+                    src="../assets/logo/nightfall-devils-logo.png"
+                    alt="NIGHTFALL DEVILS"
+                >
+
+                <div class="brand-text">
+
+                    <div class="brand-title">
+
+                        NIGHTFALL
+                        <span>DEVILS</span>
+
+                    </div>
+
+                    <div class="brand-subtitle">
+
+                        ADMIN PANEL
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <div class="header-right">
+
+                <div class="admin-user">
+
+                    <div class="admin-label">
+                        Logged in as
+                    </div>
+
+                    <div
+                        class="admin-email"
+                        id="adminEmail"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+
+                    🚪 LOGOUT
+
+                </button>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open admin menu"
+            >
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SIDEBAR OVERLAY
+    ===================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+
+        <div class="sidebar-title">
+            MAIN MENU
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="sidebar-link active"
+        >
+
+            <span class="sidebar-icon">
+                🏠
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="requests.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                📝
+            </span>
+
+            Join Requests
+
+            <span
+                class="sidebar-badge"
+                id="requestBadge"
+            >
+                0
+            </span>
+
+        </a>
+
+
+        <a
+            href="members.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                👥
+            </span>
+
+            Members
+
+        </a>
+
+
+        <a
+            href="schedule.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                📅
+            </span>
+
+            Schedule
+
+        </a>
+
+
+        <a
+            href="announcements.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                📢
+            </span>
+
+            Announcements
+
+        </a>
+
+
+
+        <div
+            class="sidebar-title"
+            style="margin-top:25px;"
+        >
+            WEBSITE
+        </div>
+
+
+        <a
+            href="../index.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                🌐
+            </span>
+
+            View Website
+
+        </a>
+
+
+        <a
+            href="../pages/join.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                👿
+            </span>
+
+            Join Page
+
+        </a>
+
+
+
+        <div
+            class="sidebar-title"
+            style="margin-top:25px;"
+        >
+            ACCOUNT
+        </div>
+
+
+        <a
+            href="#"
+            class="sidebar-link"
+            id="sidebarLogout"
+        >
+
+            <span class="sidebar-icon">
+                🚪
+            </span>
+
+            Logout
+
+        </a>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ===================================================== -->
+
+    <main class="main-content">
+
+        <div class="content-wrapper">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <h1>
+
+                    ADMIN
+                    <span>DASHBOARD</span>
+
+                </h1>
+
+                <p>
+
+                    Manage NIGHTFALL DEVILS
+                    community members, requests,
+                    schedules, and announcements.
+
+                </p>
+
+            </section>
+
+
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+
+                    Firebase Authentication:
+
+                    <strong>
+                        Connected
+                    </strong>
+
+                    • Admin session is active.
+
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="totalMembers"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        TOTAL MEMBERS
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card gold">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="pendingRequests"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        PENDING REQUESTS
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card green">
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="upcomingSchedules"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        UPCOMING SCHEDULES
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card blue">
+
+                    <div class="stat-icon">
+                        📢
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="totalAnnouncements"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        ANNOUNCEMENTS
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DASHBOARD PANELS
+            ================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2 class="panel-title">
+
+                            QUICK
+                            <span>ACTIONS</span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <a
+                            href="requests.html"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+                                📝
+                            </div>
+
+                            <div class="quick-action-title">
+                                Review Requests
+                            </div>
+
+                            <div class="quick-action-text">
+                                Approve new members
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="members.html"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+                                👥
+                            </div>
+
+                            <div class="quick-action-title">
+                                Manage Members
+                            </div>
+
+                            <div class="quick-action-text">
+                                View community members
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="schedule.html"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+                                📅
+                            </div>
+
+                            <div class="quick-action-title">
+                                Manage Schedule
+                            </div>
+
+                            <div class="quick-action-text">
+                                Add raids and LIVE support
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="announcements.html"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+                                📢
+                            </div>
+
+                            <div class="quick-action-title">
+                                Announcements
+                            </div>
+
+                            <div class="quick-action-text">
+                                Post community updates
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2 class="panel-title">
+
+                            RECENT
+                            <span>ACTIVITY</span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <div class="activity-empty">
+
+                        <div class="activity-empty-icon">
+                            📋
+                        </div>
+
+                        No recent activity yet.
+
+                        <br>
+
+                        Activity will appear here
+                        once the community system
+                        is connected.
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 WELCOME
+            ================================================== -->
+
+            <section class="welcome-panel">
+
+                <h2>
+
+                    Welcome to
+                    <span>NIGHTFALL DEVILS</span>
+                    Admin Panel 👿
+
+                </h2>
+
+
+                <p>
+
+                    Use this dashboard to manage
+                    membership requests, approved
+                    members, streamer support
+                    schedules, and community
+                    announcements.
+
+                    <br><br>
+
+                    Remember:
+
+                    <strong style="color:#f5c542;">
+                        No Approval = No Adding.
+                    </strong>
+
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FIREBASE AUTHENTICATION
+    ===================================================== -->
+
+    <script type="module">
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+        import {
+            auth
+        } from "../firebase-config.js";
+
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const loadingScreen =
+            document.getElementById(
+                "loadingScreen"
+            );
+
+
+        const adminEmail =
+            document.getElementById(
+                "adminEmail"
+            );
+
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        const sidebarLogout =
+            document.getElementById(
+                "sidebarLogout"
+            );
+
+
+        const mobileMenuButton =
+            document.getElementById(
+                "mobileMenuButton"
+            );
+
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const sidebarOverlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+
+
+        /* =====================================================
+           CHECK ADMIN LOGIN
+        ===================================================== */
+
+        onAuthStateChanged(
+            auth,
+            function (user) {
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   DISPLAY ADMIN EMAIL
+                ========================= */
+
+                adminEmail.textContent =
+                    user.email || "Admin";
+
+
+                /* =========================
+                   HIDE LOADING
+                ========================= */
+
+                loadingScreen.style.display =
+                    "none";
+
+            }
+        );
+
+
+
+        /* =====================================================
+           LOGOUT FUNCTION
+        ===================================================== */
+
+        async function logoutAdmin() {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+                alert(
+                    "Unable to logout. Please try again."
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           LOGOUT BUTTONS
+        ===================================================== */
+
+        logoutButton.addEventListener(
+            "click",
+            logoutAdmin
+        );
+
+
+        sidebarLogout.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                logoutAdmin();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           MOBILE SIDEBAR
+        ===================================================== */
+
+        function openSidebar() {
+
+            sidebar.classList.add(
+                "open"
+            );
+
+            sidebarOverlay.classList.add(
+                "show"
+            );
+
+        }
+
+
+        function closeSidebar() {
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+            sidebarOverlay.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        mobileMenuButton.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    sidebar.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeSidebar();
+
+                }
+
+                else {
+
+                    openSidebar();
+
+                }
+
+            }
+        );
+
+
+        sidebarOverlay.addEventListener(
+            "click",
+            closeSidebar
+        );
+
+
+        sidebar
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            closeSidebar();
+
+                        }
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>
