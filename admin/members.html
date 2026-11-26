@@ -1,1 +1,3306 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Admin Member Management"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
+
+    <title>Members Management | NIGHTFALL DEVILS</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background:
+                #090909;
+
+            color:
+                #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           COLORS
+        ===================================================== */
+
+        :root {
+
+            --red:
+                #d71920;
+
+            --red-dark:
+                #a80f15;
+
+            --gold:
+                #f5c542;
+
+            --gold-light:
+                #fff9e5;
+
+            --white:
+                #ffffff;
+
+            --black:
+                #090909;
+
+            --dark:
+                #111111;
+
+            --gray:
+                #666666;
+
+            --green:
+                #198754;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .admin-header {
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                1000;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
+
+            border-bottom:
+                2px solid var(--gold);
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.35);
+
+        }
+
+
+        .header-inner {
+
+            width:
+                100%;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+
+            padding:
+                14px 20px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+        }
+
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+        }
+
+
+        .brand-icon {
+
+            font-size:
+                25px;
+
+        }
+
+
+        .brand-text strong {
+
+            display:
+                block;
+
+            color:
+                var(--white);
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .brand-text span {
+
+            display:
+                block;
+
+            margin-top:
+                2px;
+
+            color:
+                var(--gold-light);
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .header-actions {
+
+            display:
+                flex;
+
+            gap:
+                8px;
+
+        }
+
+
+        .header-btn {
+
+            min-height:
+                38px;
+
+            padding:
+                7px 13px;
+
+            border:
+                1px solid var(--gold);
+
+            border-radius:
+                8px;
+
+            background:
+                transparent;
+
+            color:
+                var(--white);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .header-btn:hover {
+
+            background:
+                var(--gold);
+
+            color:
+                #171717;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .admin-main {
+
+            width:
+                100%;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+
+            padding:
+                35px 20px 70px;
+
+        }
+
+
+        .page-heading {
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .page-heading h1 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                var(--white);
+
+            font-size:
+                clamp(28px, 5vw, 42px);
+
+            font-weight:
+                900;
+
+        }
+
+
+        .page-heading h1 span {
+
+            color:
+                var(--gold);
+
+        }
+
+
+        .page-heading p {
+
+            margin:
+                0;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                14px;
+
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
+
+        .member-form-card {
+
+            margin-bottom:
+                30px;
+
+            padding:
+                25px;
+
+            background:
+                var(--white);
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.30);
+
+        }
+
+
+        .form-heading {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .form-heading h2 {
+
+            margin:
+                0;
+
+            color:
+                #171717;
+
+            font-size:
+                22px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .form-heading h2 span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .cancel-edit {
+
+            display:
+                none;
+
+            border:
+                1px solid #cccccc;
+
+            border-radius:
+                7px;
+
+            background:
+                #f5f5f5;
+
+            color:
+                #555555;
+
+            padding:
+                8px 12px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                18px;
+
+        }
+
+
+        .form-group {
+
+            width:
+                100%;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            display:
+                block;
+
+            margin-bottom:
+                7px;
+
+            color:
+                #222222;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .required {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width:
+                100%;
+
+            height:
+                48px;
+
+            padding:
+                0 13px;
+
+            border:
+                2px solid #dddddd;
+
+            border-radius:
+                8px;
+
+            background:
+                #ffffff;
+
+            color:
+                #171717;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color:
+                var(--red);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(215, 25, 32, 0.10);
+
+        }
+
+
+        /* =====================================================
+           PHOTO UPLOAD
+        ===================================================== */
+
+        .photo-area {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                150px 1fr;
+
+            gap:
+                20px;
+
+            align-items:
+                center;
+
+        }
+
+
+        .photo-preview {
+
+            width:
+                150px;
+
+            height:
+                150px;
+
+            overflow:
+                hidden;
+
+            border:
+                3px solid var(--gold);
+
+            border-radius:
+                14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+        }
+
+
+        .photo-preview img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+        }
+
+
+        .photo-placeholder {
+
+            padding:
+                15px;
+
+            text-align:
+                center;
+
+            color:
+                #ffffff;
+
+            font-size:
+                32px;
+
+        }
+
+
+        .upload-info p {
+
+            margin:
+                0 0 10px;
+
+            color:
+                #555555;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .file-input {
+
+            width:
+                100%;
+
+            padding:
+                10px;
+
+            border:
+                1px dashed #cccccc;
+
+            border-radius:
+                8px;
+
+            background:
+                #f8f8f8;
+
+            color:
+                #555555;
+
+            font-size:
+                12px;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .form-actions {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin-top:
+                22px;
+
+        }
+
+
+        .save-btn {
+
+            min-height:
+                48px;
+
+            padding:
+                0 22px;
+
+            border:
+                none;
+
+            border-radius:
+                8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 7px 18px
+                rgba(215, 25, 32, 0.25);
+
+        }
+
+
+        .save-btn:hover {
+
+            opacity:
+                0.9;
+
+        }
+
+
+        .save-btn:disabled {
+
+            opacity:
+                0.6;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .form-status {
+
+            display:
+                none;
+
+            margin-top:
+                15px;
+
+            padding:
+                12px 14px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .form-status.success {
+
+            display:
+                block;
+
+            background:
+                #eaf8ed;
+
+            border:
+                1px solid #58a96a;
+
+            color:
+                #24703a;
+
+        }
+
+
+        .form-status.error {
+
+            display:
+                block;
+
+            background:
+                #fff0f0;
+
+            border:
+                1px solid var(--red);
+
+            color:
+                var(--red-dark);
+
+        }
+
+
+        /* =====================================================
+           MEMBERS HEADER
+        ===================================================== */
+
+        .members-heading {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                18px;
+
+        }
+
+
+        .members-heading h2 {
+
+            margin:
+                0;
+
+            color:
+                #ffffff;
+
+            font-size:
+                24px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .members-count {
+
+            padding:
+                7px 13px;
+
+            border:
+                1px solid var(--gold);
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(245, 197, 66, 0.10);
+
+            color:
+                var(--gold);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           MEMBERS GRID
+        ===================================================== */
+
+        .members-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                20px;
+
+        }
+
+
+        /* =====================================================
+           ADMIN MEMBER CARD
+        ===================================================== */
+
+        .member-card {
+
+            overflow:
+                hidden;
+
+            background:
+                #ffffff;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                15px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .member-card-top {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                110px 1fr;
+
+            gap:
+                15px;
+
+            padding:
+                15px;
+
+        }
+
+
+        .member-card-photo {
+
+            width:
+                110px;
+
+            height:
+                110px;
+
+            overflow:
+                hidden;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+        }
+
+
+        .member-card-photo img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+        }
+
+
+        .member-details h3 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                #171717;
+
+            font-size:
+                18px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .member-details .username {
+
+            margin-bottom:
+                7px;
+
+            color:
+                var(--red);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .member-details .code {
+
+            display:
+                inline-block;
+
+            margin-bottom:
+                7px;
+
+            padding:
+                4px 7px;
+
+            background:
+                var(--gold-light);
+
+            border:
+                1px solid var(--gold);
+
+            border-radius:
+                5px;
+
+            color:
+                #765c00;
+
+            font-family:
+                monospace;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .member-details .role {
+
+            color:
+                #666666;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        /* =====================================================
+           CARD STATUS
+        ===================================================== */
+
+        .card-status {
+
+            display:
+                inline-block;
+
+            margin-top:
+                8px;
+
+            padding:
+                4px 8px;
+
+            border-radius:
+                12px;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .card-status.active {
+
+            background:
+                #eaf8ed;
+
+            color:
+                #198754;
+
+        }
+
+
+        .card-status.inactive {
+
+            background:
+                #fff0f0;
+
+            color:
+                var(--red);
+
+        }
+
+
+        /* =====================================================
+           CARD ACTIONS
+        ===================================================== */
+
+        .member-actions {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr 1fr;
+
+            gap:
+                7px;
+
+            padding:
+                10px;
+
+            border-top:
+                1px solid #eeeeee;
+
+            background:
+                #fafafa;
+
+        }
+
+
+        .card-btn {
+
+            min-height:
+                38px;
+
+            border:
+                1px solid #dddddd;
+
+            border-radius:
+                7px;
+
+            background:
+                #ffffff;
+
+            color:
+                #333333;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .card-btn:hover {
+
+            border-color:
+                var(--gold);
+
+        }
+
+
+        .card-btn.edit:hover {
+
+            background:
+                var(--gold-light);
+
+        }
+
+
+        .card-btn.delete:hover {
+
+            background:
+                #fff0f0;
+
+            border-color:
+                var(--red);
+
+            color:
+                var(--red);
+
+        }
+
+
+        .card-btn.toggle:hover {
+
+            background:
+                #eaf8ed;
+
+            border-color:
+                var(--green);
+
+            color:
+                var(--green);
+
+        }
+
+
+        /* =====================================================
+           LOADING / EMPTY
+        ===================================================== */
+
+        .loading-box,
+        .empty-box {
+
+            padding:
+                45px 20px;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                15px;
+
+            background:
+                #ffffff;
+
+            color:
+                #555555;
+
+            text-align:
+                center;
+
+        }
+
+
+        .empty-box {
+
+            display:
+                none;
+
+        }
+
+
+        .empty-icon {
+
+            margin-bottom:
+                10px;
+
+            font-size:
+                40px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .admin-main {
+
+                padding:
+                    25px 14px 50px;
+
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .photo-area {
+
+                grid-template-columns:
+                    110px 1fr;
+
+            }
+
+
+            .photo-preview {
+
+                width:
+                    110px;
+
+                height:
+                    110px;
+
+            }
+
+
+            .members-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap:
+                    10px;
+
+            }
+
+
+            .member-card-top {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align:
+                    center;
+
+                padding:
+                    10px;
+
+            }
+
+
+            .member-card-photo {
+
+                width:
+                    100%;
+
+                height:
+                    auto;
+
+                aspect-ratio:
+                    1 / 1;
+
+            }
+
+
+            .member-details h3 {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .member-details .username {
+
+                font-size:
+                    10px;
+
+            }
+
+
+            .member-details .code {
+
+                font-size:
+                    8px;
+
+                max-width:
+                    100%;
+
+                overflow:
+                    hidden;
+
+                text-overflow:
+                    ellipsis;
+
+                white-space:
+                    nowrap;
+
+            }
+
+
+            .member-details .role {
+
+                font-size:
+                    8px;
+
+            }
+
+
+            .member-actions {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .card-btn {
+
+                min-height:
+                    34px;
+
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .header-inner {
+
+                padding:
+                    12px;
+
+            }
+
+
+            .brand-text strong {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .brand-text span {
+
+                font-size:
+                    9px;
+
+            }
+
+
+            .header-btn {
+
+                padding:
+                    6px 8px;
+
+                font-size:
+                    10px;
+
+            }
+
+
+            .member-form-card {
+
+                padding:
+                    17px;
+
+            }
+
+
+            .form-heading h2 {
+
+                font-size:
+                    18px;
+
+            }
+
+
+            .photo-area {
+
+                grid-template-columns:
+                    90px 1fr;
+
+                gap:
+                    12px;
+
+            }
+
+
+            .photo-preview {
+
+                width:
+                    90px;
+
+                height:
+                    90px;
+
+            }
+
+
+            .members-heading h2 {
+
+                font-size:
+                    19px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="admin-header">
+
+        <div class="header-inner">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    👿
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>
+                        NIGHTFALL DEVILS
+                    </strong>
+
+                    <span>
+                        ADMIN • MEMBER MANAGEMENT
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="header-btn"
+                    id="dashboardBtn"
+                    type="button"
+                >
+                    Dashboard
+                </button>
+
+
+                <button
+                    class="header-btn"
+                    id="logoutBtn"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <h1>
+                MEMBER
+                <span>MANAGEMENT</span>
+            </h1>
+
+            <p>
+                Add, edit, manage and upload photos
+                for NIGHTFALL DEVILS members.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ADD / EDIT FORM
+        ================================================== -->
+
+        <section class="member-form-card">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    👤
+                    <span id="formTitle">
+                        ADD MEMBER
+                    </span>
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="cancel-edit"
+                    id="cancelEditBtn"
+                >
+                    Cancel Edit
+                </button>
+
+            </div>
+
+
+
+            <form id="memberForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- DISPLAY NAME -->
+
+                    <div class="form-group">
+
+                        <label for="displayName">
+
+                            Display Name
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="displayName"
+                            placeholder="JIN-WOO"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- TIKTOK USERNAME -->
+
+                    <div class="form-group">
+
+                        <label for="tiktokUsername">
+
+                            TikTok Username
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tiktokUsername"
+                            placeholder="@username"
+                            maxlength="80"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- MEMBER CODE -->
+
+                    <div class="form-group">
+
+                        <label for="memberCode">
+
+                            Member Code
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="memberCode"
+                            placeholder="NFD-26-MEM-001"
+                            maxlength="50"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- ROLE -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+
+                            Role
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <select
+                            id="role"
+                            required
+                        >
+
+                            <option value="">
+                                Select Role
+                            </option>
+
+                            <option value="FOUNDER">
+                                FOUNDER
+                            </option>
+
+                            <option value="ADMIN">
+                                ADMIN
+                            </option>
+
+                            <option value="MODERATOR">
+                                MODERATOR
+                            </option>
+
+                            <option value="STREAMER">
+                                STREAMER
+                            </option>
+
+                            <option value="MEMBER">
+                                MEMBER
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="active">
+
+                            Member Status
+
+                        </label>
+
+                        <select id="active">
+
+                            <option value="true">
+                                ACTIVE
+                            </option>
+
+                            <option value="false">
+                                INACTIVE
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- PHOTO -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Member Photo
+                        </label>
+
+
+                        <div class="photo-area">
+
+
+                            <div
+                                class="photo-preview"
+                                id="photoPreview"
+                            >
+
+                                <div
+                                    class="photo-placeholder"
+                                    id="photoPlaceholder"
+                                >
+                                    👿
+                                </div>
+
+                            </div>
+
+
+                            <div class="upload-info">
+
+                                <p>
+                                    Upload a clear profile photo
+                                    for this member.
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="photoFile"
+                                    class="file-input"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ACTION -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="saveMemberBtn"
+                    >
+                        👿 SAVE MEMBER
+                    </button>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="formStatus"
+                    class="form-status"
+                ></div>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MEMBERS LIST
+        ================================================== -->
+
+        <div class="members-heading">
+
+            <h2>
+                👿 MEMBERS
+            </h2>
+
+            <div
+                class="members-count"
+                id="membersCount"
+            >
+                0 MEMBERS
+            </div>
+
+        </div>
+
+
+
+        <div
+            class="loading-box"
+            id="loadingBox"
+        >
+            ⏳ Loading members...
+        </div>
+
+
+        <div
+            class="empty-box"
+            id="emptyBox"
+        >
+
+            <div class="empty-icon">
+                👿
+            </div>
+
+            <strong>
+                No members yet.
+            </strong>
+
+            <p>
+                Add your first member above.
+            </p>
+
+        </div>
+
+
+        <div
+            class="members-grid"
+            id="membersGrid"
+        ></div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FIREBASE
+    ====================================================== -->
+
+    <script type="module">
+
+        import {
+
+            onAuthStateChanged,
+
+            signOut
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+        import {
+
+            collection,
+
+            addDoc,
+
+            getDocs,
+
+            updateDoc,
+
+            deleteDoc,
+
+            doc,
+
+            serverTimestamp,
+
+            orderBy,
+
+            query
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        import {
+
+            ref,
+
+            uploadBytes,
+
+            getDownloadURL,
+
+            deleteObject
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+
+
+        import {
+
+            auth,
+
+            db,
+
+            storage
+
+        } from "../firebase-config.js";
+
+
+
+        /* =================================================
+           ELEMENTS
+        ================================================== */
+
+        const memberForm =
+            document.getElementById(
+                "memberForm"
+            );
+
+
+        const displayName =
+            document.getElementById(
+                "displayName"
+            );
+
+
+        const tiktokUsername =
+            document.getElementById(
+                "tiktokUsername"
+            );
+
+
+        const memberCode =
+            document.getElementById(
+                "memberCode"
+            );
+
+
+        const role =
+            document.getElementById(
+                "role"
+            );
+
+
+        const active =
+            document.getElementById(
+                "active"
+            );
+
+
+        const photoFile =
+            document.getElementById(
+                "photoFile"
+            );
+
+
+        const photoPreview =
+            document.getElementById(
+                "photoPreview"
+            );
+
+
+        const photoPlaceholder =
+            document.getElementById(
+                "photoPlaceholder"
+            );
+
+
+        const saveMemberBtn =
+            document.getElementById(
+                "saveMemberBtn"
+            );
+
+
+        const formStatus =
+            document.getElementById(
+                "formStatus"
+            );
+
+
+        const membersGrid =
+            document.getElementById(
+                "membersGrid"
+            );
+
+
+        const loadingBox =
+            document.getElementById(
+                "loadingBox"
+            );
+
+
+        const emptyBox =
+            document.getElementById(
+                "emptyBox"
+            );
+
+
+        const membersCount =
+            document.getElementById(
+                "membersCount"
+            );
+
+
+        const formTitle =
+            document.getElementById(
+                "formTitle"
+            );
+
+
+        const cancelEditBtn =
+            document.getElementById(
+                "cancelEditBtn"
+            );
+
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        const dashboardBtn =
+            document.getElementById(
+                "dashboardBtn"
+            );
+
+
+
+        /* =================================================
+           VARIABLES
+        ================================================== */
+
+        let editingMemberId =
+            null;
+
+        let editingPhotoURL =
+            "";
+
+        let editingPhotoPath =
+            "";
+
+
+
+        /* =================================================
+           DEFAULT PHOTO
+        ================================================== */
+
+        const defaultPhoto =
+            "../assets/logo/nightfall-devils-logo.png";
+
+
+
+        /* =================================================
+           AUTH CHECK
+        ================================================== */
+
+        onAuthStateChanged(
+            auth,
+            function(user) {
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                loadMembers();
+
+            }
+        );
+
+
+
+        /* =================================================
+           PHOTO PREVIEW
+        ================================================== */
+
+        photoFile.addEventListener(
+            "change",
+            function() {
+
+                const file =
+                    this.files[0];
+
+
+                if (!file) {
+
+                    return;
+
+                }
+
+
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
+
+                    showStatus(
+                        "Please select an image file.",
+                        "error"
+                    );
+
+                    this.value =
+                        "";
+
+                    return;
+
+                }
+
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    showStatus(
+                        "Photo must be 5MB or smaller.",
+                        "error"
+                    );
+
+                    this.value =
+                        "";
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(event) {
+
+                        photoPreview.innerHTML = `
+                            <img
+                                src="${event.target.result}"
+                                alt="Photo Preview"
+                            >
+                        `;
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
+           SAVE MEMBER
+        ================================================== */
+
+        memberForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    displayName.value.trim();
+
+
+                const username =
+                    tiktokUsername.value.trim();
+
+
+                const code =
+                    memberCode.value.trim();
+
+
+                const selectedRole =
+                    role.value;
+
+
+                const isActive =
+                    active.value === "true";
+
+
+                if (
+                    !name ||
+                    !username ||
+                    !code ||
+                    !selectedRole
+                ) {
+
+                    showStatus(
+                        "Please complete all required fields.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                saveMemberBtn.disabled =
+                    true;
+
+
+                saveMemberBtn.textContent =
+                    "⏳ SAVING...";
+
+
+                try {
+
+                    let photoURL =
+                        editingPhotoURL;
+
+
+                    let photoPath =
+                        editingPhotoPath;
+
+
+
+                    /* =====================================
+                       UPLOAD NEW PHOTO
+                    ===================================== */
+
+                    if (
+                        photoFile.files.length >
+                        0
+                    ) {
+
+                        const file =
+                            photoFile.files[0];
+
+
+                        const extension =
+                            file.name
+                                .split(".")
+                                .pop();
+
+
+                        const safeName =
+                            name
+                                .toLowerCase()
+                                .replace(
+                                    /[^a-z0-9]+/g,
+                                    "-"
+                                );
+
+
+                        const filePath =
+                            "members/" +
+                            safeName +
+                            "-" +
+                            Date.now() +
+                            "." +
+                            extension;
+
+
+                        const storageRef =
+                            ref(
+                                storage,
+                                filePath
+                            );
+
+
+                        await uploadBytes(
+                            storageRef,
+                            file
+                        );
+
+
+                        photoURL =
+                            await getDownloadURL(
+                                storageRef
+                            );
+
+
+                        photoPath =
+                            filePath;
+
+
+                        /* =================================
+                           DELETE OLD PHOTO
+                        ================================= */
+
+                        if (
+                            editingPhotoPath &&
+                            editingPhotoPath !==
+                            photoPath
+                        ) {
+
+                            try {
+
+                                await deleteObject(
+                                    ref(
+                                        storage,
+                                        editingPhotoPath
+                                    )
+                                );
+
+                            } catch (
+                                deleteError
+                            ) {
+
+                                console.warn(
+                                    "Old photo could not be deleted:",
+                                    deleteError
+                                );
+
+                            }
+
+                        }
+
+                    }
+
+
+
+                    /* =====================================
+                       ADD MEMBER
+                    ===================================== */
+
+                    if (
+                        !editingMemberId
+                    ) {
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "members"
+                            ),
+                            {
+
+                                displayName:
+                                    name,
+
+                                tiktokUsername:
+                                    username,
+
+                                memberCode:
+                                    code,
+
+                                role:
+                                    selectedRole,
+
+                                active:
+                                    isActive,
+
+                                photoURL:
+                                    photoURL ||
+                                    "",
+
+                                photoPath:
+                                    photoPath ||
+                                    "",
+
+                                createdAt:
+                                    serverTimestamp(),
+
+                                updatedAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        showStatus(
+                            "✅ Member successfully added.",
+                            "success"
+                        );
+
+                    }
+
+
+
+                    /* =====================================
+                       UPDATE MEMBER
+                    ===================================== */
+
+                    else {
+
+                        await updateDoc(
+                            doc(
+                                db,
+                                "members",
+                                editingMemberId
+                            ),
+                            {
+
+                                displayName:
+                                    name,
+
+                                tiktokUsername:
+                                    username,
+
+                                memberCode:
+                                    code,
+
+                                role:
+                                    selectedRole,
+
+                                active:
+                                    isActive,
+
+                                photoURL:
+                                    photoURL ||
+                                    "",
+
+                                photoPath:
+                                    photoPath ||
+                                    "",
+
+                                updatedAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        showStatus(
+                            "✅ Member successfully updated.",
+                            "success"
+                        );
+
+                    }
+
+
+                    resetForm();
+
+                    await loadMembers();
+
+                } catch (error) {
+
+                    console.error(
+                        "Save member error:",
+                        error
+                    );
+
+
+                    showStatus(
+                        "❌ Unable to save member. Please check Firebase settings and try again.",
+                        "error"
+                    );
+
+                }
+
+
+                saveMemberBtn.disabled =
+                    false;
+
+
+                saveMemberBtn.textContent =
+                    "👿 SAVE MEMBER";
+
+            }
+        );
+
+
+
+        /* =================================================
+           LOAD MEMBERS
+        ================================================== */
+
+        async function loadMembers() {
+
+            loadingBox.style.display =
+                "block";
+
+            emptyBox.style.display =
+                "none";
+
+            membersGrid.innerHTML =
+                "";
+
+
+            try {
+
+                const membersQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        orderBy(
+                            "displayName",
+                            "asc"
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(
+                        membersQuery
+                    );
+
+
+                loadingBox.style.display =
+                    "none";
+
+
+                membersCount.textContent =
+                    snapshot.size +
+                    (
+                        snapshot.size === 1
+                            ? " MEMBER"
+                            : " MEMBERS"
+                    );
+
+
+                if (
+                    snapshot.empty
+                ) {
+
+                    emptyBox.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                snapshot.forEach(
+                    function(documentSnapshot) {
+
+                        renderMember(
+                            documentSnapshot.id,
+                            documentSnapshot.data()
+                        );
+
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Load members error:",
+                    error
+                );
+
+
+                loadingBox.style.display =
+                    "none";
+
+
+                emptyBox.style.display =
+                    "block";
+
+
+                emptyBox.innerHTML = `
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    <strong>
+                        Unable to load members.
+                    </strong>
+
+                    <p>
+                        Please check your Firestore rules.
+                    </p>
+                `;
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           RENDER MEMBER
+        ================================================== */
+
+        function renderMember(
+            id,
+            member
+        ) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "member-card";
+
+
+            const photo =
+                member.photoURL ||
+                defaultPhoto;
+
+
+            const statusClass =
+                member.active === false
+                    ? "inactive"
+                    : "active";
+
+
+            const statusText =
+                member.active === false
+                    ? "INACTIVE"
+                    : "ACTIVE";
+
+
+            card.innerHTML = `
+
+                <div class="member-card-top">
+
+                    <div class="member-card-photo">
+
+                        <img
+                            src="${escapeHTML(photo)}"
+                            alt="${escapeHTML(
+                                member.displayName ||
+                                "Member"
+                            )}"
+                            onerror="this.src='${defaultPhoto}'"
+                        >
+
+                    </div>
+
+
+                    <div class="member-details">
+
+                        <h3>
+                            ${escapeHTML(
+                                member.displayName ||
+                                "NIGHTFALL DEVIL"
+                            )}
+                        </h3>
+
+
+                        <div class="username">
+                            ${escapeHTML(
+                                member.tiktokUsername ||
+                                ""
+                            )}
+                        </div>
+
+
+                        <div class="code">
+                            ${escapeHTML(
+                                member.memberCode ||
+                                "NFD-MEMBER"
+                            )}
+                        </div>
+
+
+                        <div class="role">
+                            ${escapeHTML(
+                                member.role ||
+                                "MEMBER"
+                            )}
+                        </div>
+
+
+                        <div
+                            class="card-status ${statusClass}"
+                        >
+                            ${statusText}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="member-actions">
+
+                    <button
+                        type="button"
+                        class="card-btn edit"
+                        data-action="edit"
+                        data-id="${id}"
+                    >
+                        ✏️ Edit
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="card-btn toggle"
+                        data-action="toggle"
+                        data-id="${id}"
+                    >
+                        ${member.active === false
+                            ? "🟢 Activate"
+                            : "⚪ Disable"
+                        }
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="card-btn delete"
+                        data-action="delete"
+                        data-id="${id}"
+                    >
+                        🗑️ Delete
+                    </button>
+
+                </div>
+
+            `;
+
+
+            membersGrid.appendChild(
+                card
+            );
+
+
+
+            /* =============================================
+               BUTTON EVENTS
+            ============================================= */
+
+            card
+                .querySelector(
+                    '[data-action="edit"]'
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        editMember(
+                            id,
+                            member
+                        );
+
+                    }
+                );
+
+
+            card
+                .querySelector(
+                    '[data-action="toggle"]'
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        toggleMember(
+                            id,
+                            member.active !== false
+                        );
+
+                    }
+                );
+
+
+            card
+                .querySelector(
+                    '[data-action="delete"]'
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        deleteMember(
+                            id,
+                            member
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /* =================================================
+           EDIT MEMBER
+        ================================================== */
+
+        function editMember(
+            id,
+            member
+        ) {
+
+            editingMemberId =
+                id;
+
+
+            editingPhotoURL =
+                member.photoURL ||
+                "";
+
+
+            editingPhotoPath =
+                member.photoPath ||
+                "";
+
+
+            displayName.value =
+                member.displayName ||
+                "";
+
+
+            tiktokUsername.value =
+                member.tiktokUsername ||
+                "";
+
+
+            memberCode.value =
+                member.memberCode ||
+                "";
+
+
+            role.value =
+                member.role ||
+                "";
+
+
+            active.value =
+                member.active === false
+                    ? "false"
+                    : "true";
+
+
+            photoFile.value =
+                "";
+
+
+            if (
+                member.photoURL
+            ) {
+
+                photoPreview.innerHTML = `
+
+                    <img
+                        src="${escapeHTML(
+                            member.photoURL
+                        )}"
+                        alt="Current Member Photo"
+                    >
+
+                `;
+
+            } else {
+
+                photoPreview.innerHTML = `
+
+                    <div
+                        class="photo-placeholder"
+                    >
+                        👿
+                    </div>
+
+                `;
+
+            }
+
+
+            formTitle.textContent =
+                "EDIT MEMBER";
+
+
+            cancelEditBtn.style.display =
+                "block";
+
+
+            saveMemberBtn.textContent =
+                "✏️ UPDATE MEMBER";
+
+
+            window.scrollTo({
+
+                top:
+                    0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+
+
+
+        /* =================================================
+           TOGGLE MEMBER
+        ================================================== */
+
+        async function toggleMember(
+            id,
+            currentStatus
+        ) {
+
+            try {
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "members",
+                        id
+                    ),
+                    {
+
+                        active:
+                            !currentStatus,
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                await loadMembers();
+
+            } catch (error) {
+
+                console.error(
+                    "Toggle member error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to update member status."
+                );
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           DELETE MEMBER
+        ================================================== */
+
+        async function deleteMember(
+            id,
+            member
+        ) {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete " +
+                    (
+                        member.displayName ||
+                        "this member"
+                    ) +
+                    "?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            try {
+
+                /* =========================================
+                   DELETE PHOTO
+                ========================================= */
+
+                if (
+                    member.photoPath
+                ) {
+
+                    try {
+
+                        await deleteObject(
+                            ref(
+                                storage,
+                                member.photoPath
+                            )
+                        );
+
+                    } catch (photoError) {
+
+                        console.warn(
+                            "Photo deletion failed:",
+                            photoError
+                        );
+
+                    }
+
+                }
+
+
+                /* =========================================
+                   DELETE FIRESTORE MEMBER
+                ========================================= */
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "members",
+                        id
+                    )
+                );
+
+
+                showStatus(
+                    "✅ Member deleted successfully.",
+                    "success"
+                );
+
+
+                await loadMembers();
+
+            } catch (error) {
+
+                console.error(
+                    "Delete member error:",
+                    error
+                );
+
+
+                showStatus(
+                    "❌ Unable to delete member.",
+                    "error"
+                );
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           CANCEL EDIT
+        ================================================== */
+
+        cancelEditBtn.addEventListener(
+            "click",
+            function() {
+
+                resetForm();
+
+            }
+        );
+
+
+
+        /* =================================================
+           RESET FORM
+        ================================================== */
+
+        function resetForm() {
+
+            memberForm.reset();
+
+
+            editingMemberId =
+                null;
+
+
+            editingPhotoURL =
+                "";
+
+
+            editingPhotoPath =
+                "";
+
+
+            photoFile.value =
+                "";
+
+
+            active.value =
+                "true";
+
+
+            photoPreview.innerHTML = `
+
+                <div
+                    class="photo-placeholder"
+                    id="photoPlaceholder"
+                >
+                    👿
+                </div>
+
+            `;
+
+
+            formTitle.textContent =
+                "ADD MEMBER";
+
+
+            cancelEditBtn.style.display =
+                "none";
+
+
+            saveMemberBtn.textContent =
+                "👿 SAVE MEMBER";
+
+        }
+
+
+
+        /* =================================================
+           STATUS
+        ================================================== */
+
+        function showStatus(
+            message,
+            type
+        ) {
+
+            formStatus.textContent =
+                message;
+
+
+            formStatus.className =
+                "form-status " + type;
+
+
+            formStatus.scrollIntoView({
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "center"
+
+            });
+
+
+            setTimeout(
+                function() {
+
+                    formStatus.className =
+                        "form-status";
+
+                    formStatus.textContent =
+                        "";
+
+                },
+                5000
+            );
+
+        }
+
+
+
+        /* =================================================
+           HTML ESCAPE
+        ================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =================================================
+           DASHBOARD
+        ================================================== */
+
+        dashboardBtn.addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+        );
+
+
+
+        /* =================================================
+           LOGOUT
+        ================================================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await signOut(
+                        auth
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
