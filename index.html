@@ -20,9 +20,7 @@
         content="#d71920"
     >
 
-    <title>
-        NIGHTFALL DEVILS | Official Community
-    </title>
+    <title>NIGHTFALL DEVILS | Official Community</title>
 
     <!-- =====================================================
          MAIN CSS
@@ -41,25 +39,38 @@
     <style>
 
         /* =====================================================
-           HOME PAGE
-        ===================================================== */
+           HEADER LOGO - SMALL
+        ====================================================== */
 
-        body {
-            background: #090909;
+        .site-header .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .site-header .logo img {
+            width: 44px !important;
+            height: 44px !important;
+            object-fit: contain;
+            display: block;
         }
 
 
         /* =====================================================
-           OFFICIAL LOGO
-        ===================================================== */
+           LARGE HERO LOGO
+        ====================================================== */
 
         .official-logo {
             width: 100%;
-            max-width: 430px;
+            max-width: 390px;
+            height: auto;
 
             margin: 0 auto 25px;
 
             display: block;
+
+            object-fit: contain;
 
             border-radius: 20px;
 
@@ -73,8 +84,8 @@
 
 
         /* =====================================================
-           HERO
-        ===================================================== */
+           HOME HERO
+        ====================================================== */
 
         .home-hero {
 
@@ -86,8 +97,7 @@
 
             justify-content: center;
 
-            padding:
-                70px 20px;
+            padding: 70px 20px;
 
             box-sizing: border-box;
 
@@ -113,9 +123,7 @@
         .hero-content {
 
             width: 100%;
-
             max-width: 900px;
-
             margin: 0 auto;
         }
 
@@ -126,60 +134,47 @@
 
             margin-bottom: 20px;
 
-            padding:
-                8px 16px;
+            padding: 8px 16px;
 
-            border:
-                1px solid #f5c542;
+            border: 1px solid #f5c542;
 
             border-radius: 30px;
 
             background:
                 rgba(245, 197, 66, 0.08);
 
-            color:
-                #f5c542;
+            color: #f5c542;
 
-            font-size:
-                12px;
+            font-size: 12px;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            letter-spacing:
-                1px;
+            letter-spacing: 1px;
 
-            text-transform:
-                uppercase;
+            text-transform: uppercase;
         }
 
 
         .home-hero h1 {
 
-            margin:
-                0 0 15px;
+            margin: 0 0 15px;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
             font-size:
                 clamp(38px, 8vw, 75px);
 
-            line-height:
-                1.05;
+            line-height: 1.05;
 
-            font-weight:
-                900;
+            font-weight: 900;
 
-            letter-spacing:
-                2px;
+            letter-spacing: 2px;
         }
 
 
         .home-hero h1 span {
 
-            color:
-                #d71920;
+            color: #d71920;
 
             text-shadow:
                 0 0 20px
@@ -189,36 +184,29 @@
 
         .hero-subtitle {
 
-            max-width:
-                700px;
+            max-width: 700px;
 
-            margin:
-                0 auto 25px;
+            margin: 0 auto 25px;
 
-            color:
-                #dddddd;
+            color: #dddddd;
 
-            font-size:
-                17px;
+            font-size: 17px;
 
-            line-height:
-                1.7;
+            line-height: 1.7;
         }
 
 
         .hero-date {
 
-            margin-bottom:
-                28px;
+            margin-bottom: 28px;
 
-            color:
-                #f5c542;
+            color: #f5c542;
 
-            font-size:
-                15px;
+            font-size: 15px;
 
-            font-weight:
-                700;
+            font-weight: 700;
+
+            line-height: 1.7;
         }
 
 
@@ -228,54 +216,39 @@
 
         .hero-buttons {
 
-            display:
-                flex;
+            display: flex;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            align-items:
-                center;
+            align-items: center;
 
-            flex-wrap:
-                wrap;
+            flex-wrap: wrap;
 
-            gap:
-                12px;
+            gap: 12px;
         }
 
 
         .hero-btn {
 
-            display:
-                inline-flex;
+            display: inline-flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            min-width:
-                160px;
+            min-width: 160px;
 
-            padding:
-                14px 22px;
+            padding: 14px 22px;
 
-            border-radius:
-                9px;
+            border-radius: 9px;
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            font-size:
-                14px;
+            font-size: 14px;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            transition:
-                0.25s ease;
+            transition: 0.25s ease;
         }
 
 
@@ -288,8 +261,7 @@
                     #a80f15
                 );
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
             box-shadow:
                 0 8px 25px
@@ -299,8 +271,7 @@
 
         .hero-btn-primary:hover {
 
-            transform:
-                translateY(-3px);
+            transform: translateY(-3px);
 
             box-shadow:
                 0 12px 30px
@@ -310,117 +281,96 @@
 
         .hero-btn-secondary {
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            color:
-                #171717;
+            color: #171717;
 
-            border:
-                2px solid #f5c542;
+            border: 2px solid #f5c542;
         }
 
 
         .hero-btn-secondary:hover {
 
-            transform:
-                translateY(-3px);
+            transform: translateY(-3px);
 
-            background:
-                #fff9e5;
+            background: #fff9e5;
         }
 
 
         /* =====================================================
-           COMMUNITY INTRO
+           GENERAL HOME SECTIONS
         ====================================================== */
 
         .home-section {
 
-            padding:
-                75px 20px;
+            padding: 75px 20px;
         }
 
 
         .home-section-dark {
 
-            background:
-                #090909;
+            background: #090909;
         }
 
 
         .home-section-light {
 
-            background:
-                #f7f7f7;
+            background: #f7f7f7;
         }
 
 
         .section-heading {
 
-            max-width:
-                750px;
+            max-width: 750px;
 
-            margin:
-                0 auto 40px;
+            margin: 0 auto 40px;
 
-            text-align:
-                center;
+            text-align: center;
         }
 
 
         .section-heading h2 {
 
-            margin:
-                0 0 10px;
+            margin: 0 0 10px;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
             font-size:
                 clamp(28px, 5vw, 42px);
 
-            font-weight:
-                900;
+            font-weight: 900;
         }
 
 
         .home-section-light
         .section-heading h2 {
 
-            color:
-                #171717;
+            color: #171717;
         }
 
 
         .section-heading h2 span {
 
-            color:
-                #d71920;
+            color: #d71920;
         }
 
 
         .section-heading p {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                #aaaaaa;
+            color: #aaaaaa;
 
-            font-size:
-                15px;
+            font-size: 15px;
 
-            line-height:
-                1.7;
+            line-height: 1.7;
         }
 
 
         .home-section-light
         .section-heading p {
 
-            color:
-                #666666;
+            color: #666666;
         }
 
 
@@ -430,56 +380,44 @@
 
         .community-grid {
 
-            width:
-                100%;
+            width: 100%;
 
-            max-width:
-                1100px;
+            max-width: 1100px;
 
-            margin:
-                0 auto;
+            margin: 0 auto;
 
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
                 repeat(4, 1fr);
 
-            gap:
-                18px;
+            gap: 18px;
         }
 
 
         .community-card {
 
-            padding:
-                25px 18px;
+            padding: 25px 18px;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            border:
-                2px solid #f5c542;
+            border: 2px solid #f5c542;
 
-            border-radius:
-                14px;
+            border-radius: 14px;
 
-            text-align:
-                center;
+            text-align: center;
 
             box-shadow:
                 0 10px 30px
                 rgba(0, 0, 0, 0.22);
 
-            transition:
-                0.25s ease;
+            transition: 0.25s ease;
         }
 
 
         .community-card:hover {
 
-            transform:
-                translateY(-5px);
+            transform: translateY(-5px);
 
             box-shadow:
                 0 16px 35px
@@ -489,67 +427,49 @@
 
         .community-icon {
 
-            width:
-                58px;
+            width: 58px;
 
-            height:
-                58px;
+            height: 58px;
 
-            margin:
-                0 auto 15px;
+            margin: 0 auto 15px;
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
-            background:
-                #d71920;
+            background: #d71920;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
-            font-size:
-                25px;
+            font-size: 25px;
         }
 
 
         .community-card h3 {
 
-            margin:
-                0 0 8px;
+            margin: 0 0 8px;
 
-            color:
-                #171717;
+            color: #171717;
 
-            font-size:
-                18px;
+            font-size: 18px;
 
-            font-weight:
-                900;
+            font-weight: 900;
         }
 
 
         .community-card p {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                #666666;
+            color: #666666;
 
-            font-size:
-                13px;
+            font-size: 13px;
 
-            line-height:
-                1.6;
+            line-height: 1.6;
         }
 
 
@@ -559,68 +479,52 @@
 
         .values-grid {
 
-            width:
-                100%;
+            width: 100%;
 
-            max-width:
-                1000px;
+            max-width: 1000px;
 
-            margin:
-                0 auto;
+            margin: 0 auto;
 
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
                 repeat(4, 1fr);
 
-            gap:
-                15px;
+            gap: 15px;
         }
 
 
         .value-card {
 
-            padding:
-                20px;
+            padding: 20px;
 
-            border-left:
-                4px solid #d71920;
+            border-left: 4px solid #d71920;
 
-            background:
-                #151515;
+            background: #151515;
 
-            border-radius:
-                8px;
+            border-radius: 8px;
         }
 
 
         .value-card h3 {
 
-            margin:
-                0 0 7px;
+            margin: 0 0 7px;
 
-            color:
-                #f5c542;
+            color: #f5c542;
 
-            font-size:
-                16px;
+            font-size: 16px;
         }
 
 
         .value-card p {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                #bbbbbb;
+            color: #bbbbbb;
 
-            font-size:
-                13px;
+            font-size: 13px;
 
-            line-height:
-                1.5;
+            line-height: 1.5;
         }
 
 
@@ -630,201 +534,158 @@
 
         .approval-grid {
 
-            width:
-                100%;
+            width: 100%;
 
-            max-width:
-                1000px;
+            max-width: 1000px;
 
-            margin:
-                0 auto;
+            margin: 0 auto;
 
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap:
-                18px;
+            gap: 18px;
         }
 
 
         .approval-card {
 
-            padding:
-                25px 20px;
+            padding: 25px 20px;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            border:
-                2px solid #f5c542;
+            border: 2px solid #f5c542;
 
-            border-radius:
-                14px;
+            border-radius: 14px;
 
-            text-align:
-                center;
+            text-align: center;
         }
 
 
         .approval-number {
 
-            width:
-                45px;
+            width: 45px;
 
-            height:
-                45px;
+            height: 45px;
 
-            margin:
-                0 auto 12px;
+            margin: 0 auto 12px;
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
-            background:
-                #d71920;
+            background: #d71920;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
-            font-size:
-                18px;
+            font-size: 18px;
 
-            font-weight:
-                900;
+            font-weight: 900;
         }
 
 
         .approval-card h3 {
 
-            margin:
-                0 0 8px;
+            margin: 0 0 8px;
 
-            color:
-                #171717;
+            color: #171717;
 
-            font-size:
-                18px;
+            font-size: 18px;
         }
 
 
         .approval-card p {
 
-            margin:
-                0;
+            margin: 0;
 
-            color:
-                #666666;
+            color: #666666;
 
-            font-size:
-                13px;
+            font-size: 13px;
 
-            line-height:
-                1.6;
+            line-height: 1.6;
         }
 
 
         /* =====================================================
-           RULES PREVIEW
+           RULES
         ====================================================== */
 
         .rules-box {
 
-            width:
-                100%;
+            width: 100%;
 
-            max-width:
-                900px;
+            max-width: 900px;
 
-            margin:
-                0 auto;
+            margin: 0 auto;
 
-            padding:
-                30px;
+            padding: 30px;
 
-            box-sizing:
-                border-box;
+            box-sizing: border-box;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            border:
-                2px solid #f5c542;
+            border: 2px solid #f5c542;
 
-            border-radius:
-                16px;
+            border-radius: 16px;
         }
 
 
         .rules-list {
 
-            margin:
-                0;
+            margin: 0;
 
-            padding-left:
-                22px;
+            padding-left: 22px;
 
-            color:
-                #333333;
+            color: #333333;
         }
 
 
         .rules-list li {
 
-            margin-bottom:
-                12px;
+            margin-bottom: 12px;
 
-            padding-left:
-                5px;
+            padding-left: 5px;
 
-            font-size:
-                14px;
+            font-size: 14px;
 
-            line-height:
-                1.6;
+            line-height: 1.6;
         }
 
 
         .rules-list li::marker {
 
-            color:
-                #d71920;
+            color: #d71920;
 
-            font-weight:
-                900;
+            font-weight: 900;
         }
 
 
         .rules-link {
 
-            display:
-                inline-block;
+            display: inline-block;
 
-            margin-top:
-                10px;
+            margin-top: 10px;
 
-            color:
-                #d71920;
+            color: #d71920;
 
-            font-size:
-                14px;
+            font-size: 14px;
 
-            font-weight:
-                800;
+            font-weight: 800;
 
-            text-decoration:
-                none;
+            text-decoration: none;
+        }
+
+
+        .rules-link:hover {
+
+            color: #a80f15;
+
+            text-decoration: underline;
         }
 
 
@@ -834,11 +695,9 @@
 
         .home-cta {
 
-            padding:
-                80px 20px;
+            padding: 80px 20px;
 
-            text-align:
-                center;
+            text-align: center;
 
             background:
                 linear-gradient(
@@ -851,80 +710,60 @@
 
         .home-cta h2 {
 
-            margin:
-                0 0 10px;
+            margin: 0 0 10px;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
             font-size:
                 clamp(28px, 5vw, 45px);
 
-            font-weight:
-                900;
+            font-weight: 900;
         }
 
 
         .home-cta p {
 
-            max-width:
-                650px;
+            max-width: 650px;
 
-            margin:
-                0 auto 25px;
+            margin: 0 auto 25px;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
-            font-size:
-                15px;
+            font-size: 15px;
 
-            line-height:
-                1.7;
+            line-height: 1.7;
         }
 
 
         .cta-btn {
 
-            display:
-                inline-block;
+            display: inline-block;
 
-            padding:
-                14px 28px;
+            padding: 14px 28px;
 
-            border:
-                2px solid #f5c542;
+            border: 2px solid #f5c542;
 
-            border-radius:
-                9px;
+            border-radius: 9px;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            color:
-                #d71920;
+            color: #d71920;
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            font-size:
-                14px;
+            font-size: 14px;
 
-            font-weight:
-                900;
+            font-weight: 900;
 
-            transition:
-                0.25s ease;
+            transition: 0.25s ease;
         }
 
 
         .cta-btn:hover {
 
-            transform:
-                translateY(-3px);
+            transform: translateY(-3px);
 
-            background:
-                #fff9e5;
+            background: #fff9e5;
         }
 
 
@@ -944,8 +783,7 @@
 
             .approval-grid {
 
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
             }
 
         }
@@ -953,50 +791,56 @@
 
         @media (max-width: 600px) {
 
+            /* SMALL HEADER LOGO */
+
+            .site-header .logo img {
+
+                width: 40px !important;
+
+                height: 40px !important;
+            }
+
+
             .home-hero {
 
-                min-height:
-                    auto;
+                min-height: auto;
 
                 padding:
                     55px 16px 65px;
             }
 
 
+            /* LARGE HERO LOGO */
+
             .official-logo {
 
-                max-width:
-                    310px;
+                max-width: 300px;
 
-                border-radius:
-                    15px;
+                margin-bottom: 22px;
+
+                border-radius: 15px;
             }
 
 
             .hero-subtitle {
 
-                font-size:
-                    14px;
+                font-size: 14px;
             }
 
 
             .hero-buttons {
 
-                flex-direction:
-                    column;
+                flex-direction: column;
             }
 
 
             .hero-btn {
 
-                width:
-                    100%;
+                width: 100%;
 
-                max-width:
-                    320px;
+                max-width: 320px;
 
-                box-sizing:
-                    border-box;
+                box-sizing: border-box;
             }
 
 
@@ -1010,8 +854,7 @@
             .community-grid,
             .values-grid {
 
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
             }
 
 
@@ -1047,7 +890,7 @@
         <div class="container">
 
 
-            <!-- LOGO -->
+            <!-- SMALL OFFICIAL LOGO -->
 
             <a
                 href="index.html"
@@ -1110,11 +953,15 @@
 
 
     <!-- =====================================================
-         HERO
+         MAIN
     ====================================================== -->
 
     <main>
 
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
         <section class="home-hero">
 
@@ -1122,13 +969,11 @@
 
 
                 <div class="hero-badge">
-
                     OFFICIAL COMMUNITY
-
                 </div>
 
 
-                <!-- OFFICIAL LOGO -->
+                <!-- LARGE OFFICIAL LOGO -->
 
                 <img
                     src="assets/logo/nightfall-devils-logo.png"
@@ -1148,8 +993,10 @@
                 <p class="hero-subtitle">
 
                     A community built on
-                    <strong>friendship, respect,
-                    unity, and support.</strong>
+                    <strong>
+                        friendship, respect,
+                        unity, and support.
+                    </strong>
 
                     We support our members,
                     streamers, and friends while
@@ -1162,6 +1009,7 @@
                 <div class="hero-date">
 
                     👿 Established October 18, 2026
+
                     <br>
 
                     Formerly TEAM MALALA
@@ -1198,13 +1046,12 @@
 
 
         <!-- =================================================
-             COMMUNITY
+             WHAT WE STAND FOR
         ================================================== -->
 
         <section
             class="home-section home-section-light"
         >
-
 
             <div class="section-heading">
 
@@ -1214,7 +1061,6 @@
                     <span>STAND FOR</span>
 
                 </h2>
-
 
                 <p>
 
@@ -1228,11 +1074,8 @@
             </div>
 
 
-
             <div class="community-grid">
 
-
-                <!-- FRIENDSHIP -->
 
                 <div class="community-card">
 
@@ -1255,8 +1098,6 @@
                 </div>
 
 
-                <!-- SUPPORT -->
-
                 <div class="community-card">
 
                     <div class="community-icon">
@@ -1278,8 +1119,6 @@
                 </div>
 
 
-                <!-- RESPECT -->
-
                 <div class="community-card">
 
                     <div class="community-icon">
@@ -1300,8 +1139,6 @@
 
                 </div>
 
-
-                <!-- UNITY -->
 
                 <div class="community-card">
 
@@ -1337,7 +1174,6 @@
             class="home-section home-section-dark"
         >
 
-
             <div class="section-heading">
 
                 <h2>
@@ -1347,16 +1183,11 @@
 
                 </h2>
 
-
                 <p>
-
-                    These principles guide our
-                    community.
-
+                    These principles guide our community.
                 </p>
 
             </div>
-
 
 
             <div class="values-grid">
@@ -1369,10 +1200,8 @@
                     </h3>
 
                     <p>
-
                         We stand together and
                         support one another.
-
                     </p>
 
                 </div>
@@ -1385,10 +1214,8 @@
                     </h3>
 
                     <p>
-
                         No harassment, personal
                         attacks, or unnecessary drama.
-
                     </p>
 
                 </div>
@@ -1401,10 +1228,8 @@
                     </h3>
 
                     <p>
-
                         Support our own streamers
                         without attacking others.
-
                     </p>
 
                 </div>
@@ -1417,11 +1242,9 @@
                     </h3>
 
                     <p>
-
                         Never disclose or share
                         another member's personal
                         information.
-
                     </p>
 
                 </div>
@@ -1434,13 +1257,12 @@
 
 
         <!-- =================================================
-             APPROVAL PROCESS
+             HOW TO JOIN
         ================================================== -->
 
         <section
             class="home-section home-section-light"
         >
-
 
             <div class="section-heading">
 
@@ -1450,7 +1272,6 @@
                     <span>JOIN</span>
 
                 </h2>
-
 
                 <p>
 
@@ -1462,11 +1283,8 @@
             </div>
 
 
-
             <div class="approval-grid">
 
-
-                <!-- STEP 1 -->
 
                 <div class="approval-card">
 
@@ -1489,8 +1307,6 @@
                 </div>
 
 
-                <!-- STEP 2 -->
-
                 <div class="approval-card">
 
                     <div class="approval-number">
@@ -1511,8 +1327,6 @@
 
                 </div>
 
-
-                <!-- STEP 3 -->
 
                 <div class="approval-card">
 
@@ -1575,19 +1389,17 @@
 
             </div>
 
-
         </section>
 
 
 
         <!-- =================================================
-             RULES PREVIEW
+             RULES
         ================================================== -->
 
         <section
             class="home-section home-section-dark"
         >
-
 
             <div class="section-heading">
 
@@ -1597,7 +1409,6 @@
                     <span>RULES</span>
 
                 </h2>
-
 
                 <p>
 
@@ -1610,9 +1421,7 @@
             </div>
 
 
-
             <div class="rules-box">
-
 
                 <ol class="rules-list">
 
@@ -1722,11 +1531,8 @@
                     href="pages/rules.html"
                     class="rules-link"
                 >
-
                     View Full Community Rules →
-
                 </a>
-
 
             </div>
 
@@ -1735,13 +1541,12 @@
 
 
         <!-- =================================================
-             SCHEDULE PREVIEW
+             STREAMER SUPPORT
         ================================================== -->
 
         <section
             class="home-section home-section-light"
         >
-
 
             <div class="section-heading">
 
@@ -1751,7 +1556,6 @@
                     <span>SUPPORT</span>
 
                 </h2>
-
 
                 <p>
 
@@ -1781,22 +1585,18 @@
 
             </div>
 
-
         </section>
 
 
 
         <!-- =================================================
-             CTA
+             JOIN CTA
         ================================================== -->
 
         <section class="home-cta">
 
-
             <h2>
-
                 READY TO JOIN?
-
             </h2>
 
 
@@ -1814,11 +1614,8 @@
                 href="pages/join.html"
                 class="cta-btn"
             >
-
                 👿 REQUEST TO JOIN
-
             </a>
-
 
         </section>
 
@@ -1835,11 +1632,9 @@
 
         <div class="container">
 
-
             <p>
                 © 2026 NIGHTFALL DEVILS
             </p>
-
 
             <p>
 
@@ -1849,7 +1644,6 @@
 
             </p>
 
-
         </div>
 
     </footer>
@@ -1857,7 +1651,7 @@
 
 
     <!-- =====================================================
-         MAIN JAVASCRIPT
+         JAVASCRIPT
     ====================================================== -->
 
     <script src="js/script.js"></script>
