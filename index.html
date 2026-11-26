@@ -1,1952 +1,2556 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NIGHTFALL DEVILS | Official Community</title>
-
-  <link rel="icon" href="assets/logo/nightfall-devils-logo.png">
-
-  <style>
-
-    :root {
-      --red: #D71920;
-      --red-dark: #A90F15;
-      --gold: #F5C542;
-      --gold-dark: #C89B1F;
-      --white: #FFFFFF;
-      --black: #050505;
-      --dark: #0D0D0D;
-      --dark-2: #141414;
-      --dark-3: #1C1C1C;
-      --gray: #A5A5A5;
-      --border: rgba(255,255,255,0.09);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: var(--black);
-      color: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* =========================================
-       HEADER
-    ========================================= */
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 72px;
-      z-index: 999;
-
-      background: rgba(5,5,5,0.92);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-container {
-      width: min(1180px, 92%);
-      height: 100%;
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    /* BRAND */
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .brand img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      border-radius: 10px;
-
-      filter:
-        drop-shadow(0 0 10px rgba(215,25,32,0.25));
-    }
-
-    .brand-name {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-
-    .brand-name strong {
-      color: var(--gold);
-    }
 
-    /* NAVIGATION */
+    <meta charset="UTF-8">
 
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    .nav-menu a {
-      position: relative;
+    <meta
+        name="description"
+        content="Official NIGHTFALL DEVILS Community Website"
+    >
 
-      padding: 9px 13px;
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
 
-      border-radius: 8px;
+    <title>NIGHTFALL DEVILS | Official Community</title>
 
-      color: #D0D0D0;
 
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    <!-- MAIN CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
-      transition: 0.2s ease;
-    }
 
-    .nav-menu a:hover {
-      color: var(--white);
-      background: rgba(215,25,32,0.12);
-    }
+    <style>
 
-    .nav-menu a.active {
-      color: var(--white);
-      background: var(--red);
-    }
+        /* =====================================================
+           NIGHTFALL DEVILS
+           RED + WHITE + GOLD THEME
+        ===================================================== */
 
-    /* ADMIN LINK */
+        :root {
+            --red: #d71920;
+            --red-dark: #9f1016;
+            --gold: #f5c542;
+            --white: #ffffff;
+            --black: #090909;
+            --dark: #111111;
+            --gray: #aaaaaa;
+        }
 
-    .nav-menu .admin-link {
-      color: var(--gold);
-      font-weight: 900;
-      border: 1px solid rgba(245,197,66,0.22);
-      margin-left: 4px;
-    }
 
-    .nav-menu .admin-link:hover {
-      color: var(--white);
-      background: var(--red);
-      border-color: var(--red);
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    /* HAMBURGER */
 
-    .menu-toggle {
-      display: none;
+        html {
+            scroll-behavior: smooth;
+        }
 
-      width: 42px;
-      height: 42px;
 
-      border: 1px solid var(--border);
-      border-radius: 9px;
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--black);
+            color: var(--white);
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
 
-      background: var(--dark-2);
-      color: var(--white);
 
-      cursor: pointer;
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-      padding: 9px;
-    }
 
-    .menu-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
 
-      margin: 5px auto;
+        /* =====================================================
+           HEADER
+        ===================================================== */
 
-      background: var(--white);
-      border-radius: 5px;
+        .site-header {
+            width: 100%;
+            position: relative;
+            z-index: 9999;
 
-      transition: 0.25s ease;
-    }
+            background: #090909;
 
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
+            border-bottom:
+                1px solid
+                rgba(245, 197, 66, 0.35);
+        }
 
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
 
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
+        .site-header .header-container {
+            width: 100%;
+            max-width: 1200px;
 
-    /* =========================================
-       HERO
-    ========================================= */
+            min-height: 70px;
 
-    .hero {
-      min-height: 100vh;
+            margin: 0 auto;
 
-      padding: 145px 20px 90px;
+            padding:
+                0 20px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+            display: flex;
+            align-items: center;
 
-      text-align: center;
+            position: relative;
+        }
 
-      position: relative;
-      overflow: hidden;
 
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(215,25,32,0.16),
-          transparent 42%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          rgba(245,197,66,0.07),
-          transparent 35%
-        ),
-        var(--black);
-    }
 
-    .hero::before {
-      content: "";
+        /* =====================================================
+           BRAND
+        ===================================================== */
 
-      position: absolute;
+        .site-header .brand {
+            display: flex;
+            align-items: center;
 
-      width: 600px;
-      height: 600px;
+            gap: 10px;
 
-      border: 1px solid rgba(245,197,66,0.06);
+            text-decoration: none;
 
-      border-radius: 50%;
+            flex-shrink: 0;
+        }
 
-      top: 50%;
-      left: 50%;
 
-      transform: translate(-50%, -50%);
-    }
+        .site-header .brand img {
+            width: 44px !important;
+            height: 44px !important;
 
-    .hero::after {
-      content: "";
+            object-fit: contain;
 
-      position: absolute;
+            display: block;
 
-      width: 800px;
-      height: 800px;
+            border-radius: 8px;
+        }
 
-      border: 1px solid rgba(215,25,32,0.05);
 
-      border-radius: 50%;
+        .site-header .brand-name {
+            color: #ffffff;
 
-      top: 50%;
-      left: 50%;
+            font-size: 17px;
 
-      transform: translate(-50%, -50%);
-    }
+            font-weight: 900;
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
+            letter-spacing: 0.5px;
 
-      width: min(850px, 100%);
-    }
+            white-space: nowrap;
+        }
 
-    .official-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
 
-      padding: 7px 13px;
+        .site-header .brand-name strong {
+            color: var(--red);
+        }
 
-      border-radius: 30px;
 
-      border: 1px solid rgba(245,197,66,0.28);
 
-      background: rgba(245,197,66,0.06);
+        /* =====================================================
+           DESKTOP NAVIGATION
+        ===================================================== */
 
-      color: var(--gold);
+        .site-header .nav-menu {
+            display: flex;
 
-      font-size: 10px;
-      font-weight: 900;
+            align-items: center;
 
-      letter-spacing: 1.5px;
+            gap: 5px;
 
-      margin-bottom: 20px;
-    }
+            margin-left: auto;
+        }
 
-    .official-badge::before {
-      content: "";
-      width: 7px;
-      height: 7px;
 
-      border-radius: 50%;
+        .site-header .nav-menu a {
+            display: flex;
 
-      background: var(--gold);
+            align-items: center;
+            justify-content: center;
 
-      box-shadow: 0 0 10px rgba(245,197,66,0.7);
-    }
+            padding:
+                10px 14px;
 
-    .hero-logo {
-      width: 210px;
-      height: 210px;
+            color: #ffffff;
 
-      object-fit: contain;
+            text-decoration: none;
 
-      margin-bottom: 15px;
+            font-size: 14px;
 
-      filter:
-        drop-shadow(0 0 25px rgba(215,25,32,0.30));
-    }
+            font-weight: 700;
 
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 78px);
+            border-radius: 7px;
 
-      font-weight: 1000;
+            transition:
+                0.25s ease;
+        }
 
-      line-height: 0.98;
 
-      letter-spacing: 2px;
+        .site-header .nav-menu a:hover {
+            color: var(--gold);
 
-      margin-bottom: 17px;
+            background:
+                rgba(215, 25, 32, 0.15);
+        }
 
-      text-transform: uppercase;
-    }
 
-    .hero h1 span {
-      color: var(--gold);
-    }
+        .site-header .nav-menu a.active {
+            color: #ffffff;
 
-    .hero-subtitle {
-      color: #D2D2D2;
+            background:
+                var(--red);
+        }
 
-      font-size: 14px;
 
-      max-width: 650px;
+        /* =====================================================
+           ADMIN NAVIGATION
+        ===================================================== */
 
-      margin: auto;
+        .site-header .nav-menu a.admin-link {
+            color: var(--gold);
 
-      line-height: 1.7;
-    }
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.45);
 
-    .hero-meta {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+            background:
+                rgba(245, 197, 66, 0.05);
+        }
 
-      gap: 8px;
 
-      margin-top: 18px;
-    }
+        .site-header .nav-menu a.admin-link:hover {
+            color: #111111;
 
-    .hero-meta span {
-      padding: 6px 11px;
+            background:
+                var(--gold);
 
-      border-radius: 20px;
+            border-color:
+                var(--gold);
+        }
 
-      background: rgba(255,255,255,0.04);
 
-      border: 1px solid var(--border);
 
-      color: #AFAFAF;
+        /* =====================================================
+           HAMBURGER BUTTON
+        ===================================================== */
 
-      font-size: 10px;
+        .site-header .menu-toggle {
+            width: 44px;
+            height: 44px;
 
-      font-weight: 700;
-    }
+            margin-left: auto;
 
-    .hero-meta strong {
-      color: var(--gold);
-    }
+            display: none;
 
-    /* BUTTONS */
+            align-items: center;
+            justify-content: center;
 
-    .hero-buttons {
-      display: flex;
+            flex-direction: column;
 
-      justify-content: center;
+            gap: 5px;
 
-      gap: 10px;
+            padding: 0;
 
-      flex-wrap: wrap;
+            background: transparent;
 
-      margin-top: 30px;
-    }
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.55);
 
-    .btn {
-      display: inline-flex;
+            border-radius: 8px;
 
-      align-items: center;
-      justify-content: center;
+            cursor: pointer;
 
-      min-height: 46px;
+            position: relative;
 
-      padding: 0 22px;
+            z-index: 10001;
 
-      border-radius: 9px;
+            flex-shrink: 0;
+        }
 
-      font-size: 12px;
 
-      font-weight: 900;
+        .site-header .menu-toggle span {
+            width: 22px;
+            height: 2px;
 
-      text-transform: uppercase;
+            display: block;
 
-      letter-spacing: 0.5px;
+            background:
+                #ffffff;
 
-      transition: 0.2s ease;
-    }
+            border-radius: 5px;
 
-    .btn-primary {
-      background: var(--red);
-      color: var(--white);
+            transition:
+                0.25s ease;
+        }
 
-      box-shadow:
-        0 8px 25px rgba(215,25,32,0.20);
-    }
 
-    .btn-primary:hover {
-      background: var(--red-dark);
+        .site-header .menu-toggle:hover {
+            border-color:
+                var(--gold);
 
-      transform: translateY(-2px);
-    }
+            background:
+                rgba(215, 25, 32, 0.15);
+        }
 
-    .btn-secondary {
-      background: transparent;
 
-      color: var(--gold);
 
-      border: 1px solid rgba(245,197,66,0.35);
-    }
+        /* =====================================================
+           HAMBURGER X ANIMATION
+        ===================================================== */
 
-    .btn-secondary:hover {
-      background: var(--gold);
-      color: #111;
+        .site-header
+        .menu-toggle.active
+        span:nth-child(1) {
 
-      transform: translateY(-2px);
-    }
+            transform:
+                translateY(7px)
+                rotate(45deg);
+        }
 
-    /* =========================================
-       GENERAL SECTION
-    ========================================= */
 
-    .section {
-      padding: 90px 20px;
-    }
+        .site-header
+        .menu-toggle.active
+        span:nth-child(2) {
 
-    .section-container {
-      width: min(1100px, 92%);
-      margin: auto;
-    }
+            opacity: 0;
+        }
 
-    .section-heading {
-      text-align: center;
 
-      margin-bottom: 45px;
-    }
+        .site-header
+        .menu-toggle.active
+        span:nth-child(3) {
 
-    .section-heading small {
-      display: block;
+            transform:
+                translateY(-7px)
+                rotate(-45deg);
+        }
 
-      color: var(--red);
 
-      font-size: 10px;
 
-      font-weight: 900;
+        /* =====================================================
+           HERO
+        ===================================================== */
 
-      letter-spacing: 2px;
+        .home-hero {
 
-      margin-bottom: 8px;
-    }
+            min-height: 88vh;
 
-    .section-heading h2 {
-      font-size: clamp(28px, 5vw, 42px);
+            display: flex;
 
-      font-weight: 900;
-    }
+            align-items: center;
 
-    .section-heading h2 span {
-      color: var(--gold);
-    }
+            justify-content: center;
 
-    .section-heading p {
-      color: var(--gray);
+            padding:
+                70px 20px;
 
-      max-width: 650px;
+            background:
 
-      margin: 10px auto 0;
+                radial-gradient(
+                    circle at center,
+                    rgba(215, 25, 32, 0.18),
+                    transparent 45%
+                ),
 
-      font-size: 13px;
-    }
+                radial-gradient(
+                    circle at top right,
+                    rgba(245, 197, 66, 0.08),
+                    transparent 30%
+                ),
 
-    /* =========================================
-       COMMUNITY CARDS
-    ========================================= */
+                #090909;
 
-    .community-grid {
-      display: grid;
+            text-align: center;
+        }
 
-      grid-template-columns: repeat(4, 1fr);
 
-      gap: 15px;
-    }
+        .hero-content {
 
-    .community-card {
-      background: var(--dark-2);
+            width: 100%;
 
-      border: 1px solid var(--border);
+            max-width: 900px;
 
-      border-radius: 14px;
+            margin: 0 auto;
+        }
 
-      padding: 25px 18px;
 
-      text-align: center;
+        .hero-badge {
 
-      transition: 0.25s ease;
-    }
+            display: inline-block;
 
-    .community-card:hover {
-      transform: translateY(-5px);
+            margin-bottom: 20px;
 
-      border-color: rgba(245,197,66,0.28);
-    }
+            padding:
+                8px 16px;
 
-    .community-icon {
-      width: 52px;
-      height: 52px;
+            border:
+                1px solid
+                var(--gold);
 
-      margin: auto auto 15px;
+            border-radius: 30px;
 
-      border-radius: 14px;
+            background:
+                rgba(245, 197, 66, 0.08);
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+            color:
+                var(--gold);
 
-      background: rgba(215,25,32,0.10);
+            font-size: 12px;
 
-      border: 1px solid rgba(215,25,32,0.18);
+            font-weight: 800;
 
-      font-size: 22px;
-    }
+            letter-spacing: 1px;
 
-    .community-card h3 {
-      font-size: 15px;
+            text-transform: uppercase;
+        }
 
-      margin-bottom: 7px;
-    }
 
-    .community-card p {
-      color: #8E8E8E;
+        .official-logo {
 
-      font-size: 11px;
-    }
+            width: 100%;
 
-    /* =========================================
-       VALUES
-    ========================================= */
+            max-width: 390px;
 
-    .values-section {
-      background: #0A0A0A;
+            height: auto;
 
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
+            margin:
+                0 auto 25px;
 
-    .values-grid {
-      display: grid;
+            display: block;
 
-      grid-template-columns: repeat(4, 1fr);
+            object-fit: contain;
 
-      gap: 15px;
-    }
+            border-radius: 20px;
 
-    .value-item {
-      padding: 20px;
+            box-shadow:
 
-      border-left: 2px solid var(--red);
+                0 0 30px
+                rgba(215, 25, 32, 0.35),
 
-      background: rgba(255,255,255,0.02);
-    }
+                0 0 60px
+                rgba(245, 197, 66, 0.12);
+        }
 
-    .value-item h3 {
-      color: var(--gold);
 
-      font-size: 13px;
+        .home-hero h1 {
 
-      margin-bottom: 5px;
-    }
+            margin:
+                0 0 15px;
 
-    .value-item p {
-      color: #929292;
+            color:
+                #ffffff;
 
-      font-size: 11px;
-    }
+            font-size:
+                clamp(38px, 8vw, 75px);
 
-    /* =========================================
-       HOW TO JOIN
-    ========================================= */
+            line-height: 1.05;
 
-    .join-process {
-      display: grid;
+            font-weight: 900;
 
-      grid-template-columns: repeat(4, 1fr);
+            letter-spacing: 2px;
+        }
 
-      gap: 15px;
 
-      position: relative;
-    }
+        .home-hero h1 span {
 
-    .join-step {
-      position: relative;
+            color:
+                var(--red);
 
-      background: var(--dark-2);
+            text-shadow:
+                0 0 20px
+                rgba(215, 25, 32, 0.45);
+        }
 
-      border: 1px solid var(--border);
 
-      border-radius: 14px;
+        .hero-subtitle {
 
-      padding: 25px 18px;
+            max-width: 700px;
 
-      text-align: center;
-    }
+            margin:
+                0 auto 25px;
 
-    .step-number {
-      width: 35px;
-      height: 35px;
+            color:
+                #dddddd;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+            font-size: 17px;
 
-      margin: 0 auto 13px;
+            line-height: 1.7;
+        }
 
-      border-radius: 50%;
 
-      background: var(--red);
+        .hero-date {
 
-      color: var(--white);
+            margin-bottom: 28px;
 
-      font-size: 12px;
+            color:
+                var(--gold);
 
-      font-weight: 900;
-    }
+            font-size: 15px;
 
-    .join-step h3 {
-      font-size: 14px;
+            font-weight: 700;
 
-      margin-bottom: 6px;
-    }
+            line-height: 1.7;
+        }
 
-    .join-step p {
-      color: #898989;
 
-      font-size: 10px;
-    }
+        .hero-buttons {
 
-    .approval-warning {
-      margin-top: 25px;
+            display: flex;
 
-      text-align: center;
+            justify-content: center;
 
-      padding: 15px;
+            align-items: center;
 
-      border-radius: 10px;
+            flex-wrap: wrap;
 
-      background: rgba(215,25,32,0.08);
+            gap: 12px;
+        }
 
-      border: 1px solid rgba(215,25,32,0.20);
 
-      color: #E8E8E8;
+        .hero-btn {
 
-      font-size: 12px;
+            display: inline-flex;
 
-      font-weight: 800;
-    }
+            align-items: center;
 
-    .approval-warning strong {
-      color: var(--red);
-    }
+            justify-content: center;
 
-    /* =========================================
-       RULES PREVIEW
-    ========================================= */
+            min-width: 160px;
 
-    .rules-section {
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(215,25,32,0.08),
-          transparent 35%
-        );
-    }
+            padding:
+                14px 22px;
 
-    .rules-grid {
-      display: grid;
+            border-radius: 9px;
 
-      grid-template-columns: repeat(2, 1fr);
+            text-decoration: none;
 
-      gap: 10px 15px;
-    }
+            font-size: 14px;
 
-    .rule-item {
-      display: flex;
+            font-weight: 800;
 
-      gap: 12px;
+            transition:
+                0.25s ease;
+        }
 
-      padding: 15px;
 
-      border-radius: 10px;
+        .hero-btn-primary {
 
-      background: var(--dark-2);
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
 
-      border: 1px solid var(--border);
-    }
+            color:
+                #ffffff;
 
-    .rule-number {
-      min-width: 28px;
-      height: 28px;
+            box-shadow:
+                0 8px 25px
+                rgba(215, 25, 32, 0.28);
+        }
 
-      border-radius: 7px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        .hero-btn-primary:hover {
 
-      background: rgba(215,25,32,0.13);
+            transform:
+                translateY(-3px);
 
-      color: var(--gold);
+            box-shadow:
+                0 12px 30px
+                rgba(215, 25, 32, 0.4);
+        }
 
-      font-size: 10px;
 
-      font-weight: 900;
-    }
+        .hero-btn-secondary {
 
-    .rule-item h4 {
-      font-size: 12px;
+            background:
+                #ffffff;
 
-      margin-bottom: 3px;
-    }
+            color:
+                #171717;
 
-    .rule-item p {
-      color: #858585;
+            border:
+                2px solid
+                var(--gold);
+        }
 
-      font-size: 10px;
-    }
 
-    .center-button {
-      text-align: center;
+        .hero-btn-secondary:hover {
 
-      margin-top: 28px;
-    }
+            transform:
+                translateY(-3px);
 
-    /* =========================================
-       SCHEDULE CTA
-    ========================================= */
+            background:
+                #fff9e5;
+        }
 
-    .schedule-box {
-      padding: 45px 25px;
 
-      text-align: center;
 
-      border-radius: 18px;
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(215,25,32,0.18),
-          rgba(245,197,66,0.05)
-        );
+        .home-section {
 
-      border: 1px solid rgba(215,25,32,0.22);
-    }
+            padding:
+                75px 20px;
+        }
 
-    .schedule-box h2 {
-      font-size: clamp(25px, 5vw, 38px);
 
-      margin-bottom: 8px;
-    }
+        .home-section-dark {
 
-    .schedule-box h2 span {
-      color: var(--gold);
-    }
+            background:
+                #090909;
+        }
 
-    .schedule-box p {
-      color: #A3A3A3;
 
-      max-width: 600px;
+        .home-section-light {
 
-      margin: auto;
+            background:
+                #f7f7f7;
+        }
 
-      font-size: 12px;
-    }
 
-    .schedule-box .btn {
-      margin-top: 22px;
-    }
+        .section-heading {
 
-    /* =========================================
-       FINAL CTA
-    ========================================= */
+            max-width: 750px;
 
-    .final-cta {
-      padding: 100px 20px;
+            margin:
+                0 auto 40px;
 
-      text-align: center;
+            text-align: center;
+        }
 
-      background: #080808;
-    }
 
-    .final-cta h2 {
-      font-size: clamp(30px, 5vw, 48px);
+        .section-heading h2 {
 
-      font-weight: 900;
-    }
+            margin:
+                0 0 10px;
 
-    .final-cta h2 span {
-      color: var(--gold);
-    }
+            color:
+                #ffffff;
 
-    .final-cta p {
-      color: #8D8D8D;
+            font-size:
+                clamp(28px, 5vw, 42px);
 
-      max-width: 600px;
+            font-weight:
+                900;
+        }
 
-      margin: 12px auto 0;
 
-      font-size: 13px;
-    }
+        .home-section-light
+        .section-heading h2 {
 
-    .final-cta .btn {
-      margin-top: 25px;
-    }
+            color:
+                #171717;
+        }
 
-    /* =========================================
-       FOOTER
-    ========================================= */
 
-    footer {
-      padding: 30px 20px;
+        .section-heading h2 span {
 
-      border-top: 1px solid var(--border);
+            color:
+                var(--red);
+        }
 
-      background: #050505;
 
-      text-align: center;
-    }
+        .section-heading p {
 
-    .footer-brand {
-      font-size: 13px;
+            margin: 0;
 
-      font-weight: 900;
+            color:
+                #aaaaaa;
 
-      letter-spacing: 1px;
+            font-size:
+                15px;
 
-      margin-bottom: 5px;
-    }
+            line-height:
+                1.7;
+        }
 
-    .footer-brand span {
-      color: var(--gold);
-    }
 
-    footer p {
-      color: #5F5F5F;
+        .home-section-light
+        .section-heading p {
 
-      font-size: 9px;
-    }
+            color:
+                #666666;
+        }
 
-    footer strong {
-      color: var(--red);
-    }
 
-    /* =========================================
-       TABLET
-    ========================================= */
 
-    @media (max-width: 950px) {
+        /* =====================================================
+           COMMUNITY CARDS
+        ===================================================== */
 
-      .community-grid,
-      .values-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+        .community-grid {
 
-      .join-process {
-        grid-template-columns: repeat(2, 1fr);
-      }
+            width: 100%;
 
-      .nav-menu a {
-        padding: 8px 9px;
-        font-size: 10px;
-      }
+            max-width: 1100px;
 
-    }
+            margin:
+                0 auto;
 
-    /* =========================================
-       MOBILE NAVIGATION
-    ========================================= */
+            display: grid;
 
-    @media (max-width: 700px) {
+            grid-template-columns:
+                repeat(4, 1fr);
 
-      .site-header {
-        height: 66px;
-      }
+            gap: 18px;
+        }
 
-      .header-container {
-        width: 92%;
-      }
 
-      .brand img {
-        width: 40px;
-        height: 40px;
-      }
+        .community-card {
 
-      .brand-name {
-        font-size: 13px;
-      }
+            padding:
+                25px 18px;
 
-      .menu-toggle {
-        display: block;
-      }
+            background:
+                #ffffff;
 
-      .nav-menu {
+            border:
+                2px solid
+                var(--gold);
 
-        position: absolute;
+            border-radius:
+                14px;
 
-        top: 66px;
-        left: 0;
+            text-align:
+                center;
 
-        width: 100%;
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.22);
 
-        display: none;
+            transition:
+                0.25s ease;
+        }
 
-        flex-direction: column;
 
-        align-items: stretch;
+        .community-card:hover {
 
-        gap: 3px;
+            transform:
+                translateY(-5px);
 
-        padding: 12px;
+            box-shadow:
+                0 16px 35px
+                rgba(0, 0, 0, 0.3);
+        }
 
-        background: rgba(8,8,8,0.98);
 
-        border-bottom: 1px solid var(--border);
+        .community-icon {
 
-        box-shadow:
-          0 15px 30px rgba(0,0,0,0.35);
-      }
+            width: 58px;
 
-      .nav-menu.show {
-        display: flex;
-      }
+            height: 58px;
 
-      .nav-menu a {
+            margin:
+                0 auto 15px;
 
-        width: 100%;
+            display: flex;
 
-        padding: 13px 15px;
+            align-items:
+                center;
 
-        border-radius: 8px;
+            justify-content:
+                center;
 
-        font-size: 11px;
-      }
+            border-radius:
+                50%;
 
-      .nav-menu .admin-link {
-        margin-left: 0;
-      }
+            background:
+                var(--red);
 
-      .hero {
-        padding-top: 125px;
-      }
+            color:
+                #ffffff;
 
-      .hero-logo {
-        width: 165px;
-        height: 165px;
-      }
+            font-size:
+                25px;
+        }
 
-      .hero h1 {
-        font-size: 40px;
-      }
 
-      .hero-subtitle {
-        font-size: 12px;
-      }
+        .community-card h3 {
 
-      .section {
-        padding: 70px 15px;
-      }
+            margin:
+                0 0 8px;
 
-      .rules-grid {
-        grid-template-columns: 1fr;
-      }
+            color:
+                #171717;
 
-    }
+            font-size:
+                18px;
 
-    /* =========================================
-       SMALL MOBILE
-    ========================================= */
+            font-weight:
+                900;
+        }
 
-    @media (max-width: 500px) {
 
-      .community-grid,
-      .values-grid,
-      .join-process {
-        grid-template-columns: 1fr;
-      }
+        .community-card p {
 
-      .hero-logo {
-        width: 145px;
-        height: 145px;
-      }
+            margin:
+                0;
 
-      .hero h1 {
-        font-size: 34px;
-      }
+            color:
+                #666666;
 
-      .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-      }
+            font-size:
+                13px;
 
-      .hero-buttons .btn {
-        width: 100%;
-      }
+            line-height:
+                1.6;
+        }
 
-      .hero-meta {
-        gap: 5px;
-      }
 
-      .hero-meta span {
-        font-size: 9px;
-      }
 
-    }
+        /* =====================================================
+           VALUES
+        ===================================================== */
 
-  </style>
+        .values-grid {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin:
+                0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .value-card {
+
+            padding:
+                20px;
+
+            border-left:
+                4px solid
+                var(--red);
+
+            background:
+                #151515;
+
+            border-radius:
+                8px;
+        }
+
+
+        .value-card h3 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                16px;
+        }
+
+
+        .value-card p {
+
+            margin:
+                0;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
+        }
+
+
+
+        /* =====================================================
+           HOW TO JOIN
+        ===================================================== */
+
+        .approval-grid {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin:
+                0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .approval-card {
+
+            padding:
+                25px 20px;
+
+            background:
+                #ffffff;
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                14px;
+
+            text-align:
+                center;
+        }
+
+
+        .approval-number {
+
+            width: 45px;
+
+            height: 45px;
+
+            margin:
+                0 auto 12px;
+
+            display: flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            font-size:
+                18px;
+
+            font-weight:
+                900;
+        }
+
+
+        .approval-card h3 {
+
+            margin:
+                0 0 8px;
+
+            color:
+                #171717;
+
+            font-size:
+                18px;
+        }
+
+
+        .approval-card p {
+
+            margin:
+                0;
+
+            color:
+                #666666;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.6;
+        }
+
+
+
+        /* =====================================================
+           RULES
+        ===================================================== */
+
+        .rules-box {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin:
+                0 auto;
+
+            padding:
+                30px;
+
+            background:
+                #ffffff;
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                16px;
+        }
+
+
+        .rules-list {
+
+            margin:
+                0;
+
+            padding-left:
+                22px;
+
+            color:
+                #333333;
+        }
+
+
+        .rules-list li {
+
+            margin-bottom:
+                12px;
+
+            padding-left:
+                5px;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.6;
+        }
+
+
+        .rules-list li::marker {
+
+            color:
+                var(--red);
+
+            font-weight:
+                900;
+        }
+
+
+        .rules-link {
+
+            display:
+                inline-block;
+
+            margin-top:
+                10px;
+
+            color:
+                var(--red);
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            text-decoration:
+                none;
+        }
+
+
+        .rules-link:hover {
+
+            color:
+                var(--red-dark);
+
+            text-decoration:
+                underline;
+        }
+
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .home-cta {
+
+            padding:
+                80px 20px;
+
+            text-align:
+                center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #8f0d12
+                );
+        }
+
+
+        .home-cta h2 {
+
+            margin:
+                0 0 10px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                clamp(28px, 5vw, 45px);
+
+            font-weight:
+                900;
+        }
+
+
+        .home-cta p {
+
+            max-width:
+                650px;
+
+            margin:
+                0 auto 25px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .cta-btn {
+
+            display:
+                inline-block;
+
+            padding:
+                14px 28px;
+
+            border:
+                2px solid
+                var(--gold);
+
+            border-radius:
+                9px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--red);
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .cta-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                #fff9e5;
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+
+            padding:
+                25px 20px;
+
+            background:
+                #050505;
+
+            border-top:
+                1px solid
+                rgba(245, 197, 66, 0.25);
+
+            text-align:
+                center;
+        }
+
+
+        .site-footer p {
+
+            margin:
+                5px 0;
+
+            color:
+                #999999;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.5;
+        }
+
+
+        .site-footer p:first-child {
+
+            color:
+                #ffffff;
+
+            font-weight:
+                700;
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .community-grid,
+            .values-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .approval-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            /* HEADER */
+
+            .site-header .header-container {
+
+                min-height:
+                    64px;
+
+                padding:
+                    0 14px;
+            }
+
+
+            /* LOGO */
+
+            .site-header .brand {
+
+                gap:
+                    8px;
+
+                min-width:
+                    0;
+            }
+
+
+            .site-header .brand img {
+
+                width:
+                    40px !important;
+
+                height:
+                    40px !important;
+            }
+
+
+            /* COMMUNITY NAME */
+
+            .site-header .brand-name {
+
+                font-size:
+                    14px;
+
+                letter-spacing:
+                    0.3px;
+            }
+
+
+            /* HAMBURGER */
+
+            .site-header .menu-toggle {
+
+                display:
+                    flex !important;
+
+                margin-left:
+                    auto !important;
+
+                flex-shrink:
+                    0;
+            }
+
+
+            /* MOBILE NAV */
+
+            .site-header .nav-menu {
+
+                position:
+                    absolute;
+
+                top:
+                    64px;
+
+                left:
+                    10px;
+
+                right:
+                    10px;
+
+                display:
+                    none !important;
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+                gap:
+                    4px;
+
+                margin:
+                    0;
+
+                padding:
+                    10px;
+
+                background:
+                    #111111;
+
+                border:
+                    1px solid
+                    rgba(245, 197, 66, 0.45);
+
+                border-radius:
+                    10px;
+
+                box-shadow:
+                    0 15px 35px
+                    rgba(0, 0, 0, 0.45);
+            }
+
+
+            /* SHOW MOBILE MENU */
+
+            .site-header
+            .nav-menu.show {
+
+                display:
+                    flex !important;
+            }
+
+
+            /* MOBILE LINKS */
+
+            .site-header .nav-menu a {
+
+                width:
+                    100%;
+
+                padding:
+                    13px 15px;
+
+                box-sizing:
+                    border-box;
+
+                justify-content:
+                    flex-start;
+
+                border-radius:
+                    7px;
+            }
+
+
+            /* MOBILE ADMIN */
+
+            .site-header .nav-menu a.admin-link {
+
+                color:
+                    var(--gold);
+
+                border:
+                    1px solid
+                    rgba(245, 197, 66, 0.45);
+
+                background:
+                    rgba(245, 197, 66, 0.05);
+            }
+
+
+
+            /* HERO */
+
+            .home-hero {
+
+                min-height:
+                    auto;
+
+                padding:
+                    55px 16px 65px;
+            }
+
+
+            .official-logo {
+
+                max-width:
+                    300px;
+
+                margin-bottom:
+                    22px;
+
+                border-radius:
+                    15px;
+            }
+
+
+            .hero-subtitle {
+
+                font-size:
+                    14px;
+            }
+
+
+            .hero-buttons {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .hero-btn {
+
+                width:
+                    100%;
+
+                max-width:
+                    320px;
+
+                box-sizing:
+                    border-box;
+            }
+
+
+
+            /* SECTIONS */
+
+            .home-section {
+
+                padding:
+                    55px 16px;
+            }
+
+
+            .community-grid,
+            .values-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .rules-box {
+
+                padding:
+                    22px 18px;
+            }
+
+
+            .home-cta {
+
+                padding:
+                    60px 16px;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .site-header .brand-name {
+
+                font-size:
+                    12px;
+            }
+
+
+            .site-header .brand img {
+
+                width:
+                    36px !important;
+
+                height:
+                    36px !important;
+            }
+
+
+            .site-header .menu-toggle {
+
+                width:
+                    40px;
+
+                height:
+                    40px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 
 <body>
 
 
-  <!-- =========================================
-       HEADER
-  ========================================== -->
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-  <header class="site-header">
+    <header class="site-header">
 
-    <div class="header-container">
+        <div class="header-container">
 
-      <!-- BRAND -->
 
-      <a href="index.html" class="brand">
+            <!-- LOGO + NAME -->
 
-        <img
-          src="assets/logo/nightfall-devils-logo.png"
-          alt="NIGHTFALL DEVILS Official Logo"
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <img
+                    src="assets/logo/nightfall-devils-logo.png"
+                    alt="NIGHTFALL DEVILS Official Logo"
+                >
+
+                <span class="brand-name">
+
+                    NIGHTFALL
+                    <strong>DEVILS</strong>
+
+                </span>
+
+            </a>
+
+
+
+            <!-- NAVIGATION -->
+
+            <nav
+                class="nav-menu"
+                id="mainNav"
+            >
+
+                <a
+                    href="index.html"
+                    class="active"
+                >
+                    Home
+                </a>
+
+                <a href="pages/rules.html">
+                    Rules
+                </a>
+
+                <a href="pages/join.html">
+                    Join
+                </a>
+
+                <a href="pages/schedule.html">
+                    Schedule
+                </a>
+
+                <a href="pages/members.html">
+                    Members
+                </a>
+
+                <!-- ADMIN -->
+                <a
+                    href="admin/login.html"
+                    class="admin-link"
+                >
+                    Admin
+                </a>
+
+            </nav>
+
+
+
+            <!-- HAMBURGER -->
+
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="home-hero">
+
+            <div class="hero-content">
+
+
+                <div class="hero-badge">
+
+                    OFFICIAL COMMUNITY
+
+                </div>
+
+
+
+                <!-- LARGE LOGO -->
+
+                <img
+                    src="assets/logo/nightfall-devils-logo.png"
+                    alt="NIGHTFALL DEVILS Official Community Logo"
+                    class="official-logo"
+                >
+
+
+
+                <h1>
+
+                    NIGHTFALL
+                    <span>DEVILS</span>
+
+                </h1>
+
+
+
+                <p class="hero-subtitle">
+
+                    A community built on
+
+                    <strong>
+                        friendship, respect,
+                        unity, and support.
+                    </strong>
+
+                    We support our members,
+                    streamers, and friends while
+                    keeping our community safe
+                    and respectful.
+
+                </p>
+
+
+
+                <div class="hero-date">
+
+                    👿 Established October 18, 2026
+
+                    <br>
+
+                    Formerly TEAM MALALA
+
+                </div>
+
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="pages/join.html"
+                        class="hero-btn hero-btn-primary"
+                    >
+
+                        👿 REQUEST TO JOIN
+
+                    </a>
+
+
+                    <a
+                        href="pages/members.html"
+                        class="hero-btn hero-btn-secondary"
+                    >
+
+                        👥 VIEW MEMBERS
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             WHAT WE STAND FOR
+        ================================================== -->
+
+        <section
+            class="home-section home-section-light"
         >
 
-        <span class="brand-name">
-          NIGHTFALL <strong>DEVILS</strong>
-        </span>
+            <div class="section-heading">
 
-      </a>
+                <h2>
+
+                    WHAT WE
+
+                    <span>
+                        STAND FOR
+                    </span>
+
+                </h2>
 
 
-      <!-- NAVIGATION -->
+                <p>
 
-      <nav class="nav-menu" id="mainNav">
+                    NIGHTFALL DEVILS is more than
+                    just a group. We are a community
+                    that values friendship, respect,
+                    and support.
 
-        <a
-          href="index.html"
-          class="active"
+                </p>
+
+            </div>
+
+
+
+            <div class="community-grid">
+
+
+                <div class="community-card">
+
+                    <div class="community-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Friendship
+                    </h3>
+
+                    <p>
+
+                        Build genuine friendships
+                        and positive connections
+                        within the community.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="community-card">
+
+                    <div class="community-icon">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Support
+                    </h3>
+
+                    <p>
+
+                        Support our members and
+                        streamers through positive
+                        engagement.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="community-card">
+
+                    <div class="community-icon">
+                        🫡
+                    </div>
+
+                    <h3>
+                        Respect
+                    </h3>
+
+                    <p>
+
+                        Treat every member and
+                        every community with
+                        respect.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="community-card">
+
+                    <div class="community-icon">
+                        👿
+                    </div>
+
+                    <h3>
+                        Unity
+                    </h3>
+
+                    <p>
+
+                        Stay united and help each
+                        other grow together.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             VALUES
+        ================================================== -->
+
+        <section
+            class="home-section home-section-dark"
         >
-          Home
-        </a>
 
-        <a href="pages/rules.html">
-          Rules
-        </a>
+            <div class="section-heading">
 
-        <a href="pages/join.html">
-          Join
-        </a>
+                <h2>
 
-        <a href="pages/schedule.html">
-          Schedule
-        </a>
+                    OUR
 
-        <a href="pages/members.html">
-          Members
-        </a>
+                    <span>
+                        VALUES
+                    </span>
 
-        <a
-          href="admin/login.html"
-          class="admin-link"
+                </h2>
+
+
+                <p>
+                    These principles guide our community.
+                </p>
+
+            </div>
+
+
+
+            <div class="values-grid">
+
+
+                <div class="value-card">
+
+                    <h3>
+                        👑 Unity
+                    </h3>
+
+                    <p>
+                        We stand together and
+                        support one another.
+                    </p>
+
+                </div>
+
+
+
+                <div class="value-card">
+
+                    <h3>
+                        🫡 Respect
+                    </h3>
+
+                    <p>
+                        No harassment, personal
+                        attacks, or unnecessary drama.
+                    </p>
+
+                </div>
+
+
+
+                <div class="value-card">
+
+                    <h3>
+                        ❤️ Support
+                    </h3>
+
+                    <p>
+                        Support our own streamers
+                        without attacking others.
+                    </p>
+
+                </div>
+
+
+
+                <div class="value-card">
+
+                    <h3>
+                        🔒 Privacy
+                    </h3>
+
+                    <p>
+                        Never disclose or share
+                        another member's personal
+                        information.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             HOW TO JOIN
+        ================================================== -->
+
+        <section
+            class="home-section home-section-light"
         >
-          Admin
-        </a>
 
-      </nav>
+            <div class="section-heading">
+
+                <h2>
+
+                    HOW TO
+
+                    <span>
+                        JOIN
+                    </span>
+
+                </h2>
 
 
-      <!-- MOBILE MENU -->
+                <p>
 
-      <button
-        type="button"
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-      >
+                    Every new member must be
+                    reviewed and approved by Admin.
 
-        <span></span>
-        <span></span>
-        <span></span>
+                </p>
 
-      </button>
-
-    </div>
-
-  </header>
+            </div>
 
 
 
-  <!-- =========================================
-       HERO
-  ========================================== -->
-
-  <section class="hero">
-
-    <div class="hero-content">
+            <div class="approval-grid">
 
 
-      <div class="official-badge">
-        OFFICIAL COMMUNITY
-      </div>
+                <div class="approval-card">
+
+                    <div class="approval-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Refer to Admin
+                    </h3>
+
+                    <p>
+
+                        Give your TikTok username
+                        and tell us which member
+                        referred you.
+
+                    </p>
+
+                </div>
 
 
-      <img
-        src="assets/logo/nightfall-devils-logo.png"
-        alt="NIGHTFALL DEVILS Official Logo"
-        class="hero-logo"
-      >
+
+                <div class="approval-card">
+
+                    <div class="approval-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Admin Review
+                    </h3>
+
+                    <p>
+
+                        Admin will review your
+                        request before you are
+                        added.
+
+                    </p>
+
+                </div>
 
 
-      <h1>
-        NIGHTFALL <span>DEVILS</span>
-      </h1>
+
+                <div class="approval-card">
+
+                    <div class="approval-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Approved
+                    </h3>
+
+                    <p>
+
+                        Once approved, you may
+                        officially join the
+                        community.
+
+                    </p>
+
+                </div>
 
 
-      <p class="hero-subtitle">
-
-        A TikTok community built on friendship, support,
-        respect and unity. We grow together, support our
-        streamers and protect each other's privacy.
-
-      </p>
+            </div>
 
 
-      <div class="hero-meta">
 
-        <span>
-          <strong>ESTABLISHED:</strong>
-          OCTOBER 18, 2026
-        </span>
+            <div
+                style="
+                    max-width:700px;
+                    margin:30px auto 0;
+                    padding:18px;
+                    background:#fff0f0;
+                    border:2px solid #d71920;
+                    border-radius:10px;
+                    text-align:center;
+                "
+            >
 
-        <span>
-          FORMERLY:
-          TEAM MALALA
-        </span>
+                <strong
+                    style="
+                        color:#d71920;
+                        font-size:17px;
+                    "
+                >
 
-      </div>
+                    NO APPROVAL = NO ADDING
+
+                </strong>
 
 
-      <div class="hero-buttons">
+                <br>
 
-        <a
-          href="pages/join.html"
-          class="btn btn-primary"
+
+                <span
+                    style="
+                        color:#555;
+                        font-size:13px;
+                    "
+                >
+
+                    Please wait for Admin approval
+                    before being added to the
+                    community.
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COMMUNITY RULES
+        ================================================== -->
+
+        <section
+            class="home-section home-section-dark"
         >
-          Request to Join
-        </a>
 
-        <a
-          href="pages/members.html"
-          class="btn btn-secondary"
+            <div class="section-heading">
+
+                <h2>
+
+                    COMMUNITY
+
+                    <span>
+                        RULES
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Keep NIGHTFALL DEVILS a
+                    respectful and positive
+                    community.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="rules-box">
+
+                <ol class="rules-list">
+
+
+                    <li>
+
+                        <strong>
+                            Respect Everyone
+                        </strong>
+
+                        — Treat all members,
+                        streamers, and communities
+                        with respect.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            No Below-the-Belt Comments
+                        </strong>
+
+                        — Avoid personal attacks,
+                        insults, harassment, and
+                        unnecessary arguments.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Do Not Involve Other Communities
+                        </strong>
+
+                        — Community issues should
+                        be handled privately.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Support, Don't Bring Down
+                        </strong>
+
+                        — Support our streamers
+                        without attacking others.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Protect Privacy
+                        </strong>
+
+                        — Never disclose or share
+                        personal information.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Follow Platform Rules
+                        </strong>
+
+                        — Follow TikTok and other
+                        applicable platform rules.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Keep Private Matters Private
+                        </strong>
+
+                        — Handle personal issues
+                        privately and respectfully.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            No Unnecessary Drama
+                        </strong>
+
+                        — Help keep the community
+                        peaceful and positive.
+
+                    </li>
+
+
+                </ol>
+
+
+
+                <a
+                    href="pages/rules.html"
+                    class="rules-link"
+                >
+
+                    View Full Community Rules →
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STREAMER SUPPORT
+        ================================================== -->
+
+        <section
+            class="home-section home-section-light"
         >
-          View Members
-        </a>
 
-      </div>
+            <div class="section-heading">
 
-    </div>
+                <h2>
 
-  </section>
+                    STREAMER
 
+                    <span>
+                        SUPPORT
+                    </span>
 
+                </h2>
 
-  <!-- =========================================
-       COMMUNITY
-  ========================================== -->
 
-  <section class="section">
+                <p>
 
-    <div class="section-container">
+                    Check our schedule for upcoming
+                    LIVE streams, raids, and support
+                    activities.
 
+                </p>
 
-      <div class="section-heading">
+            </div>
 
-        <small>WHO WE ARE</small>
 
-        <h2>
-          More Than A <span>Community</span>
-        </h2>
 
-        <p>
-          NIGHTFALL DEVILS is a community where members
-          support one another and build genuine friendships.
-        </p>
+            <div
+                style="
+                    max-width:700px;
+                    margin:0 auto;
+                    text-align:center;
+                "
+            >
 
-      </div>
+                <a
+                    href="pages/schedule.html"
+                    class="hero-btn hero-btn-primary"
+                >
 
+                    📅 VIEW SCHEDULE
 
-      <div class="community-grid">
+                </a>
 
+            </div>
 
-        <div class="community-card">
+        </section>
 
-          <div class="community-icon">
-            ♟
-          </div>
 
-          <h3>
-            Friendship
-          </h3>
 
-          <p>
-            Build genuine friendships and meaningful
-            connections within the community.
-          </p>
+        <!-- =================================================
+             FINAL CTA
+        ================================================== -->
 
-        </div>
+        <section class="home-cta">
 
+            <h2>
+                READY TO JOIN?
+            </h2>
 
-        <div class="community-card">
-
-          <div class="community-icon">
-            ⚡
-          </div>
-
-          <h3>
-            Support
-          </h3>
-
-          <p>
-            Support our streamers through raids,
-            engagement and positive energy.
-          </p>
-
-        </div>
-
-
-        <div class="community-card">
-
-          <div class="community-icon">
-            ★
-          </div>
-
-          <h3>
-            Respect
-          </h3>
-
-          <p>
-            Treat every member with respect regardless
-            of status or position.
-          </p>
-
-        </div>
-
-
-        <div class="community-card">
-
-          <div class="community-icon">
-            ◆
-          </div>
-
-          <h3>
-            Unity
-          </h3>
-
-          <p>
-            Stay united and help create a strong,
-            peaceful and supportive community.
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       VALUES
-  ========================================== -->
-
-  <section class="section values-section">
-
-    <div class="section-container">
-
-
-      <div class="section-heading">
-
-        <small>OUR VALUES</small>
-
-        <h2>
-          What We <span>Stand For</span>
-        </h2>
-
-      </div>
-
-
-      <div class="values-grid">
-
-
-        <div class="value-item">
-
-          <h3>
-            UNITY
-          </h3>
-
-          <p>
-            We support one another and stay united.
-          </p>
-
-        </div>
-
-
-        <div class="value-item">
-
-          <h3>
-            RESPECT
-          </h3>
-
-          <p>
-            Respect every member and every community.
-          </p>
-
-        </div>
-
-
-        <div class="value-item">
-
-          <h3>
-            SUPPORT
-          </h3>
-
-          <p>
-            Help our streamers grow through positive support.
-          </p>
-
-        </div>
-
-
-        <div class="value-item">
-
-          <h3>
-            PRIVACY
-          </h3>
-
-          <p>
-            Never disclose or share another member's
-            personal information.
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       HOW TO JOIN
-  ========================================== -->
-
-  <section class="section">
-
-    <div class="section-container">
-
-
-      <div class="section-heading">
-
-        <small>MEMBERSHIP</small>
-
-        <h2>
-          How To <span>Join</span>
-        </h2>
-
-        <p>
-          Membership requires Admin approval before
-          anyone can be added to the community.
-        </p>
-
-      </div>
-
-
-      <div class="join-process">
-
-
-        <div class="join-step">
-
-          <div class="step-number">
-            01
-          </div>
-
-          <h3>
-            Refer to Admin
-          </h3>
-
-          <p>
-            Contact an Admin and provide the required
-            membership information.
-          </p>
-
-        </div>
-
-
-        <div class="join-step">
-
-          <div class="step-number">
-            02
-          </div>
-
-          <h3>
-            Admin Review
-          </h3>
-
-          <p>
-            The Admin reviews your request and verifies
-            the information provided.
-          </p>
-
-        </div>
-
-
-        <div class="join-step">
-
-          <div class="step-number">
-            03
-          </div>
-
-          <h3>
-            Approved
-          </h3>
-
-          <p>
-            Once approved, your membership can be added
-            to the community.
-          </p>
-
-        </div>
-
-
-        <div class="join-step">
-
-          <div class="step-number">
-            04
-          </div>
-
-          <h3>
-            Welcome
-          </h3>
-
-          <p>
-            Follow the rules, respect everyone and
-            support the community.
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="approval-warning">
-
-        <strong>NO APPROVAL = NO ADDING.</strong>
-
-        &nbsp; Membership must be approved by an Admin.
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       RULES PREVIEW
-  ========================================== -->
-
-  <section class="section rules-section">
-
-    <div class="section-container">
-
-
-      <div class="section-heading">
-
-        <small>COMMUNITY GUIDELINES</small>
-
-        <h2>
-          Our <span>Rules</span>
-        </h2>
-
-        <p>
-          These rules help keep NIGHTFALL DEVILS safe,
-          respectful and united.
-        </p>
-
-      </div>
-
-
-      <div class="rules-grid">
-
-
-        <div class="rule-item">
-
-          <div class="rule-number">
-            01
-          </div>
-
-          <div>
-
-            <h4>
-              Respect Everyone
-            </h4>
 
             <p>
-              Treat all members with respect.
+
+                If you want to be part of a
+                community built on friendship,
+                respect, unity, and support,
+                submit your membership request.
+
             </p>
 
-          </div>
 
-        </div>
+            <a
+                href="pages/join.html"
+                class="cta-btn"
+            >
+
+                👿 REQUEST TO JOIN
+
+            </a>
+
+        </section>
 
 
-        <div class="rule-item">
+    </main>
 
-          <div class="rule-number">
-            02
-          </div>
 
-          <div>
 
-            <h4>
-              No Harassment
-            </h4>
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
 
             <p>
-              No bullying, harassment or personal attacks.
+                © 2026 NIGHTFALL DEVILS
             </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="rule-item">
-
-          <div class="rule-number">
-            03
-          </div>
-
-          <div>
-
-            <h4>
-              No Below-the-Belt Comments
-            </h4>
 
             <p>
-              Avoid hurtful and unnecessary remarks.
+                Formerly TEAM MALALA
+                • Established October 18, 2026
             </p>
-
-          </div>
 
         </div>
 
+    </footer>
 
-        <div class="rule-item">
 
-          <div class="rule-number">
-            04
-          </div>
 
-          <div>
+    <!-- =====================================================
+         HAMBURGER JAVASCRIPT
+    ===================================================== -->
 
-            <h4>
-              Protect Privacy
-            </h4>
+    <script>
 
-            <p>
-              Never share personal information.
-            </p>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-          </div>
+                const menuToggle =
+                    document.getElementById(
+                        "menuToggle"
+                    );
 
-        </div>
+                const mainNav =
+                    document.getElementById(
+                        "mainNav"
+                    );
 
 
-        <div class="rule-item">
+                /* =========================
+                   OPEN / CLOSE MENU
+                ========================= */
 
-          <div class="rule-number">
-            05
-          </div>
+                if (
+                    menuToggle &&
+                    mainNav
+                ) {
 
-          <div>
+                    menuToggle.addEventListener(
+                        "click",
+                        function (event) {
 
-            <h4>
-              Keep Private Matters Private
-            </h4>
+                            event.stopPropagation();
 
-            <p>
-              Do not expose private conversations.
-            </p>
+                            const isOpen =
+                                mainNav.classList.toggle(
+                                    "show"
+                                );
 
-          </div>
 
-        </div>
+                            menuToggle.classList.toggle(
+                                "active"
+                            );
 
 
-        <div class="rule-item">
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                isOpen
+                                    ? "true"
+                                    : "false"
+                            );
 
-          <div class="rule-number">
-            06
-          </div>
+                        }
+                    );
 
-          <div>
 
-            <h4>
-              No Community Conflicts
-            </h4>
 
-            <p>
-              Do not involve other communities in disputes.
-            </p>
+                    /* =========================
+                       CLOSE AFTER LINK CLICK
+                    ========================= */
 
-          </div>
+                    const navLinks =
+                        mainNav.querySelectorAll(
+                            "a"
+                        );
 
-        </div>
 
+                    navLinks.forEach(
+                        function (link) {
 
-        <div class="rule-item">
+                            link.addEventListener(
+                                "click",
+                                function () {
 
-          <div class="rule-number">
-            07
-          </div>
+                                    mainNav.classList.remove(
+                                        "show"
+                                    );
 
-          <div>
 
-            <h4>
-              Support, Don't Bring Down
-            </h4>
+                                    menuToggle.classList.remove(
+                                        "active"
+                                    );
 
-            <p>
-              Help our members grow positively.
-            </p>
 
-          </div>
+                                    menuToggle.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
 
-        </div>
+                                }
+                            );
 
+                        }
+                    );
 
-        <div class="rule-item">
 
-          <div class="rule-number">
-            08
-          </div>
 
-          <div>
+                    /* =========================
+                       CLOSE OUTSIDE MENU
+                    ========================= */
 
-            <h4>
-              No Unnecessary Drama
-            </h4>
+                    document.addEventListener(
+                        "click",
+                        function (event) {
 
-            <p>
-              Handle issues calmly and privately.
-            </p>
+                            if (
+                                !event.target.closest(
+                                    ".site-header"
+                                )
+                            ) {
 
-          </div>
+                                mainNav.classList.remove(
+                                    "show"
+                                );
 
-        </div>
 
+                                menuToggle.classList.remove(
+                                    "active"
+                                );
 
-      </div>
 
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
 
-      <div class="center-button">
+                            }
 
-        <a
-          href="pages/rules.html"
-          class="btn btn-secondary"
-        >
-          View Full Rules
-        </a>
+                        }
+                    );
 
-      </div>
+                }
 
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       STREAMER SCHEDULE
-  ========================================== -->
-
-  <section class="section">
-
-    <div class="section-container">
-
-
-      <div class="schedule-box">
-
-        <h2>
-          Support Our <span>Streamers</span>
-        </h2>
-
-        <p>
-          Check the official streamer schedule and join
-          the community in supporting our members during
-          their TikTok LIVE sessions.
-        </p>
-
-
-        <a
-          href="pages/schedule.html"
-          class="btn btn-primary"
-        >
-          View Stream Schedule
-        </a>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================================
-       FINAL CTA
-  ========================================== -->
-
-  <section class="final-cta">
-
-    <h2>
-      Ready To Join The <span>DEVILS?</span>
-    </h2>
-
-    <p>
-      Become part of NIGHTFALL DEVILS and help us build
-      a stronger community based on friendship, respect,
-      support and unity.
-    </p>
-
-
-    <a
-      href="pages/join.html"
-      class="btn btn-primary"
-    >
-      Request Membership
-    </a>
-
-  </section>
-
-
-
-  <!-- =========================================
-       FOOTER
-  ========================================== -->
-
-  <footer>
-
-    <div class="footer-brand">
-
-      NIGHTFALL <span>DEVILS</span>
-
-    </div>
-
-    <p>
-      Official TikTok Community · Established October 18, 2026
-    </p>
-
-    <p style="margin-top:5px;">
-      Formerly <strong>TEAM MALALA</strong>
-    </p>
-
-  </footer>
-
-
-
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================== -->
-
-  <script>
-
-    const menuToggle =
-      document.getElementById("menuToggle");
-
-    const mainNav =
-      document.getElementById("mainNav");
-
-
-    /* =========================================
-       MOBILE MENU
-    ========================================== */
-
-    menuToggle.addEventListener("click", function() {
-
-      const isOpen =
-        mainNav.classList.toggle("show");
-
-      menuToggle.classList.toggle("active");
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen
-          ? "Close navigation menu"
-          : "Open navigation menu"
-      );
-
-    });
-
-
-    /* =========================================
-       CLOSE MOBILE MENU AFTER CLICK
-    ========================================== */
-
-    const navLinks =
-      mainNav.querySelectorAll("a");
-
-    navLinks.forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        if (window.innerWidth <= 700) {
-
-          mainNav.classList.remove("show");
-
-          menuToggle.classList.remove("active");
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-          menuToggle.setAttribute(
-            "aria-label",
-            "Open navigation menu"
-          );
-
-        }
-
-      });
-
-    });
-
-
-    /* =========================================
-       CLOSE MENU WHEN CLICKING OUTSIDE
-    ========================================== */
-
-    document.addEventListener("click", function(event) {
-
-      if (window.innerWidth <= 700) {
-
-        const clickedHeader =
-          event.target.closest(".site-header");
-
-        if (!clickedHeader) {
-
-          mainNav.classList.remove("show");
-
-          menuToggle.classList.remove("active");
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        }
-
-      }
-
-    });
-
-
-    /* =========================================
-       RESET MOBILE MENU ON RESIZE
-    ========================================== */
-
-    window.addEventListener("resize", function() {
-
-      if (window.innerWidth > 700) {
-
-        mainNav.classList.remove("show");
-
-        menuToggle.classList.remove("active");
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
+            }
         );
 
-      }
+    </script>
 
-    });
-
-  </script>
 
 </body>
+
 </html>
