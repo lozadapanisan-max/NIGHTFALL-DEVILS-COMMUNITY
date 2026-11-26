@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>NIGHTFALL DEVILS COMMUNITY</title>
+<style>
+:root{
+  --bg:#070707; --card:#111; --red:#e50914; --red2:#ff2b35;
+  --gold:#ffd21f; --text:#f5f5f5; --muted:#aaa; --line:#2a2a2a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top,#250508 0,#070707 42%);color:var(--text);line-height:1.5}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.94);backdrop-filter:blur(10px);border-bottom:1px solid #301014}
+nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.logo{font-weight:900;letter-spacing:1px;font-size:18px}
+.logo span{color:var(--red2)}
+nav ul{display:flex;gap:18px;list-style:none}
+nav a{font-size:14px;color:#ddd}
+nav a:hover{color:var(--gold)}
+.menu{display:none;background:none;border:0;color:white;font-size:25px}
+.hero{min-height:78vh;display:grid;place-items:center;text-align:center;padding:70px 20px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:#e5091422;filter:blur(70px);top:15%;left:50%;transform:translateX(-50%)}
+.badge{display:inline-block;border:1px solid #ff2935aa;background:#ff293511;padding:7px 14px;border-radius:999px;color:#ff6870;font-size:12px;font-weight:700;letter-spacing:1px}
+h1{font-size:clamp(42px,9vw,82px);line-height:.95;margin:18px 0 16px;font-weight:1000;text-shadow:0 0 30px #e5091444}
+h1 span{color:var(--red2)}
+.hero p{max-width:700px;margin:auto;color:#ccc;font-size:17px}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;border:1px solid var(--red)}
+.btn.primary{background:var(--red);color:#fff}
+.btn.secondary{background:#151515;color:#fff;border-color:#444}
+.container{max-width:1100px;margin:auto;padding:70px 18px}
+.section-title{text-align:center;margin-bottom:34px}
+.section-title h2{font-size:32px}
+.section-title p{color:var(--muted);margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:linear-gradient(145deg,#141414,#0d0d0d);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card:hover{border-color:#7d1b22}
+.rule{display:flex;gap:15px}
+.num{min-width:38px;height:38px;border-radius:10px;background:#2a080b;border:1px solid #8c1821;display:grid;place-items:center;color:var(--gold);font-weight:900}
+.card h3{font-size:17px;margin-bottom:4px}
+.card p,.card li{color:#bbb;font-size:14px}
+.process{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.step{text-align:center}
+.step strong{display:block;color:var(--gold);font-size:18px;margin-bottom:5px}
+.schedule{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:650px;background:#0f0f0f;border-radius:14px;overflow:hidden}
+th,td{padding:13px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}
+th{color:var(--gold);background:#180608}
+.form{max-width:650px;margin:auto}
+label{display:block;margin:13px 0 6px;font-weight:700;font-size:14px}
+input,textarea,select{width:100%;background:#0b0b0b;color:white;border:1px solid #383838;border-radius:10px;padding:12px;font:inherit}
+textarea{min-height:110px;resize:vertical}
+.notice{background:#170608;border:1px solid #6e151c;padding:14px;border-radius:12px;color:#ddd;margin:18px 0}
+footer{border-top:1px solid #271013;padding:30px 18px;text-align:center;color:#888}
+footer strong{color:#eee}
+@media(max-width:720px){
+ nav ul{display:none;position:absolute;left:0;right:0;top:58px;background:#090909;border-bottom:1px solid #301014;padding:16px;flex-direction:column}
+ nav ul.open{display:flex}.menu{display:block}.grid,.process{grid-template-columns:1fr}
+ .hero{min-height:70vh}.container{padding:52px 15px}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+  <a class="logo" href="#home">NIGHTFALL <span>DEVILS</span> 👿</a>
+  <button class="menu" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#rules">Rules</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+</nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div>
+    <span class="badge">EST. OCTOBER 18, 2026 • FORMER TEAM MALALA</span>
+    <h1>NIGHTFALL<br><span>DEVILS</span></h1>
+    <p>A TikTok community built for friendship, support, livestream raids, collaboration, and positive connections. No unnecessary drama. Respect everyone.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#join">REQUEST TO JOIN</a>
+      <a class="btn secondary" href="#rules">VIEW COMMUNITY RULES</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="rules">
+  <div class="section-title"><h2>👿 Community Rules</h2><p>Simple rules to keep Nightfall Devils safe, organized, and respectful.</p></div>
+  <div class="grid">
+    <div class="card rule"><div class="num">1</div><div><h3>Respect Everyone</h3><p>Respect members, streamers, players, and viewers.</p></div></div>
+    <div class="card rule"><div class="num">2</div><div><h3>No Below-the-Belt Comments</h3><p>Avoid insults, personal attacks, harassment, and hurtful remarks.</p></div></div>
+    <div class="card rule"><div class="num">3</div><div><h3>Do Not Involve Other Communities</h3><p>Do not drag other communities into personal issues, jokes, or conflicts.</p></div></div>
+    <div class="card rule"><div class="num">4</div><div><h3>Support, Don't Bring Down</h3><p>Support our streamers without attacking or putting others down.</p></div></div>
+    <div class="card rule"><div class="num">5</div><div><h3>Protect Privacy</h3><p>Never disclose personal information of another member.</p></div></div>
+    <div class="card rule"><div class="num">6</div><div><h3>Follow Platform Rules</h3><p>Follow TikTok and other platform Community Guidelines.</p></div></div>
+    <div class="card rule"><div class="num">7</div><div><h3>Keep Private Matters Private</h3><p>Bring community concerns to admins or moderators instead of public drama.</p></div></div>
+    <div class="card rule"><div class="num">8</div><div><h3>No Unnecessary Drama</h3><p>Keep the GC, comments, and LIVE environment positive.</p></div></div>
+  </div>
+</section>
+
+<section class="container" id="join">
+  <div class="section-title"><h2>🔥 New Member Approval</h2><p>Joining is simple. Admin approval keeps the community organized.</p></div>
+  <div class="process">
+    <div class="card step"><strong>1️⃣ Refer</strong><p>Send the applicant's TikTok username to an Admin.</p></div>
+    <div class="card step"><strong>2️⃣ Review</strong><p>Admin checks the basic information and community fit.</p></div>
+    <div class="card step"><strong>3️⃣ Approved</strong><p>Only after approval can the member be added officially.</p></div>
+  </div>
+  <div class="notice">⚠️ <strong>No approval = No adding.</strong> There is no payment or mandatory contribution required to join. The purpose is community, friendship, and support.</div>
+  <div class="card form">
+    <h3>Member Request Form</h3>
+    <form onsubmit="submitRequest(event)">
+      <label>TikTok Username</label>
+      <input id="username" placeholder="@username" required>
+      <label>Referred By</label>
+      <input id="referrer" placeholder="Member / Streamer name" required>
+      <label>Message to Admin</label>
+      <textarea id="message" placeholder="Optional message"></textarea>
+      <button class="btn primary" style="margin-top:15px;width:100%;cursor:pointer">SEND REQUEST</button>
+    </form>
+    <p id="result" style="margin-top:12px;color:#9cffae"></p>
+  </div>
+</section>
+
+<section class="container" id="schedule">
+  <div class="section-title"><h2>📅 Raid & Support Schedule</h2><p>Coordinate support for Nightfall Devils streamers.</p></div>
+  <div class="schedule">
+    <table>
+      <thead><tr><th>Date</th><th>Time</th><th>Streamer</th><th>Activity</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>—</td><td>—</td><td>—</td><td>Raid / Support</td><td>To be announced</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="text-align:center;color:#888;margin-top:12px;font-size:13px">Admins can replace this table with the official weekly schedule.</p>
+</section>
+
+<section class="container" id="support">
+  <div class="section-title"><h2>❤️ Community Support</h2><p>Support is voluntary. No member is required to spend coins or money.</p></div>
+  <div class="grid">
+    <div class="card"><h3>🎥 Stream Support</h3><p>Visit scheduled streamers together, engage respectfully, and support when you can.</p></div>
+    <div class="card"><h3>🤝 For a Cause</h3><p>Community assistance may be organized when needed. Contributions are always optional.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>NIGHTFALL DEVILS COMMUNITY 👿</strong><br>
+  UNITY • RESPECT • FRIENDSHIP • SUPPORT<br>
+  <small>Established October 18, 2026 • Former Team Malala</small>
+</footer>
+
+<script>
+function submitRequest(e){
+  e.preventDefault();
+  const u=document.getElementById('username').value.trim();
+  const r=document.getElementById('referrer').value.trim();
+  document.getElementById('result').textContent =
+    "Request prepared for Admin: " + u + " • Referred by: " + r + ". Please send this information to your Nightfall Devils Admin.";
+  e.target.reset();
+}
+</script>
+</body>
+</html>
