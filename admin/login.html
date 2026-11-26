@@ -797,6 +797,20 @@
         }
 
 
+        .login-button:disabled {
+
+            opacity:
+                0.65;
+
+            cursor:
+                wait;
+
+            transform:
+                none;
+
+        }
+
+
 
         /* =====================================================
            SECURITY NOTICE
@@ -1369,9 +1383,30 @@
 
     <!-- =====================================================
          LOGIN JAVASCRIPT
+         FIREBASE AUTHENTICATION
     ===================================================== -->
 
-    <script>
+    <script type="module">
+
+        /* =====================================================
+           FIREBASE AUTH IMPORTS
+        ===================================================== */
+
+        import {
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+        import {
+            auth
+        } from "../firebase-config.js";
+
+
+
+        /* =====================================================
+           DOM READY
+        ===================================================== */
 
         document.addEventListener(
             "DOMContentLoaded",
@@ -1416,6 +1451,20 @@
                     document.getElementById(
                         "forgotPassword"
                     );
+
+
+                const rememberMe =
+                    document.getElementById(
+                        "rememberMe"
+                    );
+
+
+                const loginButton =
+                    loginForm
+                        ? loginForm.querySelector(
+                            ".login-button"
+                        )
+                        : null;
 
 
 
@@ -1471,6 +1520,82 @@
 
 
                 /* =============================================
+                   SHOW MESSAGE
+                ============================================= */
+
+                function showMessage(
+                    message
+                ) {
+
+                    if (!loginMessage) {
+                        return;
+                    }
+
+                    loginMessage.textContent =
+                        message;
+
+                    loginMessage.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+
+                /* =============================================
+                   HIDE MESSAGE
+                ============================================= */
+
+                function hideMessage() {
+
+                    if (!loginMessage) {
+                        return;
+                    }
+
+                    loginMessage.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+
+                /* =============================================
+                   RESET LOGIN BUTTON
+                ============================================= */
+
+                function resetLoginButton() {
+
+                    if (!loginButton) {
+                        return;
+                    }
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.style.opacity =
+                        "1";
+
+                    loginButton.style.cursor =
+                        "pointer";
+
+                    const buttonText =
+                        loginButton.querySelector(
+                            "span"
+                        );
+
+                    if (buttonText) {
+
+                        buttonText.textContent =
+                            "LOGIN TO ADMIN PANEL";
+
+                    }
+
+                }
+
+
+
+                /* =============================================
                    LOGIN FORM
                 ============================================= */
 
@@ -1478,7 +1603,7 @@
 
                     loginForm.addEventListener(
                         "submit",
-                        function (event) {
+                        async function (event) {
 
                             event.preventDefault();
 
@@ -1487,20 +1612,21 @@
                                 adminEmail.value.trim();
 
                             const password =
-                                adminPassword.value.trim();
+                                adminPassword.value;
 
 
+
+                            /* =============================
+                               VALIDATION
+                            ============================= */
 
                             if (
                                 email === "" ||
                                 password === ""
                             ) {
 
-                                loginMessage.textContent =
-                                    "⚠️ Please enter your admin email and password.";
-
-                                loginMessage.classList.add(
-                                    "show"
+                                showMessage(
+                                    "⚠️ Please enter your admin email and password."
                                 );
 
                                 return;
@@ -1509,18 +1635,211 @@
 
 
 
-                            /*
-                             * FIREBASE AUTHENTICATION
-                             * WILL BE CONNECTED IN THE
-                             * NEXT STEP.
-                             */
+                            /* =============================
+                               DISABLE BUTTON
+                            ============================= */
 
-                            loginMessage.textContent =
-                                "ℹ️ Admin authentication is not connected yet. Firebase Authentication will be added in the next step.";
+                            if (loginButton) {
 
-                            loginMessage.classList.add(
-                                "show"
-                            );
+                                loginButton.disabled =
+                                    true;
+
+                                loginButton.style.opacity =
+                                    "0.65";
+
+                                loginButton.style.cursor =
+                                    "wait";
+
+
+                                const buttonText =
+                                    loginButton.querySelector(
+                                        "span"
+                                    );
+
+
+                                if (buttonText) {
+
+                                    buttonText.textContent =
+                                        "SIGNING IN...";
+
+                                }
+
+                            }
+
+
+
+                            hideMessage();
+
+
+
+                            /* =============================
+                               FIREBASE AUTHENTICATION
+                            ============================= */
+
+                            try {
+
+                                const userCredential =
+                                    await signInWithEmailAndPassword(
+                                        auth,
+                                        email,
+                                        password
+                                    );
+
+
+                                const user =
+                                    userCredential.user;
+
+
+
+                                console.log(
+                                    "NIGHTFALL DEVILS Admin Login:",
+                                    user.email
+                                );
+
+
+
+                                /* =============================
+                                   SUCCESS
+                                ============================= */
+
+                                showMessage(
+                                    "✅ Login successful. Opening Admin Dashboard..."
+                                );
+
+
+
+                                /* =============================
+                                   REMEMBER EMAIL
+                                ============================= */
+
+                                if (
+                                    rememberMe &&
+                                    rememberMe.checked
+                                ) {
+
+                                    localStorage.setItem(
+                                        "nightfallAdminEmail",
+                                        email
+                                    );
+
+                                } else {
+
+                                    localStorage.removeItem(
+                                        "nightfallAdminEmail"
+                                    );
+
+                                }
+
+
+
+                                /* =============================
+                                   REDIRECT
+                                ============================= */
+
+                                setTimeout(
+                                    function () {
+
+                                        window.location.href =
+                                            "dashboard.html";
+
+                                    },
+                                    700
+                                );
+
+
+
+                            } catch (error) {
+
+                                console.error(
+                                    "Firebase Authentication Error:",
+                                    error
+                                );
+
+
+                                let errorMessage =
+                                    "⚠️ Invalid admin email or password.";
+
+
+
+                                /* =============================
+                                   FIREBASE ERROR HANDLING
+                                ============================= */
+
+                                if (
+                                    error.code ===
+                                    "auth/invalid-credential"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ Invalid admin email or password.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/invalid-email"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ Please enter a valid admin email.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/user-disabled"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ This admin account has been disabled.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/too-many-requests"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ Too many login attempts. Please try again later.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/network-request-failed"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ Network error. Please check your internet connection.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/operation-not-allowed"
+                                ) {
+
+                                    errorMessage =
+                                        "⚠️ Email/Password authentication is not enabled in Firebase.";
+
+                                }
+
+
+
+                                showMessage(
+                                    errorMessage
+                                );
+
+
+                                resetLoginButton();
+
+                            }
 
                         }
                     );
@@ -1537,20 +1856,130 @@
 
                     forgotPassword.addEventListener(
                         "click",
-                        function (event) {
+                        async function (event) {
 
                             event.preventDefault();
 
 
-                            loginMessage.textContent =
-                                "ℹ️ Password recovery will be available after Firebase Authentication is connected.";
+                            const email =
+                                adminEmail.value.trim();
 
-                            loginMessage.classList.add(
-                                "show"
-                            );
+
+
+                            /* =============================
+                               EMAIL REQUIRED
+                            ============================= */
+
+                            if (email === "") {
+
+                                showMessage(
+                                    "⚠️ Enter your admin email first."
+                                );
+
+                                adminEmail.focus();
+
+                                return;
+
+                            }
+
+
+
+                            /* =============================
+                               SEND PASSWORD RESET
+                            ============================= */
+
+                            try {
+
+                                await sendPasswordResetEmail(
+                                    auth,
+                                    email
+                                );
+
+
+                                showMessage(
+                                    "✅ Password reset email sent. Please check your email."
+                                );
+
+
+                            } catch (error) {
+
+                                console.error(
+                                    "Password Reset Error:",
+                                    error
+                                );
+
+
+                                let resetMessage =
+                                    "⚠️ Unable to send password reset email.";
+
+
+                                if (
+                                    error.code ===
+                                    "auth/invalid-email"
+                                ) {
+
+                                    resetMessage =
+                                        "⚠️ Please enter a valid admin email.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/user-not-found"
+                                ) {
+
+                                    resetMessage =
+                                        "⚠️ No admin account was found with this email.";
+
+                                }
+
+
+                                else if (
+                                    error.code ===
+                                    "auth/network-request-failed"
+                                ) {
+
+                                    resetMessage =
+                                        "⚠️ Network error. Please check your internet connection.";
+
+                                }
+
+
+                                showMessage(
+                                    resetMessage
+                                );
+
+                            }
 
                         }
                     );
+
+                }
+
+
+
+                /* =============================================
+                   REMEMBER ME
+                ============================================= */
+
+                if (rememberMe) {
+
+                    const savedEmail =
+                        localStorage.getItem(
+                            "nightfallAdminEmail"
+                        );
+
+
+                    if (savedEmail) {
+
+                        adminEmail.value =
+                            savedEmail;
+
+                        rememberMe.checked =
+                            true;
+
+                    }
 
                 }
 
@@ -1566,9 +1995,7 @@
                         "input",
                         function () {
 
-                            loginMessage.classList.remove(
-                                "show"
-                            );
+                            hideMessage();
 
                         }
                     );
@@ -1582,9 +2009,7 @@
                         "input",
                         function () {
 
-                            loginMessage.classList.remove(
-                                "show"
-                            );
+                            hideMessage();
 
                         }
                     );
