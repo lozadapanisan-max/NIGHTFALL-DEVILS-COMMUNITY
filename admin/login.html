@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Admin Login | NIGHTFALL DEVILS</title>
+
+  <link rel="icon" href="../assets/logo/nightfall-devils-logo.png">
+
+  <style>
+
+    :root {
+      --red: #D71920;
+      --red-dark: #a80f15;
+      --gold: #F5C542;
+      --white: #ffffff;
+      --black: #070707;
+      --dark: #111111;
+      --dark-2: #181818;
+      --gray: #999999;
+      --border: rgba(255,255,255,0.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(215,25,32,0.22),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(245,197,66,0.10),
+          transparent 30%
+        ),
+        var(--black);
+
+      color: var(--white);
+      padding: 20px;
+    }
+
+    /* =========================
+       LOGIN CONTAINER
+    ========================= */
+
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    /* =========================
+       LOGO
+    ========================= */
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo-area img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 12px;
+
+      filter:
+        drop-shadow(0 0 15px rgba(215,25,32,0.35));
+    }
+
+    .logo-area h1 {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .logo-area h1 span {
+      color: var(--gold);
+    }
+
+    .logo-area p {
+      color: var(--gray);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       LOGIN CARD
+    ========================= */
+
+    .login-card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,25,32,0.08),
+          rgba(245,197,66,0.03)
+        ),
+        var(--dark-2);
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .login-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .login-title h2 {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .login-title p {
+      color: #888;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #d6d6d6;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .input-box {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    .form-group input {
+      width: 100%;
+      height: 48px;
+
+      padding: 0 45px;
+
+      border-radius: 10px;
+      border: 1px solid var(--border);
+
+      background: #0e0e0e;
+      color: white;
+
+      outline: none;
+
+      font-size: 13px;
+
+      transition: 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--red);
+
+      box-shadow:
+        0 0 0 3px rgba(215,25,32,0.10);
+    }
+
+    .form-group input::placeholder {
+      color: #555;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      border: none;
+      background: transparent;
+
+      color: #777;
+      cursor: pointer;
+
+      font-size: 14px;
+    }
+
+    .show-password:hover {
+      color: var(--gold);
+    }
+
+    /* =========================
+       OPTIONS
+    ========================= */
+
+    .login-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      color: #888;
+      font-size: 11px;
+    }
+
+    .remember input {
+      accent-color: var(--red);
+    }
+
+    .forgot {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================
+       LOGIN BUTTON
+    ========================= */
+
+    .login-btn {
+      width: 100%;
+      height: 50px;
+
+      border: none;
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-dark)
+        );
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.7px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 22px rgba(215,25,32,0.22);
+
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 28px rgba(215,25,32,0.30);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+    .login-message {
+      display: none;
+
+      margin-top: 15px;
+      padding: 11px;
+
+      border-radius: 8px;
+
+      text-align: center;
+
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .login-message.error {
+      display: block;
+
+      background: rgba(215,25,32,0.10);
+      border: 1px solid rgba(215,25,32,0.25);
+
+      color: #ff7777;
+    }
+
+    .login-message.success {
+      display: block;
+
+      background: rgba(39,196,107,0.10);
+      border: 1px solid rgba(39,196,107,0.25);
+
+      color: #54d98a;
+    }
+
+    /* =========================
+       SECURITY NOTICE
+    ========================= */
+
+    .security-notice {
+      margin-top: 20px;
+
+      padding: 12px;
+
+      border-radius: 9px;
+
+      background: rgba(245,197,66,0.05);
+      border: 1px solid rgba(245,197,66,0.12);
+
+      color: #999;
+
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .security-notice strong {
+      color: var(--gold);
+    }
+
+    /* =========================
+       BACK TO WEBSITE
+    ========================= */
+
+    .back-home {
+      display: block;
+
+      text-align: center;
+
+      margin-top: 20px;
+
+      color: #888;
+      text-decoration: none;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .back-home:hover {
+      color: var(--white);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #555;
+
+      font-size: 9px;
+    }
+
+    .footer span {
+      color: var(--gold);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .login-card {
+        padding: 24px 20px;
+      }
+
+      .logo-area img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .logo-area h1 {
+        font-size: 20px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <!-- LOGO -->
+
+    <div class="logo-area">
+
+      <img
+        src="../assets/logo/nightfall-devils-logo.png"
+        alt="NIGHTFALL DEVILS Official Logo"
+      >
+
+      <h1>
+        NIGHTFALL <span>DEVILS</span>
+      </h1>
+
+      <p>
+        ADMINISTRATION PANEL
+      </p>
+
+    </div>
+
+
+    <!-- LOGIN CARD -->
+
+    <div class="login-card">
+
+      <div class="login-title">
+
+        <h2>
+          Admin Login
+        </h2>
+
+        <p>
+          Sign in to manage the community
+        </p>
+
+      </div>
+
+
+      <form id="loginForm">
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="email">
+            ADMIN EMAIL
+          </label>
+
+          <div class="input-box">
+
+            <span class="input-icon">
+              @
+            </span>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter admin email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label for="password">
+            PASSWORD
+          </label>
+
+          <div class="input-box">
+
+            <span class="input-icon">
+              🔒
+            </span>
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="showPassword"
+              aria-label="Show password"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="login-options">
+
+          <label class="remember">
+
+            <input
+              type="checkbox"
+              id="remember"
+            >
+
+            Remember me
+
+          </label>
+
+          <a href="#" class="forgot" onclick="forgotPassword(event)">
+            Forgot password?
+          </a>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <button
+          type="submit"
+          class="login-btn"
+        >
+          LOGIN TO ADMIN PANEL
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div
+          class="login-message"
+          id="loginMessage"
+        ></div>
+
+      </form>
+
+
+      <!-- SECURITY -->
+
+      <div class="security-notice">
+
+        🔐 <strong>Secure Admin Area</strong><br>
+
+        Only authorized NIGHTFALL DEVILS administrators
+        should access this panel.
+
+      </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a
+      href="../index.html"
+      class="back-home"
+    >
+      ← Back to NIGHTFALL DEVILS Website
+    </a>
+
+
+    <div class="footer">
+
+      © 2026 <span>NIGHTFALL DEVILS</span> · Admin Panel
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       SHOW / HIDE PASSWORD
+    ========================= */
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const showPassword =
+      document.getElementById("showPassword");
+
+    showPassword.addEventListener("click", function() {
+
+      if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+
+        showPassword.textContent = "🙈";
+
+      } else {
+
+        passwordInput.type = "password";
+
+        showPassword.textContent = "👁";
+
+      }
+
+    });
+
+
+    /* =========================
+       LOGIN FORM
+    ========================= */
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginMessage =
+      document.getElementById("loginMessage");
+
+
+    loginForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      /*
+        FIREBASE AUTHENTICATION WILL BE
+        CONNECTED HERE IN THE NEXT STEP.
+
+        HINDI TAYO MAGLALAGAY NG
+        HARDCODED ADMIN PASSWORD.
+      */
+
+      loginMessage.className =
+        "login-message error";
+
+      loginMessage.textContent =
+        "Admin authentication is not connected yet. Next step: connect Firebase Authentication.";
+
+    });
+
+
+    /* =========================
+       FORGOT PASSWORD
+    ========================= */
+
+    function forgotPassword(event) {
+
+      event.preventDefault();
+
+      loginMessage.className =
+        "login-message error";
+
+      loginMessage.textContent =
+        "Password recovery will be available after Firebase Authentication is connected.";
+
+    }
+
+  </script>
+
+</body>
+</html>
