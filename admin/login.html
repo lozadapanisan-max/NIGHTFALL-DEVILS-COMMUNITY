@@ -1,690 +1,1602 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Admin Login | NIGHTFALL DEVILS</title>
-
-  <link rel="icon" href="../assets/logo/nightfall-devils-logo.png">
-
-  <style>
-
-    :root {
-      --red: #D71920;
-      --red-dark: #a80f15;
-      --gold: #F5C542;
-      --white: #ffffff;
-      --black: #070707;
-      --dark: #111111;
-      --dark-2: #181818;
-      --gray: #999999;
-      --border: rgba(255,255,255,0.10);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background:
-        radial-gradient(
-          circle at top left,
-          rgba(215,25,32,0.22),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          rgba(245,197,66,0.10),
-          transparent 30%
-        ),
-        var(--black);
-
-      color: var(--white);
-      padding: 20px;
-    }
-
-    /* =========================
-       LOGIN CONTAINER
-    ========================= */
-
-    .login-container {
-      width: 100%;
-      max-width: 430px;
-    }
-
-    /* =========================
-       LOGO
-    ========================= */
-
-    .logo-area {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .logo-area img {
-      width: 90px;
-      height: 90px;
-      object-fit: contain;
-      margin-bottom: 12px;
-
-      filter:
-        drop-shadow(0 0 15px rgba(215,25,32,0.35));
-    }
-
-    .logo-area h1 {
-      font-size: 23px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .logo-area h1 span {
-      color: var(--gold);
-    }
-
-    .logo-area p {
-      color: var(--gray);
-      font-size: 11px;
-      letter-spacing: 2px;
-      margin-top: 6px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       LOGIN CARD
-    ========================= */
-
-    .login-card {
-      background:
-        linear-gradient(
-          145deg,
-          rgba(215,25,32,0.08),
-          rgba(245,197,66,0.03)
-        ),
-        var(--dark-2);
-
-      border: 1px solid var(--border);
-      border-radius: 18px;
-
-      padding: 30px;
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .login-title {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .login-title h2 {
-      font-size: 20px;
-      font-weight: 900;
-    }
-
-    .login-title p {
-      color: #888;
-      font-size: 12px;
-      margin-top: 6px;
-    }
-
-    /* =========================
-       FORM
-    ========================= */
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      color: #d6d6d6;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .input-box {
-      position: relative;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gold);
-      font-size: 15px;
-      pointer-events: none;
-    }
-
-    .form-group input {
-      width: 100%;
-      height: 48px;
-
-      padding: 0 45px;
-
-      border-radius: 10px;
-      border: 1px solid var(--border);
-
-      background: #0e0e0e;
-      color: white;
-
-      outline: none;
-
-      font-size: 13px;
-
-      transition: 0.2s;
-    }
-
-    .form-group input:focus {
-      border-color: var(--red);
-
-      box-shadow:
-        0 0 0 3px rgba(215,25,32,0.10);
-    }
-
-    .form-group input::placeholder {
-      color: #555;
-    }
-
-    .show-password {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-
-      border: none;
-      background: transparent;
 
-      color: #777;
-      cursor: pointer;
+    <meta charset="UTF-8">
 
-      font-size: 14px;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    .show-password:hover {
-      color: var(--gold);
-    }
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Admin Login"
+    >
 
-    /* =========================
-       OPTIONS
-    ========================= */
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
 
-    .login-options {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    <title>Admin Login | NIGHTFALL DEVILS</title>
 
-      margin-bottom: 20px;
-    }
 
-    .remember {
-      display: flex;
-      align-items: center;
-      gap: 7px;
+    <style>
 
-      color: #888;
-      font-size: 11px;
-    }
+        /* =====================================================
+           NIGHTFALL DEVILS ADMIN LOGIN
+           RED + WHITE + GOLD THEME
+        ===================================================== */
 
-    .remember input {
-      accent-color: var(--red);
-    }
+        :root {
 
-    .forgot {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-    }
+            --red: #d71920;
+            --red-dark: #9f1016;
 
-    .forgot:hover {
-      text-decoration: underline;
-    }
+            --gold: #f5c542;
+            --gold-light: #ffe89a;
 
-    /* =========================
-       LOGIN BUTTON
-    ========================= */
+            --white: #ffffff;
 
-    .login-btn {
-      width: 100%;
-      height: 50px;
+            --black: #070707;
+            --dark: #0d0d0d;
+            --dark-2: #151515;
 
-      border: none;
-      border-radius: 10px;
+            --gray: #aaaaaa;
+            --gray-dark: #666666;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--red),
-          var(--red-dark)
-        );
+        }
 
-      color: white;
 
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.7px;
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-      cursor: pointer;
+        * {
 
-      box-shadow:
-        0 8px 22px rgba(215,25,32,0.22);
+            box-sizing: border-box;
 
-      transition: 0.2s;
-    }
+        }
 
-    .login-btn:hover {
-      transform: translateY(-2px);
 
-      box-shadow:
-        0 12px 28px rgba(215,25,32,0.30);
-    }
+        html {
 
-    .login-btn:active {
-      transform: translateY(0);
-    }
+            scroll-behavior: smooth;
 
-    /* =========================
-       MESSAGE
-    ========================= */
+        }
 
-    .login-message {
-      display: none;
 
-      margin-top: 15px;
-      padding: 11px;
+        body {
 
-      border-radius: 8px;
+            margin: 0;
 
-      text-align: center;
+            padding: 0;
 
-      font-size: 11px;
-      line-height: 1.4;
-    }
+            min-height: 100vh;
 
-    .login-message.error {
-      display: block;
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
 
-      background: rgba(215,25,32,0.10);
-      border: 1px solid rgba(215,25,32,0.25);
+            background:
 
-      color: #ff7777;
-    }
+                radial-gradient(
+                    circle at top center,
+                    rgba(215, 25, 32, 0.20),
+                    transparent 38%
+                ),
 
-    .login-message.success {
-      display: block;
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(245, 197, 66, 0.08),
+                    transparent 30%
+                ),
 
-      background: rgba(39,196,107,0.10);
-      border: 1px solid rgba(39,196,107,0.25);
+                var(--black);
 
-      color: #54d98a;
-    }
+            color:
+                var(--white);
 
-    /* =========================
-       SECURITY NOTICE
-    ========================= */
+        }
 
-    .security-notice {
-      margin-top: 20px;
 
-      padding: 12px;
+        button,
+        input {
 
-      border-radius: 9px;
+            font-family:
+                inherit;
 
-      background: rgba(245,197,66,0.05);
-      border: 1px solid rgba(245,197,66,0.12);
+        }
 
-      color: #999;
 
-      font-size: 10px;
-      line-height: 1.5;
-      text-align: center;
-    }
+        a {
 
-    .security-notice strong {
-      color: var(--gold);
-    }
+            -webkit-tap-highlight-color:
+                transparent;
 
-    /* =========================
-       BACK TO WEBSITE
-    ========================= */
+        }
 
-    .back-home {
-      display: block;
 
-      text-align: center;
 
-      margin-top: 20px;
+        /* =====================================================
+           PAGE WRAPPER
+        ===================================================== */
 
-      color: #888;
-      text-decoration: none;
+        .login-page {
 
-      font-size: 11px;
-      font-weight: 600;
-    }
+            width: 100%;
 
-    .back-home:hover {
-      color: var(--white);
-    }
+            min-height: 100vh;
 
-    /* =========================
-       FOOTER
-    ========================= */
+            display: flex;
 
-    .footer {
-      text-align: center;
+            align-items: center;
 
-      margin-top: 25px;
+            justify-content: center;
 
-      color: #555;
+            padding:
+                30px 16px;
 
-      font-size: 9px;
-    }
+            position: relative;
 
-    .footer span {
-      color: var(--gold);
-    }
+        }
 
-    /* =========================
-       MOBILE
-    ========================= */
 
-    @media (max-width: 500px) {
 
-      body {
-        padding: 15px;
-      }
+        /* =====================================================
+           BACK HOME
+        ===================================================== */
 
-      .login-card {
-        padding: 24px 20px;
-      }
+        .back-home {
 
-      .logo-area img {
-        width: 75px;
-        height: 75px;
-      }
+            position: fixed;
 
-      .logo-area h1 {
-        font-size: 20px;
-      }
+            top: 20px;
 
-    }
+            left: 20px;
 
-  </style>
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                10px 14px;
+
+            color:
+                var(--white);
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.35);
+
+            border-radius:
+                8px;
+
+            text-decoration:
+                none;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.25s ease;
+
+            z-index: 20;
+
+        }
+
+
+        .back-home:hover {
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(215, 25, 32, 0.12);
+
+            border-color:
+                var(--gold);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+
+        /* =====================================================
+           LOGIN CARD
+        ===================================================== */
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            padding:
+                38px 34px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #151515,
+                    #0e0e0e
+                );
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.45);
+
+            border-radius:
+                18px;
+
+            box-shadow:
+
+                0 25px 70px
+                rgba(0, 0, 0, 0.65),
+
+                0 0 45px
+                rgba(215, 25, 32, 0.10);
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--red),
+                    var(--gold),
+                    var(--red)
+                );
+
+        }
+
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .login-logo {
+
+            width: 92px;
+
+            height: 92px;
+
+            margin:
+                0 auto 18px;
+
+            display: block;
+
+            object-fit: contain;
+
+            border-radius:
+                18px;
+
+            box-shadow:
+
+                0 0 25px
+                rgba(215, 25, 32, 0.25),
+
+                0 0 35px
+                rgba(245, 197, 66, 0.08);
+
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .login-header {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                28px;
+
+        }
+
+
+        .login-badge {
+
+            display:
+                inline-block;
+
+            margin-bottom:
+                12px;
+
+            padding:
+                6px 12px;
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(245, 197, 66, 0.07);
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.35);
+
+            border-radius:
+                30px;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1.5px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .login-header h1 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                var(--white);
+
+            font-size:
+                28px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .login-header h1 span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .login-header p {
+
+            margin:
+                0;
+
+            color:
+                var(--gray);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .login-form {
+
+            width:
+                100%;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom:
+                18px;
+
+        }
+
+
+        .form-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #eeeeee;
+
+            font-size:
+                13px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .input-wrapper {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+        }
+
+
+        .input-icon {
+
+            position:
+                absolute;
+
+            left:
+                14px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size:
+                16px;
+
+            opacity:
+                0.85;
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .form-input {
+
+            width:
+                100%;
+
+            height:
+                50px;
+
+            padding:
+                0 45px 0 42px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.12);
+
+            border-radius:
+                9px;
+
+            outline:
+                none;
+
+            background:
+                #0a0a0a;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .form-input::placeholder {
+
+            color:
+                #666666;
+
+        }
+
+
+        .form-input:focus {
+
+            border-color:
+                var(--gold);
+
+            background:
+                #0d0d0d;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(245, 197, 66, 0.08);
+
+        }
+
+
+
+        /* =====================================================
+           PASSWORD TOGGLE
+        ===================================================== */
+
+        .password-toggle {
+
+            position:
+                absolute;
+
+            top:
+                50%;
+
+            right:
+                10px;
+
+            transform:
+                translateY(-50%);
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                none;
+
+            border-radius:
+                6px;
+
+            background:
+                transparent;
+
+            color:
+                #aaaaaa;
+
+            cursor:
+                pointer;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .password-toggle:hover {
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(245, 197, 66, 0.08);
+
+        }
+
+
+
+        /* =====================================================
+           LOGIN OPTIONS
+        ===================================================== */
+
+        .login-options {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin:
+                4px 0 22px;
+
+        }
+
+
+        .remember-me {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                #aaaaaa;
+
+            font-size:
+                12px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .remember-me input {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            accent-color:
+                var(--red);
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .forgot-password {
+
+            color:
+                var(--gold);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            text-decoration:
+                none;
+
+        }
+
+
+        .forgot-password:hover {
+
+            color:
+                var(--gold-light);
+
+            text-decoration:
+                underline;
+
+        }
+
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-button {
+
+            width:
+                100%;
+
+            min-height:
+                52px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            border:
+                none;
+
+            border-radius:
+                9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d71920,
+                    #a80f15
+                );
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.4px;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 8px 25px
+                rgba(215, 25, 32, 0.25);
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(215, 25, 32, 0.38);
+
+        }
+
+
+        .login-button:active {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+
+        /* =====================================================
+           SECURITY NOTICE
+        ===================================================== */
+
+        .security-notice {
+
+            margin-top:
+                22px;
+
+            padding:
+                13px 14px;
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+
+            background:
+                rgba(245, 197, 66, 0.05);
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.20);
+
+            border-radius:
+                9px;
+
+        }
+
+
+        .security-icon {
+
+            flex-shrink:
+                0;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .security-notice p {
+
+            margin:
+                0;
+
+            color:
+                #999999;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        .security-notice strong {
+
+            color:
+                var(--gold);
+
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .login-footer {
+
+            margin-top:
+                25px;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
+            text-align:
+                center;
+
+        }
+
+
+        .login-footer p {
+
+            margin:
+                3px 0;
+
+            color:
+                #666666;
+
+            font-size:
+                10px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .login-footer p:first-child {
+
+            color:
+                #999999;
+
+            font-weight:
+                700;
+
+        }
+
+
+
+        /* =====================================================
+           ERROR / MESSAGE
+        ===================================================== */
+
+        .login-message {
+
+            display:
+                none;
+
+            margin-bottom:
+                18px;
+
+            padding:
+                12px 14px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .login-message.show {
+
+            display:
+                block;
+
+        }
+
+
+        .login-message.error {
+
+            color:
+                #ffb4b4;
+
+            background:
+                rgba(215, 25, 32, 0.10);
+
+            border:
+                1px solid
+                rgba(215, 25, 32, 0.35);
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .login-page {
+
+                padding:
+                    70px 15px 25px;
+
+            }
+
+
+            .back-home {
+
+                top:
+                    14px;
+
+                left:
+                    14px;
+
+                padding:
+                    9px 12px;
+
+                font-size:
+                    12px;
+
+            }
+
+
+            .login-card {
+
+                max-width:
+                    100%;
+
+                padding:
+                    32px 22px;
+
+                border-radius:
+                    15px;
+
+            }
+
+
+            .login-logo {
+
+                width:
+                    78px;
+
+                height:
+                    78px;
+
+            }
+
+
+            .login-header h1 {
+
+                font-size:
+                    24px;
+
+            }
+
+
+            .login-header p {
+
+                font-size:
+                    12px;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .login-card {
+
+                padding:
+                    28px 18px;
+
+            }
+
+
+            .login-logo {
+
+                width:
+                    70px;
+
+                height:
+                    70px;
+
+            }
+
+
+            .login-header h1 {
+
+                font-size:
+                    22px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 
 <body>
 
-  <div class="login-container">
 
-    <!-- LOGO -->
-
-    <div class="logo-area">
-
-      <img
-        src="../assets/logo/nightfall-devils-logo.png"
-        alt="NIGHTFALL DEVILS Official Logo"
-      >
-
-      <h1>
-        NIGHTFALL <span>DEVILS</span>
-      </h1>
-
-      <p>
-        ADMINISTRATION PANEL
-      </p>
-
-    </div>
-
-
-    <!-- LOGIN CARD -->
-
-    <div class="login-card">
-
-      <div class="login-title">
-
-        <h2>
-          Admin Login
-        </h2>
-
-        <p>
-          Sign in to manage the community
-        </p>
-
-      </div>
-
-
-      <form id="loginForm">
-
-        <!-- EMAIL -->
-
-        <div class="form-group">
-
-          <label for="email">
-            ADMIN EMAIL
-          </label>
-
-          <div class="input-box">
-
-            <span class="input-icon">
-              @
-            </span>
-
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter admin email"
-              autocomplete="email"
-              required
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- PASSWORD -->
-
-        <div class="form-group">
-
-          <label for="password">
-            PASSWORD
-          </label>
-
-          <div class="input-box">
-
-            <span class="input-icon">
-              🔒
-            </span>
-
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter password"
-              autocomplete="current-password"
-              required
-            >
-
-            <button
-              type="button"
-              class="show-password"
-              id="showPassword"
-              aria-label="Show password"
-            >
-              👁
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- OPTIONS -->
-
-        <div class="login-options">
-
-          <label class="remember">
-
-            <input
-              type="checkbox"
-              id="remember"
-            >
-
-            Remember me
-
-          </label>
-
-          <a href="#" class="forgot" onclick="forgotPassword(event)">
-            Forgot password?
-          </a>
-
-        </div>
-
-
-        <!-- LOGIN -->
-
-        <button
-          type="submit"
-          class="login-btn"
-        >
-          LOGIN TO ADMIN PANEL
-        </button>
-
-
-        <!-- MESSAGE -->
-
-        <div
-          class="login-message"
-          id="loginMessage"
-        ></div>
-
-      </form>
-
-
-      <!-- SECURITY -->
-
-      <div class="security-notice">
-
-        🔐 <strong>Secure Admin Area</strong><br>
-
-        Only authorized NIGHTFALL DEVILS administrators
-        should access this panel.
-
-      </div>
-
-    </div>
-
-
-    <!-- BACK -->
+    <!-- =====================================================
+         BACK TO HOME
+    ===================================================== -->
 
     <a
-      href="../index.html"
-      class="back-home"
+        href="../index.html"
+        class="back-home"
     >
-      ← Back to NIGHTFALL DEVILS Website
+
+        ← Back to Website
+
     </a>
 
 
-    <div class="footer">
 
-      © 2026 <span>NIGHTFALL DEVILS</span> · Admin Panel
+    <!-- =====================================================
+         LOGIN PAGE
+    ===================================================== -->
 
-    </div>
-
-  </div>
-
-
-  <script>
-
-    /* =========================
-       SHOW / HIDE PASSWORD
-    ========================= */
-
-    const passwordInput =
-      document.getElementById("password");
-
-    const showPassword =
-      document.getElementById("showPassword");
-
-    showPassword.addEventListener("click", function() {
-
-      if (passwordInput.type === "password") {
-
-        passwordInput.type = "text";
-
-        showPassword.textContent = "🙈";
-
-      } else {
-
-        passwordInput.type = "password";
-
-        showPassword.textContent = "👁";
-
-      }
-
-    });
+    <main class="login-page">
 
 
-    /* =========================
-       LOGIN FORM
-    ========================= */
+        <!-- =================================================
+             LOGIN CARD
+        ================================================== -->
 
-    const loginForm =
-      document.getElementById("loginForm");
-
-    const loginMessage =
-      document.getElementById("loginMessage");
+        <section class="login-card">
 
 
-    loginForm.addEventListener("submit", function(event) {
+            <!-- LOGO -->
 
-      event.preventDefault();
-
-      /*
-        FIREBASE AUTHENTICATION WILL BE
-        CONNECTED HERE IN THE NEXT STEP.
-
-        HINDI TAYO MAGLALAGAY NG
-        HARDCODED ADMIN PASSWORD.
-      */
-
-      loginMessage.className =
-        "login-message error";
-
-      loginMessage.textContent =
-        "Admin authentication is not connected yet. Next step: connect Firebase Authentication.";
-
-    });
+            <img
+                src="../assets/logo/nightfall-devils-logo.png"
+                alt="NIGHTFALL DEVILS Official Logo"
+                class="login-logo"
+            >
 
 
-    /* =========================
-       FORGOT PASSWORD
-    ========================= */
 
-    function forgotPassword(event) {
+            <!-- HEADER -->
 
-      event.preventDefault();
+            <div class="login-header">
 
-      loginMessage.className =
-        "login-message error";
+                <div class="login-badge">
 
-      loginMessage.textContent =
-        "Password recovery will be available after Firebase Authentication is connected.";
+                    🔐 ADMIN ACCESS
 
-    }
+                </div>
 
-  </script>
+
+                <h1>
+
+                    NIGHTFALL
+                    <span>DEVILS</span>
+
+                </h1>
+
+
+                <p>
+
+                    Sign in to access the
+                    community administration panel.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="login-message error"
+                id="loginMessage"
+            >
+
+                ⚠️ Please enter your admin
+                email and password.
+
+            </div>
+
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label
+                        for="adminEmail"
+                        class="form-label"
+                    >
+
+                        Admin Email
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+
+                        <input
+                            type="email"
+                            id="adminEmail"
+                            class="form-input"
+                            placeholder="Enter admin email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label
+                        for="adminPassword"
+                        class="form-label"
+                    >
+
+                        Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            class="form-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                            aria-label="Show password"
+                        >
+
+                            👁️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPTIONS -->
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot-password"
+                        id="forgotPassword"
+                    >
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+
+                    🔐
+
+                    <span>
+                        LOGIN TO ADMIN PANEL
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- SECURITY NOTICE -->
+
+            <div class="security-notice">
+
+                <div class="security-icon">
+                    🛡️
+                </div>
+
+
+                <p>
+
+                    <strong>Admin Area</strong><br>
+
+                    This section is intended only
+                    for authorized NIGHTFALL DEVILS
+                    administrators.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="login-footer">
+
+                <p>
+                    NIGHTFALL DEVILS • ADMIN PANEL
+                </p>
+
+
+                <p>
+                    Established October 18, 2026
+                </p>
+
+
+                <p>
+                    Formerly TEAM MALALA
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         LOGIN JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =============================================
+                   ELEMENTS
+                ============================================= */
+
+                const loginForm =
+                    document.getElementById(
+                        "loginForm"
+                    );
+
+
+                const adminEmail =
+                    document.getElementById(
+                        "adminEmail"
+                    );
+
+
+                const adminPassword =
+                    document.getElementById(
+                        "adminPassword"
+                    );
+
+
+                const passwordToggle =
+                    document.getElementById(
+                        "passwordToggle"
+                    );
+
+
+                const loginMessage =
+                    document.getElementById(
+                        "loginMessage"
+                    );
+
+
+                const forgotPassword =
+                    document.getElementById(
+                        "forgotPassword"
+                    );
+
+
+
+                /* =============================================
+                   SHOW / HIDE PASSWORD
+                ============================================= */
+
+                if (
+                    passwordToggle &&
+                    adminPassword
+                ) {
+
+                    passwordToggle.addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                adminPassword.type ===
+                                "password"
+                            ) {
+
+                                adminPassword.type =
+                                    "text";
+
+                                passwordToggle.textContent =
+                                    "🙈";
+
+                                passwordToggle.setAttribute(
+                                    "aria-label",
+                                    "Hide password"
+                                );
+
+                            } else {
+
+                                adminPassword.type =
+                                    "password";
+
+                                passwordToggle.textContent =
+                                    "👁️";
+
+                                passwordToggle.setAttribute(
+                                    "aria-label",
+                                    "Show password"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =============================================
+                   LOGIN FORM
+                ============================================= */
+
+                if (loginForm) {
+
+                    loginForm.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            const email =
+                                adminEmail.value.trim();
+
+                            const password =
+                                adminPassword.value.trim();
+
+
+
+                            if (
+                                email === "" ||
+                                password === ""
+                            ) {
+
+                                loginMessage.textContent =
+                                    "⚠️ Please enter your admin email and password.";
+
+                                loginMessage.classList.add(
+                                    "show"
+                                );
+
+                                return;
+
+                            }
+
+
+
+                            /*
+                             * FIREBASE AUTHENTICATION
+                             * WILL BE CONNECTED IN THE
+                             * NEXT STEP.
+                             */
+
+                            loginMessage.textContent =
+                                "ℹ️ Admin authentication is not connected yet. Firebase Authentication will be added in the next step.";
+
+                            loginMessage.classList.add(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =============================================
+                   FORGOT PASSWORD
+                ============================================= */
+
+                if (forgotPassword) {
+
+                    forgotPassword.addEventListener(
+                        "click",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            loginMessage.textContent =
+                                "ℹ️ Password recovery will be available after Firebase Authentication is connected.";
+
+                            loginMessage.classList.add(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =============================================
+                   REMOVE MESSAGE WHEN TYPING
+                ============================================= */
+
+                if (adminEmail) {
+
+                    adminEmail.addEventListener(
+                        "input",
+                        function () {
+
+                            loginMessage.classList.remove(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                if (adminPassword) {
+
+                    adminPassword.addEventListener(
+                        "input",
+                        function () {
+
+                            loginMessage.classList.remove(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
 
 </body>
+
 </html>
