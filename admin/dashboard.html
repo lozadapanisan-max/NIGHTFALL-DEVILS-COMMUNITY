@@ -87,6 +87,8 @@
 
             min-height: 100vh;
 
+            overflow-x: hidden;
+
         }
 
 
@@ -1019,6 +1021,9 @@
             background:
                 #111111;
 
+            min-width:
+                0;
+
         }
 
 
@@ -1199,8 +1204,158 @@
 
 
         /* =====================================================
-           ACTIVITY
+           RECENT ACTIVITY
         ===================================================== */
+
+        .activity-list {
+
+            display:
+                grid;
+
+            gap:
+                9px;
+
+        }
+
+
+        .activity-item {
+
+            padding:
+                11px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.06);
+
+            border-radius:
+                8px;
+
+            background:
+                #151515;
+
+        }
+
+
+        .activity-top {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                8px;
+
+        }
+
+
+        .activity-name {
+
+            color:
+                #ffffff;
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .activity-status {
+
+            flex-shrink:
+                0;
+
+            padding:
+                3px 7px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .activity-status.pending {
+
+            color:
+                var(--gold);
+
+            background:
+                rgba(245,197,66,0.12);
+
+        }
+
+
+        .activity-status.approved {
+
+            color:
+                #5ee58d;
+
+            background:
+                rgba(34,197,94,0.12);
+
+        }
+
+
+        .activity-status.rejected {
+
+            color:
+                #ff7777;
+
+            background:
+                rgba(215,25,32,0.12);
+
+        }
+
+
+        .activity-username {
+
+            margin-top:
+                4px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                10px;
+
+        }
+
+
+        .activity-date {
+
+            margin-top:
+                4px;
+
+            color:
+                #666666;
+
+            font-size:
+                9px;
+
+        }
+
 
         .activity-empty {
 
@@ -1980,11 +2135,17 @@
 
             <!-- SYSTEM STATUS -->
 
-            <div class="system-status">
+            <div
+                class="system-status"
+                id="systemStatus"
+            >
 
-                <span class="status-dot"></span>
+                <span
+                    class="status-dot"
+                    id="statusDot"
+                ></span>
 
-                <span>
+                <span id="systemStatusText">
 
                     Firebase Authentication:
 
@@ -2222,22 +2383,30 @@
 
                         </h2>
 
+                        <a
+                            href="requests.html"
+                            class="panel-link"
+                        >
+                            VIEW ALL
+                        </a>
+
                     </div>
 
 
-                    <div class="activity-empty">
+                    <div
+                        id="activityContainer"
+                        class="activity-list"
+                    >
 
-                        <div class="activity-empty-icon">
-                            📋
+                        <div class="activity-empty">
+
+                            <div class="activity-empty-icon">
+                                ⏳
+                            </div>
+
+                            Loading activity...
+
                         </div>
-
-                        No recent activity yet.
-
-                        <br>
-
-                        Activity will appear here
-                        once the community system
-                        is connected.
 
                     </div>
 
@@ -2291,20 +2460,38 @@
 
 
     <!-- =====================================================
-         FIREBASE AUTHENTICATION
+         FIREBASE
     ===================================================== -->
 
     <script type="module">
 
+        /* =====================================================
+           FIREBASE IMPORTS
+        ===================================================== */
+
         import {
             onAuthStateChanged,
             signOut
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 
         import {
-            auth
-        } from "../firebase-config.js";
+            collection,
+            onSnapshot
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        /*
+         * IMPORTANT:
+         * Use the same Firebase bridge as requests.html
+         */
+
+        import {
+            auth,
+            db
+        } from "../js/firebase.js";
 
 
 
@@ -2354,6 +2541,66 @@
             );
 
 
+        const totalMembers =
+            document.getElementById(
+                "totalMembers"
+            );
+
+
+        const pendingRequests =
+            document.getElementById(
+                "pendingRequests"
+            );
+
+
+        const upcomingSchedules =
+            document.getElementById(
+                "upcomingSchedules"
+            );
+
+
+        const totalAnnouncements =
+            document.getElementById(
+                "totalAnnouncements"
+            );
+
+
+        const requestBadge =
+            document.getElementById(
+                "requestBadge"
+            );
+
+
+        const activityContainer =
+            document.getElementById(
+                "activityContainer"
+            );
+
+
+        const systemStatusText =
+            document.getElementById(
+                "systemStatusText"
+            );
+
+
+        const statusDot =
+            document.getElementById(
+                "statusDot"
+            );
+
+
+
+        /* =====================================================
+           DATA
+        ===================================================== */
+
+        let allRequests = [];
+
+        let schedulesData = [];
+
+        let announcementsData = [];
+
+
 
         /* =====================================================
            CHECK ADMIN LOGIN
@@ -2373,23 +2620,848 @@
                 }
 
 
-                /* =========================
-                   DISPLAY ADMIN EMAIL
-                ========================= */
+                /*
+                 * DISPLAY ADMIN EMAIL
+                 */
 
                 adminEmail.textContent =
                     user.email || "Admin";
 
 
-                /* =========================
-                   HIDE LOADING
-                ========================= */
+                /*
+                 * HIDE LOADING
+                 */
 
                 loadingScreen.style.display =
                     "none";
 
+
+                /*
+                 * START FIRESTORE
+                 */
+
+                loadDashboardData();
+
             }
         );
+
+
+
+        /* =====================================================
+           LOAD DASHBOARD DATA
+        ===================================================== */
+
+        function loadDashboardData() {
+
+            /*
+             * MEMBER REQUESTS
+             *
+             * Existing collection:
+             * memberRequests
+             */
+
+            loadMemberRequests();
+
+
+            /*
+             * SCHEDULES
+             */
+
+            loadSchedules();
+
+
+            /*
+             * ANNOUNCEMENTS
+             */
+
+            loadAnnouncements();
+
+        }
+
+
+
+        /* =====================================================
+           LOAD MEMBER REQUESTS
+        ===================================================== */
+
+        function loadMemberRequests() {
+
+            const requestsRef =
+                collection(
+                    db,
+                    "memberRequests"
+                );
+
+
+            onSnapshot(
+
+                requestsRef,
+
+                function (snapshot) {
+
+                    allRequests = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            allRequests.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    /*
+                     * SORT NEWEST FIRST
+                     */
+
+                    allRequests.sort(
+                        function (a, b) {
+
+                            return (
+                                getTimestampValue(
+                                    b.createdAt
+                                ) -
+                                getTimestampValue(
+                                    a.createdAt
+                                )
+                            );
+
+                        }
+                    );
+
+
+                    updateMemberStatistics();
+
+                    renderRecentActivity();
+
+
+                    setConnectedStatus();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "MEMBER REQUESTS ERROR:",
+                        error
+                    );
+
+
+                    /*
+                     * If rules do not allow
+                     * authenticated reads.
+                     */
+
+                    setDatabaseErrorStatus(
+                        "Member Requests"
+                    );
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           MEMBER STATISTICS
+        ===================================================== */
+
+        function updateMemberStatistics() {
+
+            /*
+             * APPROVED REQUESTS
+             * = TOTAL MEMBERS
+             */
+
+            const approved =
+                allRequests.filter(
+                    function (request) {
+
+                        return (
+                            request.status ===
+                            "approved"
+                        );
+
+                    }
+                ).length;
+
+
+            /*
+             * PENDING REQUESTS
+             */
+
+            const pending =
+                allRequests.filter(
+                    function (request) {
+
+                        return (
+                            request.status ===
+                            "pending"
+                        );
+
+                    }
+                ).length;
+
+
+            totalMembers.textContent =
+                approved;
+
+
+            pendingRequests.textContent =
+                pending;
+
+
+            requestBadge.textContent =
+                pending;
+
+        }
+
+
+
+        /* =====================================================
+           LOAD SCHEDULES
+        ===================================================== */
+
+        function loadSchedules() {
+
+            const schedulesRef =
+                collection(
+                    db,
+                    "schedules"
+                );
+
+
+            onSnapshot(
+
+                schedulesRef,
+
+                function (snapshot) {
+
+                    schedulesData = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            schedulesData.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    /*
+                     * Count upcoming schedules.
+                     *
+                     * If a schedule has a date field,
+                     * only future dates are counted.
+                     *
+                     * If no date field exists,
+                     * the record is still counted.
+                     */
+
+                    const now =
+                        new Date();
+
+
+                    const upcoming =
+                        schedulesData.filter(
+                            function (schedule) {
+
+                                const date =
+                                    getScheduleDate(
+                                        schedule
+                                    );
+
+
+                                if (!date) {
+
+                                    return true;
+
+                                }
+
+
+                                return date >= now;
+
+                            }
+                        ).length;
+
+
+                    upcomingSchedules.textContent =
+                        upcoming;
+
+
+                    setConnectedStatus();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "SCHEDULES ERROR:",
+                        error
+                    );
+
+
+                    /*
+                     * Keep dashboard usable
+                     * even if collection is not
+                     * created/rules are not ready.
+                     */
+
+                    upcomingSchedules.textContent =
+                        "0";
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LOAD ANNOUNCEMENTS
+        ===================================================== */
+
+        function loadAnnouncements() {
+
+            const announcementsRef =
+                collection(
+                    db,
+                    "announcements"
+                );
+
+
+            onSnapshot(
+
+                announcementsRef,
+
+                function (snapshot) {
+
+                    announcementsData = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            announcementsData.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    totalAnnouncements.textContent =
+                        announcementsData.length;
+
+
+                    setConnectedStatus();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "ANNOUNCEMENTS ERROR:",
+                        error
+                    );
+
+
+                    totalAnnouncements.textContent =
+                        "0";
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RECENT ACTIVITY
+        ===================================================== */
+
+        function renderRecentActivity() {
+
+            if (
+                allRequests.length === 0
+            ) {
+
+                activityContainer.innerHTML = `
+
+                    <div class="activity-empty">
+
+                        <div class="activity-empty-icon">
+                            📋
+                        </div>
+
+                        No recent activity yet.
+
+                        <br>
+
+                        Join requests will appear here.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Show latest 5 requests
+             */
+
+            const recent =
+                allRequests.slice(
+                    0,
+                    5
+                );
+
+
+            activityContainer.innerHTML =
+                recent
+                    .map(
+                        function (request) {
+
+                            const name =
+                                escapeHTML(
+                                    request.displayName ||
+                                    "Unknown Member"
+                                );
+
+
+                            const username =
+                                cleanUsername(
+                                    request.tiktokUsername
+                                );
+
+
+                            const status =
+                                request.status ||
+                                "pending";
+
+
+                            const date =
+                                formatDate(
+                                    request.createdAt
+                                );
+
+
+                            return `
+
+                                <div class="activity-item">
+
+                                    <div class="activity-top">
+
+                                        <div class="activity-name">
+
+                                            ${name}
+
+                                        </div>
+
+                                        <span
+                                            class="
+                                                activity-status
+                                                ${escapeHTML(status)}
+                                            "
+                                        >
+
+                                            ${escapeHTML(
+                                                status.toUpperCase()
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="activity-username">
+
+                                        @${escapeHTML(username)}
+
+                                    </div>
+
+
+                                    <div class="activity-date">
+
+                                        ${escapeHTML(date)}
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+
+        /* =====================================================
+           SCHEDULE DATE
+        ===================================================== */
+
+        function getScheduleDate(
+            schedule
+        ) {
+
+            /*
+             * Support common field names
+             */
+
+            const possibleValues = [
+
+                schedule.date,
+
+                schedule.scheduleDate,
+
+                schedule.eventDate,
+
+                schedule.startDate,
+
+                schedule.datetime,
+
+                schedule.startTime
+
+            ];
+
+
+            for (
+                const value of possibleValues
+            ) {
+
+                if (!value) {
+                    continue;
+                }
+
+
+                /*
+                 * Firebase Timestamp
+                 */
+
+                if (
+                    typeof value.toDate ===
+                    "function"
+                ) {
+
+                    return value.toDate();
+
+                }
+
+
+                /*
+                 * JavaScript Date
+                 */
+
+                if (
+                    value instanceof Date
+                ) {
+
+                    return value;
+
+                }
+
+
+                /*
+                 * String / number
+                 */
+
+                const parsed =
+                    new Date(value);
+
+
+                if (
+                    !isNaN(
+                        parsed.getTime()
+                    )
+                ) {
+
+                    return parsed;
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+
+        /* =====================================================
+           TIMESTAMP VALUE
+        ===================================================== */
+
+        function getTimestampValue(
+            timestamp
+        ) {
+
+            if (!timestamp) {
+
+                return 0;
+
+            }
+
+
+            /*
+             * Firestore Timestamp
+             */
+
+            if (
+                typeof timestamp.toMillis ===
+                "function"
+            ) {
+
+                return timestamp.toMillis();
+
+            }
+
+
+            /*
+             * Firestore Timestamp-like object
+             */
+
+            if (
+                timestamp.seconds !==
+                undefined
+            ) {
+
+                return (
+                    Number(
+                        timestamp.seconds
+                    ) *
+                    1000
+                );
+
+            }
+
+
+            /*
+             * JavaScript Date
+             */
+
+            if (
+                timestamp instanceof Date
+            ) {
+
+                return timestamp.getTime();
+
+            }
+
+
+            /*
+             * String date
+             */
+
+            const parsed =
+                new Date(timestamp);
+
+
+            if (
+                !isNaN(
+                    parsed.getTime()
+                )
+            ) {
+
+                return parsed.getTime();
+
+            }
+
+
+            return 0;
+
+        }
+
+
+
+        /* =====================================================
+           FORMAT DATE
+        ===================================================== */
+
+        function formatDate(
+            timestamp
+        ) {
+
+            const value =
+                getTimestampValue(
+                    timestamp
+                );
+
+
+            if (!value) {
+
+                return "Just now";
+
+            }
+
+
+            return new Date(
+                value
+            ).toLocaleString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CLEAN USERNAME
+        ===================================================== */
+
+        function cleanUsername(
+            username
+        ) {
+
+            return String(
+                username || ""
+            )
+            .replace(
+                /^@/,
+                ""
+            );
+
+        }
+
+
+
+        /* =====================================================
+           HTML ESCAPE
+        ===================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CONNECTED STATUS
+        ===================================================== */
+
+        function setConnectedStatus() {
+
+            statusDot.style.background =
+                "var(--green)";
+
+
+            statusDot.style.boxShadow =
+                "0 0 10px rgba(34, 197, 94, 0.55)";
+
+
+            systemStatusText.innerHTML = `
+
+                Firebase:
+
+                <strong>
+                    Connected
+                </strong>
+
+                • Dashboard data is updating in real-time.
+
+            `;
+
+        }
+
+
+
+        /* =====================================================
+           DATABASE ERROR STATUS
+        ===================================================== */
+
+        function setDatabaseErrorStatus(
+            collectionName
+        ) {
+
+            statusDot.style.background =
+                "var(--orange)";
+
+
+            statusDot.style.boxShadow =
+                "0 0 10px rgba(245, 158, 11, 0.55)";
+
+
+            systemStatusText.innerHTML = `
+
+                Firebase:
+
+                <strong
+                    style="color:var(--orange);"
+                >
+                    Connected
+                </strong>
+
+                • ${escapeHTML(
+                    collectionName
+                )} permission needs to be checked.
+
+            `;
+
+        }
 
 
 
@@ -2401,7 +3473,10 @@
 
             try {
 
-                await signOut(auth);
+                await signOut(
+                    auth
+                );
+
 
                 window.location.href =
                     "login.html";
@@ -2414,6 +3489,7 @@
                     "Logout error:",
                     error
                 );
+
 
                 alert(
                     "Unable to logout. Please try again."
