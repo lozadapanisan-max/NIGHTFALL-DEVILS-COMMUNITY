@@ -622,6 +622,22 @@
         }
 
 
+        .hero-btn-install:disabled {
+
+            cursor: default;
+
+            opacity: 0.75;
+
+            transform: none;
+
+            background: #111111;
+
+            color: var(--gold);
+
+            box-shadow: none;
+        }
+
+
 
         /* =====================================================
            SECTIONS
@@ -2115,7 +2131,7 @@
 
             /* =================================================
                SECTIONS
-            ================================================= */
+            ================================================== */
 
             .home-section {
 
@@ -2917,14 +2933,13 @@
 
                     <!-- =================================================
                          PWA INSTALL BUTTON
-                         Hidden until browser supports installation
+                         Always visible
                     ================================================== -->
 
                     <button
                         type="button"
                         class="hero-btn hero-btn-install"
                         id="installAppBtn"
-                        hidden
                     >
 
                         📲 INSTALL APP
@@ -3797,6 +3812,70 @@
 
 
         /* =====================================================
+           CHECK IF APP IS ALREADY INSTALLED
+        ===================================================== */
+
+        function isAppInstalled() {
+
+            return (
+                window.matchMedia(
+                    "(display-mode: standalone)"
+                ).matches ||
+
+                window.matchMedia(
+                    "(display-mode: fullscreen)"
+                ).matches ||
+
+                window.navigator.standalone === true
+            );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE INSTALL BUTTON
+        ===================================================== */
+
+        function markAppInstalled() {
+
+            if (!installAppBtn) {
+                return;
+            }
+
+
+            installAppBtn.textContent =
+                "✅ APP INSTALLED";
+
+
+            installAppBtn.disabled =
+                true;
+
+
+            installAppBtn.setAttribute(
+                "aria-label",
+                "NIGHTFALL DEVILS app is already installed"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CHECK INITIAL INSTALL STATUS
+        ===================================================== */
+
+        if (
+            isAppInstalled()
+        ) {
+
+            markAppInstalled();
+
+        }
+
+
+
+        /* =====================================================
            CAPTURE INSTALL PROMPT
         ===================================================== */
 
@@ -3810,12 +3889,9 @@
                     event;
 
 
-                if (installAppBtn) {
-
-                    installAppBtn.hidden =
-                        false;
-
-                }
+                console.log(
+                    "PWA install prompt is available."
+                );
 
             }
         );
@@ -3832,40 +3908,119 @@
                 "click",
                 async function () {
 
+                    /* =========================================
+                       ALREADY INSTALLED
+                    ========================================= */
+
                     if (
-                        !deferredInstallPrompt
+                        isAppInstalled()
                     ) {
+
+                        alert(
+                            "NIGHTFALL DEVILS is already installed as an app."
+                        );
+
+                        markAppInstalled();
 
                         return;
 
                     }
 
 
-                    deferredInstallPrompt.prompt();
+
+                    /* =========================================
+                       AUTOMATIC INSTALL PROMPT AVAILABLE
+                    ========================================= */
+
+                    if (
+                        deferredInstallPrompt
+                    ) {
+
+                        try {
+
+                            deferredInstallPrompt.prompt();
 
 
-                    try {
+                            const result =
+                                await
+                                deferredInstallPrompt
+                                    .userChoice;
 
-                        await
-                            deferredInstallPrompt
-                                .userChoice;
 
-                    } catch (error) {
+                            console.log(
+                                "PWA install result:",
+                                result.outcome
+                            );
 
-                        console.error(
-                            "PWA install prompt error:",
-                            error
-                        );
+
+                            if (
+                                result.outcome ===
+                                "accepted"
+                            ) {
+
+                                console.log(
+                                    "User accepted the PWA installation."
+                                );
+
+                            } else {
+
+                                console.log(
+                                    "User dismissed the PWA installation."
+                                );
+
+                            }
+
+                        } catch (error) {
+
+                            console.error(
+                                "PWA install prompt error:",
+                                error
+                            );
+
+                        }
+
+
+                        deferredInstallPrompt =
+                            null;
+
+
+                        return;
 
                     }
 
 
-                    deferredInstallPrompt =
-                        null;
 
+                    /* =========================================
+                       FALLBACK INSTALL INSTRUCTIONS
+                    ========================================= */
 
-                    installAppBtn.hidden =
-                        true;
+                    alert(
+
+                        "📲 HOW TO INSTALL NIGHTFALL DEVILS\n\n" +
+
+                        "ANDROID / CHROME:\n" +
+
+                        "1. Open the Chrome menu (⋮).\n" +
+
+                        "2. Choose 'Install app' or 'Add to Home screen'.\n" +
+
+                        "3. Confirm the installation.\n\n" +
+
+                        "COMPUTER / CHROME:\n" +
+
+                        "Look for the Install icon in the address bar, " +
+
+                        "or open the Chrome menu and choose " +
+
+                        "'Install NIGHTFALL DEVILS'.\n\n" +
+
+                        "If the Install option is not available, " +
+
+                        "make sure the website is opened using HTTPS " +
+
+                        "and that manifest.json and sw.js are available."
+
+                    );
 
                 }
             );
@@ -3886,17 +4041,12 @@
                     null;
 
 
-                if (installAppBtn) {
-
-                    installAppBtn.hidden =
-                        true;
-
-                }
-
-
                 console.log(
                     "NIGHTFALL DEVILS app installed."
                 );
+
+
+                markAppInstalled();
 
             }
         );
