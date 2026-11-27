@@ -650,6 +650,18 @@
             margin-bottom: 18px;
         }
 
+        .debug-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: #080808;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            color: #888;
+            font-size: 10px;
+            text-align: left;
+            word-break: break-word;
+        }
+
         @media (max-width: 900px) {
             .stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -776,6 +788,12 @@
                 🔐 ADMIN LOGIN
             </button>
 
+            <div
+                id="debugBox"
+                class="debug-box"
+                style="display:none;"
+            ></div>
+
         </div>
     </div>
 
@@ -783,7 +801,6 @@
     <!-- MAIN APP -->
     <div id="app" style="display:none;">
 
-        <!-- TOPBAR -->
         <header class="topbar">
 
             <div class="brand">
@@ -821,18 +838,19 @@
         </header>
 
 
-        <!-- CONTENT -->
         <main class="container">
 
             <div class="page-header">
 
                 <div>
+
                     <h2>Member Requests</h2>
 
                     <p>
                         Review and manage applications from
                         NIGHTFALL DEVILS members.
                     </p>
+
                 </div>
 
                 <button
@@ -846,9 +864,11 @@
 
 
             <!-- STATS -->
+
             <section class="stats">
 
                 <div class="stat-card pending">
+
                     <div class="stat-label">
                         Pending
                     </div>
@@ -859,9 +879,11 @@
                     >
                         0
                     </div>
+
                 </div>
 
                 <div class="stat-card approved">
+
                     <div class="stat-label">
                         Approved
                     </div>
@@ -872,9 +894,11 @@
                     >
                         0
                     </div>
+
                 </div>
 
                 <div class="stat-card rejected">
+
                     <div class="stat-label">
                         Rejected
                     </div>
@@ -885,9 +909,11 @@
                     >
                         0
                     </div>
+
                 </div>
 
                 <div class="stat-card">
+
                     <div class="stat-label">
                         Total Requests
                     </div>
@@ -898,12 +924,14 @@
                     >
                         0
                     </div>
+
                 </div>
 
             </section>
 
 
             <!-- TOOLBAR -->
+
             <section class="toolbar">
 
                 <div class="search-wrap">
@@ -923,6 +951,7 @@
                     id="statusFilter"
                     class="select"
                 >
+
                     <option value="all">
                         All Status
                     </option>
@@ -938,12 +967,14 @@
                     <option value="rejected">
                         Rejected
                     </option>
+
                 </select>
 
             </section>
 
 
             <!-- TABLE -->
+
             <section class="table-wrap">
 
                 <div class="table-scroll">
@@ -953,12 +984,31 @@
                         <thead>
 
                             <tr>
-                                <th>Applicant</th>
-                                <th>Referred By</th>
-                                <th>Status</th>
-                                <th>Member Code</th>
-                                <th>Date Applied</th>
-                                <th>Actions</th>
+
+                                <th>
+                                    Applicant
+                                </th>
+
+                                <th>
+                                    Referred By
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Member Code
+                                </th>
+
+                                <th>
+                                    Date Applied
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -966,6 +1016,7 @@
                         <tbody id="requestsBody">
 
                             <tr>
+
                                 <td colspan="6">
 
                                     <div class="loading">
@@ -977,6 +1028,7 @@
                                     </div>
 
                                 </td>
+
                             </tr>
 
                         </tbody>
@@ -993,6 +1045,7 @@
 
 
     <!-- VIEW MODAL -->
+
     <div
         class="modal-backdrop"
         id="viewModal"
@@ -1002,7 +1055,9 @@
 
             <div class="modal-header">
 
-                <h3>Member Request</h3>
+                <h3>
+                    Member Request
+                </h3>
 
                 <button
                     class="close-btn"
@@ -1039,6 +1094,7 @@
 
 
     <!-- APPROVE MODAL -->
+
     <div
         class="modal-backdrop"
         id="approveModal"
@@ -1048,7 +1104,9 @@
 
             <div class="modal-header">
 
-                <h3>Approve Member</h3>
+                <h3>
+                    Approve Member
+                </h3>
 
                 <button
                     class="close-btn"
@@ -1071,10 +1129,15 @@
 
                 <div class="notice notice-warning">
 
-                    Firebase Authentication account creation
-                    will be handled automatically by the
-                    NIGHTFALL DEVILS Cloud Function after
-                    the member record is created.
+                    After approval, Firebase Cloud Functions
+                    will create the member's Authentication
+                    account automatically when an email is
+                    provided.
+
+                    The member can then use
+                    <strong>Forgot Password</strong>
+                    on the Member Login page to create
+                    their password.
 
                 </div>
 
@@ -1103,7 +1166,7 @@
                         type="email"
                         id="memberEmailInput"
                         class="form-control"
-                        placeholder="Optional member email"
+                        placeholder="Member email"
                     >
 
                 </div>
@@ -1118,6 +1181,7 @@
                         id="memberRoleInput"
                         class="form-control"
                     >
+
                         <option value="Member">
                             Member
                         </option>
@@ -1148,6 +1212,7 @@
                         id="memberStatusInput"
                         class="form-control"
                     >
+
                         <option value="approved">
                             Approved
                         </option>
@@ -1186,6 +1251,7 @@
 
 
     <!-- REJECT MODAL -->
+
     <div
         class="modal-backdrop"
         id="rejectModal"
@@ -1195,7 +1261,9 @@
 
             <div class="modal-header">
 
-                <h3>Reject Request</h3>
+                <h3>
+                    Reject Request
+                </h3>
 
                 <button
                     class="close-btn"
@@ -1258,6 +1326,7 @@
 
 
     <!-- TOAST -->
+
     <div
         id="toast"
         class="toast"
@@ -1267,6 +1336,7 @@
 
 
     <!-- FIREBASE -->
+
     <script type="module">
 
         import {
@@ -1274,12 +1344,14 @@
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
+
         import {
             getAuth,
             onAuthStateChanged,
             signOut
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
 
         import {
             getFirestore,
@@ -1303,13 +1375,28 @@
         ========================================== */
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
-            authDomain: "nightfall-devils-b0d77.firebaseapp.com",
-            projectId: "nightfall-devils-b0d77",
-            storageBucket: "nightfall-devils-b0d77.firebasestorage.app",
-            messagingSenderId: "758952684668",
-            appId: "1:758952684668:web:5be641ca90c9d5134f2df9",
-            measurementId: "G-R6MZ05M4DR"
+
+            apiKey:
+                "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
+
+            authDomain:
+                "nightfall-devils-b0d77.firebaseapp.com",
+
+            projectId:
+                "nightfall-devils-b0d77",
+
+            storageBucket:
+                "nightfall-devils-b0d77.firebasestorage.app",
+
+            messagingSenderId:
+                "758952684668",
+
+            appId:
+                "1:758952684668:web:5be641ca90c9d5134f2df9",
+
+            measurementId:
+                "G-R6MZ05M4DR"
+
         };
 
 
@@ -1318,8 +1405,10 @@
                 firebaseConfig
             );
 
+
         const auth =
             getAuth(app);
+
 
         const db =
             getFirestore(app);
@@ -1334,95 +1423,120 @@
                 "app"
             );
 
+
         const accessDenied =
             document.getElementById(
                 "accessDenied"
             );
+
+
+        const debugBox =
+            document.getElementById(
+                "debugBox"
+            );
+
 
         const requestsBody =
             document.getElementById(
                 "requestsBody"
             );
 
+
         const searchInput =
             document.getElementById(
                 "searchInput"
             );
+
 
         const statusFilter =
             document.getElementById(
                 "statusFilter"
             );
 
+
         const pendingCount =
             document.getElementById(
                 "pendingCount"
             );
+
 
         const approvedCount =
             document.getElementById(
                 "approvedCount"
             );
 
+
         const rejectedCount =
             document.getElementById(
                 "rejectedCount"
             );
+
 
         const totalCount =
             document.getElementById(
                 "totalCount"
             );
 
+
         const viewModal =
             document.getElementById(
                 "viewModal"
             );
+
 
         const approveModal =
             document.getElementById(
                 "approveModal"
             );
 
+
         const rejectModal =
             document.getElementById(
                 "rejectModal"
             );
+
 
         const requestDetails =
             document.getElementById(
                 "requestDetails"
             );
 
+
         const memberCodeInput =
             document.getElementById(
                 "memberCodeInput"
             );
+
 
         const memberEmailInput =
             document.getElementById(
                 "memberEmailInput"
             );
 
+
         const memberRoleInput =
             document.getElementById(
                 "memberRoleInput"
             );
+
 
         const memberStatusInput =
             document.getElementById(
                 "memberStatusInput"
             );
 
+
         const rejectReasonInput =
             document.getElementById(
                 "rejectReasonInput"
             );
 
+
         const toast =
             document.getElementById(
                 "toast"
             );
+
 
         const toastMessage =
             document.getElementById(
@@ -1434,13 +1548,20 @@
            STATE
         ========================================== */
 
-        let currentUser = null;
+        let currentUser =
+            null;
 
-        let allRequests = [];
 
-        let selectedRequest = null;
+        let allRequests =
+            [];
 
-        let unsubscribeRequests = null;
+
+        let selectedRequest =
+            null;
+
+
+        let unsubscribeRequests =
+            null;
 
 
         /* ==========================================
@@ -1453,30 +1574,39 @@
                 value === null ||
                 value === undefined
             ) {
+
                 return "";
+
             }
 
+
             return String(value)
+
                 .replace(
                     /&/g,
                     "&amp;"
                 )
+
                 .replace(
                     /</g,
                     "&lt;"
                 )
+
                 .replace(
                     />/g,
                     "&gt;"
                 )
+
                 .replace(
                     /"/g,
                     "&quot;"
                 )
+
                 .replace(
                     /'/g,
                     "&#039;"
                 );
+
         }
 
 
@@ -1488,13 +1618,16 @@
             toastMessage.textContent =
                 message;
 
+
             toast.className =
                 "toast show " +
                 type;
 
+
             clearTimeout(
                 showToast.timer
             );
+
 
             showToast.timer =
                 setTimeout(
@@ -1507,18 +1640,23 @@
                     },
                     3500
                 );
+
         }
 
 
-        function formatDate(timestamp) {
+        function formatDate(
+            timestamp
+        ) {
 
             if (!timestamp) {
                 return "—";
             }
 
+
             try {
 
                 let date;
+
 
                 if (
                     typeof timestamp.toDate ===
@@ -1534,6 +1672,7 @@
                         new Date(timestamp);
 
                 }
+
 
                 return date.toLocaleString(
                     undefined,
@@ -1572,6 +1711,60 @@
         }
 
 
+        function normalizeRole(
+            role
+        ) {
+
+            return String(
+                role || ""
+            )
+                .trim()
+                .toLowerCase()
+                .replace(
+                    /[_-]+/g,
+                    " "
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                );
+
+        }
+
+
+        function isAdminRole(
+            role
+        ) {
+
+            const normalized =
+                normalizeRole(
+                    role
+                );
+
+
+            return [
+
+                "admin",
+
+                "administrator",
+
+                "super admin",
+
+                "superadmin",
+
+                "super administrator",
+
+                "founder",
+
+                "owner"
+
+            ].includes(
+                normalized
+            );
+
+        }
+
+
         function generateMemberCode(
             request
         ) {
@@ -1580,6 +1773,7 @@
                 normalizeUsername(
                     request.tiktokUsername
                 );
+
 
             let initials =
                 username
@@ -1593,6 +1787,7 @@
                     )
                     .toUpperCase();
 
+
             if (!initials) {
 
                 initials =
@@ -1600,12 +1795,14 @@
 
             }
 
+
             const random =
                 Math.floor(
                     1000 +
                     Math.random() *
                     9000
                 );
+
 
             return `NFD-26-MEM-${initials}${random}`;
 
@@ -1620,8 +1817,7 @@
                 String(
                     status ||
                     "pending"
-                )
-                    .toLowerCase();
+                ).toLowerCase();
 
 
             if (
@@ -1660,41 +1856,8 @@
 
 
         /* ==========================================
-           ADMIN ROLE CHECK
-        ========================================== */
-
-        function isAdminRole(
-            role
-        ) {
-
-            const normalized =
-                String(
-                    role || ""
-                )
-                    .trim()
-                    .toLowerCase()
-                    .replace(
-                        /[_-]+/g,
-                        " "
-                    )
-                    .replace(
-                        /\s+/g,
-                        " "
-                    );
-
-
-            return (
-                normalized === "admin" ||
-                normalized === "super admin" ||
-                normalized === "superadmin" ||
-                normalized === "founder"
-            );
-
-        }
-
-
-        /* ==========================================
            ADMIN ACCESS CHECK
+           FIXED VERSION
         ========================================== */
 
         async function checkAdminAccess(
@@ -1703,80 +1866,92 @@
 
             if (!user) {
 
-                appEl.style.display =
-                    "none";
-
-                accessDenied.style.display =
-                    "flex";
-
-                return false;
+                return {
+                    allowed: false,
+                    reason: "No authenticated user."
+                };
 
             }
 
 
+            console.log(
+                "Checking admin access for:",
+                user.email,
+                user.uid
+            );
+
+
+            /*
+             * ======================================
+             * METHOD 1
+             * Firebase Auth custom claims
+             * ======================================
+             */
+
             try {
 
-                /* ==========================================
-                   1. FIREBASE AUTH CUSTOM CLAIMS
-                ========================================== */
-
-                try {
-
-                    /*
-                     * Force refresh the ID token.
-                     *
-                     * This is important when the
-                     * Cloud Function recently added
-                     * admin custom claims.
-                     */
-
-                    const tokenResult =
-                        await user.getIdTokenResult(
-                            true
-                        );
-
-
-                    const claims =
-                        tokenResult.claims ||
-                        {};
-
-
-                    console.log(
-                        "Firebase Auth Claims:",
-                        claims
+                const tokenResult =
+                    await user.getIdTokenResult(
+                        true
                     );
 
 
-                    if (
-                        claims.admin === true ||
-                        isAdminRole(
-                            claims.role
-                        )
-                    ) {
+                const claims =
+                    tokenResult.claims ||
+                    {};
 
-                        console.log(
-                            "Admin access granted by Firebase Custom Claims."
-                        );
 
-                        return true;
+                console.log(
+                    "Firebase custom claims:",
+                    claims
+                );
 
-                    }
 
-                } catch (
-                    claimError
+                if (
+                    claims.admin === true
                 ) {
 
-                    console.warn(
-                        "Custom claims check failed:",
-                        claimError
-                    );
+                    return {
+                        allowed: true,
+                        reason:
+                            "admin custom claim"
+                    };
 
                 }
 
 
-                /* ==========================================
-                   2. CHECK members/{UID}
-                ========================================== */
+                if (
+                    isAdminRole(
+                        claims.role
+                    )
+                ) {
+
+                    return {
+                        allowed: true,
+                        reason:
+                            "role custom claim"
+                    };
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Custom claims check failed:",
+                    error
+                );
+
+            }
+
+
+            /*
+             * ======================================
+             * METHOD 2
+             * members/{UID}
+             * ======================================
+             */
+
+            try {
 
                 const memberRef =
                     doc(
@@ -1801,7 +1976,7 @@
 
 
                     console.log(
-                        "Admin member document:",
+                        "members/{uid}:",
                         data
                     );
 
@@ -1812,86 +1987,36 @@
                         )
                     ) {
 
-                        console.log(
-                            "Admin access granted by members/{uid}."
-                        );
-
-                        return true;
-
-                    }
-
-                }
-
-
-                /* ==========================================
-                   3. CHECK MEMBERS BY UID FIELD
-                ========================================== */
-
-                const uidQuery =
-                    query(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        where(
-                            "uid",
-                            "==",
-                            user.uid
-                        )
-                    );
-
-
-                const uidSnap =
-                    await getDocs(
-                        uidQuery
-                    );
-
-
-                if (
-                    !uidSnap.empty
-                ) {
-
-                    for (
-                        const memberDoc
-                        of uidSnap.docs
-                    ) {
-
-                        const data =
-                            memberDoc.data();
-
-
-                        console.log(
-                            "Member found by UID field:",
-                            data
-                        );
-
-
-                        if (
-                            isAdminRole(
-                                data.role
-                            )
-                        ) {
-
-                            console.log(
-                                "Admin access granted by member UID field."
-                            );
-
-                            return true;
-
-                        }
+                        return {
+                            allowed: true,
+                            reason:
+                                "members UID document"
+                        };
 
                     }
 
                 }
 
+            } catch (error) {
 
-                /* ==========================================
-                   4. CHECK MEMBERS BY EMAIL
-                ========================================== */
+                console.warn(
+                    "UID member check failed:",
+                    error
+                );
 
-                if (
-                    user.email
-                ) {
+            }
+
+
+            /*
+             * ======================================
+             * METHOD 3
+             * Exact email query
+             * ======================================
+             */
+
+            if (user.email) {
+
+                try {
 
                     const emailQuery =
                         query(
@@ -1913,38 +2038,156 @@
                         );
 
 
-                    if (
-                        !emailSnap.empty
+                    console.log(
+                        "Exact email members:",
+                        emailSnap.size
+                    );
+
+
+                    for (
+                        const memberDoc
+                        of emailSnap.docs
                     ) {
 
-                        for (
-                            const memberDoc
-                            of emailSnap.docs
+                        const data =
+                            memberDoc.data();
+
+
+                        console.log(
+                            "Email member:",
+                            memberDoc.id,
+                            data
+                        );
+
+
+                        if (
+                            isAdminRole(
+                                data.role
+                            )
                         ) {
 
-                            const data =
-                                memberDoc.data();
+                            return {
+                                allowed: true,
+                                reason:
+                                    "member email"
+                            };
+
+                        }
+
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "Email query failed:",
+                        error
+                    );
+
+                }
+
+            }
 
 
-                            console.log(
-                                "Member found by email:",
-                                data
-                            );
+            /*
+             * ======================================
+             * METHOD 4
+             * Scan members collection
+             *
+             * This fixes:
+             * - uppercase email
+             * - lowercase email
+             * - member document ID != UID
+             * - old admin records
+             * ======================================
+             */
+
+            try {
+
+                const membersSnap =
+                    await getDocs(
+                        collection(
+                            db,
+                            "members"
+                        )
+                    );
 
 
-                            if (
-                                isAdminRole(
-                                    data.role
-                                )
-                            ) {
+                console.log(
+                    "Total members scanned:",
+                    membersSnap.size
+                );
 
-                                console.log(
-                                    "Admin access granted by email."
-                                );
 
-                                return true;
+                const authEmail =
+                    String(
+                        user.email || ""
+                    )
+                        .trim()
+                        .toLowerCase();
 
-                            }
+
+                for (
+                    const memberDoc
+                    of membersSnap.docs
+                ) {
+
+                    const data =
+                        memberDoc.data();
+
+
+                    const memberEmail =
+                        String(
+                            data.email || ""
+                        )
+                            .trim()
+                            .toLowerCase();
+
+
+                    const memberUid =
+                        String(
+                            data.uid || ""
+                        )
+                            .trim();
+
+
+                    const sameEmail =
+                        authEmail &&
+                        memberEmail &&
+                        authEmail ===
+                        memberEmail;
+
+
+                    const sameUid =
+                        memberUid &&
+                        memberUid ===
+                        user.uid;
+
+
+                    if (
+                        sameEmail ||
+                        sameUid
+                    ) {
+
+                        console.log(
+                            "Matching member found:",
+                            memberDoc.id,
+                            data
+                        );
+
+
+                        if (
+                            isAdminRole(
+                                data.role
+                            )
+                        ) {
+
+                            return {
+                                allowed: true,
+                                reason:
+                                    sameUid
+                                        ? "member UID field"
+                                        : "member email scan"
+                            };
 
                         }
 
@@ -1952,38 +2195,92 @@
 
                 }
 
-
-                /* ==========================================
-                   ADMIN ACCESS DENIED
-                ========================================== */
-
-                console.warn(
-                    "Admin access denied.",
-                    {
-                        uid:
-                            user.uid,
-
-                        email:
-                            user.email,
-
-                        claims:
-                            "No admin claim detected"
-                    }
-                );
-
-            } catch (
-                error
-            ) {
+            } catch (error) {
 
                 console.error(
-                    "Admin access check error:",
+                    "Members scan failed:",
                     error
                 );
+
+
+                return {
+                    allowed: false,
+                    reason:
+                        "Firestore members collection could not be read: " +
+                        error.message
+                };
 
             }
 
 
-            return false;
+            /*
+             * ======================================
+             * DENIED
+             * ======================================
+             */
+
+            return {
+                allowed: false,
+                reason:
+                    "Authenticated account was found, but no Admin, Super Admin, Founder, Administrator, Superadmin, or Owner member record was found."
+            };
+
+        }
+
+
+        /* ==========================================
+           SHOW ACCESS DEBUG
+        ========================================== */
+
+        function showAccessDebug(
+            user,
+            reason
+        ) {
+
+            debugBox.style.display =
+                "block";
+
+
+            debugBox.innerHTML = `
+
+                <strong style="color:#f5c542;">
+                    Login Debug
+                </strong>
+
+                <br><br>
+
+                <strong>Email:</strong>
+                ${escapeHtml(
+                    user?.email ||
+                    "No email"
+                )}
+
+                <br>
+
+                <strong>UID:</strong>
+                ${escapeHtml(
+                    user?.uid ||
+                    "No UID"
+                )}
+
+                <br><br>
+
+                <strong>Reason:</strong>
+                ${escapeHtml(
+                    reason
+                )}
+
+                <br><br>
+
+                <span style="color:#aaa;">
+                    Check Firestore:
+                    members collection →
+                    your admin member record →
+                    role must be Admin,
+                    Super Admin, or Founder.
+                </span>
+
+            `;
 
         }
 
@@ -2004,7 +2301,9 @@
 
 
             requestsBody.innerHTML = `
+
                 <tr>
+
                     <td colspan="6">
 
                         <div class="loading">
@@ -2016,7 +2315,9 @@
                         </div>
 
                     </td>
+
                 </tr>
+
             `;
 
 
@@ -2027,28 +2328,14 @@
                 );
 
 
-            let requestsQuery;
-
-
-            try {
-
-                requestsQuery =
-                    query(
-                        requestsRef,
-                        orderBy(
-                            "createdAt",
-                            "desc"
-                        )
-                    );
-
-            } catch (
-                error
-            ) {
-
-                requestsQuery =
-                    requestsRef;
-
-            }
+            const requestsQuery =
+                query(
+                    requestsRef,
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    )
+                );
 
 
             unsubscribeRequests =
@@ -2060,10 +2347,12 @@
                         allRequests =
                             snapshot.docs.map(
                                 item => ({
+
                                     id:
                                         item.id,
 
                                     ...item.data()
+
                                 })
                             );
 
@@ -2077,12 +2366,15 @@
                     error => {
 
                         console.error(
+                            "Requests error:",
                             error
                         );
 
 
                         requestsBody.innerHTML = `
+
                             <tr>
+
                                 <td colspan="6">
 
                                     <div class="empty">
@@ -2104,7 +2396,9 @@
                                     </div>
 
                                 </td>
+
                             </tr>
+
                         `;
 
 
@@ -2131,8 +2425,7 @@
                         String(
                             item.status ||
                             "pending"
-                        )
-                            .toLowerCase() ===
+                        ).toLowerCase() ===
                         "pending"
                 ).length;
 
@@ -2143,8 +2436,7 @@
                         String(
                             item.status ||
                             ""
-                        )
-                            .toLowerCase() ===
+                        ).toLowerCase() ===
                         "approved"
                 ).length;
 
@@ -2155,8 +2447,7 @@
                         String(
                             item.status ||
                             ""
-                        )
-                            .toLowerCase() ===
+                        ).toLowerCase() ===
                         "rejected"
                 ).length;
 
@@ -2164,11 +2455,14 @@
             pendingCount.textContent =
                 pending;
 
+
             approvedCount.textContent =
                 approved;
 
+
             rejectedCount.textContent =
                 rejected;
+
 
             totalCount.textContent =
                 allRequests.length;
@@ -2200,13 +2494,13 @@
                             String(
                                 request.status ||
                                 "pending"
-                            )
-                                .toLowerCase();
+                            ).toLowerCase();
 
 
                         if (
                             status !== "all" &&
-                            requestStatus !== status
+                            requestStatus !==
+                            status
                         ) {
 
                             return false;
@@ -2222,12 +2516,19 @@
 
 
                         const searchable = [
+
                             request.displayName,
+
                             request.tiktokUsername,
+
                             request.referredBy,
+
                             request.memberCode,
+
                             request.email,
+
                             request.message
+
                         ]
                             .filter(Boolean)
                             .join(" ")
@@ -2242,12 +2543,12 @@
                 );
 
 
-            if (
-                !filtered.length
-            ) {
+            if (!filtered.length) {
 
                 requestsBody.innerHTML = `
+
                     <tr>
+
                         <td colspan="6">
 
                             <div class="empty">
@@ -2263,7 +2564,9 @@
                             </div>
 
                         </td>
+
                     </tr>
+
                 `;
 
                 return;
@@ -2296,8 +2599,7 @@
                 String(
                     request.status ||
                     "pending"
-                )
-                    .toLowerCase();
+                ).toLowerCase();
 
 
             const name =
@@ -2312,12 +2614,14 @@
 
 
             let actionButtons = `
+
                 <button
                     class="btn btn-small"
                     onclick="window.viewRequest('${request.id}')"
                 >
                     View
                 </button>
+
             `;
 
 
@@ -2326,6 +2630,7 @@
             ) {
 
                 actionButtons += `
+
                     <button
                         class="btn btn-small btn-success"
                         onclick="window.openApprove('${request.id}')"
@@ -2339,6 +2644,7 @@
                     >
                         Reject
                     </button>
+
                 `;
 
             } else if (
@@ -2346,80 +2652,98 @@
             ) {
 
                 actionButtons += `
+
                     <button
                         class="btn btn-small btn-gold"
                         onclick="window.viewRequest('${request.id}')"
                     >
                         Approved
                     </button>
+
                 `;
 
             }
 
 
             return `
+
                 <tr>
 
                     <td>
 
                         <div class="user-name">
-                            ${escapeHtml(name)}
+                            ${escapeHtml(
+                                name
+                            )}
                         </div>
 
                         <div class="username">
-                            @${escapeHtml(username)}
+                            @${escapeHtml(
+                                username
+                            )}
                         </div>
 
                     </td>
 
 
                     <td>
-                        ${
-                            escapeHtml(
-                                request.referredBy ||
-                                "—"
-                            )
-                        }
+
+                        ${escapeHtml(
+                            request.referredBy ||
+                            "—"
+                        )}
+
                     </td>
 
 
                     <td>
-                        ${getStatusBadge(status)}
+
+                        ${getStatusBadge(
+                            status
+                        )}
+
                     </td>
 
 
                     <td>
+
                         <span class="muted">
-                            ${
-                                escapeHtml(
-                                    request.memberCode ||
-                                    "Not assigned"
-                                )
-                            }
+
+                            ${escapeHtml(
+                                request.memberCode ||
+                                "Not assigned"
+                            )}
+
                         </span>
+
                     </td>
 
 
                     <td>
+
                         <span class="muted">
-                            ${
-                                formatDate(
-                                    request.createdAt
-                                )
-                            }
+
+                            ${formatDate(
+                                request.createdAt
+                            )}
+
                         </span>
+
                     </td>
 
 
                     <td>
 
                         <div class="actions">
+
                             ${actionButtons}
+
                         </div>
 
                     </td>
 
                 </tr>
+
             `;
 
         }
@@ -2430,9 +2754,7 @@
         ========================================== */
 
         window.viewRequest =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -2462,12 +2784,10 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                escapeHtml(
-                                    request.displayName ||
-                                    "—"
-                                )
-                            }
+                            ${escapeHtml(
+                                request.displayName ||
+                                "—"
+                            )}
                         </div>
 
                     </div>
@@ -2497,12 +2817,10 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                escapeHtml(
-                                    request.referredBy ||
-                                    "—"
-                                )
-                            }
+                            ${escapeHtml(
+                                request.referredBy ||
+                                "—"
+                            )}
                         </div>
 
                     </div>
@@ -2530,12 +2848,10 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                escapeHtml(
-                                    request.memberCode ||
-                                    "Not assigned"
-                                )
-                            }
+                            ${escapeHtml(
+                                request.memberCode ||
+                                "Not assigned"
+                            )}
                         </div>
 
                     </div>
@@ -2548,11 +2864,9 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                formatDate(
-                                    request.createdAt
-                                )
-                            }
+                            ${formatDate(
+                                request.createdAt
+                            )}
                         </div>
 
                     </div>
@@ -2565,12 +2879,10 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                escapeHtml(
-                                    request.message ||
-                                    "No message provided."
-                                )
-                            }
+                            ${escapeHtml(
+                                request.message ||
+                                "No message provided."
+                            )}
                         </div>
 
                     </div>
@@ -2583,11 +2895,9 @@
                         </div>
 
                         <div class="detail-value">
-                            ${
-                                escapeHtml(
-                                    request.id
-                                )
-                            }
+                            ${escapeHtml(
+                                request.id
+                            )}
                         </div>
 
                     </div>
@@ -2603,13 +2913,11 @@
 
 
         /* ==========================================
-           APPROVE REQUEST
+           APPROVE
         ========================================== */
 
         window.openApprove =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -2707,23 +3015,15 @@
             }
 
 
-            /*
-             * Authentication account creation
-             * requires an email.
-             *
-             * If email is empty, the member
-             * record can still be created, but
-             * the Cloud Function will mark
-             * authStatus as email_required.
-             */
-
             const button =
                 document.getElementById(
                     "confirmApproveBtn"
                 );
 
 
-            button.disabled = true;
+            button.disabled =
+                true;
+
 
             button.textContent =
                 "Approving...";
@@ -2731,9 +3031,9 @@
 
             try {
 
-                /* ==========================================
-                   CHECK DUPLICATE MEMBER CODE
-                ========================================== */
+                /*
+                 * Check duplicate member code
+                 */
 
                 const existingMemberQuery =
                     query(
@@ -2759,38 +3059,24 @@
                     !existingMemberSnap.empty
                 ) {
 
-                    /*
-                     * Allow the same request's
-                     * existing member document.
-                     */
+                    showToast(
+                        "Member code already exists.",
+                        "error"
+                    );
 
-                    const duplicateOtherMember =
-                        existingMemberSnap.docs.some(
-                            memberDoc =>
-                                memberDoc.id !==
-                                request.id
-                        );
-
-
-                    if (
-                        duplicateOtherMember
-                    ) {
-
-                        showToast(
-                            "Member code already exists.",
-                            "error"
-                        );
-
-                        return;
-
-                    }
+                    return;
 
                 }
 
 
-                /* ==========================================
-                   CREATE MEMBER DOCUMENT
-                ========================================== */
+                /*
+                 * Create member document.
+                 *
+                 * IMPORTANT:
+                 * Request ID remains as document ID.
+                 * This is compatible with the new
+                 * admin access checker.
+                 */
 
                 const memberRef =
                     doc(
@@ -2855,9 +3141,9 @@
                 );
 
 
-                /* ==========================================
-                   UPDATE ORIGINAL REQUEST
-                ========================================== */
+                /*
+                 * Update original request
+                 */
 
                 await updateDoc(
                     doc(
@@ -2911,9 +3197,7 @@
                 );
 
 
-            } catch (
-                error
-            ) {
+            } catch (error) {
 
                 console.error(
                     "Approve error:",
@@ -2932,6 +3216,7 @@
                 button.disabled =
                     false;
 
+
                 button.textContent =
                     "✓ Approve Member";
 
@@ -2941,13 +3226,11 @@
 
 
         /* ==========================================
-           REJECT REQUEST
+           REJECT
         ========================================== */
 
         window.openReject =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -3002,7 +3285,9 @@
                 );
 
 
-            button.disabled = true;
+            button.disabled =
+                true;
+
 
             button.textContent =
                 "Rejecting...";
@@ -3056,9 +3341,7 @@
                 );
 
 
-            } catch (
-                error
-            ) {
+            } catch (error) {
 
                 console.error(
                     "Reject error:",
@@ -3076,6 +3359,7 @@
 
                 button.disabled =
                     false;
+
 
                 button.textContent =
                     "✕ Reject Request";
@@ -3178,12 +3462,11 @@
                             auth
                         );
 
+
                         window.location.href =
                             "login.html";
 
-                    } catch (
-                        error
-                    ) {
+                    } catch (error) {
 
                         showToast(
                             "Logout failed.",
@@ -3294,14 +3577,11 @@
             );
 
 
-        /* ==========================================
-           CLOSE MODAL OUTSIDE
-        ========================================== */
-
         [
             viewModal,
             approveModal,
             rejectModal
+
         ].forEach(
             modal => {
 
@@ -3326,10 +3606,6 @@
             }
         );
 
-
-        /* ==========================================
-           ESC CLOSE MODAL
-        ========================================== */
 
         document.addEventListener(
             "keydown",
@@ -3364,22 +3640,12 @@
 
         onAuthStateChanged(
             auth,
+
             async user => {
 
                 console.log(
-                    "Auth state:",
+                    "AUTH STATE:",
                     user
-                        ? {
-                            uid:
-                                user.uid,
-
-                            email:
-                                user.email,
-
-                            emailVerified:
-                                user.emailVerified
-                        }
-                        : "Not logged in"
                 );
 
 
@@ -3397,6 +3663,12 @@
                         "flex";
 
 
+                    showAccessDebug(
+                        null,
+                        "No Firebase Authentication user is logged in."
+                    );
+
+
                     return;
 
                 }
@@ -3406,13 +3678,79 @@
                     user;
 
 
-                const isAdmin =
-                    await checkAdminAccess(
-                        user
+                try {
+
+                    /*
+                     * Make sure latest
+                     * authentication token
+                     * is available.
+                     */
+
+                    await user.getIdToken(
+                        true
                     );
 
 
-                if (!isAdmin) {
+                    const access =
+                        await checkAdminAccess(
+                            user
+                        );
+
+
+                    console.log(
+                        "ADMIN ACCESS RESULT:",
+                        access
+                    );
+
+
+                    if (
+                        !access.allowed
+                    ) {
+
+                        appEl.style.display =
+                            "none";
+
+
+                        accessDenied.style.display =
+                            "flex";
+
+
+                        showAccessDebug(
+                            user,
+                            access.reason
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * ADMIN ACCESS GRANTED
+                     */
+
+                    accessDenied.style.display =
+                        "none";
+
+
+                    debugBox.style.display =
+                        "none";
+
+
+                    appEl.style.display =
+                        "block";
+
+
+                    loadRequests();
+
+                } catch (error) {
+
+                    console.error(
+                        "Admin authentication error:",
+                        error
+                    );
+
 
                     appEl.style.display =
                         "none";
@@ -3422,24 +3760,13 @@
                         "flex";
 
 
-                    return;
+                    showAccessDebug(
+                        user,
+                        "Authentication/Firestore error: " +
+                        error.message
+                    );
 
                 }
-
-
-                /* ==========================================
-                   ADMIN ACCESS GRANTED
-                ========================================== */
-
-                accessDenied.style.display =
-                    "none";
-
-
-                appEl.style.display =
-                    "block";
-
-
-                loadRequests();
 
             }
         );
