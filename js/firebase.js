@@ -1,11 +1,3 @@
-import {
-    auth,
-    db,
-    storage
-} from "../firebase-config.js";
+import { auth, db } from "../firebase-config.js";
 
-export {
-    auth,
-    db,
-    storage
-};
+export { auth, db };
