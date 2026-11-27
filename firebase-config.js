@@ -1,32 +1,19 @@
-// =====================================================
-// NIGHTFALL DEVILS
-// FIREBASE CONFIGURATION
-// =====================================================
-
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-
 
 import {
     getAuth
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-
 import {
     getFirestore
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-
 
 import {
     getStorage
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
 
-
-
-// =====================================================
-// FIREBASE CONFIG
-// =====================================================
 
 const firebaseConfig = {
 
@@ -54,21 +41,11 @@ const firebaseConfig = {
 };
 
 
-
-// =====================================================
-// INITIALIZE FIREBASE
-// =====================================================
-
 const app =
     initializeApp(
         firebaseConfig
     );
 
-
-
-// =====================================================
-// FIREBASE AUTHENTICATION
-// =====================================================
 
 const auth =
     getAuth(
@@ -76,21 +53,11 @@ const auth =
     );
 
 
-
-// =====================================================
-// FIRESTORE DATABASE
-// =====================================================
-
 const db =
     getFirestore(
         app
     );
 
-
-
-// =====================================================
-// FIREBASE STORAGE
-// =====================================================
 
 const storage =
     getStorage(
@@ -98,19 +65,9 @@ const storage =
     );
 
 
-
-// =====================================================
-// EXPORT
-// =====================================================
-
 export {
-
     app,
-
     auth,
-
     db,
-
     storage
-
 };
