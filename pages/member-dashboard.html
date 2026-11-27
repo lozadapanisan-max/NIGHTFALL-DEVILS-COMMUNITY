@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -10,7 +12,7 @@
 
     <meta
         name="theme-color"
-        content="#0a0a0a"
+        content="#0b0b0b"
     >
 
     <meta
@@ -18,30 +20,31 @@
         content="NIGHTFALL DEVILS Member Dashboard"
     >
 
-    <title>NIGHTFALL DEVILS — Member Dashboard</title>
+    <title>Member Dashboard | NIGHTFALL DEVILS</title>
 
-    <link
-        rel="icon"
-        href="../assets/logo.png"
-    >
 
     <style>
+
         :root {
             --red: #d71920;
-            --red-dark: #9d1015;
+            --red-dark: #a90f15;
             --gold: #f5c542;
-            --gold-dark: #c79b20;
-            --black: #050505;
-            --bg: #0a0a0a;
-            --card: #111111;
-            --card-2: #151515;
-            --border: rgba(245, 197, 66, 0.18);
+
+            --bg: #080808;
+            --panel: #111111;
+            --panel-2: #151515;
+
+            --border: #292929;
+
             --text: #ffffff;
-            --muted: #a8a8a8;
+            --muted: #999999;
+
             --green: #22c55e;
             --orange: #f59e0b;
+            --blue: #3b82f6;
             --danger: #ef4444;
         }
+
 
         * {
             box-sizing: border-box;
@@ -49,921 +52,1732 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
 
         body {
-            min-height: 100vh;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(215, 25, 32, 0.12),
-                    transparent 30%
+                    rgba(215, 25, 32, .13),
+                    transparent 35%
                 ),
                 radial-gradient(
                     circle at bottom left,
-                    rgba(245, 197, 66, 0.08),
+                    rgba(245, 197, 66, .05),
                     transparent 30%
                 ),
                 var(--bg);
+
             color: var(--text);
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-        }
 
-        button,
-        input {
-            font-family: inherit;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* =========================
-           LOADING SCREEN
-        ========================= */
-
-        #loadingScreen {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 18px;
-            background: #050505;
-        }
-
-        .loader-logo {
-            width: 95px;
-            height: 95px;
-            object-fit: contain;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        .loader-spinner {
-            width: 42px;
-            height: 42px;
-            border: 4px solid rgba(245, 197, 66, 0.18);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
-
-        .loader-text {
-            color: var(--gold);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.05);
-                opacity: 0.75;
-            }
-        }
-
-        /* =========================
-           APP
-        ========================= */
-
-        #app {
-            display: none;
             min-height: 100vh;
         }
 
-        /* =========================
-           HEADER
-        ========================= */
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* ==========================================
+           TOPBAR
+        ========================================== */
 
         .topbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            min-height: 72px;
+
+            min-height: 70px;
+
+            background:
+                rgba(8, 8, 8, .96);
+
+            border-bottom:
+                1px solid var(--border);
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             gap: 15px;
-            padding: 12px 22px;
-            background: rgba(5, 5, 5, 0.94);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
+
+            padding:
+                10px 22px;
+
+            backdrop-filter:
+                blur(12px);
         }
+
 
         .brand {
             display: flex;
             align-items: center;
             gap: 12px;
+
             min-width: 0;
         }
 
+
         .brand img {
-            width: 46px;
-            height: 46px;
+            width: 42px;
+            height: 42px;
+
             object-fit: contain;
+
             border-radius: 50%;
+
+            border:
+                2px solid var(--gold);
+
+            background: #000;
+
+            flex-shrink: 0;
         }
+
 
         .brand-text {
             min-width: 0;
         }
 
-        .brand-title {
-            color: var(--gold);
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            white-space: nowrap;
+
+        .brand-text h1 {
+            font-size: 18px;
+
+            color:
+                var(--gold);
+
+            letter-spacing:
+                1px;
+
+            white-space:
+                nowrap;
         }
 
-        .brand-subtitle {
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 2px;
-        }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .brand-text span {
+            display: block;
 
-        .user-mini {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 7px 11px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-        }
+            margin-top: 3px;
 
-        .mini-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #222;
-            border: 1px solid var(--gold);
-        }
-
-        .mini-info {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-        }
-
-        .mini-name {
-            max-width: 140px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .mini-role {
-            color: var(--gold);
             font-size: 10px;
-            text-transform: uppercase;
+
+            color:
+                var(--muted);
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
         }
 
-        .logout-btn {
-            border: 1px solid rgba(215, 25, 32, 0.5);
-            background: rgba(215, 25, 32, 0.1);
-            color: #ff7378;
-            border-radius: 10px;
-            padding: 10px 13px;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.2s;
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
         }
 
-        .logout-btn:hover {
-            background: var(--red);
-            color: white;
+
+        .btn {
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--panel-2);
+
+            color:
+                white;
+
+            border-radius:
+                8px;
+
+            padding:
+                10px 14px;
+
+            transition:
+                .2s ease;
         }
 
-        /* =========================
+
+        .btn:hover {
+            border-color:
+                var(--gold);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .btn-primary {
+            background:
+                var(--red);
+
+            border-color:
+                var(--red);
+        }
+
+
+        .btn-primary:hover {
+            background:
+                var(--red-dark);
+
+            border-color:
+                var(--red-dark);
+        }
+
+
+        .btn-gold {
+            background:
+                var(--gold);
+
+            color:
+                #111;
+
+            border-color:
+                var(--gold);
+
+            font-weight:
+                700;
+        }
+
+
+        .btn-danger {
+            background:
+                rgba(239, 68, 68, .12);
+
+            color:
+                #ff8b8b;
+
+            border-color:
+                rgba(239, 68, 68, .35);
+        }
+
+
+        .btn-small {
+            padding:
+                7px 10px;
+
+            font-size:
+                12px;
+        }
+
+
+        /* ==========================================
            MAIN
-        ========================= */
+        ========================================== */
 
         .container {
-            width: min(1250px, calc(100% - 32px));
-            margin: 0 auto;
-            padding: 28px 0 50px;
+            width:
+                min(
+                    1250px,
+                    calc(100% - 30px)
+                );
+
+            margin:
+                25px auto 50px;
         }
+
 
         .welcome {
-            position: relative;
-            overflow: hidden;
-            padding: 30px;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(215, 25, 32, 0.16),
-                    rgba(245, 197, 66, 0.04)
-                ),
-                var(--card);
-            margin-bottom: 20px;
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr auto;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                20px;
         }
 
-        .welcome::after {
-            content: "😈";
-            position: absolute;
-            right: 28px;
-            bottom: -22px;
-            font-size: 110px;
-            opacity: 0.07;
-            pointer-events: none;
+
+        .welcome h2 {
+            font-size:
+                29px;
+
+            margin-bottom:
+                6px;
         }
 
-        .welcome-label {
-            color: var(--gold);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 7px;
-        }
-
-        .welcome h1 {
-            font-size: clamp(25px, 4vw, 40px);
-            line-height: 1.1;
-            margin-bottom: 8px;
-        }
-
-        .welcome h1 span {
-            color: var(--gold);
-        }
 
         .welcome p {
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.6;
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.5;
         }
 
-        /* =========================
-           STATS
-        ========================= */
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+        .welcome-name {
+            color:
+                var(--gold);
         }
 
-        .stat-card {
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 17px;
+
+        .member-code-box {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(245,197,66,.12),
+                    rgba(215,25,32,.07)
+                );
+
+            border:
+                1px solid
+                rgba(245,197,66,.25);
+
+            border-radius:
+                12px;
+
+            padding:
+                12px 16px;
+
+            text-align:
+                right;
         }
 
-        .stat-card::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gold);
+
+        .member-code-label {
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .8px;
+
+            margin-bottom:
+                4px;
         }
 
-        .stat-label {
-            color: var(--muted);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 7px;
+
+        .member-code-value {
+            color:
+                var(--gold);
+
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .7px;
         }
 
-        .stat-value {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--gold);
+
+        /* ==========================================
+           PROFILE CARD
+        ========================================== */
+
+        .profile-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.035),
+                    rgba(255,255,255,.01)
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                16px;
+
+            padding:
+                22px;
+
+            margin-bottom:
+                20px;
         }
 
-        .stat-sub {
-            color: #777;
-            font-size: 10px;
-            margin-top: 5px;
+
+        .profile-main {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                18px;
         }
 
-        /* =========================
-           GRID
-        ========================= */
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
-            gap: 20px;
-            align-items: start;
+        .avatar {
+            width:
+                90px;
+
+            height:
+                90px;
+
+            border-radius:
+                50%;
+
+            border:
+                3px solid
+                var(--gold);
+
+            background:
+                #0b0b0b;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
+
+            flex-shrink:
+                0;
+
+            box-shadow:
+                0 0 25px
+                rgba(245,197,66,.10);
         }
 
-        .left-column,
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+
+        .avatar img {
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
         }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
+
+        .avatar-initial {
+            color:
+                var(--gold);
+
+            font-size:
+                32px;
+
+            font-weight:
+                800;
         }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 17px 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        .profile-info {
+            min-width:
+                0;
         }
 
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 15px;
-            font-weight: 900;
+
+        .profile-info h3 {
+            font-size:
+                22px;
+
+            margin-bottom:
+                5px;
         }
 
-        .card-title-icon {
-            width: 30px;
-            height: 30px;
-            display: grid;
-            place-items: center;
-            border-radius: 9px;
-            background: rgba(215, 25, 32, 0.12);
-            border: 1px solid rgba(215, 25, 32, 0.2);
+
+        .profile-username {
+            color:
+                var(--gold);
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                8px;
         }
 
-        .card-body {
-            padding: 18px;
+
+        .profile-role {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            padding:
+                5px 9px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(245,197,66,.10);
+
+            border:
+                1px solid
+                rgba(245,197,66,.25);
+
+            color:
+                var(--gold);
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+            text-transform:
+                uppercase;
         }
 
-        .view-all {
-            color: var(--gold);
-            font-size: 11px;
-            font-weight: 800;
-        }
-
-        /* =========================
-           PROFILE
-        ========================= */
-
-        .profile-top {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .profile-avatar {
-            width: 82px;
-            height: 82px;
-            flex: 0 0 82px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #222;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 0 5px rgba(245, 197, 66, 0.05);
-        }
-
-        .profile-name {
-            font-size: 20px;
-            font-weight: 900;
-            margin-bottom: 4px;
-        }
-
-        .profile-tiktok {
-            color: var(--gold);
-            font-size: 13px;
-        }
 
         .profile-status {
-            display: inline-flex;
-            margin-top: 8px;
-            padding: 4px 9px;
-            border-radius: 20px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            color: #68e394;
-            font-size: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            padding:
+                5px 9px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(34,197,94,.10);
+
+            border:
+                1px solid
+                rgba(34,197,94,.25);
+
+            color:
+                #68e091;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+            text-transform:
+                uppercase;
+
+            margin-left:
+                5px;
         }
 
-        .profile-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 18px;
+
+        .status-dot {
+            width:
+                6px;
+
+            height:
+                6px;
+
+            background:
+                currentColor;
+
+            border-radius:
+                50%;
         }
 
-        .detail {
-            padding: 12px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        .profile-grid {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                10px;
+
+            margin-top:
+                20px;
         }
 
-        .detail-label {
-            color: #777;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 5px;
+
+        .profile-item {
+            background:
+                #0b0b0b;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            padding:
+                12px;
         }
 
-        .detail-value {
-            font-size: 12px;
-            font-weight: 700;
-            word-break: break-word;
+
+        .profile-label {
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .6px;
+
+            margin-bottom:
+                6px;
         }
 
-        .member-code {
-            color: var(--gold);
-            letter-spacing: 0.5px;
+
+        .profile-value {
+            color:
+                white;
+
+            font-size:
+                13px;
+
+            word-break:
+                break-word;
         }
 
-        /* =========================
+
+        /* ==========================================
+           STATS
+        ========================================== */
+
+        .stats {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                14px;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .stat-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.03),
+                    rgba(255,255,255,.01)
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                14px;
+
+            padding:
+                18px;
+
+            min-height:
+                105px;
+        }
+
+
+        .stat-label {
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .7px;
+        }
+
+
+        .stat-number {
+            margin-top:
+                10px;
+
+            font-size:
+                29px;
+
+            font-weight:
+                800;
+        }
+
+
+        .stat-card.schedule {
+            border-color:
+                rgba(245,197,66,.25);
+        }
+
+
+        .stat-card.schedule
+        .stat-number {
+            color:
+                var(--gold);
+        }
+
+
+        .stat-card.announcement {
+            border-color:
+                rgba(59,130,246,.25);
+        }
+
+
+        .stat-card.announcement
+        .stat-number {
+            color:
+                #60a5fa;
+        }
+
+
+        .stat-card.status {
+            border-color:
+                rgba(34,197,94,.25);
+        }
+
+
+        .stat-card.status
+        .stat-number {
+            color:
+                var(--green);
+
+            font-size:
+                20px;
+
+            margin-top:
+                15px;
+        }
+
+
+        /* ==========================================
+           SECTIONS
+        ========================================== */
+
+        .section {
+            background:
+                var(--panel);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                14px;
+
+            overflow:
+                hidden;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .section-header {
+            padding:
+                16px 18px;
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+        }
+
+
+        .section-header h3 {
+            font-size:
+                16px;
+
+            color:
+                var(--gold);
+        }
+
+
+        .section-header span {
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+        }
+
+
+        .section-body {
+            padding:
+                18px;
+        }
+
+
+        /* ==========================================
            SCHEDULE
-        ========================= */
+        ========================================== */
 
         .schedule-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display:
+                grid;
+
+            gap:
+                10px;
         }
+
 
         .schedule-item {
-            display: grid;
-            grid-template-columns: 62px minmax(0, 1fr) auto;
-            gap: 13px;
-            align-items: center;
-            padding: 13px;
-            border-radius: 13px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.2s;
+            display:
+                grid;
+
+            grid-template-columns:
+                90px 1fr auto;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            background:
+                #0b0b0b;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                11px;
+
+            padding:
+                13px;
+
+            transition:
+                .2s ease;
         }
+
 
         .schedule-item:hover {
-            border-color: rgba(245, 197, 66, 0.25);
-            transform: translateY(-1px);
+            border-color:
+                rgba(245,197,66,.35);
+
+            transform:
+                translateY(-1px);
         }
+
 
         .schedule-date {
-            text-align: center;
-            padding: 8px 4px;
-            border-radius: 10px;
-            background: rgba(215, 25, 32, 0.12);
-            border: 1px solid rgba(215, 25, 32, 0.2);
+            text-align:
+                center;
+
+            border-right:
+                1px solid
+                var(--border);
+
+            padding-right:
+                14px;
         }
 
-        .date-day {
-            color: var(--gold);
-            font-size: 18px;
-            font-weight: 900;
+
+        .schedule-day {
+            display:
+                block;
+
+            font-size:
+                23px;
+
+            font-weight:
+                800;
+
+            color:
+                var(--gold);
         }
 
-        .date-month {
-            color: #aaa;
-            font-size: 9px;
-            text-transform: uppercase;
-            font-weight: 800;
+
+        .schedule-month {
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            margin-top:
+                2px;
         }
 
-        .schedule-info {
-            min-width: 0;
+
+        .schedule-info h4 {
+            font-size:
+                14px;
+
+            margin-bottom:
+                5px;
         }
 
-        .schedule-name {
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
 
         .schedule-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            color: var(--muted);
-            font-size: 10px;
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            line-height:
+                1.7;
         }
 
-        .schedule-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 3px 7px;
-            border-radius: 20px;
-            background: rgba(245, 197, 66, 0.08);
-            color: var(--gold);
-            border: 1px solid rgba(245, 197, 66, 0.15);
+
+        .schedule-type {
+            display:
+                inline-block;
+
+            margin-top:
+                5px;
+
+            padding:
+                4px 7px;
+
+            border-radius:
+                5px;
+
+            background:
+                rgba(215,25,32,.10);
+
+            border:
+                1px solid
+                rgba(215,25,32,.25);
+
+            color:
+                #ff7777;
+
+            font-size:
+                9px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .4px;
         }
 
-        .schedule-action {
-            flex-shrink: 0;
+
+        .schedule-action a {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-decoration:
+                none;
+
+            padding:
+                8px 11px;
+
+            border-radius:
+                7px;
+
+            background:
+                var(--red);
+
+            color:
+                white;
+
+            font-size:
+                11px;
+
+            border:
+                1px solid
+                var(--red);
         }
 
-        .tiktok-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 10px;
-            border-radius: 9px;
-            background: var(--red);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
+
+        .schedule-action a:hover {
+            background:
+                var(--red-dark);
         }
 
-        .empty-state {
-            padding: 30px 15px;
-            text-align: center;
-            color: #777;
-        }
 
-        .empty-icon {
-            font-size: 30px;
-            margin-bottom: 8px;
-            opacity: 0.5;
-        }
-
-        .empty-title {
-            color: #aaa;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .empty-text {
-            font-size: 10px;
-        }
-
-        /* =========================
+        /* ==========================================
            ANNOUNCEMENTS
-        ========================= */
+        ========================================== */
 
         .announcement-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display:
+                grid;
+
+            gap:
+                10px;
         }
 
-        .announcement-item {
-            padding: 13px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.025);
-            border-left: 3px solid var(--red);
+
+        .announcement {
+            background:
+                #0b0b0b;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                11px;
+
+            padding:
+                15px;
         }
+
+
+        .announcement-top {
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                7px;
+        }
+
 
         .announcement-title {
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 5px;
+            font-size:
+                14px;
+
+            font-weight:
+                700;
         }
 
-        .announcement-message {
-            color: #aaa;
-            font-size: 11px;
-            line-height: 1.55;
-            white-space: pre-wrap;
-        }
 
         .announcement-date {
-            color: #666;
-            font-size: 9px;
-            margin-top: 8px;
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            white-space:
+                nowrap;
         }
 
-        /* =========================
+
+        .announcement-message {
+            color:
+                #d0d0d0;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.7;
+
+            white-space:
+                pre-wrap;
+
+            word-break:
+                break-word;
+        }
+
+
+        .announcement-tag {
+            display:
+                inline-block;
+
+            margin-top:
+                9px;
+
+            padding:
+                4px 7px;
+
+            border-radius:
+                5px;
+
+            background:
+                rgba(245,197,66,.08);
+
+            border:
+                1px solid
+                rgba(245,197,66,.2);
+
+            color:
+                var(--gold);
+
+            font-size:
+                9px;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        /* ==========================================
            QUICK LINKS
-        ========================= */
+        ========================================== */
 
         .quick-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                10px;
         }
+
 
         .quick-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 13px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: 0.2s;
+            text-decoration:
+                none;
+
+            color:
+                white;
+
+            background:
+                #0b0b0b;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                10px;
+
+            padding:
+                15px;
+
+            text-align:
+                center;
+
+            transition:
+                .2s ease;
         }
+
 
         .quick-link:hover {
-            border-color: var(--gold);
-            transform: translateY(-2px);
+            border-color:
+                var(--gold);
+
+            transform:
+                translateY(-2px);
         }
 
-        .quick-icon {
-            width: 34px;
-            height: 34px;
-            display: grid;
-            place-items: center;
-            border-radius: 9px;
-            background: rgba(215, 25, 32, 0.1);
+
+        .quick-link-icon {
+            font-size:
+                24px;
+
+            margin-bottom:
+                7px;
         }
 
-        .quick-text {
-            min-width: 0;
+
+        .quick-link-title {
+            font-size:
+                12px;
+
+            font-weight:
+                700;
         }
 
-        .quick-title {
-            font-size: 11px;
-            font-weight: 800;
+
+        .quick-link-desc {
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            margin-top:
+                4px;
         }
 
-        .quick-sub {
-            color: #666;
-            font-size: 9px;
-            margin-top: 2px;
+
+        /* ==========================================
+           EMPTY / LOADING
+        ========================================== */
+
+        .loading {
+            padding:
+                35px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            color: #555;
-            font-size: 10px;
+        .spinner {
+            width:
+                30px;
+
+            height:
+                30px;
+
+            border:
+                3px solid
+                #333;
+
+            border-top-color:
+                var(--gold);
+
+            border-radius:
+                50%;
+
+            animation:
+                spin .8s linear infinite;
+
+            margin:
+                0 auto 12px;
         }
 
-        footer strong {
-            color: var(--gold);
+
+        @keyframes spin {
+            to {
+                transform:
+                    rotate(360deg);
+            }
         }
 
-        /* =========================
+
+        .empty {
+            padding:
+                35px 20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+        }
+
+
+        .empty-icon {
+            font-size:
+                32px;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        /* ==========================================
+           ACCESS DENIED
+        ========================================== */
+
+        .access-denied {
+            min-height:
+                100vh;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+            text-align:
+                center;
+        }
+
+
+        .access-card {
+            width:
+                min(
+                    450px,
+                    100%
+                );
+
+            background:
+                var(--panel);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                16px;
+
+            padding:
+                30px;
+        }
+
+
+        .access-card img {
+            width:
+                75px;
+
+            height:
+                75px;
+
+            border-radius:
+                50%;
+
+            border:
+                2px solid
+                var(--gold);
+
+            object-fit:
+                contain;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .access-card h2 {
+            margin-bottom:
+                8px;
+        }
+
+
+        .access-card p {
+            color:
+                var(--muted);
+
+            line-height:
+                1.6;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        /* ==========================================
            TOAST
-        ========================= */
-
-        #toastContainer {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            z-index: 100000;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            width: min(360px, calc(100% - 36px));
-        }
+        ========================================== */
 
         .toast {
-            padding: 13px 15px;
-            border-radius: 12px;
-            background: #151515;
-            border: 1px solid var(--border);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            font-size: 12px;
-            animation: toastIn 0.25s ease;
+            position:
+                fixed;
+
+            right:
+                20px;
+
+            bottom:
+                20px;
+
+            z-index:
+                5000;
+
+            width:
+                min(
+                    380px,
+                    calc(100% - 40px)
+                );
+
+            background:
+                #151515;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-left:
+                4px solid
+                var(--gold);
+
+            border-radius:
+                10px;
+
+            padding:
+                13px 15px;
+
+            box-shadow:
+                0 15px 50px
+                rgba(0,0,0,.45);
+
+            display:
+                none;
         }
+
+
+        .toast.show {
+            display:
+                block;
+
+            animation:
+                toastIn .2s ease;
+        }
+
 
         .toast.success {
-            border-color: rgba(34, 197, 94, 0.35);
+            border-left-color:
+                var(--green);
         }
+
 
         .toast.error {
-            border-color: rgba(239, 68, 68, 0.4);
+            border-left-color:
+                var(--danger);
         }
 
-        .toast.info {
-            border-color: rgba(245, 197, 66, 0.35);
-        }
 
         @keyframes toastIn {
+
             from {
-                opacity: 0;
-                transform: translateY(10px);
+                opacity:
+                    0;
+
+                transform:
+                    translateY(10px);
             }
 
             to {
-                opacity: 1;
-                transform: translateY(0);
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0);
             }
+
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
 
         @media (max-width: 900px) {
-            .content-grid {
-                grid-template-columns: 1fr;
+
+            .profile-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .right-column {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                align-items: start;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .topbar {
-                padding: 10px 13px;
-            }
-
-            .brand img {
-                width: 40px;
-                height: 40px;
-            }
-
-            .brand-title {
-                font-size: 13px;
-            }
-
-            .brand-subtitle {
-                font-size: 9px;
-            }
-
-            .user-mini {
-                display: none;
-            }
-
-            .container {
-                width: min(100% - 20px, 1250px);
-                padding-top: 15px;
-            }
-
-            .welcome {
-                padding: 22px 18px;
-                border-radius: 17px;
-            }
-
-            .welcome::after {
-                font-size: 80px;
-                right: 10px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 8px;
-            }
-
-            .stat-card {
-                padding: 13px 10px;
-            }
-
-            .stat-value {
-                font-size: 21px;
-            }
-
-            .stat-label {
-                font-size: 8px;
-                letter-spacing: 0.4px;
-            }
-
-            .stat-sub {
-                display: none;
-            }
-
-            .right-column {
-                display: flex;
-            }
-
-            .profile-details {
-                grid-template-columns: 1fr;
-            }
-
-            .schedule-item {
-                grid-template-columns: 52px minmax(0, 1fr);
-            }
-
-            .schedule-action {
-                grid-column: 2;
-            }
 
             .quick-links {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
         }
+
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                padding:
+                    10px 13px;
+            }
+
+
+            .brand img {
+                width:
+                    38px;
+
+                height:
+                    38px;
+            }
+
+
+            .brand-text h1 {
+                font-size:
+                    15px;
+            }
+
+
+            .brand-text span {
+                font-size:
+                    8px;
+            }
+
+
+            .top-actions .btn {
+                padding:
+                    8px 9px;
+
+                font-size:
+                    11px;
+            }
+
+
+            .container {
+                width:
+                    calc(100% - 20px);
+
+                margin-top:
+                    18px;
+            }
+
+
+            .welcome {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .welcome h2 {
+                font-size:
+                    23px;
+            }
+
+
+            .member-code-box {
+                text-align:
+                    left;
+            }
+
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap:
+                    9px;
+            }
+
+
+            .stat-card {
+                min-height:
+                    90px;
+
+                padding:
+                    14px;
+            }
+
+
+            .stat-number {
+                font-size:
+                    23px;
+            }
+
+
+            .profile-main {
+                align-items:
+                    flex-start;
+            }
+
+
+            .avatar {
+                width:
+                    72px;
+
+                height:
+                    72px;
+            }
+
+
+            .avatar-initial {
+                font-size:
+                    26px;
+            }
+
+
+            .profile-info h3 {
+                font-size:
+                    18px;
+            }
+
+
+            .profile-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .schedule-item {
+                grid-template-columns:
+                    65px 1fr;
+            }
+
+
+            .schedule-action {
+                grid-column:
+                    1 / -1;
+
+                padding-top:
+                    8px;
+
+                border-top:
+                    1px solid
+                    var(--border);
+            }
+
+
+            .schedule-action a {
+                width:
+                    100%;
+            }
+
+        }
+
 
         @media (max-width: 430px) {
-            .logout-btn {
-                padding: 9px 10px;
-                font-size: 10px;
+
+            .brand-text {
+                display:
+                    none;
             }
 
-            .welcome h1 {
-                font-size: 25px;
+
+            .top-actions .home-btn {
+                display:
+                    none;
             }
 
-            .welcome p {
-                font-size: 12px;
+
+            .stats {
+                grid-template-columns:
+                    1fr;
             }
 
-            .card-header {
-                padding: 14px;
+
+            .profile-grid {
+                grid-template-columns:
+                    1fr;
             }
 
-            .card-body {
-                padding: 14px;
+
+            .quick-links {
+                grid-template-columns:
+                    1fr 1fr;
             }
 
-            .profile-top {
-                align-items: flex-start;
+
+            .profile-status {
+                margin-left:
+                    0;
+
+                margin-top:
+                    5px;
             }
 
-            .profile-avatar {
-                width: 68px;
-                height: 68px;
-                flex-basis: 68px;
-            }
-
-            .profile-name {
-                font-size: 17px;
-            }
-
-            .quick-title {
-                font-size: 10px;
-            }
-
-            .quick-sub {
-                font-size: 8px;
-            }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         LOADING SCREEN
-    ========================== -->
 
-    <div id="loadingScreen">
+    <!-- ==========================================
+         ACCESS DENIED
+    ========================================== -->
 
-        <img
-            src="../assets/logo.png"
-            alt="NIGHTFALL DEVILS"
-            class="loader-logo"
-        >
+    <div
+        id="accessDenied"
+        class="access-denied"
+        style="display:none;"
+    >
 
-        <div class="loader-spinner"></div>
+        <div class="access-card">
 
-        <div class="loader-text">
-            LOADING MEMBER PORTAL...
+            <img
+                src="../assets/logo.png"
+                alt="NIGHTFALL DEVILS"
+            >
+
+            <h2>
+                Member Access Required
+            </h2>
+
+            <p id="accessMessage">
+                Please login using your
+                NIGHTFALL DEVILS member account.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                id="goLoginBtn"
+            >
+                🔐 MEMBER LOGIN
+            </button>
+
         </div>
 
     </div>
 
 
-    <!-- =========================
-         APP
-    ========================== -->
+    <!-- ==========================================
+         MAIN APP
+    ========================================== -->
 
-    <div id="app">
+    <div
+        id="app"
+        style="display:none;"
+    >
 
-        <!-- HEADER -->
+
+        <!-- ======================================
+             TOPBAR
+        ====================================== -->
 
         <header class="topbar">
 
-            <a
-                href="member-dashboard.html"
-                class="brand"
-            >
+            <div class="brand">
 
                 <img
                     src="../assets/logo.png"
@@ -972,57 +1786,33 @@
 
                 <div class="brand-text">
 
-                    <div class="brand-title">
+                    <h1>
                         NIGHTFALL DEVILS
-                    </div>
+                    </h1>
 
-                    <div class="brand-subtitle">
-                        MEMBER PORTAL
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <div class="header-actions">
-
-                <div class="user-mini">
-
-                    <img
-                        id="miniAvatar"
-                        class="mini-avatar"
-                        src="../assets/logo.png"
-                        alt="Member"
-                    >
-
-                    <div class="mini-info">
-
-                        <div
-                            class="mini-name"
-                            id="miniName"
-                        >
-                            Member
-                        </div>
-
-                        <div
-                            class="mini-role"
-                            id="miniRole"
-                        >
-                            Member
-                        </div>
-
-                    </div>
+                    <span>
+                        Member Portal
+                    </span>
 
                 </div>
 
+            </div>
+
+
+            <div class="top-actions">
 
                 <button
-                    type="button"
-                    class="logout-btn"
+                    class="btn home-btn"
+                    id="homeBtn"
+                >
+                    🏠 Home
+                </button>
+
+                <button
+                    class="btn btn-primary"
                     id="logoutBtn"
                 >
-                    LOGOUT
+                    Logout
                 </button>
 
             </div>
@@ -1030,95 +1820,286 @@
         </header>
 
 
-        <!-- MAIN -->
+        <!-- ======================================
+             CONTENT
+        ====================================== -->
 
         <main class="container">
+
 
             <!-- WELCOME -->
 
             <section class="welcome">
 
-                <div class="welcome-label">
-                    MEMBER DASHBOARD
+                <div>
+
+                    <h2>
+                        Welcome,
+                        <span
+                            class="welcome-name"
+                            id="welcomeName"
+                        >
+                            Member
+                        </span>
+                        👿
+                    </h2>
+
+                    <p>
+                        Welcome to the official
+                        NIGHTFALL DEVILS Member Portal.
+                        Check your profile, schedule,
+                        announcements and community updates.
+                    </p>
+
                 </div>
 
-                <h1>
-                    Welcome,
-                    <span id="welcomeName">
-                        Member
-                    </span>
-                    👿
-                </h1>
 
-                <p>
-                    Welcome to the official
-                    NIGHTFALL DEVILS member portal.
-                    Check your profile, schedules,
-                    announcements and community updates.
-                </p>
+                <div class="member-code-box">
+
+                    <span class="member-code-label">
+                        Your Member Code
+                    </span>
+
+                    <span
+                        class="member-code-value"
+                        id="welcomeMemberCode"
+                    >
+                        —
+                    </span>
+
+                </div>
 
             </section>
 
 
-            <!-- STATS -->
+            <!-- ==================================
+                 PROFILE
+            ================================== -->
 
-            <section class="stats-grid">
+            <section class="profile-card">
 
-                <div class="stat-card">
+                <div class="profile-main">
+
+
+                    <div class="avatar">
+
+                        <img
+                            id="profileImage"
+                            src=""
+                            alt="Member"
+                            style="display:none;"
+                        >
+
+                        <span
+                            id="avatarInitial"
+                            class="avatar-initial"
+                        >
+                            N
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <h3 id="profileName">
+                            Loading...
+                        </h3>
+
+                        <div
+                            class="profile-username"
+                            id="profileUsername"
+                        >
+                            @username
+                        </div>
+
+
+                        <span
+                            class="profile-role"
+                            id="profileRole"
+                        >
+                            MEMBER
+                        </span>
+
+
+                        <span
+                            class="profile-status"
+                            id="profileStatus"
+                        >
+
+                            <span class="status-dot"></span>
+
+                            ACTIVE
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Member Code
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileMemberCode"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Role
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileRoleValue"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Email
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileEmail"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Joined
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileJoined"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 STATS
+            ================================== -->
+
+            <section class="stats">
+
+
+                <div class="stat-card schedule">
 
                     <div class="stat-label">
-                        My Schedule
+                        My Schedules
                     </div>
 
                     <div
-                        class="stat-value"
+                        class="stat-number"
                         id="scheduleCount"
                     >
                         0
                     </div>
 
-                    <div class="stat-sub">
-                        Assigned schedules
-                    </div>
-
                 </div>
 
 
-                <div class="stat-card">
+                <div class="stat-card announcement">
 
                     <div class="stat-label">
                         Announcements
                     </div>
 
                     <div
-                        class="stat-value"
+                        class="stat-number"
                         id="announcementCount"
                     >
                         0
                     </div>
 
-                    <div class="stat-sub">
-                        Community updates
-                    </div>
-
                 </div>
 
 
-                <div class="stat-card">
+                <div class="stat-card status">
 
                     <div class="stat-label">
-                        Status
+                        Account Status
                     </div>
 
                     <div
-                        class="stat-value"
-                        id="memberStatus"
+                        class="stat-number"
+                        id="accountStatus"
                     >
                         —
                     </div>
 
-                    <div class="stat-sub">
-                        Account status
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 MY SCHEDULE
+            ================================== -->
+
+            <section class="section">
+
+                <div class="section-header">
+
+                    <h3>
+                        📅 My Schedule
+                    </h3>
+
+                    <span>
+                        Your assigned streams and events
+                    </span>
+
+                </div>
+
+
+                <div class="section-body">
+
+                    <div
+                        id="scheduleList"
+                        class="schedule-list"
+                    >
+
+                        <div class="loading">
+
+                            <div class="spinner"></div>
+
+                            Loading your schedule...
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -1126,419 +2107,199 @@
             </section>
 
 
-            <!-- CONTENT -->
+            <!-- ==================================
+                 ANNOUNCEMENTS
+            ================================== -->
 
-            <section class="content-grid">
+            <section class="section">
 
-                <!-- LEFT -->
+                <div class="section-header">
 
-                <div class="left-column">
+                    <h3>
+                        📢 Announcements
+                    </h3>
 
-                    <!-- MY SCHEDULE -->
-
-                    <section class="card">
-
-                        <div class="card-header">
-
-                            <div class="card-title">
-
-                                <div class="card-title-icon">
-                                    📅
-                                </div>
-
-                                My Schedule
-
-                            </div>
-
-                            <a
-                                href="schedule.html"
-                                class="view-all"
-                            >
-                                VIEW ALL →
-                            </a>
-
-                        </div>
-
-
-                        <div class="card-body">
-
-                            <div
-                                class="schedule-list"
-                                id="scheduleList"
-                            >
-
-                                <div class="empty-state">
-
-                                    <div class="empty-icon">
-                                        ⏳
-                                    </div>
-
-                                    <div class="empty-title">
-                                        Loading schedule...
-                                    </div>
-
-                                    <div class="empty-text">
-                                        Please wait.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <!-- ANNOUNCEMENTS -->
-
-                    <section class="card">
-
-                        <div class="card-header">
-
-                            <div class="card-title">
-
-                                <div class="card-title-icon">
-                                    📢
-                                </div>
-
-                                Announcements
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="card-body">
-
-                            <div
-                                class="announcement-list"
-                                id="announcementList"
-                            >
-
-                                <div class="empty-state">
-
-                                    <div class="empty-icon">
-                                        ⏳
-                                    </div>
-
-                                    <div class="empty-title">
-                                        Loading announcements...
-                                    </div>
-
-                                    <div class="empty-text">
-                                        Please wait.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
+                    <span>
+                        Latest NIGHTFALL DEVILS updates
+                    </span>
 
                 </div>
 
 
-                <!-- RIGHT -->
+                <div class="section-body">
 
-                <div class="right-column">
+                    <div
+                        id="announcementList"
+                        class="announcement-list"
+                    >
 
-                    <!-- PROFILE -->
+                        <div class="loading">
 
-                    <section class="card">
+                            <div class="spinner"></div>
 
-                        <div class="card-header">
-
-                            <div class="card-title">
-
-                                <div class="card-title-icon">
-                                    👤
-                                </div>
-
-                                My Profile
-
-                            </div>
+                            Loading announcements...
 
                         </div>
 
-
-                        <div class="card-body">
-
-                            <div class="profile-top">
-
-                                <img
-                                    id="profileAvatar"
-                                    class="profile-avatar"
-                                    src="../assets/logo.png"
-                                    alt="Profile"
-                                >
-
-                                <div>
-
-                                    <div
-                                        class="profile-name"
-                                        id="profileName"
-                                    >
-                                        Member
-                                    </div>
-
-                                    <div
-                                        class="profile-tiktok"
-                                        id="profileTikTok"
-                                    >
-                                        @username
-                                    </div>
-
-                                    <div
-                                        class="profile-status"
-                                        id="profileStatus"
-                                    >
-                                        ACTIVE
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="profile-details">
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        Member Code
-                                    </div>
-
-                                    <div
-                                        class="detail-value member-code"
-                                        id="profileCode"
-                                    >
-                                        —
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        Role
-                                    </div>
-
-                                    <div
-                                        class="detail-value"
-                                        id="profileRole"
-                                    >
-                                        Member
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        Email
-                                    </div>
-
-                                    <div
-                                        class="detail-value"
-                                        id="profileEmail"
-                                    >
-                                        —
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        Joined
-                                    </div>
-
-                                    <div
-                                        class="detail-value"
-                                        id="profileJoined"
-                                    >
-                                        —
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <!-- QUICK LINKS -->
-
-                    <section class="card">
-
-                        <div class="card-header">
-
-                            <div class="card-title">
-
-                                <div class="card-title-icon">
-                                    ⚡
-                                </div>
-
-                                Quick Links
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="card-body">
-
-                            <div class="quick-links">
-
-                                <a
-                                    href="schedule.html"
-                                    class="quick-link"
-                                >
-
-                                    <div class="quick-icon">
-                                        📅
-                                    </div>
-
-                                    <div class="quick-text">
-
-                                        <div class="quick-title">
-                                            Schedule
-                                        </div>
-
-                                        <div class="quick-sub">
-                                            View live schedule
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-
-                                <a
-                                    href="rules.html"
-                                    class="quick-link"
-                                >
-
-                                    <div class="quick-icon">
-                                        📜
-                                    </div>
-
-                                    <div class="quick-text">
-
-                                        <div class="quick-title">
-                                            Rules
-                                        </div>
-
-                                        <div class="quick-sub">
-                                            Community rules
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-
-                                <a
-                                    href="organization.html"
-                                    class="quick-link"
-                                >
-
-                                    <div class="quick-icon">
-                                        🏛️
-                                    </div>
-
-                                    <div class="quick-text">
-
-                                        <div class="quick-title">
-                                            Organization
-                                        </div>
-
-                                        <div class="quick-sub">
-                                            Community structure
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-
-                                <a
-                                    href="members.html"
-                                    class="quick-link"
-                                >
-
-                                    <div class="quick-icon">
-                                        👥
-                                    </div>
-
-                                    <div class="quick-text">
-
-                                        <div class="quick-title">
-                                            Members
-                                        </div>
-
-                                        <div class="quick-sub">
-                                            Member directory
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </section>
+                    </div>
 
                 </div>
 
             </section>
 
+
+            <!-- ==================================
+                 QUICK LINKS
+            ================================== -->
+
+            <section class="section">
+
+                <div class="section-header">
+
+                    <h3>
+                        ⚡ Quick Links
+                    </h3>
+
+                    <span>
+                        NIGHTFALL DEVILS
+                    </span>
+
+                </div>
+
+
+                <div class="section-body">
+
+                    <div class="quick-links">
+
+
+                        <a
+                            href="schedule.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-link-icon">
+                                📅
+                            </div>
+
+                            <div class="quick-link-title">
+                                Schedule
+                            </div>
+
+                            <div class="quick-link-desc">
+                                View community schedule
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            href="rules.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-link-icon">
+                                📜
+                            </div>
+
+                            <div class="quick-link-title">
+                                Community Rules
+                            </div>
+
+                            <div class="quick-link-desc">
+                                Review our rules
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            href="members.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-link-icon">
+                                👥
+                            </div>
+
+                            <div class="quick-link-title">
+                                Members
+                            </div>
+
+                            <div class="quick-link-desc">
+                                View community members
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            href="organization.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-link-icon">
+                                🏢
+                            </div>
+
+                            <div class="quick-link-title">
+                                Organization
+                            </div>
+
+                            <div class="quick-link-desc">
+                                Community structure
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
         </main>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            © 2026
-            <strong>NIGHTFALL DEVILS</strong>
-            · Official Member Portal
-
-        </footer>
 
     </div>
 
 
-    <!-- TOAST -->
+    <!-- ==========================================
+         TOAST
+    ========================================== -->
 
-    <div id="toastContainer"></div>
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <div id="toastMessage"></div>
+
+    </div>
 
 
-    <!-- =========================
+    <!-- ==========================================
          FIREBASE
-    ========================== -->
+    ========================================== -->
 
     <script type="module">
 
+
         import {
             initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
 
         import {
             getAuth,
             onAuthStateChanged,
             signOut
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
 
         import {
             getFirestore,
@@ -1546,13 +2307,17 @@
             query,
             where,
             getDocs,
+            getDoc,
+            doc,
             onSnapshot
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
-        /* =========================
+        /* ==========================================
            FIREBASE CONFIG
-        ========================== */
+        ========================================== */
 
         const firebaseConfig = {
 
@@ -1581,1330 +2346,189 @@
 
 
         const app =
-            initializeApp(firebaseConfig);
+            initializeApp(
+                firebaseConfig
+            );
+
 
         const auth =
             getAuth(app);
+
 
         const db =
             getFirestore(app);
 
 
-        /* =========================
-           GLOBAL DATA
-        ========================== */
+        /* ==========================================
+           DOM
+        ========================================== */
+
+        const appEl =
+            document.getElementById(
+                "app"
+            );
+
+
+        const accessDenied =
+            document.getElementById(
+                "accessDenied"
+            );
+
+
+        const accessMessage =
+            document.getElementById(
+                "accessMessage"
+            );
+
+
+        const welcomeName =
+            document.getElementById(
+                "welcomeName"
+            );
+
+
+        const welcomeMemberCode =
+            document.getElementById(
+                "welcomeMemberCode"
+            );
+
+
+        const profileImage =
+            document.getElementById(
+                "profileImage"
+            );
+
+
+        const avatarInitial =
+            document.getElementById(
+                "avatarInitial"
+            );
+
+
+        const profileName =
+            document.getElementById(
+                "profileName"
+            );
+
+
+        const profileUsername =
+            document.getElementById(
+                "profileUsername"
+            );
+
+
+        const profileRole =
+            document.getElementById(
+                "profileRole"
+            );
+
+
+        const profileStatus =
+            document.getElementById(
+                "profileStatus"
+            );
+
+
+        const profileMemberCode =
+            document.getElementById(
+                "profileMemberCode"
+            );
+
+
+        const profileRoleValue =
+            document.getElementById(
+                "profileRoleValue"
+            );
+
+
+        const profileEmail =
+            document.getElementById(
+                "profileEmail"
+            );
+
+
+        const profileJoined =
+            document.getElementById(
+                "profileJoined"
+            );
+
+
+        const scheduleCount =
+            document.getElementById(
+                "scheduleCount"
+            );
+
+
+        const announcementCount =
+            document.getElementById(
+                "announcementCount"
+            );
+
+
+        const accountStatus =
+            document.getElementById(
+                "accountStatus"
+            );
+
+
+        const scheduleList =
+            document.getElementById(
+                "scheduleList"
+            );
+
+
+        const announcementList =
+            document.getElementById(
+                "announcementList"
+            );
+
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        const toastMessage =
+            document.getElementById(
+                "toastMessage"
+            );
+
+
+        /* ==========================================
+           STATE
+        ========================================== */
 
         let currentUser = null;
+
         let currentMember = null;
 
+        let currentMemberId = null;
+
         let unsubscribeSchedule = null;
+
         let unsubscribeAnnouncements = null;
 
 
-        /* =========================
-           ELEMENTS
-        ========================== */
-
-        const loadingScreen =
-            document.getElementById("loadingScreen");
-
-        const appElement =
-            document.getElementById("app");
-
-        const logoutBtn =
-            document.getElementById("logoutBtn");
-
-        const welcomeName =
-            document.getElementById("welcomeName");
-
-        const miniAvatar =
-            document.getElementById("miniAvatar");
-
-        const miniName =
-            document.getElementById("miniName");
-
-        const miniRole =
-            document.getElementById("miniRole");
-
-        const profileAvatar =
-            document.getElementById("profileAvatar");
-
-        const profileName =
-            document.getElementById("profileName");
-
-        const profileTikTok =
-            document.getElementById("profileTikTok");
-
-        const profileStatus =
-            document.getElementById("profileStatus");
-
-        const profileCode =
-            document.getElementById("profileCode");
-
-        const profileRole =
-            document.getElementById("profileRole");
-
-        const profileEmail =
-            document.getElementById("profileEmail");
-
-        const profileJoined =
-            document.getElementById("profileJoined");
-
-        const scheduleCount =
-            document.getElementById("scheduleCount");
-
-        const announcementCount =
-            document.getElementById("announcementCount");
-
-        const memberStatus =
-            document.getElementById("memberStatus");
-
-        const scheduleList =
-            document.getElementById("scheduleList");
-
-        const announcementList =
-            document.getElementById("announcementList");
-
-
-        /* =========================
-           TOAST
-        ========================== */
-
-        function showToast(
-            message,
-            type = "info"
-        ) {
-
-            const container =
-                document.getElementById(
-                    "toastContainer"
-                );
-
-            const toast =
-                document.createElement("div");
-
-            toast.className =
-                `toast ${type}`;
-
-            toast.textContent =
-                message;
-
-            container.appendChild(toast);
-
-            setTimeout(() => {
-
-                toast.style.opacity = "0";
-
-                toast.style.transform =
-                    "translateY(10px)";
-
-                setTimeout(() => {
-
-                    toast.remove();
-
-                }, 250);
-
-            }, 3000);
-
-        }
-
-
-        /* =========================
-           DATE FORMAT
-        ========================== */
-
-        function formatDate(value) {
-
-            if (!value) {
-                return "—";
-            }
-
-            try {
-
-                let date;
-
-                if (
-                    value &&
-                    typeof value.toDate === "function"
-                ) {
-
-                    date =
-                        value.toDate();
-
-                } else if (
-                    value instanceof Date
-                ) {
-
-                    date = value;
-
-                } else {
-
-                    date =
-                        new Date(value);
-
-                }
-
-                if (
-                    Number.isNaN(
-                        date.getTime()
-                    )
-                ) {
-
-                    return "—";
-
-                }
-
-                return date.toLocaleDateString(
-                    "en-US",
-                    {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                    }
-                );
-
-            } catch (error) {
-
-                return "—";
-
-            }
-
-        }
-
-
-        function formatScheduleDate(
-            dateString
-        ) {
-
-            if (!dateString) {
-
-                return {
-                    day: "—",
-                    month: ""
-                };
-
-            }
-
-            const date =
-                new Date(
-                    `${dateString}T00:00:00`
-                );
-
-            if (
-                Number.isNaN(
-                    date.getTime()
-                )
-            ) {
-
-                return {
-                    day: "—",
-                    month: ""
-                };
-
-            }
-
-            return {
-
-                day:
-                    String(
-                        date.getDate()
-                    ),
-
-                month:
-                    date.toLocaleDateString(
-                        "en-US",
-                        {
-                            month: "short"
-                        }
-                    )
-
-            };
-
-        }
-
-
-        /* =========================
-           CLEAN USERNAME
-        ========================== */
-
-        function cleanUsername(
-            username
-        ) {
-
-            if (!username) {
-
-                return "";
-
-            }
-
-            return String(username)
-                .trim()
-                .replace(/^@+/, "");
-
-        }
-
-
-        /* =========================
-           GET MEMBER
-        ========================== */
-
-        async function getMember(
-            user
-        ) {
-
-            let member = null;
-
-            /*
-             * FIRST:
-             * Find by Firebase UID
-             */
-
-            try {
-
-                const uidQuery =
-                    query(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        where(
-                            "uid",
-                            "==",
-                            user.uid
-                        )
-                    );
-
-                const uidSnapshot =
-                    await getDocs(
-                        uidQuery
-                    );
-
-                if (
-                    !uidSnapshot.empty
-                ) {
-
-                    const doc =
-                        uidSnapshot.docs[0];
-
-                    member = {
-
-                        id: doc.id,
-
-                        ...doc.data()
-
-                    };
-
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "UID member lookup error:",
-                    error
-                );
-
-            }
-
-
-            /*
-             * SECOND:
-             * Find by email
-             */
-
-            if (!member && user.email) {
-
-                try {
-
-                    const emailQuery =
-                        query(
-                            collection(
-                                db,
-                                "members"
-                            ),
-                            where(
-                                "email",
-                                "==",
-                                user.email
-                            )
-                        );
-
-                    const emailSnapshot =
-                        await getDocs(
-                            emailQuery
-                        );
-
-                    if (
-                        !emailSnapshot.empty
-                    ) {
-
-                        const doc =
-                            emailSnapshot.docs[0];
-
-                        member = {
-
-                            id: doc.id,
-
-                            ...doc.data()
-
-                        };
-
-                    }
-
-                } catch (error) {
-
-                    console.error(
-                        "Email member lookup error:",
-                        error
-                    );
-
-                }
-
-            }
-
-
-            return member;
-
-        }
-
-
-        /* =========================
-           LOAD PROFILE
-        ========================== */
-
-        function loadProfile(
-            member,
-            user
-        ) {
-
-            const displayName =
-                member.displayName ||
-                user.displayName ||
-                "NIGHTFALL MEMBER";
-
-            const username =
-                cleanUsername(
-                    member.tiktokUsername ||
-                    member.username ||
-                    ""
-                );
-
-            const code =
-                member.memberCode ||
-                "PENDING";
-
-            const role =
-                member.role ||
-                "member";
-
-            const status =
-                member.status ||
-                "active";
-
-            const email =
-                member.email ||
-                user.email ||
-                "—";
-
-
-            /*
-             * IMAGE
-             */
-
-            const imageUrl =
-                member.imageUrl ||
-                member.photoURL ||
-                member.profileImage ||
-                member.photo ||
-                user.photoURL ||
-                "../assets/logo.png";
-
-
-            profileAvatar.src =
-                imageUrl;
-
-            miniAvatar.src =
-                imageUrl;
-
-
-            /*
-             * IMAGE ERROR
-             */
-
-            profileAvatar.onerror =
-                function () {
-
-                    this.onerror = null;
-
-                    this.src =
-                        "../assets/logo.png";
-
-                };
-
-
-            miniAvatar.onerror =
-                function () {
-
-                    this.onerror = null;
-
-                    this.src =
-                        "../assets/logo.png";
-
-                };
-
-
-            /*
-             * TEXT
-             */
-
-            welcomeName.textContent =
-                displayName;
-
-            miniName.textContent =
-                displayName;
-
-            miniRole.textContent =
-                role;
-
-            profileName.textContent =
-                displayName;
-
-            profileTikTok.textContent =
-                username
-                    ? `@${username}`
-                    : "@username";
-
-            profileCode.textContent =
-                code;
-
-            profileRole.textContent =
-                role;
-
-            profileEmail.textContent =
-                email;
-
-            profileStatus.textContent =
-                String(status)
-                    .toUpperCase();
-
-            memberStatus.textContent =
-                String(status)
-                    .toUpperCase();
-
-
-            /*
-             * JOINED DATE
-             */
-
-            profileJoined.textContent =
-                formatDate(
-                    member.joinedAt ||
-                    member.approvedAt ||
-                    member.createdAt
-                );
-
-
-            /*
-             * STATUS COLOR
-             */
-
-            const normalizedStatus =
-                String(status)
-                    .toLowerCase();
-
-            if (
-                normalizedStatus ===
-                "active" ||
-                normalizedStatus ===
-                "approved"
-            ) {
-
-                profileStatus.style.color =
-                    "#68e394";
-
-                profileStatus.style.background =
-                    "rgba(34,197,94,.1)";
-
-                profileStatus.style.borderColor =
-                    "rgba(34,197,94,.25)";
-
-            } else {
-
-                profileStatus.style.color =
-                    "#ff7378";
-
-                profileStatus.style.background =
-                    "rgba(215,25,32,.1)";
-
-                profileStatus.style.borderColor =
-                    "rgba(215,25,32,.25)";
-
-            }
-
-        }
-
-
-        /* =========================
-           MEMBER MATCH
-        ========================== */
-
-        function scheduleBelongsToMember(
-            schedule
-        ) {
-
-            if (!currentMember) {
-
-                return false;
-
-            }
-
-            const memberId =
-                String(
-                    currentMember.id ||
-                    ""
-                );
-
-            const memberUid =
-                String(
-                    currentUser?.uid ||
-                    ""
-                );
-
-            const memberCode =
-                String(
-                    currentMember.memberCode ||
-                    ""
-                )
-                    .toLowerCase();
-
-            const memberUsername =
-                cleanUsername(
-                    currentMember.tiktokUsername ||
-                    currentMember.username ||
-                    ""
-                )
-                    .toLowerCase();
-
-
-            const scheduleMemberId =
-                String(
-                    schedule.memberId ||
-                    ""
-                );
-
-            const scheduleUid =
-                String(
-                    schedule.uid ||
-                    schedule.userId ||
-                    ""
-                );
-
-            const scheduleCode =
-                String(
-                    schedule.memberCode ||
-                    ""
-                )
-                    .toLowerCase();
-
-            const scheduleUsername =
-                cleanUsername(
-                    schedule.tiktokUsername ||
-                    schedule.username ||
-                    ""
-                )
-                    .toLowerCase();
-
-
-            /*
-             * Match by Firestore member ID
-             */
-
-            if (
-                memberId &&
-                scheduleMemberId ===
-                memberId
-            ) {
-
-                return true;
-
-            }
-
-
-            /*
-             * Match by Firebase UID
-             */
-
-            if (
-                memberUid &&
-                scheduleUid ===
-                memberUid
-            ) {
-
-                return true;
-
-            }
-
-
-            /*
-             * Match by member code
-             */
-
-            if (
-                memberCode &&
-                scheduleCode &&
-                memberCode ===
-                scheduleCode
-            ) {
-
-                return true;
-
-            }
-
-
-            /*
-             * Match by TikTok username
-             */
-
-            if (
-                memberUsername &&
-                scheduleUsername &&
-                memberUsername ===
-                scheduleUsername
-            ) {
-
-                return true;
-
-            }
-
-
-            return false;
-
-        }
-
-
-        /* =========================
-           RENDER SCHEDULE
-        ========================== */
-
-        function renderSchedule(
-            schedules
-        ) {
-
-            scheduleCount.textContent =
-                schedules.length;
-
-
-            if (!schedules.length) {
-
-                scheduleList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📅
-                        </div>
-
-                        <div class="empty-title">
-                            No schedule yet
-                        </div>
-
-                        <div class="empty-text">
-                            Your assigned schedule
-                            will appear here.
-                        </div>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            schedules.sort(
-                (a, b) => {
-
-                    const dateA =
-                        `${a.date || ""} ${
-                            a.startTime || ""
-                        }`;
-
-                    const dateB =
-                        `${b.date || ""} ${
-                            b.startTime || ""
-                        }`;
-
-                    return dateA.localeCompare(
-                        dateB
-                    );
-
-                }
-            );
-
-
-            const visibleSchedules =
-                schedules.slice(0, 10);
-
-
-            scheduleList.innerHTML =
-                visibleSchedules
-                    .map(
-                        schedule => {
-
-                            const dateInfo =
-                                formatScheduleDate(
-                                    schedule.date
-                                );
-
-                            const title =
-                                schedule.streamerName ||
-                                schedule.title ||
-                                "NIGHTFALL DEVILS Schedule";
-
-                            const type =
-                                schedule.type ||
-                                "Regular Live";
-
-                            const start =
-                                schedule.startTime ||
-                                "";
-
-                            const end =
-                                schedule.endTime ||
-                                "";
-
-                            const time =
-                                end
-                                    ? `${start} - ${end}`
-                                    : start;
-
-                            const username =
-                                cleanUsername(
-                                    schedule.tiktokUsername ||
-                                    currentMember.tiktokUsername ||
-                                    ""
-                                );
-
-                            const link =
-                                schedule.tiktokLink ||
-                                (
-                                    username
-                                        ? `https://www.tiktok.com/@${username}`
-                                        : ""
-                                );
-
-                            const notes =
-                                schedule.notes ||
-                                "";
-
-
-                            return `
-
-                                <div
-                                    class="schedule-item"
-                                >
-
-                                    <div
-                                        class="schedule-date"
-                                    >
-
-                                        <div
-                                            class="date-day"
-                                        >
-                                            ${escapeHtml(
-                                                dateInfo.day
-                                            )}
-                                        </div>
-
-                                        <div
-                                            class="date-month"
-                                        >
-                                            ${escapeHtml(
-                                                dateInfo.month
-                                            )}
-                                        </div>
-
-                                    </div>
-
-
-                                    <div
-                                        class="schedule-info"
-                                    >
-
-                                        <div
-                                            class="schedule-name"
-                                        >
-                                            ${escapeHtml(
-                                                title
-                                            )}
-                                        </div>
-
-                                        <div
-                                            class="schedule-meta"
-                                        >
-
-                                            <span
-                                                class="schedule-tag"
-                                            >
-                                                ${escapeHtml(
-                                                    type
-                                                )}
-                                            </span>
-
-                                            ${
-                                                time
-                                                    ? `
-                                                        <span>
-                                                            🕐
-                                                            ${escapeHtml(
-                                                                time
-                                                            )}
-                                                        </span>
-                                                    `
-                                                    : ""
-                                            }
-
-                                            ${
-                                                notes
-                                                    ? `
-                                                        <span>
-                                                            📝
-                                                            ${escapeHtml(
-                                                                notes
-                                                            )}
-                                                        </span>
-                                                    `
-                                                    : ""
-                                            }
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <div
-                                        class="schedule-action"
-                                    >
-
-                                        ${
-                                            link
-                                                ? `
-                                                    <a
-                                                        class="tiktok-btn"
-                                                        href="${escapeAttribute(
-                                                            link
-                                                        )}"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        🎵 TIKTOK
-                                                    </a>
-                                                `
-                                                : ""
-                                        }
-
-                                    </div>
-
-                                </div>
-
-                            `;
-
-                        }
-                    )
-                    .join("");
-
-        }
-
-
-        /* =========================
-           LOAD SCHEDULE
-        ========================== */
-
-        function loadSchedule() {
-
-            if (
-                unsubscribeSchedule
-            ) {
-
-                unsubscribeSchedule();
-
-                unsubscribeSchedule =
-                    null;
-
-            }
-
-
-            const scheduleQuery =
-                query(
-                    collection(
-                        db,
-                        "schedules"
-                    )
-                );
-
-
-            unsubscribeSchedule =
-                onSnapshot(
-                    scheduleQuery,
-                    snapshot => {
-
-                        const schedules =
-                            [];
-
-
-                        snapshot.forEach(
-                            doc => {
-
-                                const data =
-                                    doc.data();
-
-
-                                if (
-                                    scheduleBelongsToMember(
-                                        data
-                                    )
-                                ) {
-
-                                    schedules.push({
-
-                                        id:
-                                            doc.id,
-
-                                        ...data
-
-                                    });
-
-                                }
-
-                            }
-                        );
-
-
-                        renderSchedule(
-                            schedules
-                        );
-
-                    },
-                    error => {
-
-                        console.error(
-                            "Schedule listener error:",
-                            error
-                        );
-
-                        scheduleList.innerHTML = `
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
-
-                                <div class="empty-title">
-                                    Unable to load schedule
-                                </div>
-
-                                <div class="empty-text">
-                                    Please try again later.
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    }
-                );
-
-        }
-
-
-        /* =========================
-           RENDER ANNOUNCEMENTS
-        ========================== */
-
-        function renderAnnouncements(
-            announcements
-        ) {
-
-            announcementCount.textContent =
-                announcements.length;
-
-
-            if (!announcements.length) {
-
-                announcementList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📢
-                        </div>
-
-                        <div class="empty-title">
-                            No announcements
-                        </div>
-
-                        <div class="empty-text">
-                            Community announcements
-                            will appear here.
-                        </div>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            announcements.sort(
-                (a, b) => {
-
-                    const dateA =
-                        getTimestampValue(
-                            a.createdAt ||
-                            a.updatedAt
-                        );
-
-                    const dateB =
-                        getTimestampValue(
-                            b.createdAt ||
-                            b.updatedAt
-                        );
-
-                    return dateB - dateA;
-
-                }
-            );
-
-
-            const visible =
-                announcements.slice(
-                    0,
-                    10
-                );
-
-
-            announcementList.innerHTML =
-                visible
-                    .map(
-                        item => {
-
-                            const title =
-                                item.title ||
-                                item.heading ||
-                                "NIGHTFALL DEVILS";
-
-                            const message =
-                                item.message ||
-                                item.content ||
-                                item.description ||
-                                "";
-
-                            const date =
-                                formatDate(
-                                    item.createdAt ||
-                                    item.updatedAt
-                                );
-
-
-                            return `
-
-                                <article
-                                    class="announcement-item"
-                                >
-
-                                    <div
-                                        class="announcement-title"
-                                    >
-                                        ${escapeHtml(
-                                            title
-                                        )}
-                                    </div>
-
-                                    <div
-                                        class="announcement-message"
-                                    >
-                                        ${escapeHtml(
-                                            message
-                                        )}
-                                    </div>
-
-                                    <div
-                                        class="announcement-date"
-                                    >
-                                        ${escapeHtml(
-                                            date
-                                        )}
-                                    </div>
-
-                                </article>
-
-                            `;
-
-                        }
-                    )
-                    .join("");
-
-        }
-
-
-        /* =========================
-           LOAD ANNOUNCEMENTS
-        ========================== */
-
-        function loadAnnouncements() {
-
-            if (
-                unsubscribeAnnouncements
-            ) {
-
-                unsubscribeAnnouncements();
-
-                unsubscribeAnnouncements =
-                    null;
-
-            }
-
-
-            const announcementQuery =
-                query(
-                    collection(
-                        db,
-                        "announcements"
-                    )
-                );
-
-
-            unsubscribeAnnouncements =
-                onSnapshot(
-                    announcementQuery,
-                    snapshot => {
-
-                        const announcements =
-                            [];
-
-
-                        snapshot.forEach(
-                            doc => {
-
-                                announcements.push({
-
-                                    id:
-                                        doc.id,
-
-                                    ...doc.data()
-
-                                });
-
-                            }
-                        );
-
-
-                        renderAnnouncements(
-                            announcements
-                        );
-
-                    },
-                    error => {
-
-                        console.error(
-                            "Announcement listener error:",
-                            error
-                        );
-
-                        announcementList.innerHTML = `
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
-
-                                <div class="empty-title">
-                                    Unable to load announcements
-                                </div>
-
-                                <div class="empty-text">
-                                    Please try again later.
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    }
-                );
-
-        }
-
-
-        /* =========================
-           TIMESTAMP VALUE
-        ========================== */
-
-        function getTimestampValue(
-            value
-        ) {
-
-            if (!value) {
-
-                return 0;
-
-            }
-
-            try {
-
-                if (
-                    typeof value.toMillis ===
-                    "function"
-                ) {
-
-                    return value.toMillis();
-
-                }
-
-                if (
-                    typeof value.toDate ===
-                    "function"
-                ) {
-
-                    return value
-                        .toDate()
-                        .getTime();
-
-                }
-
-                const date =
-                    new Date(value);
-
-                return Number.isNaN(
-                    date.getTime()
-                )
-                    ? 0
-                    : date.getTime();
-
-            } catch (error) {
-
-                return 0;
-
-            }
-
-        }
-
-
-        /* =========================
-           HTML ESCAPE
-        ========================== */
+        /* ==========================================
+           HELPERS
+        ========================================== */
 
         function escapeHtml(
             value
         ) {
 
-            return String(
-                value ?? ""
-            )
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(value)
                 .replace(
                     /&/g,
                     "&amp;"
@@ -2929,212 +2553,1556 @@
         }
 
 
-        /* =========================
-           ATTRIBUTE ESCAPE
-        ========================== */
-
-        function escapeAttribute(
-            value
+        function normalizeUsername(
+            username
         ) {
 
             return String(
-                value ?? ""
+                username || ""
             )
+                .trim()
                 .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
+                    /^@+/,
+                    ""
                 );
 
         }
 
 
-        /* =========================
-           LOGOUT
-        ========================== */
+        function formatDate(
+            timestamp
+        ) {
 
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
+            if (!timestamp) {
 
-                try {
+                return "—";
 
-                    logoutBtn.disabled =
-                        true;
+            }
 
-                    logoutBtn.textContent =
-                        "LOGGING OUT...";
+
+            try {
+
+                let date;
+
+
+                if (
+                    typeof timestamp.toDate ===
+                    "function"
+                ) {
+
+                    date =
+                        timestamp.toDate();
+
+                } else {
+
+                    date =
+                        new Date(timestamp);
+
+                }
+
+
+                if (
+                    isNaN(
+                        date.getTime()
+                    )
+                ) {
+
+                    return "—";
+
+                }
+
+
+                return date.toLocaleString(
+                    undefined,
+                    {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }
+                );
+
+            } catch (error) {
+
+                return "—";
+
+            }
+
+        }
+
+
+        function getDateObject(
+            timestamp
+        ) {
+
+            try {
+
+                if (
+                    timestamp &&
+                    typeof timestamp.toDate ===
+                    "function"
+                ) {
+
+                    return timestamp.toDate();
+
+                }
+
+
+                if (timestamp) {
+
+                    const date =
+                        new Date(
+                            timestamp
+                        );
 
 
                     if (
-                        unsubscribeSchedule
+                        !isNaN(
+                            date.getTime()
+                        )
                     ) {
 
-                        unsubscribeSchedule();
+                        return date;
 
                     }
 
+                }
 
-                    if (
-                        unsubscribeAnnouncements
-                    ) {
+            } catch (error) {
 
-                        unsubscribeAnnouncements();
-
-                    }
+            }
 
 
-                    localStorage.removeItem(
-                        "nightfallMemberId"
+            return null;
+
+        }
+
+
+        function showToast(
+            message,
+            type = "success"
+        ) {
+
+            toastMessage.textContent =
+                message;
+
+
+            toast.className =
+                "toast show " +
+                type;
+
+
+            clearTimeout(
+                showToast.timer
+            );
+
+
+            showToast.timer =
+                setTimeout(
+                    () => {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    3500
+                );
+
+        }
+
+
+        function getInitial(
+            name
+        ) {
+
+            const value =
+                String(
+                    name || "N"
+                ).trim();
+
+
+            return value
+                .charAt(0)
+                .toUpperCase();
+
+        }
+
+
+        function getImageUrl(
+            member
+        ) {
+
+            return (
+                member.imageUrl ||
+                member.photoURL ||
+                member.profileImage ||
+                member.photo ||
+                ""
+            );
+
+        }
+
+
+        function normalizeStatus(
+            status
+        ) {
+
+            return String(
+                status || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
+
+        /* ==========================================
+           LOAD MEMBER
+        ========================================== */
+
+        async function loadMember(
+            user
+        ) {
+
+            /*
+             * First:
+             * members/{Firebase Auth UID}
+             */
+
+            const directRef =
+                doc(
+                    db,
+                    "members",
+                    user.uid
+                );
+
+
+            const directSnap =
+                await getDoc(
+                    directRef
+                );
+
+
+            if (
+                directSnap.exists()
+            ) {
+
+                return {
+
+                    id:
+                        directSnap.id,
+
+                    ...directSnap.data()
+
+                };
+
+            }
+
+
+            /*
+             * Second:
+             * Search by uid field.
+             */
+
+            const uidQuery =
+                query(
+                    collection(
+                        db,
+                        "members"
+                    ),
+                    where(
+                        "uid",
+                        "==",
+                        user.uid
+                    )
+                );
+
+
+            const uidSnap =
+                await getDocs(
+                    uidQuery
+                );
+
+
+            if (
+                !uidSnap.empty
+            ) {
+
+                const item =
+                    uidSnap.docs[0];
+
+
+                return {
+
+                    id:
+                        item.id,
+
+                    ...item.data()
+
+                };
+
+            }
+
+
+            /*
+             * Third:
+             * Search by email.
+             */
+
+            if (
+                user.email
+            ) {
+
+                const emailQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        where(
+                            "email",
+                            "==",
+                            user.email
+                        )
                     );
 
-                    localStorage.removeItem(
-                        "nightfallMemberUsername"
-                    );
 
-                    localStorage.removeItem(
-                        "nightfallMemberCode"
-                    );
-
-
-                    await signOut(
-                        auth
+                const emailSnap =
+                    await getDocs(
+                        emailQuery
                     );
 
 
-                    window.location.href =
-                        "member-login.html";
+                if (
+                    !emailSnap.empty
+                ) {
 
-                } catch (error) {
+                    const item =
+                        emailSnap.docs[0];
 
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
 
-                    logoutBtn.disabled =
-                        false;
+                    return {
 
-                    logoutBtn.textContent =
-                        "LOGOUT";
+                        id:
+                            item.id,
 
-                    showToast(
-                        "Unable to logout. Please try again.",
-                        "error"
-                    );
+                        ...item.data()
+
+                    };
 
                 }
 
             }
-        );
 
 
-        /* =========================
+            return null;
+
+        }
+
+
+        /* ==========================================
+           RENDER PROFILE
+        ========================================== */
+
+        function renderProfile(
+            member
+        ) {
+
+            const name =
+                member.displayName ||
+                "NIGHTFALL DEVIL";
+
+
+            const username =
+                normalizeUsername(
+                    member.tiktokUsername
+                );
+
+
+            const code =
+                member.memberCode ||
+                "Not assigned";
+
+
+            const role =
+                member.role ||
+                "Member";
+
+
+            const status =
+                member.status ||
+                "approved";
+
+
+            const email =
+                member.email ||
+                currentUser?.email ||
+                "—";
+
+
+            welcomeName.textContent =
+                name;
+
+
+            welcomeMemberCode.textContent =
+                code;
+
+
+            profileName.textContent =
+                name;
+
+
+            profileUsername.textContent =
+                username
+                    ? "@" + username
+                    : "@username";
+
+
+            profileRole.textContent =
+                String(role)
+                    .toUpperCase();
+
+
+            profileRoleValue.textContent =
+                role;
+
+
+            profileMemberCode.textContent =
+                code;
+
+
+            profileEmail.textContent =
+                email;
+
+
+            profileJoined.textContent =
+                formatDate(
+                    member.joinedAt ||
+                    member.approvedAt ||
+                    member.createdAt
+                );
+
+
+            accountStatus.textContent =
+                String(status)
+                    .toUpperCase();
+
+
+            const normalized =
+                normalizeStatus(
+                    status
+                );
+
+
+            profileStatus.innerHTML = `
+
+                <span class="status-dot"></span>
+
+                ${escapeHtml(
+                    String(status)
+                        .toUpperCase()
+                )}
+
+            `;
+
+
+            /*
+             * Profile image
+             */
+
+            const imageUrl =
+                getImageUrl(
+                    member
+                );
+
+
+            if (
+                imageUrl
+            ) {
+
+                profileImage.src =
+                    imageUrl;
+
+                profileImage.style.display =
+                    "block";
+
+                avatarInitial.style.display =
+                    "none";
+
+
+                profileImage.onerror =
+                    () => {
+
+                        profileImage.style.display =
+                            "none";
+
+                        avatarInitial.style.display =
+                            "block";
+
+                    };
+
+            } else {
+
+                profileImage.style.display =
+                    "none";
+
+                avatarInitial.style.display =
+                    "block";
+
+                avatarInitial.textContent =
+                    getInitial(
+                        name
+                    );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           LOAD SCHEDULES
+        ========================================== */
+
+        function loadSchedules(
+            member
+        ) {
+
+            if (
+                unsubscribeSchedule
+            ) {
+
+                unsubscribeSchedule();
+
+            }
+
+
+            scheduleList.innerHTML = `
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading your schedule...
+
+                </div>
+
+            `;
+
+
+            const schedulesRef =
+                collection(
+                    db,
+                    "schedules"
+                );
+
+
+            /*
+             * We intentionally load the collection
+             * and filter locally.
+             *
+             * This supports schedules that identify
+             * the member using:
+             *
+             * memberId
+             * uid
+             * memberCode
+             * tiktokUsername
+             */
+
+            unsubscribeSchedule =
+                onSnapshot(
+                    schedulesRef,
+                    snapshot => {
+
+                        const username =
+                            normalizeUsername(
+                                member.tiktokUsername
+                            )
+                                .toLowerCase();
+
+
+                        const memberCode =
+                            String(
+                                member.memberCode ||
+                                ""
+                            )
+                                .trim()
+                                .toLowerCase();
+
+
+                        const memberId =
+                            String(
+                                member.id ||
+                                ""
+                            )
+                                .trim();
+
+
+                        const uid =
+                            String(
+                                currentUser?.uid ||
+                                ""
+                            )
+                                .trim();
+
+
+                        let schedules =
+                            snapshot.docs
+                                .map(
+                                    item => ({
+
+                                        id:
+                                            item.id,
+
+                                        ...item.data()
+
+                                    })
+                                )
+                                .filter(
+                                    schedule => {
+
+                                        const scheduleMemberId =
+                                            String(
+                                                schedule.memberId ||
+                                                ""
+                                            )
+                                                .trim();
+
+
+                                        const scheduleUid =
+                                            String(
+                                                schedule.uid ||
+                                                ""
+                                            )
+                                                .trim();
+
+
+                                        const scheduleCode =
+                                            String(
+                                                schedule.memberCode ||
+                                                ""
+                                            )
+                                                .trim()
+                                                .toLowerCase();
+
+
+                                        const scheduleUsername =
+                                            normalizeUsername(
+                                                schedule.tiktokUsername
+                                            )
+                                                .toLowerCase();
+
+
+                                        return (
+
+                                            (
+                                                memberId &&
+                                                scheduleMemberId ===
+                                                memberId
+                                            )
+
+                                            ||
+
+                                            (
+                                                uid &&
+                                                scheduleMemberId ===
+                                                uid
+                                            )
+
+                                            ||
+
+                                            (
+                                                uid &&
+                                                scheduleUid ===
+                                                uid
+                                            )
+
+                                            ||
+
+                                            (
+                                                memberCode &&
+                                                scheduleCode ===
+                                                memberCode
+                                            )
+
+                                            ||
+
+                                            (
+                                                username &&
+                                                scheduleUsername ===
+                                                username
+                                            )
+
+                                        );
+
+                                    }
+                                );
+
+
+                        /*
+                         * Sort by date/time.
+                         */
+
+                        schedules.sort(
+                            (
+                                a,
+                                b
+                            ) => {
+
+                                const dateA =
+                                    String(
+                                        a.date ||
+                                        ""
+                                    );
+
+
+                                const dateB =
+                                    String(
+                                        b.date ||
+                                        ""
+                                    );
+
+
+                                if (
+                                    dateA !==
+                                    dateB
+                                ) {
+
+                                    return dateA.localeCompare(
+                                        dateB
+                                    );
+
+                                }
+
+
+                                return String(
+                                    a.startTime ||
+                                    ""
+                                ).localeCompare(
+                                    String(
+                                        b.startTime ||
+                                        ""
+                                    )
+                                );
+
+                            }
+                        );
+
+
+                        scheduleCount.textContent =
+                            schedules.length;
+
+
+                        renderSchedules(
+                            schedules
+                        );
+
+                    },
+                    error => {
+
+                        console.error(
+                            "Schedule error:",
+                            error
+                        );
+
+
+                        scheduleCount.textContent =
+                            "0";
+
+
+                        scheduleList.innerHTML = `
+
+                            <div class="empty">
+
+                                <div class="empty-icon">
+                                    ⚠️
+                                </div>
+
+                                <p>
+                                    Unable to load your schedule.
+                                </p>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+        }
+
+
+        /* ==========================================
+           RENDER SCHEDULES
+        ========================================== */
+
+        function renderSchedules(
+            schedules
+        ) {
+
+            if (
+                !schedules.length
+            ) {
+
+                scheduleList.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📅
+                        </div>
+
+                        <p>
+                            No schedule assigned to you yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Show maximum 20 schedules
+             */
+
+            const visible =
+                schedules.slice(
+                    0,
+                    20
+                );
+
+
+            scheduleList.innerHTML =
+                visible
+                    .map(
+                        schedule =>
+                            renderSchedule(
+                                schedule
+                            )
+                    )
+                    .join("");
+
+        }
+
+
+        function renderSchedule(
+            schedule
+        ) {
+
+            const dateValue =
+                schedule.date ||
+                "";
+
+
+            let day =
+                "—";
+
+
+            let month =
+                "—";
+
+
+            if (
+                dateValue
+            ) {
+
+                const parsed =
+                    new Date(
+                        dateValue +
+                        "T00:00:00"
+                    );
+
+
+                if (
+                    !isNaN(
+                        parsed.getTime()
+                    )
+                ) {
+
+                    day =
+                        parsed.toLocaleDateString(
+                            undefined,
+                            {
+                                day: "2-digit"
+                            }
+                        );
+
+
+                    month =
+                        parsed.toLocaleDateString(
+                            undefined,
+                            {
+                                month: "short"
+                            }
+                        );
+
+                }
+
+            }
+
+
+            const title =
+                schedule.streamerName ||
+                schedule.type ||
+                "NIGHTFALL DEVILS Event";
+
+
+            const start =
+                schedule.startTime ||
+                "—";
+
+
+            const end =
+                schedule.endTime ||
+                "";
+
+
+            const time =
+                end
+                    ? `${start} - ${end}`
+                    : start;
+
+
+            const type =
+                schedule.type ||
+                "Community Event";
+
+
+            const status =
+                schedule.status ||
+                "";
+
+
+            const notes =
+                schedule.notes ||
+                "";
+
+
+            const link =
+                schedule.tiktokLink ||
+                "";
+
+
+            return `
+
+                <div class="schedule-item">
+
+                    <div class="schedule-date">
+
+                        <span class="schedule-day">
+                            ${escapeHtml(day)}
+                        </span>
+
+                        <span class="schedule-month">
+                            ${escapeHtml(month)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="schedule-info">
+
+                        <h4>
+                            ${escapeHtml(title)}
+                        </h4>
+
+                        <div class="schedule-meta">
+
+                            🕒
+                            ${escapeHtml(time)}
+
+                            ${
+                                status
+                                ? `
+                                    <br>
+                                    📌
+                                    ${escapeHtml(status)}
+                                  `
+                                : ""
+                            }
+
+                            ${
+                                notes
+                                ? `
+                                    <br>
+                                    📝
+                                    ${escapeHtml(notes)}
+                                  `
+                                : ""
+                            }
+
+                        </div>
+
+
+                        <span class="schedule-type">
+
+                            ${escapeHtml(type)}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="schedule-action">
+
+                        ${
+                            link
+                            ? `
+                                <a
+                                    href="${escapeHtml(link)}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    🎵 TikTok
+                                </a>
+                              `
+                            : `
+                                <span
+                                    class="muted"
+                                    style="font-size:11px;"
+                                >
+                                    No Link
+                                </span>
+                              `
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* ==========================================
+           LOAD ANNOUNCEMENTS
+        ========================================== */
+
+        function loadAnnouncements() {
+
+            if (
+                unsubscribeAnnouncements
+            ) {
+
+                unsubscribeAnnouncements();
+
+            }
+
+
+            announcementList.innerHTML = `
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading announcements...
+
+                </div>
+
+            `;
+
+
+            const announcementsRef =
+                collection(
+                    db,
+                    "announcements"
+                );
+
+
+            unsubscribeAnnouncements =
+                onSnapshot(
+                    announcementsRef,
+                    snapshot => {
+
+                        let announcements =
+                            snapshot.docs
+                                .map(
+                                    item => ({
+
+                                        id:
+                                            item.id,
+
+                                        ...item.data()
+
+                                    })
+                                );
+
+
+                        /*
+                         * Sort newest first.
+                         */
+
+                        announcements.sort(
+                            (
+                                a,
+                                b
+                            ) => {
+
+                                const dateA =
+                                    getDateObject(
+                                        a.createdAt ||
+                                        a.updatedAt
+                                    );
+
+
+                                const dateB =
+                                    getDateObject(
+                                        b.createdAt ||
+                                        b.updatedAt
+                                    );
+
+
+                                if (
+                                    !dateA &&
+                                    !dateB
+                                ) {
+
+                                    return 0;
+
+                                }
+
+
+                                if (!dateA) {
+
+                                    return 1;
+
+                                }
+
+
+                                if (!dateB) {
+
+                                    return -1;
+
+                                }
+
+
+                                return (
+                                    dateB.getTime() -
+                                    dateA.getTime()
+                                );
+
+                            }
+                        );
+
+
+                        announcementCount.textContent =
+                            announcements.length;
+
+
+                        renderAnnouncements(
+                            announcements
+                        );
+
+                    },
+                    error => {
+
+                        console.error(
+                            "Announcement error:",
+                            error
+                        );
+
+
+                        announcementCount.textContent =
+                            "0";
+
+
+                        announcementList.innerHTML = `
+
+                            <div class="empty">
+
+                                <div class="empty-icon">
+                                    ⚠️
+                                </div>
+
+                                <p>
+                                    Unable to load announcements.
+                                </p>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+        }
+
+
+        /* ==========================================
+           RENDER ANNOUNCEMENTS
+        ========================================== */
+
+        function renderAnnouncements(
+            announcements
+        ) {
+
+            if (
+                !announcements.length
+            ) {
+
+                announcementList.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📢
+                        </div>
+
+                        <p>
+                            No announcements yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Latest 10 only
+             */
+
+            const visible =
+                announcements.slice(
+                    0,
+                    10
+                );
+
+
+            announcementList.innerHTML =
+                visible
+                    .map(
+                        item =>
+                            renderAnnouncement(
+                                item
+                            )
+                    )
+                    .join("");
+
+        }
+
+
+        function renderAnnouncement(
+            announcement
+        ) {
+
+            const title =
+                announcement.title ||
+                announcement.heading ||
+                "NIGHTFALL DEVILS Announcement";
+
+
+            const message =
+                announcement.message ||
+                announcement.content ||
+                announcement.description ||
+                "";
+
+
+            const type =
+                announcement.type ||
+                announcement.priority ||
+                "Announcement";
+
+
+            const created =
+                announcement.createdAt ||
+                announcement.updatedAt ||
+                null;
+
+
+            return `
+
+                <article class="announcement">
+
+                    <div class="announcement-top">
+
+                        <div class="announcement-title">
+
+                            ${escapeHtml(title)}
+
+                        </div>
+
+                        <div class="announcement-date">
+
+                            ${escapeHtml(
+                                formatDate(
+                                    created
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="announcement-message">
+
+                        ${escapeHtml(message)}
+
+                    </div>
+
+
+                    <span class="announcement-tag">
+
+                        ${escapeHtml(
+                            String(type)
+                                .toUpperCase()
+                        )}
+
+                    </span>
+
+                </article>
+
+            `;
+
+        }
+
+
+        /* ==========================================
+           SHOW APP
+        ========================================== */
+
+        function showApp() {
+
+            accessDenied.style.display =
+                "none";
+
+            appEl.style.display =
+                "block";
+
+        }
+
+
+        function showAccessDenied(
+            message
+        ) {
+
+            appEl.style.display =
+                "none";
+
+            accessDenied.style.display =
+                "flex";
+
+
+            if (
+                message
+            ) {
+
+                accessMessage.textContent =
+                    message;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        async function logout() {
+
+            try {
+
+                if (
+                    unsubscribeSchedule
+                ) {
+
+                    unsubscribeSchedule();
+
+                }
+
+
+                if (
+                    unsubscribeAnnouncements
+                ) {
+
+                    unsubscribeAnnouncements();
+
+                }
+
+
+                localStorage.removeItem(
+                    "nightfallMemberId"
+                );
+
+
+                localStorage.removeItem(
+                    "nightfallMemberUsername"
+                );
+
+
+                localStorage.removeItem(
+                    "nightfallMemberCode"
+                );
+
+
+                await signOut(
+                    auth
+                );
+
+
+                window.location.href =
+                    "member-login.html";
+
+            } catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+
+                showToast(
+                    "Logout failed.",
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           EVENT LISTENERS
+        ========================================== */
+
+        document
+            .getElementById(
+                "logoutBtn"
+            )
+            .addEventListener(
+                "click",
+                logout
+            );
+
+
+        document
+            .getElementById(
+                "homeBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "../index.html";
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "goLoginBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "member-login.html";
+
+                }
+            );
+
+
+        /* ==========================================
            AUTH STATE
-        ========================== */
+        ========================================== */
 
         onAuthStateChanged(
             auth,
             async user => {
 
-                /*
-                 * NOT LOGGED IN
-                 */
-
-                if (!user) {
-
-                    window.location.href =
-                        "member-login.html";
-
-                    return;
-
-                }
-
-
-                currentUser =
-                    user;
-
-
                 try {
 
+                    if (!user) {
+
+                        currentUser =
+                            null;
+
+                        currentMember =
+                            null;
+
+                        showAccessDenied(
+                            "Please login using your NIGHTFALL DEVILS member account."
+                        );
+
+                        return;
+
+                    }
+
+
+                    currentUser =
+                        user;
+
+
                     /*
-                     * LOAD MEMBER
+                     * Load member record.
                      */
 
-                    currentMember =
-                        await getMember(
+                    const member =
+                        await loadMember(
                             user
                         );
 
 
-                    /*
-                     * MEMBER NOT FOUND
-                     */
+                    if (!member) {
 
-                    if (!currentMember) {
-
-                        showToast(
-                            "Member profile not found.",
-                            "error"
+                        showAccessDenied(
+                            "Your Firebase account exists, but no approved NIGHTFALL DEVILS member record was found."
                         );
-
-                        await signOut(
-                            auth
-                        );
-
-                        window.location.href =
-                            "member-login.html";
 
                         return;
 
                     }
 
 
+                    currentMember =
+                        member;
+
+
+                    currentMemberId =
+                        member.id;
+
+
                     /*
-                     * STATUS CHECK
+                     * Check member status.
                      */
 
                     const status =
-                        String(
-                            currentMember.status ||
-                            "active"
-                        )
-                            .toLowerCase();
+                        normalizeStatus(
+                            member.status
+                        );
+
+
+                    const allowedStatuses = [
+                        "approved",
+                        "active"
+                    ];
 
 
                     if (
-                        status ===
-                        "rejected" ||
-                        status ===
-                        "inactive" ||
-                        status ===
-                        "suspended" ||
-                        status ===
-                        "disabled"
+                        !allowedStatuses.includes(
+                            status
+                        )
                     ) {
 
-                        showToast(
-                            "Your member account is not active.",
-                            "error"
+                        showAccessDenied(
+                            "Your member account is not currently active."
                         );
-
-                        await signOut(
-                            auth
-                        );
-
-                        window.location.href =
-                            "member-login.html";
 
                         return;
 
@@ -3142,51 +4110,44 @@
 
 
                     /*
-                     * LOAD PROFILE
+                     * Render profile.
                      */
 
-                    loadProfile(
-                        currentMember,
-                        user
+                    renderProfile(
+                        member
                     );
 
 
                     /*
-                     * LOAD DATA
+                     * Show dashboard.
                      */
 
-                    loadSchedule();
-
-                    loadAnnouncements();
+                    showApp();
 
 
                     /*
-                     * SHOW APP
+                     * Load live data.
                      */
 
-                    loadingScreen.style.display =
-                        "none";
+                    loadSchedules(
+                        member
+                    );
 
-                    appElement.style.display =
-                        "block";
+
+                    loadAnnouncements();
 
 
                 } catch (error) {
 
                     console.error(
-                        "Dashboard error:",
+                        "Dashboard initialization error:",
                         error
                     );
 
-                    loadingScreen.style.display =
-                        "none";
 
-                    appElement.style.display =
-                        "block";
-
-                    showToast(
-                        "Unable to fully load your member profile.",
-                        "error"
+                    showAccessDenied(
+                        error.message ||
+                        "Unable to load your member account."
                     );
 
                 }
@@ -3194,7 +4155,9 @@
             }
         );
 
+
     </script>
 
 </body>
+
 </html>
