@@ -781,6 +781,12 @@
             min-height:
                 100vh;
 
+            min-width:
+                0;
+
+            overflow-x:
+                hidden;
+
         }
 
 
@@ -794,6 +800,9 @@
 
             margin:
                 0 auto;
+
+            min-width:
+                0;
 
         }
 
@@ -1622,6 +1631,9 @@
             overflow:
                 hidden;
 
+            min-width:
+                0;
+
         }
 
 
@@ -1717,6 +1729,9 @@
             font-weight:
                 800;
 
+            flex-shrink:
+                0;
+
         }
 
 
@@ -1731,21 +1746,72 @@
         }
 
 
+        /* =====================================================
+           ORGANIZATION CHART WRAPPER
+           RESPONSIVE
+        ===================================================== */
+
         .organization-chart-wrapper {
 
             width:
                 100%;
 
+            max-width:
+                100%;
+
             overflow-x:
                 auto;
 
+            overflow-y:
+                hidden;
+
             padding:
                 10px 5px 25px;
+
+            -webkit-overflow-scrolling:
+                touch;
+
+            scrollbar-width:
+                thin;
+
+            scrollbar-color:
+                rgba(245,197,66,0.45)
+                transparent;
+
+        }
+
+
+        .organization-chart-wrapper::-webkit-scrollbar {
+
+            height:
+                6px;
+
+        }
+
+
+        .organization-chart-wrapper::-webkit-scrollbar-track {
+
+            background:
+                transparent;
+
+        }
+
+
+        .organization-chart-wrapper::-webkit-scrollbar-thumb {
+
+            background:
+                rgba(245,197,66,0.45);
+
+            border-radius:
+                20px;
 
         }
 
 
         .organization-chart {
+
+            width:
+                100%;
 
             min-width:
                 760px;
@@ -1776,6 +1842,9 @@
             align-items:
                 center;
 
+            max-width:
+                100%;
+
         }
 
 
@@ -1783,6 +1852,9 @@
 
             position:
                 relative;
+
+            width:
+                180px;
 
             min-width:
                 180px;
@@ -1813,6 +1885,9 @@
             box-shadow:
                 0 8px 25px
                 rgba(0,0,0,0.25);
+
+            overflow:
+                hidden;
 
         }
 
@@ -1927,6 +2002,15 @@
             font-weight:
                 900;
 
+            overflow-wrap:
+                anywhere;
+
+            word-break:
+                break-word;
+
+            line-height:
+                1.3;
+
         }
 
 
@@ -1941,6 +2025,15 @@
             font-size:
                 10px;
 
+            overflow-wrap:
+                anywhere;
+
+            word-break:
+                break-word;
+
+            line-height:
+                1.3;
+
         }
 
 
@@ -1948,6 +2041,9 @@
 
             display:
                 inline-block;
+
+            max-width:
+                100%;
 
             margin-top:
                 7px;
@@ -1973,6 +2069,12 @@
             letter-spacing:
                 0.7px;
 
+            overflow-wrap:
+                anywhere;
+
+            word-break:
+                break-word;
+
         }
 
 
@@ -1987,6 +2089,12 @@
             font-size:
                 8px;
 
+            overflow-wrap:
+                anywhere;
+
+            word-break:
+                break-word;
+
         }
 
 
@@ -1997,6 +2105,9 @@
 
             height:
                 30px;
+
+            flex-shrink:
+                0;
 
             background:
                 rgba(245,197,66,0.45);
@@ -2015,6 +2126,12 @@
             justify-content:
                 center;
 
+            align-items:
+                flex-start;
+
+            flex-wrap:
+                nowrap;
+
             gap:
                 18px;
 
@@ -2022,6 +2139,9 @@
                 30px;
 
             width:
+                max-content;
+
+            min-width:
                 100%;
 
         }
@@ -2069,6 +2189,9 @@
 
             min-width:
                 180px;
+
+            flex-shrink:
+                0;
 
         }
 
@@ -2124,6 +2247,9 @@
 
 
         .organization-empty {
+
+            width:
+                100%;
 
             padding:
                 35px 20px;
@@ -2300,6 +2426,17 @@
 
                 grid-template-columns:
                     1fr;
+
+            }
+
+
+            /* Organization remains scrollable
+               horizontally when hierarchy is wide */
+
+            .organization-chart-wrapper {
+
+                overflow-x:
+                    auto;
 
             }
 
@@ -2507,6 +2644,304 @@
 
             }
 
+
+
+            /* =================================================
+               ORGANIZATION MOBILE RESPONSIVE
+            ================================================= */
+
+            .organization-chart-wrapper {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                overflow-x:
+                    auto;
+
+                padding:
+                    10px 2px 22px;
+
+            }
+
+
+            .organization-chart {
+
+                min-width:
+                    100%;
+
+                width:
+                    max-content;
+
+                align-items:
+                    center;
+
+            }
+
+
+            .organization-node {
+
+                width:
+                    150px;
+
+                min-width:
+                    150px;
+
+                max-width:
+                    150px;
+
+                padding:
+                    12px 9px;
+
+                border-radius:
+                    10px;
+
+            }
+
+
+            .organization-avatar {
+
+                width:
+                    40px;
+
+                height:
+                    40px;
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    11px;
+
+                line-height:
+                    1.25;
+
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    9px;
+
+            }
+
+
+            .organization-position {
+
+                font-size:
+                    7px;
+
+                padding:
+                    4px 6px;
+
+            }
+
+
+            .organization-code {
+
+                font-size:
+                    7px;
+
+            }
+
+
+            .organization-level {
+
+                gap:
+                    10px;
+
+                padding-top:
+                    25px;
+
+                min-width:
+                    max-content;
+
+                width:
+                    max-content;
+
+            }
+
+
+            .organization-level::before {
+
+                left:
+                    75px;
+
+                right:
+                    75px;
+
+            }
+
+
+            .organization-branch {
+
+                min-width:
+                    150px;
+
+            }
+
+
+            .organization-branch::before {
+
+                top:
+                    -25px;
+
+                height:
+                    25px;
+
+            }
+
+
+            .organization-connector {
+
+                height:
+                    25px;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 500px) {
+
+            .organization-title {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .organization-subtitle {
+
+                font-size:
+                    10px;
+
+                line-height:
+                    1.5;
+
+            }
+
+
+            .organization-chart-wrapper {
+
+                margin-left:
+                    -2px;
+
+                margin-right:
+                    -2px;
+
+                width:
+                    calc(100% + 4px);
+
+            }
+
+
+            .organization-chart {
+
+                min-width:
+                    100%;
+
+            }
+
+
+            .organization-node {
+
+                width:
+                    140px;
+
+                min-width:
+                    140px;
+
+                max-width:
+                    140px;
+
+                padding:
+                    10px 7px;
+
+            }
+
+
+            .organization-avatar {
+
+                width:
+                    36px;
+
+                height:
+                    36px;
+
+                margin-bottom:
+                    6px;
+
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    10px;
+
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    8px;
+
+            }
+
+
+            .organization-position {
+
+                margin-top:
+                    5px;
+
+                font-size:
+                    6.5px;
+
+                letter-spacing:
+                    0.4px;
+
+            }
+
+
+            .organization-code {
+
+                font-size:
+                    6.5px;
+
+            }
+
+
+            .organization-level {
+
+                gap:
+                    8px;
+
+            }
+
+
+            .organization-branch {
+
+                min-width:
+                    140px;
+
+            }
+
         }
 
 
@@ -2537,6 +2972,127 @@
 
                 grid-template-columns:
                     1fr;
+
+            }
+
+
+            /* =================================================
+               EXTRA SMALL ORGANIZATION CHART
+            ================================================= */
+
+            .organization-panel {
+
+                padding:
+                    12px;
+
+            }
+
+
+            .organization-chart-wrapper {
+
+                padding:
+                    8px 0 20px;
+
+            }
+
+
+            .organization-chart {
+
+                min-width:
+                    100%;
+
+            }
+
+
+            .organization-node {
+
+                width:
+                    125px;
+
+                min-width:
+                    125px;
+
+                max-width:
+                    125px;
+
+                padding:
+                    9px 6px;
+
+            }
+
+
+            .organization-avatar {
+
+                width:
+                    32px;
+
+                height:
+                    32px;
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    9px;
+
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    7px;
+
+            }
+
+
+            .organization-position {
+
+                font-size:
+                    6px;
+
+                padding:
+                    3px 5px;
+
+            }
+
+
+            .organization-code {
+
+                font-size:
+                    6px;
+
+            }
+
+
+            .organization-level {
+
+                gap:
+                    6px;
+
+            }
+
+
+            .organization-branch {
+
+                min-width:
+                    125px;
+
+            }
+
+
+            .organization-level::before {
+
+                left:
+                    62px;
+
+                right:
+                    62px;
 
             }
 
