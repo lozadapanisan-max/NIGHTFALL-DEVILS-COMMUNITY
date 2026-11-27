@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Organization Chart"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
+
+    <title>Organization Chart | NIGHTFALL DEVILS</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            margin: 0;
+
+            background:
+                #090909;
+
+            color:
+                #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+        }
+
+
+        :root {
+
+            --red:
+                #d71920;
+
+            --red-dark:
+                #a80f15;
+
+            --gold:
+                #f5c542;
+
+            --white:
+                #ffffff;
+
+            --black:
+                #090909;
+
+            --dark:
+                #111111;
+
+            --gray:
+                #777777;
+
+            --green:
+                #22c55e;
+
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                1000;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            border-bottom:
+                2px solid var(--gold);
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.35);
+
+        }
+
+
+        .header-inner {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            padding:
+                13px 20px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+        }
+
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+        }
+
+
+        .brand-icon {
+
+            font-size:
+                27px;
+
+        }
+
+
+        .brand-title {
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .brand-subtitle {
+
+            margin-top:
+                2px;
+
+            color:
+                #fff8d8;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .header-buttons {
+
+            display:
+                flex;
+
+            gap:
+                7px;
+
+        }
+
+
+        .header-btn {
+
+            min-height:
+                38px;
+
+            padding:
+                7px 13px;
+
+            border:
+                1px solid var(--gold);
+
+            border-radius:
+                8px;
+
+            background:
+                transparent;
+
+            color:
+                #ffffff;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .header-btn:hover {
+
+            background:
+                var(--gold);
+
+            color:
+                #111111;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            padding:
+                35px 20px 70px;
+
+        }
+
+
+        .page-title {
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .page-title h1 {
+
+            margin:
+                0 0 7px;
+
+            font-size:
+                clamp(
+                    28px,
+                    5vw,
+                    42px
+                );
+
+            font-weight:
+                900;
+
+        }
+
+
+        .page-title h1 span {
+
+            color:
+                var(--gold);
+
+        }
+
+
+        .page-title p {
+
+            margin:
+                0;
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                14px;
+
+        }
+
+
+        /* =====================================================
+           FIREBASE STATUS
+        ===================================================== */
+
+        .firebase-status {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                25px;
+
+            padding:
+                10px 13px;
+
+            border:
+                1px solid
+                rgba(
+                    245,
+                    197,
+                    66,
+                    .35
+                );
+
+            border-radius:
+                8px;
+
+            background:
+                rgba(
+                    245,
+                    197,
+                    66,
+                    .06
+                );
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .firebase-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            border-radius:
+                50%;
+
+            background:
+                #888888;
+
+        }
+
+
+        .firebase-dot.connected {
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 10px
+                rgba(
+                    34,
+                    197,
+                    94,
+                    .75
+                );
+
+        }
+
+
+        .firebase-dot.error {
+
+            background:
+                var(--red);
+
+            box-shadow:
+                0 0 10px
+                rgba(
+                    215,
+                    25,
+                    32,
+                    .75
+                );
+
+        }
+
+
+        /* =====================================================
+           CHART
+        ===================================================== */
+
+        .chart-container {
+
+            padding:
+                30px 20px 50px;
+
+            overflow-x:
+                auto;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #080808
+                );
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .35
+                );
+
+        }
+
+
+        .chart {
+
+            min-width:
+                850px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+        }
+
+
+        /* =====================================================
+           ORGANIZATION LEVEL
+        ===================================================== */
+
+        .level {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                flex-start;
+
+            gap:
+                25px;
+
+            position:
+                relative;
+
+        }
+
+
+        .level:not(:first-child) {
+
+            margin-top:
+                55px;
+
+        }
+
+
+        /* =====================================================
+           CONNECTOR
+        ===================================================== */
+
+        .level:not(:first-child)::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -28px;
+
+            left:
+                50%;
+
+            width:
+                2px;
+
+            height:
+                28px;
+
+            background:
+                var(--gold);
+
+        }
+
+
+        .position-wrapper {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+        }
+
+
+        .position-wrapper::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -28px;
+
+            left:
+                50%;
+
+            width:
+                2px;
+
+            height:
+                28px;
+
+            background:
+                var(--gold);
+
+        }
+
+
+        .level:first-child
+        .position-wrapper::before {
+
+            display:
+                none;
+
+        }
+
+
+        /* =====================================================
+           ORG CARD
+        ===================================================== */
+
+        .org-card {
+
+            width:
+                210px;
+
+            min-height:
+                125px;
+
+            padding:
+                15px;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                14px;
+
+            background:
+                #ffffff;
+
+            color:
+                #171717;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .30
+                );
+
+            position:
+                relative;
+
+        }
+
+
+        .org-card.founder {
+
+            border:
+                3px solid var(--gold);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff9df,
+                    #ffffff
+                );
+
+        }
+
+
+        .org-card.admin {
+
+            border-color:
+                var(--red);
+
+        }
+
+
+        .org-card.moderator {
+
+            border-color:
+                #d98d00;
+
+        }
+
+
+        .org-card.streamer {
+
+            border-color:
+                #7c3aed;
+
+        }
+
+
+        .org-icon {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            margin:
+                0 auto 8px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                2px solid var(--gold);
+
+            border-radius:
+                50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            font-size:
+                22px;
+
+        }
+
+
+        .org-name {
+
+            margin-bottom:
+                4px;
+
+            color:
+                #171717;
+
+            font-size:
+                15px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .org-role {
+
+            color:
+                var(--red);
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .org-code {
+
+            margin-top:
+                6px;
+
+            color:
+                #777777;
+
+            font-family:
+                monospace;
+
+            font-size:
+                9px;
+
+        }
+
+
+        .org-status {
+
+            display:
+                inline-block;
+
+            margin-top:
+                7px;
+
+            padding:
+                3px 7px;
+
+            border-radius:
+                10px;
+
+            background:
+                #eaf8ed;
+
+            color:
+                #198754;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .org-status.inactive {
+
+            background:
+                #fff0f0;
+
+            color:
+                var(--red);
+
+        }
+
+
+        /* =====================================================
+           EMPTY / LOADING
+        ===================================================== */
+
+        .message-box {
+
+            padding:
+                50px 20px;
+
+            text-align:
+                center;
+
+            color:
+                #bbbbbb;
+
+        }
+
+
+        .message-icon {
+
+            margin-bottom:
+                10px;
+
+            font-size:
+                40px;
+
+        }
+
+
+        /* =====================================================
+           LEGEND
+        ===================================================== */
+
+        .legend {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            margin-top:
+                25px;
+
+        }
+
+
+        .legend-item {
+
+            padding:
+                7px 12px;
+
+            border:
+                1px solid #333333;
+
+            border-radius:
+                20px;
+
+            background:
+                #111111;
+
+            color:
+                #cccccc;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (
+            max-width: 600px
+        ) {
+
+            .header-inner {
+
+                padding:
+                    11px 12px;
+
+            }
+
+
+            .brand-title {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .brand-subtitle {
+
+                font-size:
+                    8px;
+
+            }
+
+
+            .brand-icon {
+
+                font-size:
+                    22px;
+
+            }
+
+
+            .header-btn {
+
+                padding:
+                    6px 8px;
+
+                font-size:
+                    9px;
+
+            }
+
+
+            .main {
+
+                padding:
+                    25px 12px 50px;
+
+            }
+
+
+            .chart-container {
+
+                padding:
+                    25px 10px 40px;
+
+            }
+
+
+            .chart {
+
+                min-width:
+                    720px;
+
+            }
+
+
+            .org-card {
+
+                width:
+                    180px;
+
+                min-height:
+                    115px;
+
+            }
+
+
+            .level {
+
+                gap:
+                    15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    👿
+                </div>
+
+                <div>
+
+                    <div class="brand-title">
+                        NIGHTFALL DEVILS
+                    </div>
+
+                    <div class="brand-subtitle">
+                        ORGANIZATION CHART
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-buttons">
+
+                <button
+                    class="header-btn"
+                    id="dashboardBtn"
+                    type="button"
+                >
+                    Dashboard
+                </button>
+
+
+                <button
+                    class="header-btn"
+                    id="logoutBtn"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <div class="page-title">
+
+            <h1>
+                ORGANIZATION
+                <span>CHART</span>
+            </h1>
+
+            <p>
+                NIGHTFALL DEVILS community structure and leadership.
+            </p>
+
+        </div>
+
+
+
+        <!-- FIREBASE STATUS -->
+
+        <div class="firebase-status">
+
+            <span
+                class="firebase-dot"
+                id="firebaseDot"
+            ></span>
+
+            <span id="firebaseStatusText">
+                Firebase: Checking connection...
+            </span>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ORGANIZATION CHART
+        ================================================== -->
+
+        <section class="chart-container">
+
+            <div
+                class="chart"
+                id="organizationChart"
+            >
+
+                <div class="message-box">
+
+                    <div class="message-icon">
+                        ⏳
+                    </div>
+
+                    Loading organization...
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LEGEND -->
+
+        <div class="legend">
+
+            <div class="legend-item">
+                👑 FOUNDER
+            </div>
+
+            <div class="legend-item">
+                🛡️ ADMIN
+            </div>
+
+            <div class="legend-item">
+                ⚔️ MODERATOR
+            </div>
+
+            <div class="legend-item">
+                🎤 STREAMER
+            </div>
+
+            <div class="legend-item">
+                👿 MEMBER
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FIREBASE
+    ====================================================== -->
+
+    <script type="module">
+
+
+        import {
+
+            onAuthStateChanged,
+
+            signOut
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+        import {
+
+            collection,
+
+            onSnapshot
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        import {
+
+            auth,
+
+            db
+
+        } from
+        "../js/firebase.js";
+
+
+
+        /* =================================================
+           ELEMENTS
+        ================================================== */
+
+        const organizationChart =
+            document.getElementById(
+                "organizationChart"
+            );
+
+
+        const firebaseDot =
+            document.getElementById(
+                "firebaseDot"
+            );
+
+
+        const firebaseStatusText =
+            document.getElementById(
+                "firebaseStatusText"
+            );
+
+
+        const dashboardBtn =
+            document.getElementById(
+                "dashboardBtn"
+            );
+
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+
+        /* =================================================
+           AUTH
+        ================================================== */
+
+        onAuthStateChanged(
+            auth,
+            function(user) {
+
+                if (!user) {
+
+                    window.location.href =
+                        "../admin/login.html";
+
+                    return;
+
+                }
+
+
+                firebaseStatusText.textContent =
+                    "Firebase Authentication: Connected • Loading organization...";
+
+
+                firebaseDot.classList.add(
+                    "connected"
+                );
+
+
+                listenToOrganization();
+
+            }
+        );
+
+
+
+        /* =================================================
+           FIRESTORE REALTIME
+        ================================================== */
+
+        function listenToOrganization() {
+
+            onSnapshot(
+
+                collection(
+                    db,
+                    "organization"
+                ),
+
+                function(snapshot) {
+
+                    firebaseStatusText.textContent =
+                        "Firebase: Connected • Organization synced";
+
+
+                    firebaseDot.classList.remove(
+                        "error"
+                    );
+
+
+                    firebaseDot.classList.add(
+                        "connected"
+                    );
+
+
+                    const members =
+                        [];
+
+
+                    snapshot.forEach(
+                        function(documentSnapshot) {
+
+                            members.push({
+
+                                id:
+                                    documentSnapshot.id,
+
+                                ...documentSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    renderOrganization(
+                        members
+                    );
+
+                },
+
+                function(error) {
+
+                    console.error(
+                        "Organization error:",
+                        error
+                    );
+
+
+                    firebaseDot.classList.remove(
+                        "connected"
+                    );
+
+
+                    firebaseDot.classList.add(
+                        "error"
+                    );
+
+
+                    firebaseStatusText.textContent =
+                        "Firebase: Organization connection error";
+
+
+                    organizationChart.innerHTML = `
+
+                        <div class="message-box">
+
+                            <div class="message-icon">
+                                ⚠️
+                            </div>
+
+                            <strong>
+                                Unable to load organization.
+                            </strong>
+
+                            <p>
+                                ${escapeHTML(
+                                    getErrorMessage(
+                                        error
+                                    )
+                                )}
+                            </p>
+
+                        </div>
+
+                    `;
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =================================================
+           RENDER ORGANIZATION
+        ================================================== */
+
+        function renderOrganization(
+            members
+        ) {
+
+            organizationChart.innerHTML =
+                "";
+
+
+            if (
+                members.length === 0
+            ) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="message-box">
+
+                        <div class="message-icon">
+                            👿
+                        </div>
+
+                        <strong>
+                            No organization members yet.
+                        </strong>
+
+                        <p>
+                            Add organization data in Firestore
+                            collection "organization".
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const founders =
+                members.filter(
+                    function(member) {
+
+                        return normalizeRole(
+                            member.role
+                        ) === "FOUNDER";
+
+                    }
+                );
+
+
+            const admins =
+                members.filter(
+                    function(member) {
+
+                        return normalizeRole(
+                            member.role
+                        ) === "ADMIN";
+
+                    }
+                );
+
+
+            const moderators =
+                members.filter(
+                    function(member) {
+
+                        return normalizeRole(
+                            member.role
+                        ) === "MODERATOR";
+
+                    }
+                );
+
+
+            const streamers =
+                members.filter(
+                    function(member) {
+
+                        return normalizeRole(
+                            member.role
+                        ) === "STREAMER";
+
+                    }
+                );
+
+
+            const regularMembers =
+                members.filter(
+                    function(member) {
+
+                        return normalizeRole(
+                            member.role
+                        ) === "MEMBER";
+
+                    }
+                );
+
+
+            if (founders.length) {
+
+                addLevel(
+                    founders
+                );
+
+            }
+
+
+            if (admins.length) {
+
+                addLevel(
+                    admins
+                );
+
+            }
+
+
+            if (moderators.length) {
+
+                addLevel(
+                    moderators
+                );
+
+            }
+
+
+            if (streamers.length) {
+
+                addLevel(
+                    streamers
+                );
+
+            }
+
+
+            if (regularMembers.length) {
+
+                addLevel(
+                    regularMembers
+                );
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           ADD LEVEL
+        ================================================== */
+
+        function addLevel(
+            members
+        ) {
+
+            const level =
+                document.createElement(
+                    "div"
+                );
+
+
+            level.className =
+                "level";
+
+
+            members.forEach(
+                function(member) {
+
+                    const wrapper =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    wrapper.className =
+                        "position-wrapper";
+
+
+                    wrapper.appendChild(
+                        createCard(
+                            member
+                        )
+                    );
+
+
+                    level.appendChild(
+                        wrapper
+                    );
+
+                }
+            );
+
+
+            organizationChart.appendChild(
+                level
+            );
+
+        }
+
+
+
+        /* =================================================
+           CREATE CARD
+        ================================================== */
+
+        function createCard(
+            member
+        ) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            const role =
+                normalizeRole(
+                    member.role
+                );
+
+
+            card.className =
+                "org-card " +
+                role.toLowerCase();
+
+
+            let icon =
+                "👿";
+
+
+            if (
+                role === "FOUNDER"
+            ) {
+
+                icon =
+                    "👑";
+
+            } else if (
+                role === "ADMIN"
+            ) {
+
+                icon =
+                    "🛡️";
+
+            } else if (
+                role === "MODERATOR"
+            ) {
+
+                icon =
+                    "⚔️";
+
+            } else if (
+                role === "STREAMER"
+            ) {
+
+                icon =
+                    "🎤";
+
+            }
+
+
+            const status =
+                member.active === false
+                    ? "INACTIVE"
+                    : "ACTIVE";
+
+
+            const statusClass =
+                member.active === false
+                    ? "inactive"
+                    : "";
+
+
+            card.innerHTML = `
+
+                <div class="org-icon">
+                    ${icon}
+                </div>
+
+                <div class="org-name">
+                    ${escapeHTML(
+                        member.displayName ||
+                        "NIGHTFALL DEVIL"
+                    )}
+                </div>
+
+                <div class="org-role">
+                    ${escapeHTML(
+                        member.role ||
+                        "MEMBER"
+                    )}
+                </div>
+
+                <div class="org-code">
+                    ${escapeHTML(
+                        member.memberCode ||
+                        ""
+                    )}
+                </div>
+
+                <div class="org-status ${statusClass}">
+                    ${status}
+                </div>
+
+            `;
+
+
+            return card;
+
+        }
+
+
+
+        /* =================================================
+           ROLE NORMALIZER
+        ================================================== */
+
+        function normalizeRole(
+            role
+        ) {
+
+            return String(
+                role ||
+                "MEMBER"
+            )
+                .trim()
+                .toUpperCase();
+
+        }
+
+
+
+        /* =================================================
+           ERROR
+        ================================================== */
+
+        function getErrorMessage(
+            error
+        ) {
+
+            if (
+                error &&
+                error.code ===
+                "permission-denied"
+            ) {
+
+                return "Firebase permission denied. Check your Firestore Rules.";
+
+            }
+
+
+            if (
+                error &&
+                error.message
+            ) {
+
+                return error.message;
+
+            }
+
+
+            return "Unable to connect to Firebase.";
+
+        }
+
+
+
+        /* =================================================
+           ESCAPE HTML
+        ================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value
+            )
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =================================================
+           DASHBOARD
+        ================================================== */
+
+        dashboardBtn.addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "../admin/dashboard.html";
+
+            }
+        );
+
+
+
+        /* =================================================
+           LOGOUT
+        ================================================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "../admin/login.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
