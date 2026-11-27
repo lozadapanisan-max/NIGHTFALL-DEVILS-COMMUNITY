@@ -1072,9 +1072,9 @@
                 <div class="notice notice-warning">
 
                     Firebase Authentication account creation
-                    is not automatic from this page.
-                    The member will still need an Auth account
-                    before they can log in.
+                    will be handled automatically by the
+                    NIGHTFALL DEVILS Cloud Function after
+                    the member record is created.
 
                 </div>
 
@@ -1313,11 +1313,16 @@
         };
 
 
-        const app = initializeApp(firebaseConfig);
+        const app =
+            initializeApp(
+                firebaseConfig
+            );
 
-        const auth = getAuth(app);
+        const auth =
+            getAuth(app);
 
-        const db = getFirestore(app);
+        const db =
+            getFirestore(app);
 
 
         /* ==========================================
@@ -1325,64 +1330,104 @@
         ========================================== */
 
         const appEl =
-            document.getElementById("app");
+            document.getElementById(
+                "app"
+            );
 
         const accessDenied =
-            document.getElementById("accessDenied");
+            document.getElementById(
+                "accessDenied"
+            );
 
         const requestsBody =
-            document.getElementById("requestsBody");
+            document.getElementById(
+                "requestsBody"
+            );
 
         const searchInput =
-            document.getElementById("searchInput");
+            document.getElementById(
+                "searchInput"
+            );
 
         const statusFilter =
-            document.getElementById("statusFilter");
+            document.getElementById(
+                "statusFilter"
+            );
 
         const pendingCount =
-            document.getElementById("pendingCount");
+            document.getElementById(
+                "pendingCount"
+            );
 
         const approvedCount =
-            document.getElementById("approvedCount");
+            document.getElementById(
+                "approvedCount"
+            );
 
         const rejectedCount =
-            document.getElementById("rejectedCount");
+            document.getElementById(
+                "rejectedCount"
+            );
 
         const totalCount =
-            document.getElementById("totalCount");
+            document.getElementById(
+                "totalCount"
+            );
 
         const viewModal =
-            document.getElementById("viewModal");
+            document.getElementById(
+                "viewModal"
+            );
 
         const approveModal =
-            document.getElementById("approveModal");
+            document.getElementById(
+                "approveModal"
+            );
 
         const rejectModal =
-            document.getElementById("rejectModal");
+            document.getElementById(
+                "rejectModal"
+            );
 
         const requestDetails =
-            document.getElementById("requestDetails");
+            document.getElementById(
+                "requestDetails"
+            );
 
         const memberCodeInput =
-            document.getElementById("memberCodeInput");
+            document.getElementById(
+                "memberCodeInput"
+            );
 
         const memberEmailInput =
-            document.getElementById("memberEmailInput");
+            document.getElementById(
+                "memberEmailInput"
+            );
 
         const memberRoleInput =
-            document.getElementById("memberRoleInput");
+            document.getElementById(
+                "memberRoleInput"
+            );
 
         const memberStatusInput =
-            document.getElementById("memberStatusInput");
+            document.getElementById(
+                "memberStatusInput"
+            );
 
         const rejectReasonInput =
-            document.getElementById("rejectReasonInput");
+            document.getElementById(
+                "rejectReasonInput"
+            );
 
         const toast =
-            document.getElementById("toast");
+            document.getElementById(
+                "toast"
+            );
 
         const toastMessage =
-            document.getElementById("toastMessage");
+            document.getElementById(
+                "toastMessage"
+            );
 
 
         /* ==========================================
@@ -1404,16 +1449,34 @@
 
         function escapeHtml(value) {
 
-            if (value === null || value === undefined) {
+            if (
+                value === null ||
+                value === undefined
+            ) {
                 return "";
             }
 
             return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
         }
 
 
@@ -1422,23 +1485,28 @@
             type = "success"
         ) {
 
-            toastMessage.textContent = message;
+            toastMessage.textContent =
+                message;
 
             toast.className =
-                "toast show " + type;
+                "toast show " +
+                type;
 
             clearTimeout(
                 showToast.timer
             );
 
             showToast.timer =
-                setTimeout(() => {
+                setTimeout(
+                    () => {
 
-                    toast.classList.remove(
-                        "show"
-                    );
+                        toast.classList.remove(
+                            "show"
+                        );
 
-                }, 3500);
+                    },
+                    3500
+                );
         }
 
 
@@ -1487,13 +1555,18 @@
         }
 
 
-        function normalizeUsername(username) {
+        function normalizeUsername(
+            username
+        ) {
 
             return String(
                 username || ""
             )
                 .trim()
-                .replace(/^@+/, "")
+                .replace(
+                    /^@+/,
+                    ""
+                )
                 .toLowerCase();
 
         }
@@ -1510,32 +1583,50 @@
 
             let initials =
                 username
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .slice(0, 4)
+                    .replace(
+                        /[^a-zA-Z0-9]/g,
+                        ""
+                    )
+                    .slice(
+                        0,
+                        4
+                    )
                     .toUpperCase();
 
             if (!initials) {
-                initials = "MEM";
+
+                initials =
+                    "MEM";
+
             }
 
             const random =
                 Math.floor(
                     1000 +
-                    Math.random() * 9000
+                    Math.random() *
+                    9000
                 );
 
             return `NFD-26-MEM-${initials}${random}`;
+
         }
 
 
-        function getStatusBadge(status) {
+        function getStatusBadge(
+            status
+        ) {
 
             const value =
                 String(
-                    status || "pending"
-                ).toLowerCase();
+                    status ||
+                    "pending"
+                )
+                    .toLowerCase();
 
-            if (value === "approved") {
+
+            if (
+                value === "approved"
+            ) {
 
                 return `
                     <span class="badge badge-approved">
@@ -1545,7 +1636,10 @@
 
             }
 
-            if (value === "rejected") {
+
+            if (
+                value === "rejected"
+            ) {
 
                 return `
                     <span class="badge badge-rejected">
@@ -1555,11 +1649,46 @@
 
             }
 
+
             return `
                 <span class="badge badge-pending">
                     Pending
                 </span>
             `;
+
+        }
+
+
+        /* ==========================================
+           ADMIN ROLE CHECK
+        ========================================== */
+
+        function isAdminRole(
+            role
+        ) {
+
+            const normalized =
+                String(
+                    role || ""
+                )
+                    .trim()
+                    .toLowerCase()
+                    .replace(
+                        /[_-]+/g,
+                        " "
+                    )
+                    .replace(
+                        /\s+/g,
+                        " "
+                    );
+
+
+            return (
+                normalized === "admin" ||
+                normalized === "super admin" ||
+                normalized === "superadmin" ||
+                normalized === "founder"
+            );
 
         }
 
@@ -1574,26 +1703,80 @@
 
             if (!user) {
 
-                appEl.style.display = "none";
+                appEl.style.display =
+                    "none";
+
                 accessDenied.style.display =
                     "flex";
 
                 return false;
+
             }
+
 
             try {
 
-                /*
-                 * Admin check:
-                 *
-                 * 1. Look for members/{uid}
-                 * 2. Check role
-                 *
-                 * Also supports:
-                 * role = Admin
-                 * role = Super Admin
-                 * role = Founder
-                 */
+                /* ==========================================
+                   1. FIREBASE AUTH CUSTOM CLAIMS
+                ========================================== */
+
+                try {
+
+                    /*
+                     * Force refresh the ID token.
+                     *
+                     * This is important when the
+                     * Cloud Function recently added
+                     * admin custom claims.
+                     */
+
+                    const tokenResult =
+                        await user.getIdTokenResult(
+                            true
+                        );
+
+
+                    const claims =
+                        tokenResult.claims ||
+                        {};
+
+
+                    console.log(
+                        "Firebase Auth Claims:",
+                        claims
+                    );
+
+
+                    if (
+                        claims.admin === true ||
+                        isAdminRole(
+                            claims.role
+                        )
+                    ) {
+
+                        console.log(
+                            "Admin access granted by Firebase Custom Claims."
+                        );
+
+                        return true;
+
+                    }
+
+                } catch (
+                    claimError
+                ) {
+
+                    console.warn(
+                        "Custom claims check failed:",
+                        claimError
+                    );
+
+                }
+
+
+                /* ==========================================
+                   2. CHECK members/{UID}
+                ========================================== */
 
                 const memberRef =
                     doc(
@@ -1602,10 +1785,12 @@
                         user.uid
                     );
 
+
                 const memberSnap =
                     await getDoc(
                         memberRef
                     );
+
 
                 if (
                     memberSnap.exists()
@@ -1614,18 +1799,22 @@
                     const data =
                         memberSnap.data();
 
-                    const role =
-                        String(
-                            data.role || ""
-                        )
-                            .trim()
-                            .toLowerCase();
+
+                    console.log(
+                        "Admin member document:",
+                        data
+                    );
+
 
                     if (
-                        role === "admin" ||
-                        role === "super admin" ||
-                        role === "founder"
+                        isAdminRole(
+                            data.role
+                        )
                     ) {
+
+                        console.log(
+                            "Admin access granted by members/{uid}."
+                        );
 
                         return true;
 
@@ -1634,12 +1823,75 @@
                 }
 
 
-                /*
-                 * Fallback:
-                 * Search members by email.
-                 */
+                /* ==========================================
+                   3. CHECK MEMBERS BY UID FIELD
+                ========================================== */
 
-                if (user.email) {
+                const uidQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        where(
+                            "uid",
+                            "==",
+                            user.uid
+                        )
+                    );
+
+
+                const uidSnap =
+                    await getDocs(
+                        uidQuery
+                    );
+
+
+                if (
+                    !uidSnap.empty
+                ) {
+
+                    for (
+                        const memberDoc
+                        of uidSnap.docs
+                    ) {
+
+                        const data =
+                            memberDoc.data();
+
+
+                        console.log(
+                            "Member found by UID field:",
+                            data
+                        );
+
+
+                        if (
+                            isAdminRole(
+                                data.role
+                            )
+                        ) {
+
+                            console.log(
+                                "Admin access granted by member UID field."
+                            );
+
+                            return true;
+
+                        }
+
+                    }
+
+                }
+
+
+                /* ==========================================
+                   4. CHECK MEMBERS BY EMAIL
+                ========================================== */
+
+                if (
+                    user.email
+                ) {
 
                     const emailQuery =
                         query(
@@ -1654,34 +1906,45 @@
                             )
                         );
 
+
                     const emailSnap =
                         await getDocs(
                             emailQuery
                         );
 
+
                     if (
                         !emailSnap.empty
                     ) {
 
-                        const data =
-                            emailSnap
-                                .docs[0]
-                                .data();
-
-                        const role =
-                            String(
-                                data.role || ""
-                            )
-                                .trim()
-                                .toLowerCase();
-
-                        if (
-                            role === "admin" ||
-                            role === "super admin" ||
-                            role === "founder"
+                        for (
+                            const memberDoc
+                            of emailSnap.docs
                         ) {
 
-                            return true;
+                            const data =
+                                memberDoc.data();
+
+
+                            console.log(
+                                "Member found by email:",
+                                data
+                            );
+
+
+                            if (
+                                isAdminRole(
+                                    data.role
+                                )
+                            ) {
+
+                                console.log(
+                                    "Admin access granted by email."
+                                );
+
+                                return true;
+
+                            }
 
                         }
 
@@ -1689,16 +1952,39 @@
 
                 }
 
-            } catch (error) {
+
+                /* ==========================================
+                   ADMIN ACCESS DENIED
+                ========================================== */
+
+                console.warn(
+                    "Admin access denied.",
+                    {
+                        uid:
+                            user.uid,
+
+                        email:
+                            user.email,
+
+                        claims:
+                            "No admin claim detected"
+                    }
+                );
+
+            } catch (
+                error
+            ) {
 
                 console.error(
-                    "Admin access error:",
+                    "Admin access check error:",
                     error
                 );
 
             }
 
+
             return false;
+
         }
 
 
@@ -1716,13 +2002,19 @@
 
             }
 
+
             requestsBody.innerHTML = `
                 <tr>
                     <td colspan="6">
+
                         <div class="loading">
+
                             <div class="spinner"></div>
+
                             Loading member requests...
+
                         </div>
+
                     </td>
                 </tr>
             `;
@@ -1737,6 +2029,7 @@
 
             let requestsQuery;
 
+
             try {
 
                 requestsQuery =
@@ -1748,7 +2041,9 @@
                         )
                     );
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 requestsQuery =
                     requestsRef;
@@ -1759,44 +2054,59 @@
             unsubscribeRequests =
                 onSnapshot(
                     requestsQuery,
+
                     snapshot => {
 
                         allRequests =
                             snapshot.docs.map(
                                 item => ({
-                                    id: item.id,
+                                    id:
+                                        item.id,
+
                                     ...item.data()
                                 })
                             );
+
 
                         updateStats();
 
                         renderRequests();
 
                     },
+
                     error => {
 
                         console.error(
                             error
                         );
 
+
                         requestsBody.innerHTML = `
                             <tr>
                                 <td colspan="6">
+
                                     <div class="empty">
+
                                         <div class="empty-icon">
                                             ⚠️
                                         </div>
+
                                         <p>
                                             Unable to load member requests.
                                         </p>
+
                                         <small>
-                                            ${escapeHtml(error.message)}
+                                            ${escapeHtml(
+                                                error.message
+                                            )}
                                         </small>
+
                                     </div>
+
                                 </td>
                             </tr>
                         `;
+
 
                         showToast(
                             "Unable to load member requests.",
@@ -1819,26 +2129,34 @@
                 allRequests.filter(
                     item =>
                         String(
-                            item.status || "pending"
-                        ).toLowerCase() ===
+                            item.status ||
+                            "pending"
+                        )
+                            .toLowerCase() ===
                         "pending"
                 ).length;
+
 
             const approved =
                 allRequests.filter(
                     item =>
                         String(
-                            item.status || ""
-                        ).toLowerCase() ===
+                            item.status ||
+                            ""
+                        )
+                            .toLowerCase() ===
                         "approved"
                 ).length;
+
 
             const rejected =
                 allRequests.filter(
                     item =>
                         String(
-                            item.status || ""
-                        ).toLowerCase() ===
+                            item.status ||
+                            ""
+                        )
+                            .toLowerCase() ===
                         "rejected"
                 ).length;
 
@@ -1869,6 +2187,7 @@
                     .trim()
                     .toLowerCase();
 
+
             const status =
                 statusFilter.value;
 
@@ -1881,7 +2200,9 @@
                             String(
                                 request.status ||
                                 "pending"
-                            ).toLowerCase();
+                            )
+                                .toLowerCase();
+
 
                         if (
                             status !== "all" &&
@@ -1894,7 +2215,9 @@
 
 
                         if (!search) {
+
                             return true;
+
                         }
 
 
@@ -1919,7 +2242,9 @@
                 );
 
 
-            if (!filtered.length) {
+            if (
+                !filtered.length
+            ) {
 
                 requestsBody.innerHTML = `
                     <tr>
@@ -1942,6 +2267,7 @@
                 `;
 
                 return;
+
             }
 
 
@@ -1970,7 +2296,8 @@
                 String(
                     request.status ||
                     "pending"
-                ).toLowerCase();
+                )
+                    .toLowerCase();
 
 
             const name =
@@ -2103,7 +2430,9 @@
         ========================================== */
 
         window.viewRequest =
-            function(requestId) {
+            function(
+                requestId
+            ) {
 
                 const request =
                     allRequests.find(
@@ -2112,9 +2441,13 @@
                             requestId
                     );
 
+
                 if (!request) {
+
                     return;
+
                 }
+
 
                 selectedRequest =
                     request;
@@ -2274,7 +2607,9 @@
         ========================================== */
 
         window.openApprove =
-            function(requestId) {
+            function(
+                requestId
+            ) {
 
                 const request =
                     allRequests.find(
@@ -2283,9 +2618,13 @@
                             requestId
                     );
 
+
                 if (!request) {
+
                     return;
+
                 }
+
 
                 selectedRequest =
                     request;
@@ -2368,6 +2707,16 @@
             }
 
 
+            /*
+             * Authentication account creation
+             * requires an email.
+             *
+             * If email is empty, the member
+             * record can still be created, but
+             * the Cloud Function will mark
+             * authStatus as email_required.
+             */
+
             const button =
                 document.getElementById(
                     "confirmApproveBtn"
@@ -2382,10 +2731,9 @@
 
             try {
 
-                /*
-                 * Check if this request
-                 * already has a member.
-                 */
+                /* ==========================================
+                   CHECK DUPLICATE MEMBER CODE
+                ========================================== */
 
                 const existingMemberQuery =
                     query(
@@ -2411,24 +2759,38 @@
                     !existingMemberSnap.empty
                 ) {
 
-                    showToast(
-                        "Member code already exists.",
-                        "error"
-                    );
+                    /*
+                     * Allow the same request's
+                     * existing member document.
+                     */
 
-                    return;
+                    const duplicateOtherMember =
+                        existingMemberSnap.docs.some(
+                            memberDoc =>
+                                memberDoc.id !==
+                                request.id
+                        );
+
+
+                    if (
+                        duplicateOtherMember
+                    ) {
+
+                        showToast(
+                            "Member code already exists.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
 
                 }
 
 
-                /*
-                 * Create member document.
-                 *
-                 * We intentionally use the
-                 * request ID as the document ID
-                 * so the relationship is easy
-                 * to trace.
-                 */
+                /* ==========================================
+                   CREATE MEMBER DOCUMENT
+                ========================================== */
 
                 const memberRef =
                     doc(
@@ -2493,9 +2855,9 @@
                 );
 
 
-                /*
-                 * Update original request.
-                 */
+                /* ==========================================
+                   UPDATE ORIGINAL REQUEST
+                ========================================== */
 
                 await updateDoc(
                     doc(
@@ -2549,12 +2911,15 @@
                 );
 
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "Approve error:",
                     error
                 );
+
 
                 showToast(
                     error.message ||
@@ -2564,7 +2929,8 @@
 
             } finally {
 
-                button.disabled = false;
+                button.disabled =
+                    false;
 
                 button.textContent =
                     "✓ Approve Member";
@@ -2579,7 +2945,9 @@
         ========================================== */
 
         window.openReject =
-            function(requestId) {
+            function(
+                requestId
+            ) {
 
                 const request =
                     allRequests.find(
@@ -2588,9 +2956,13 @@
                             requestId
                     );
 
+
                 if (!request) {
+
                     return;
+
                 }
+
 
                 selectedRequest =
                     request;
@@ -2684,12 +3056,15 @@
                 );
 
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "Reject error:",
                     error
                 );
+
 
                 showToast(
                     error.message ||
@@ -2699,7 +3074,8 @@
 
             } finally {
 
-                button.disabled = false;
+                button.disabled =
+                    false;
 
                 button.textContent =
                     "✕ Reject Request";
@@ -2741,7 +3117,9 @@
 
 
         document
-            .getElementById("refreshBtn")
+            .getElementById(
+                "refreshBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
@@ -2757,7 +3135,9 @@
 
 
         document
-            .getElementById("dashboardBtn")
+            .getElementById(
+                "dashboardBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
@@ -2770,7 +3150,9 @@
 
 
         document
-            .getElementById("goLoginBtn")
+            .getElementById(
+                "goLoginBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
@@ -2783,19 +3165,25 @@
 
 
         document
-            .getElementById("logoutBtn")
+            .getElementById(
+                "logoutBtn"
+            )
             .addEventListener(
                 "click",
                 async () => {
 
                     try {
 
-                        await signOut(auth);
+                        await signOut(
+                            auth
+                        );
 
                         window.location.href =
                             "login.html";
 
-                    } catch (error) {
+                    } catch (
+                        error
+                    ) {
 
                         showToast(
                             "Logout failed.",
@@ -2809,7 +3197,9 @@
 
 
         document
-            .getElementById("closeViewBtn")
+            .getElementById(
+                "closeViewBtn"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2820,7 +3210,9 @@
 
 
         document
-            .getElementById("closeViewBtn2")
+            .getElementById(
+                "closeViewBtn2"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2831,7 +3223,9 @@
 
 
         document
-            .getElementById("closeApproveBtn")
+            .getElementById(
+                "closeApproveBtn"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2842,7 +3236,9 @@
 
 
         document
-            .getElementById("cancelApproveBtn")
+            .getElementById(
+                "cancelApproveBtn"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2853,7 +3249,9 @@
 
 
         document
-            .getElementById("closeRejectBtn")
+            .getElementById(
+                "closeRejectBtn"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2864,7 +3262,9 @@
 
 
         document
-            .getElementById("cancelRejectBtn")
+            .getElementById(
+                "cancelRejectBtn"
+            )
             .addEventListener(
                 "click",
                 () =>
@@ -2875,7 +3275,9 @@
 
 
         document
-            .getElementById("confirmApproveBtn")
+            .getElementById(
+                "confirmApproveBtn"
+            )
             .addEventListener(
                 "click",
                 approveRequest
@@ -2883,17 +3285,18 @@
 
 
         document
-            .getElementById("confirmRejectBtn")
+            .getElementById(
+                "confirmRejectBtn"
+            )
             .addEventListener(
                 "click",
                 rejectRequest
             );
 
 
-        /*
-         * Close modal by clicking
-         * outside the modal.
-         */
+        /* ==========================================
+           CLOSE MODAL OUTSIDE
+        ========================================== */
 
         [
             viewModal,
@@ -2924,16 +3327,17 @@
         );
 
 
-        /*
-         * ESC closes modal.
-         */
+        /* ==========================================
+           ESC CLOSE MODAL
+        ========================================== */
 
         document.addEventListener(
             "keydown",
             event => {
 
                 if (
-                    event.key === "Escape"
+                    event.key ===
+                    "Escape"
                 ) {
 
                     closeModal(
@@ -2962,22 +3366,44 @@
             auth,
             async user => {
 
+                console.log(
+                    "Auth state:",
+                    user
+                        ? {
+                            uid:
+                                user.uid,
+
+                            email:
+                                user.email,
+
+                            emailVerified:
+                                user.emailVerified
+                        }
+                        : "Not logged in"
+                );
+
+
                 if (!user) {
 
-                    currentUser = null;
+                    currentUser =
+                        null;
+
 
                     appEl.style.display =
                         "none";
 
+
                     accessDenied.style.display =
                         "flex";
+
 
                     return;
 
                 }
 
 
-                currentUser = user;
+                currentUser =
+                    user;
 
 
                 const isAdmin =
@@ -2991,16 +3417,23 @@
                     appEl.style.display =
                         "none";
 
+
                     accessDenied.style.display =
                         "flex";
+
 
                     return;
 
                 }
 
 
+                /* ==========================================
+                   ADMIN ACCESS GRANTED
+                ========================================== */
+
                 accessDenied.style.display =
                     "none";
+
 
                 appEl.style.display =
                     "block";
