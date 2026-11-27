@@ -137,7 +137,8 @@
 
 
         button,
-        input {
+        input,
+        textarea {
 
             font-family:
                 inherit;
@@ -761,6 +762,54 @@
 
             text-align:
                 center;
+
+        }
+
+
+        /* =====================================================
+           CHAT UNREAD BADGE
+        ===================================================== */
+
+        .chat-unread-badge {
+
+            margin-left:
+                auto;
+
+            min-width:
+                22px;
+
+            padding:
+                3px 6px;
+
+            border-radius:
+                20px;
+
+            background:
+                var(--gold);
+
+            color:
+                #111111;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 0 10px
+                rgba(245,197,66,0.25);
+
+        }
+
+
+        .chat-unread-badge[hidden] {
+
+            display:
+                none;
 
         }
 
@@ -1529,6 +1578,752 @@
 
             opacity:
                 0.65;
+
+        }
+
+
+
+        /* =====================================================
+           ADMIN CHAT
+        ===================================================== */
+
+        .admin-chat-panel {
+
+            margin-top:
+                18px;
+
+            padding:
+                0;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.22);
+
+            border-radius:
+                12px;
+
+            background:
+                #111111;
+
+            overflow:
+                hidden;
+
+            min-width:
+                0;
+
+        }
+
+
+        .admin-chat-header {
+
+            padding:
+                16px 18px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(215,25,32,0.12),
+                    rgba(245,197,66,0.04)
+                );
+
+        }
+
+
+        .admin-chat-title-wrap {
+
+            min-width:
+                0;
+
+        }
+
+
+        .admin-chat-title {
+
+            margin:
+                0;
+
+            color:
+                #ffffff;
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .admin-chat-title span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .admin-chat-subtitle {
+
+            margin-top:
+                4px;
+
+            color:
+                #777777;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .chat-live-status {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            flex-shrink:
+                0;
+
+            padding:
+                6px 9px;
+
+            border:
+                1px solid
+                rgba(34,197,94,0.25);
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(34,197,94,0.07);
+
+            color:
+                #5ee58d;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .chat-live-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 8px
+                rgba(34,197,94,0.65);
+
+        }
+
+
+        .chat-actions {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+        }
+
+
+        .chat-clear-button {
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid
+                rgba(215,25,32,0.35);
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(215,25,32,0.08);
+
+            color:
+                #ff7777;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .chat-clear-button:hover {
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            border-color:
+                var(--red);
+
+        }
+
+
+        .chat-messages {
+
+            height:
+                390px;
+
+            padding:
+                18px;
+
+            overflow-y:
+                auto;
+
+            overflow-x:
+                hidden;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                10px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(215,25,32,0.05),
+                    transparent 35%
+                ),
+                #0b0b0b;
+
+            scrollbar-width:
+                thin;
+
+            scrollbar-color:
+                rgba(245,197,66,0.35)
+                transparent;
+
+        }
+
+
+        .chat-messages::-webkit-scrollbar {
+
+            width:
+                6px;
+
+        }
+
+
+        .chat-messages::-webkit-scrollbar-track {
+
+            background:
+                transparent;
+
+        }
+
+
+        .chat-messages::-webkit-scrollbar-thumb {
+
+            background:
+                rgba(245,197,66,0.35);
+
+            border-radius:
+                20px;
+
+        }
+
+
+        .chat-empty {
+
+            flex:
+                1;
+
+            min-height:
+                250px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-align:
+                center;
+
+            color:
+                #666666;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .chat-empty-icon {
+
+            margin-bottom:
+                10px;
+
+            font-size:
+                36px;
+
+            opacity:
+                0.65;
+
+        }
+
+
+        .chat-message {
+
+            width:
+                100%;
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                9px;
+
+        }
+
+
+        .chat-message.mine {
+
+            justify-content:
+                flex-end;
+
+        }
+
+
+        .chat-avatar {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            flex-shrink:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid
+                rgba(245,197,66,0.25);
+
+            border-radius:
+                50%;
+
+            background:
+                #1a1a1a;
+
+            color:
+                var(--gold);
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .chat-message.mine .chat-avatar {
+
+            order:
+                2;
+
+            border-color:
+                rgba(215,25,32,0.35);
+
+            background:
+                rgba(215,25,32,0.12);
+
+            color:
+                #ff7777;
+
+        }
+
+
+        .chat-message-content {
+
+            max-width:
+                min(78%, 700px);
+
+            min-width:
+                0;
+
+        }
+
+
+        .chat-message.mine .chat-message-content {
+
+            order:
+                1;
+
+        }
+
+
+        .chat-message-meta {
+
+            margin-bottom:
+                4px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            flex-wrap:
+                wrap;
+
+        }
+
+
+        .chat-sender {
+
+            color:
+                var(--gold);
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .chat-message.mine .chat-sender {
+
+            color:
+                #ff7777;
+
+        }
+
+
+        .chat-time {
+
+            color:
+                #555555;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .chat-bubble {
+
+            position:
+                relative;
+
+            padding:
+                10px 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                10px;
+
+            background:
+                #171717;
+
+            color:
+                #eeeeee;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.55;
+
+            overflow-wrap:
+                anywhere;
+
+            white-space:
+                pre-wrap;
+
+        }
+
+
+        .chat-message.mine .chat-bubble {
+
+            border-color:
+                rgba(215,25,32,0.28);
+
+            background:
+                rgba(215,25,32,0.13);
+
+        }
+
+
+        .chat-delete-button {
+
+            margin-top:
+                5px;
+
+            padding:
+                0;
+
+            border:
+                0;
+
+            background:
+                transparent;
+
+            color:
+                #666666;
+
+            font-size:
+                8px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .chat-delete-button:hover {
+
+            color:
+                #ff7777;
+
+            text-decoration:
+                underline;
+
+        }
+
+
+        .chat-input-area {
+
+            padding:
+                12px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            background:
+                #111111;
+
+        }
+
+
+        .chat-input {
+
+            flex:
+                1;
+
+            min-width:
+                0;
+
+            min-height:
+                42px;
+
+            padding:
+                10px 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius:
+                8px;
+
+            outline:
+                none;
+
+            background:
+                #191919;
+
+            color:
+                #ffffff;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .chat-input::placeholder {
+
+            color:
+                #666666;
+
+        }
+
+
+        .chat-input:focus {
+
+            border-color:
+                rgba(245,197,66,0.55);
+
+            box-shadow:
+                0 0 0 2px
+                rgba(245,197,66,0.06);
+
+        }
+
+
+        .chat-send-button {
+
+            min-height:
+                42px;
+
+            padding:
+                0 17px;
+
+            border:
+                1px solid
+                var(--red);
+
+            border-radius:
+                8px;
+
+            background:
+                var(--red);
+
+            color:
+                #ffffff;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s ease;
+
+        }
+
+
+        .chat-send-button:hover {
+
+            background:
+                var(--red-light);
+
+            border-color:
+                var(--red-light);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .chat-send-button:disabled {
+
+            opacity:
+                0.55;
+
+            cursor:
+                not-allowed;
+
+            transform:
+                none;
+
+        }
+
+
+        .chat-helper {
+
+            padding:
+                0 13px 10px;
+
+            color:
+                #555555;
+
+            font-size:
+                8px;
+
+            background:
+                #111111;
 
         }
 
@@ -2430,9 +3225,6 @@
             }
 
 
-            /* Organization remains scrollable
-               horizontally when hierarchy is wide */
-
             .organization-chart-wrapper {
 
                 overflow-x:
@@ -2614,6 +3406,78 @@
 
                 padding:
                     16px;
+
+            }
+
+
+            /* =================================================
+               ADMIN CHAT MOBILE
+            ================================================= */
+
+            .admin-chat-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .chat-actions {
+
+                width:
+                    100%;
+
+                justify-content:
+                    space-between;
+
+            }
+
+
+            .chat-messages {
+
+                height:
+                    360px;
+
+                padding:
+                    13px;
+
+            }
+
+
+            .chat-message-content {
+
+                max-width:
+                    82%;
+
+            }
+
+
+            .chat-input-area {
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .chat-input {
+
+                min-height:
+                    44px;
+
+            }
+
+
+            .chat-send-button {
+
+                min-width:
+                    70px;
+
+                padding:
+                    0 12px;
 
             }
 
@@ -2942,6 +3806,83 @@
 
             }
 
+
+            /* =================================================
+               ADMIN CHAT SMALL MOBILE
+            ================================================= */
+
+            .admin-chat-panel {
+
+                border-radius:
+                    10px;
+
+            }
+
+
+            .admin-chat-header {
+
+                padding:
+                    14px;
+
+            }
+
+
+            .admin-chat-title {
+
+                font-size:
+                    15px;
+
+            }
+
+
+            .chat-messages {
+
+                height:
+                    330px;
+
+                padding:
+                    11px;
+
+            }
+
+
+            .chat-message-content {
+
+                max-width:
+                    84%;
+
+            }
+
+
+            .chat-bubble {
+
+                font-size:
+                    11px;
+
+                padding:
+                    9px 10px;
+
+            }
+
+
+            .chat-input-area {
+
+                padding:
+                    9px;
+
+            }
+
+
+            .chat-send-button {
+
+                min-width:
+                    62px;
+
+                font-size:
+                    9px;
+
+            }
+
         }
 
 
@@ -2972,6 +3913,60 @@
 
                 grid-template-columns:
                     1fr;
+
+            }
+
+
+            .chat-messages {
+
+                height:
+                    300px;
+
+            }
+
+
+            .chat-message-content {
+
+                max-width:
+                    80%;
+
+            }
+
+
+            .chat-avatar {
+
+                width:
+                    30px;
+
+                height:
+                    30px;
+
+                font-size:
+                    11px;
+
+            }
+
+
+            .chat-input-area {
+
+                flex-wrap:
+                    wrap;
+
+            }
+
+
+            .chat-input {
+
+                flex-basis:
+                    100%;
+
+            }
+
+
+            .chat-send-button {
+
+                width:
+                    100%;
 
             }
 
@@ -3310,10 +4305,6 @@
         </a>
 
 
-        <!-- =================================================
-             ORGANIZATION
-        ================================================== -->
-
         <a
             href="organization.html"
             class="sidebar-link"
@@ -3352,6 +4343,33 @@
             </span>
 
             Announcements
+
+        </a>
+
+
+        <!-- =================================================
+             ADMIN CHAT
+        ================================================== -->
+
+        <a
+            href="#adminChat"
+            class="sidebar-link"
+            id="sidebarChatLink"
+        >
+
+            <span class="sidebar-icon">
+                💬
+            </span>
+
+            Admin Chat
+
+            <span
+                class="chat-unread-badge"
+                id="chatUnreadBadge"
+                hidden
+            >
+                0
+            </span>
 
         </a>
 
@@ -3642,10 +4660,6 @@
 
 
 
-                        <!-- =================================================
-                             ORGANIZATION QUICK ACTION
-                        ================================================== -->
-
                         <a
                             href="organization.html"
                             class="quick-action"
@@ -3708,6 +4722,32 @@
                         </a>
 
 
+
+                        <!-- =================================================
+                             ADMIN CHAT QUICK ACTION
+                        ================================================== -->
+
+                        <a
+                            href="#adminChat"
+                            class="quick-action"
+                            id="chatQuickAction"
+                        >
+
+                            <div class="quick-action-icon">
+                                💬
+                            </div>
+
+                            <div class="quick-action-title">
+                                Admin Chat
+                            </div>
+
+                            <div class="quick-action-text">
+                                Real-time admin communication
+                            </div>
+
+                        </a>
+
+
                     </div>
 
                 </div>
@@ -3756,6 +4796,123 @@
 
                 </div>
 
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 ADMIN CHAT
+            ===================================================== -->
+
+            <section
+                class="admin-chat-panel"
+                id="adminChat"
+            >
+
+                <div class="admin-chat-header">
+
+                    <div class="admin-chat-title-wrap">
+
+                        <h2 class="admin-chat-title">
+
+                            💬 ADMIN
+                            <span>CHAT</span>
+
+                        </h2>
+
+                        <div class="admin-chat-subtitle">
+
+                            Private real-time communication
+                            for NIGHTFALL DEVILS administrators.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-actions">
+
+                        <div
+                            class="chat-live-status"
+                            id="chatLiveStatus"
+                        >
+
+                            <span
+                                class="chat-live-dot"
+                            ></span>
+
+                            REAL-TIME
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="chat-clear-button"
+                            id="clearChatBtn"
+                        >
+
+                            🗑️ CLEAR
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="chat-messages"
+                    id="chatMessages"
+                >
+
+                    <div class="chat-empty">
+
+                        <div class="chat-empty-icon">
+                            💬
+                        </div>
+
+                        Loading admin chat...
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="chat-input-area"
+                    id="chatForm"
+                >
+
+                    <input
+                        type="text"
+                        class="chat-input"
+                        id="chatMessageInput"
+                        placeholder="Type a message for the admins..."
+                        maxlength="1000"
+                        autocomplete="off"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="chat-send-button"
+                        id="chatSendButton"
+                    >
+
+                        SEND
+
+                    </button>
+
+                </form>
+
+
+                <div class="chat-helper">
+
+                    Press ENTER to send • Maximum 1000 characters
+
+                </div>
 
             </section>
 
@@ -3898,7 +5055,14 @@
 
         import {
             collection,
-            onSnapshot
+            onSnapshot,
+            addDoc,
+            query,
+            orderBy,
+            serverTimestamp,
+            doc,
+            deleteDoc,
+            writeBatch
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -4039,6 +5203,65 @@
 
 
         /* =====================================================
+           ADMIN CHAT ELEMENTS
+        ===================================================== */
+
+        const chatMessages =
+            document.getElementById(
+                "chatMessages"
+            );
+
+
+        const chatForm =
+            document.getElementById(
+                "chatForm"
+            );
+
+
+        const chatMessageInput =
+            document.getElementById(
+                "chatMessageInput"
+            );
+
+
+        const chatSendButton =
+            document.getElementById(
+                "chatSendButton"
+            );
+
+
+        const clearChatBtn =
+            document.getElementById(
+                "clearChatBtn"
+            );
+
+
+        const chatLiveStatus =
+            document.getElementById(
+                "chatLiveStatus"
+            );
+
+
+        const chatUnreadBadge =
+            document.getElementById(
+                "chatUnreadBadge"
+            );
+
+
+        const sidebarChatLink =
+            document.getElementById(
+                "sidebarChatLink"
+            );
+
+
+        const chatQuickAction =
+            document.getElementById(
+                "chatQuickAction"
+            );
+
+
+
+        /* =====================================================
            DATA
         ===================================================== */
 
@@ -4051,6 +5274,19 @@
         let allMembers = [];
 
         let organizationData = [];
+
+
+        /*
+         * ADMIN CHAT DATA
+         */
+
+        let currentAdminUser = null;
+
+        let chatMessagesData = [];
+
+        let chatInitialized = false;
+
+        let lastChatMessageCount = 0;
 
 
 
@@ -4070,6 +5306,14 @@
                     return;
 
                 }
+
+
+                /*
+                 * STORE CURRENT ADMIN
+                 */
+
+                currentAdminUser =
+                    user;
 
 
                 /*
@@ -4093,6 +5337,12 @@
                  */
 
                 loadDashboardData();
+
+                /*
+                 * START ADMIN CHAT
+                 */
+
+                loadAdminChat();
 
             }
         );
@@ -4216,11 +5466,6 @@
                     );
 
 
-                    /*
-                     * If rules do not allow
-                     * authenticated reads.
-                     */
-
                     setDatabaseErrorStatus(
                         "Member Requests"
                     );
@@ -4329,12 +5574,6 @@
 
                     /*
                      * Count upcoming schedules.
-                     *
-                     * If a schedule has a date field,
-                     * only future dates are counted.
-                     *
-                     * If no date field exists,
-                     * the record is still counted.
                      */
 
                     const now =
@@ -4379,12 +5618,6 @@
                         error
                     );
 
-
-                    /*
-                     * Keep dashboard usable
-                     * even if collection is not
-                     * created/rules are not ready.
-                     */
 
                     upcomingSchedules.textContent =
                         "0";
@@ -4670,10 +5903,6 @@
             }
 
 
-            /*
-             * Create map of organization assignments
-             */
-
             const orgMap =
                 new Map();
 
@@ -4696,10 +5925,6 @@
             );
 
 
-            /*
-             * Only active members
-             */
-
             const activeMembers =
                 allMembers.filter(
                     function (member) {
@@ -4720,10 +5945,6 @@
                         : " members"
                 );
 
-
-            /*
-             * Build assignment nodes
-             */
 
             const nodes =
                 activeMembers.map(
@@ -4766,10 +5987,6 @@
                 );
 
 
-            /*
-             * Sort
-             */
-
             nodes.sort(
                 function (a, b) {
 
@@ -4800,10 +6017,6 @@
             );
 
 
-            /*
-             * Find founder/root.
-             */
-
             let roots =
                 nodes.filter(
                     function (node) {
@@ -4816,11 +6029,6 @@
                     }
                 );
 
-
-            /*
-             * If no FOUNDER assignment,
-             * find members without parent.
-             */
 
             if (
                 roots.length === 0
@@ -4838,11 +6046,6 @@
             }
 
 
-            /*
-             * If still no root,
-             * use first member.
-             */
-
             if (
                 roots.length === 0 &&
                 nodes.length > 0
@@ -4854,10 +6057,6 @@
 
             }
 
-
-            /*
-             * Build HTML
-             */
 
             let html = "";
 
@@ -4872,10 +6071,6 @@
                             0
                         );
 
-                    /*
-                     * Only add line if
-                     * another root exists.
-                     */
 
                     if (
                         index <
@@ -4895,10 +6090,6 @@
                 }
             );
 
-
-            /*
-             * Find unassigned members.
-             */
 
             const assignedIds =
                 new Set();
@@ -5337,10 +6528,6 @@
             }
 
 
-            /*
-             * Show latest 5 requests
-             */
-
             const recent =
                 allRequests.slice(
                     0,
@@ -5431,16 +6618,938 @@
 
 
         /* =====================================================
+           ADMIN CHAT
+        ===================================================== */
+
+        function loadAdminChat() {
+
+            if (
+                !currentAdminUser
+            ) {
+
+                return;
+
+            }
+
+
+            const chatRef =
+                collection(
+                    db,
+                    "adminChats"
+                );
+
+
+            const chatQuery =
+                query(
+                    chatRef,
+                    orderBy(
+                        "createdAt",
+                        "asc"
+                    )
+                );
+
+
+            onSnapshot(
+
+                chatQuery,
+
+                function (snapshot) {
+
+                    chatMessagesData = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            chatMessagesData.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    const previousCount =
+                        lastChatMessageCount;
+
+
+                    lastChatMessageCount =
+                        chatMessagesData.length;
+
+
+                    renderAdminChat();
+
+
+                    /*
+                     * Initial load
+                     */
+
+                    if (
+                        !chatInitialized
+                    ) {
+
+                        chatInitialized =
+                            true;
+
+                        hideChatUnread();
+
+                    }
+
+                    /*
+                     * New incoming message
+                     */
+
+                    else if (
+                        chatMessagesData.length >
+                        previousCount
+                    ) {
+
+                        const latest =
+                            chatMessagesData[
+                                chatMessagesData.length - 1
+                            ];
+
+
+                        if (
+                            latest &&
+                            latest.senderId !==
+                            currentAdminUser.uid
+                        ) {
+
+                            showChatUnread();
+
+                        }
+
+                    }
+
+
+                    setChatConnected();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "ADMIN CHAT ERROR:",
+                        error
+                    );
+
+
+                    chatLiveStatus.innerHTML = `
+
+                        <span
+                            class="chat-live-dot"
+                            style="
+                                background:var(--orange);
+                                box-shadow:0 0 8px rgba(245,158,11,0.65);
+                            "
+                        ></span>
+
+                        ERROR
+
+                    `;
+
+
+                    chatMessages.innerHTML = `
+
+                        <div class="chat-empty">
+
+                            <div class="chat-empty-icon">
+                                ⚠️
+                            </div>
+
+                            Unable to load admin chat.
+
+                            <br><br>
+
+                            Check Firestore rules for
+                            <strong style="color:#f5c542;">
+                                adminChats
+                            </strong>.
+
+                        </div>
+
+                    `;
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ADMIN CHAT
+        ===================================================== */
+
+        function renderAdminChat() {
+
+            if (
+                !chatMessages
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                chatMessagesData.length === 0
+            ) {
+
+                chatMessages.innerHTML = `
+
+                    <div class="chat-empty">
+
+                        <div class="chat-empty-icon">
+                            💬
+                        </div>
+
+                        No messages yet.
+
+                        <br>
+
+                        Start the admin conversation.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            chatMessages.innerHTML =
+                chatMessagesData
+                    .map(
+                        function (message) {
+
+                            const senderId =
+                                String(
+                                    message.senderId ||
+                                    ""
+                                );
+
+
+                            const mine =
+                                senderId ===
+                                String(
+                                    currentAdminUser?.uid ||
+                                    ""
+                                );
+
+
+                            const senderName =
+                                escapeHTML(
+                                    message.senderName ||
+                                    "Admin"
+                                );
+
+
+                            const messageText =
+                                escapeHTML(
+                                    message.message ||
+                                    ""
+                                );
+
+
+                            const date =
+                                formatDate(
+                                    message.createdAt
+                                );
+
+
+                            const initial =
+                                escapeHTML(
+                                    String(
+                                        message.senderName ||
+                                        "A"
+                                    )
+                                    .trim()
+                                    .charAt(0)
+                                    .toUpperCase()
+                                );
+
+
+                            return `
+
+                                <div
+                                    class="
+                                        chat-message
+                                        ${mine ? "mine" : ""}
+                                    "
+                                >
+
+                                    <div class="chat-avatar">
+
+                                        ${initial || "A"}
+
+                                    </div>
+
+
+                                    <div
+                                        class="chat-message-content"
+                                    >
+
+                                        <div
+                                            class="chat-message-meta"
+                                        >
+
+                                            <span
+                                                class="chat-sender"
+                                            >
+                                                ${senderName}
+                                            </span>
+
+                                            <span
+                                                class="chat-time"
+                                            >
+                                                ${escapeHTML(date)}
+                                            </span>
+
+                                        </div>
+
+
+                                        <div
+                                            class="chat-bubble"
+                                        >
+
+                                            ${messageText}
+
+                                        </div>
+
+
+                                        ${
+                                            mine
+                                                ? `
+                                                    <button
+                                                        type="button"
+                                                        class="chat-delete-button"
+                                                        data-chat-delete="${escapeHTML(message.id)}"
+                                                    >
+                                                        Delete message
+                                                    </button>
+                                                `
+                                                : ""
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+
+            /*
+             * Auto-scroll to latest message
+             */
+
+            requestAnimationFrame(
+                function () {
+
+                    chatMessages.scrollTop =
+                        chatMessages.scrollHeight;
+
+                }
+            );
+
+
+            /*
+             * Delete message buttons
+             */
+
+            chatMessages
+                .querySelectorAll(
+                    "[data-chat-delete]"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                const messageId =
+                                    button.getAttribute(
+                                        "data-chat-delete"
+                                    );
+
+
+                                deleteChatMessage(
+                                    messageId
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /* =====================================================
+           SEND CHAT MESSAGE
+        ===================================================== */
+
+        async function sendChatMessage() {
+
+            if (
+                !currentAdminUser
+            ) {
+
+                alert(
+                    "Admin session is not ready."
+                );
+
+                return;
+
+            }
+
+
+            const message =
+                String(
+                    chatMessageInput.value ||
+                    ""
+                ).trim();
+
+
+            if (!message) {
+
+                chatMessageInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                message.length >
+                1000
+            ) {
+
+                alert(
+                    "Message is too long. Maximum is 1000 characters."
+                );
+
+                return;
+
+            }
+
+
+            chatSendButton.disabled =
+                true;
+
+
+            chatSendButton.textContent =
+                "SENDING...";
+
+
+            try {
+
+                await addDoc(
+
+                    collection(
+                        db,
+                        "adminChats"
+                    ),
+
+                    {
+
+                        message:
+                            message,
+
+                        senderId:
+                            currentAdminUser.uid,
+
+                        senderName:
+                            currentAdminUser.displayName ||
+                            currentAdminUser.email ||
+                            "Admin",
+
+                        senderRole:
+                            "Admin",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        deleted:
+                            false
+
+                    }
+
+                );
+
+
+                chatMessageInput.value =
+                    "";
+
+
+                hideChatUnread();
+
+
+                chatMessageInput.focus();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "SEND CHAT MESSAGE ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to send message.\n\n" +
+                    "Please check Firestore rules for adminChats."
+                );
+
+            }
+
+            finally {
+
+                chatSendButton.disabled =
+                    false;
+
+                chatSendButton.textContent =
+                    "SEND";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           DELETE CHAT MESSAGE
+        ===================================================== */
+
+        async function deleteChatMessage(
+            messageId
+        ) {
+
+            if (
+                !messageId
+            ) {
+
+                return;
+
+            }
+
+
+            const message =
+                chatMessagesData.find(
+                    function (item) {
+
+                        return (
+                            item.id ===
+                            messageId
+                        );
+
+                    }
+                );
+
+
+            if (
+                !message
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                String(
+                    message.senderId ||
+                    ""
+                ) !==
+                String(
+                    currentAdminUser?.uid ||
+                    ""
+                )
+            ) {
+
+                alert(
+                    "You can only delete your own messages."
+                );
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "Delete this message?"
+                );
+
+
+            if (
+                !confirmed
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+                await deleteDoc(
+
+                    doc(
+                        db,
+                        "adminChats",
+                        messageId
+                    )
+
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "DELETE CHAT MESSAGE ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to delete the message."
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CLEAR ALL CHAT
+        ===================================================== */
+
+        async function clearAdminChat() {
+
+            if (
+                !currentAdminUser
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                chatMessagesData.length === 0
+            ) {
+
+                alert(
+                    "There are no messages to clear."
+                );
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "CLEAR ALL ADMIN CHAT?\n\n" +
+                    "This will permanently delete all messages from the admin chat."
+                );
+
+
+            if (
+                !confirmed
+            ) {
+
+                return;
+
+            }
+
+
+            clearChatBtn.disabled =
+                true;
+
+
+            clearChatBtn.textContent =
+                "CLEARING...";
+
+
+            try {
+
+                const batch =
+                    writeBatch(
+                        db
+                    );
+
+
+                chatMessagesData.forEach(
+                    function (message) {
+
+                        batch.delete(
+
+                            doc(
+                                db,
+                                "adminChats",
+                                message.id
+                            )
+
+                        );
+
+                    }
+                );
+
+
+                await batch.commit();
+
+
+                hideChatUnread();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "CLEAR ADMIN CHAT ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to clear admin chat.\n\n" +
+                    "Please check Firestore permissions."
+                );
+
+            }
+
+            finally {
+
+                clearChatBtn.disabled =
+                    false;
+
+                clearChatBtn.textContent =
+                    "🗑️ CLEAR";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CHAT CONNECTED STATUS
+        ===================================================== */
+
+        function setChatConnected() {
+
+            chatLiveStatus.innerHTML = `
+
+                <span
+                    class="chat-live-dot"
+                ></span>
+
+                REAL-TIME
+
+            `;
+
+        }
+
+
+
+        /* =====================================================
+           CHAT UNREAD
+        ===================================================== */
+
+        function showChatUnread() {
+
+            if (
+                !chatUnreadBadge
+            ) {
+
+                return;
+
+            }
+
+
+            chatUnreadBadge.hidden =
+                false;
+
+
+            const current =
+                Number(
+                    chatUnreadBadge.textContent ||
+                    0
+                );
+
+
+            chatUnreadBadge.textContent =
+                current + 1;
+
+        }
+
+
+
+        function hideChatUnread() {
+
+            if (
+                !chatUnreadBadge
+            ) {
+
+                return;
+
+            }
+
+
+            chatUnreadBadge.hidden =
+                true;
+
+
+            chatUnreadBadge.textContent =
+                "0";
+
+        }
+
+
+
+        /* =====================================================
+           CHAT FORM
+        ===================================================== */
+
+        chatForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                sendChatMessage();
+
+            }
+        );
+
+
+        chatMessageInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendChatMessage();
+
+                }
+
+            }
+        );
+
+
+        clearChatBtn.addEventListener(
+            "click",
+            clearAdminChat
+        );
+
+
+
+        /* =====================================================
+           OPEN CHAT FROM SIDEBAR
+        ===================================================== */
+
+        function openAdminChat() {
+
+            const chatPanel =
+                document.getElementById(
+                    "adminChat"
+                );
+
+
+            if (
+                !chatPanel
+            ) {
+
+                return;
+
+            }
+
+
+            chatPanel.scrollIntoView({
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "start"
+
+            });
+
+
+            hideChatUnread();
+
+
+            setTimeout(
+                function () {
+
+                    chatMessageInput.focus();
+
+                },
+                450
+            );
+
+        }
+
+
+        sidebarChatLink.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeSidebar();
+
+                openAdminChat();
+
+            }
+        );
+
+
+        chatQuickAction.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                openAdminChat();
+
+            }
+        );
+
+
+
+        /* =====================================================
            SCHEDULE DATE
         ===================================================== */
 
         function getScheduleDate(
             schedule
         ) {
-
-            /*
-             * Support common field names
-             */
 
             const possibleValues = [
 
@@ -5468,10 +7577,6 @@
                 }
 
 
-                /*
-                 * Firebase Timestamp
-                 */
-
                 if (
                     typeof value.toDate ===
                     "function"
@@ -5482,10 +7587,6 @@
                 }
 
 
-                /*
-                 * JavaScript Date
-                 */
-
                 if (
                     value instanceof Date
                 ) {
@@ -5494,10 +7595,6 @@
 
                 }
 
-
-                /*
-                 * String / number
-                 */
 
                 const parsed =
                     new Date(value);
@@ -5537,10 +7634,6 @@
             }
 
 
-            /*
-             * Firestore Timestamp
-             */
-
             if (
                 typeof timestamp.toMillis ===
                 "function"
@@ -5550,10 +7643,6 @@
 
             }
 
-
-            /*
-             * Firestore Timestamp-like object
-             */
 
             if (
                 timestamp.seconds !==
@@ -5570,10 +7659,6 @@
             }
 
 
-            /*
-             * JavaScript Date
-             */
-
             if (
                 timestamp instanceof Date
             ) {
@@ -5582,10 +7667,6 @@
 
             }
 
-
-            /*
-             * String date
-             */
 
             const parsed =
                 new Date(timestamp);
@@ -5896,7 +7977,20 @@
                         "click",
                         function () {
 
-                            closeSidebar();
+                            /*
+                             * Do not close immediately
+                             * for chat because chat has
+                             * its own handler.
+                             */
+
+                            if (
+                                link.id !==
+                                "sidebarChatLink"
+                            ) {
+
+                                closeSidebar();
+
+                            }
 
                         }
                     );
@@ -6019,10 +8113,6 @@
                 }
 
 
-                /*
-                 * ALREADY INSTALLED
-                 */
-
                 if (
                     isAppInstalled()
                 ) {
@@ -6038,10 +8128,6 @@
                 }
 
 
-
-                /*
-                 * NATIVE INSTALL PROMPT
-                 */
 
                 if (
                     deferredInstallPrompt
@@ -6088,10 +8174,6 @@
 
 
 
-                /*
-                 * iPHONE / iPAD
-                 */
-
                 if (
                     isIOS()
                 ) {
@@ -6118,10 +8200,6 @@
 
 
 
-                /*
-                 * ANDROID
-                 */
-
                 if (
                     isAndroid()
                 ) {
@@ -6147,10 +8225,6 @@
                 }
 
 
-
-                /*
-                 * COMPUTER
-                 */
 
                 alert(
 
