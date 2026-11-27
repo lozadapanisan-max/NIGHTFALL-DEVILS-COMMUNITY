@@ -473,6 +473,7 @@
         .tree-root {
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .tree-node {
@@ -2103,6 +2104,85 @@
 
 
         /* ==========================================
+           CHECK CIRCULAR PARENT
+        ========================================== */
+
+        function createsCircularReference(
+            organizationId,
+            parentId
+        ) {
+
+            if (!organizationId || !parentId) {
+
+                return false;
+
+            }
+
+
+            let currentId =
+                parentId;
+
+
+            const visited =
+                new Set();
+
+
+            while (currentId) {
+
+                if (
+                    currentId ===
+                    organizationId
+                ) {
+
+                    return true;
+
+                }
+
+
+                if (
+                    visited.has(
+                        currentId
+                    )
+                ) {
+
+                    return true;
+
+                }
+
+
+                visited.add(
+                    currentId
+                );
+
+
+                const parent =
+                    organizations.find(
+                        org =>
+                            org.id ===
+                            currentId
+                    );
+
+
+                if (!parent) {
+
+                    break;
+
+                }
+
+
+                currentId =
+                    parent.parentId ||
+                    "";
+
+            }
+
+
+            return false;
+
+        }
+
+
+        /* ==========================================
            FORM SUBMIT
         ========================================== */
 
@@ -2172,6 +2252,25 @@
 
                     showStatus(
                         "A member cannot be their own parent.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    editingId &&
+                    parentId &&
+                    createsCircularReference(
+                        editingId,
+                        parentId
+                    )
+                ) {
+
+                    showStatus(
+                        "Invalid hierarchy. This parent would create a circular organization structure.",
                         "error"
                     );
 
@@ -2941,99 +3040,73 @@
                 "tree-root";
 
 
-            const rootContainer =
-                document.createElement(
-                    "div"
+            /*
+             * If there is only one root,
+             * render it directly.
+             */
+
+            if (roots.length === 1) {
+
+                tree.appendChild(
+                    buildTreeNode(
+                        roots[0],
+                        visibleOrganizations,
+                        new Set()
+                    )
+                );
+
+            } else {
+
+                /*
+                 * Multiple top-level positions.
+                 * Render them side by side.
+                 */
+
+                const rootChildren =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                rootChildren.className =
+                    "tree-children";
+
+
+                roots.forEach(
+                    root => {
+
+                        const wrapper =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        wrapper.className =
+                            "tree-child";
+
+
+                        wrapper.appendChild(
+                            buildTreeNode(
+                                root,
+                                visibleOrganizations,
+                                new Set()
+                            )
+                        );
+
+
+                        rootChildren.appendChild(
+                            wrapper
+                        );
+
+                    }
                 );
 
 
-            rootContainer.className =
-                "tree-node";
+                tree.appendChild(
+                    rootChildren
+                );
 
-
-            roots.forEach(
-                (root, index) => {
-
-                    const node =
-                        buildTreeNode(
-                            root,
-                            visibleOrganizations,
-                            new Set()
-                        );
-
-
-                    if (index === 0) {
-
-                        rootContainer.appendChild(
-                            node
-                        );
-
-                    } else {
-
-                        const existing =
-                            rootContainer.querySelector(
-                                ":scope > .tree-children"
-                            );
-
-
-                        if (existing) {
-
-                            existing.appendChild(
-                                createTreeChildWrapper(
-                                    node
-                                )
-                            );
-
-                        } else {
-
-                            const children =
-                                document.createElement(
-                                    "div"
-                                );
-
-
-                            children.className =
-                                "tree-children";
-
-
-                            const firstNode =
-                                rootContainer
-                                    .firstElementChild;
-
-
-                            rootContainer.innerHTML =
-                                "";
-
-
-                            children.appendChild(
-                                createTreeChildWrapper(
-                                    firstNode
-                                )
-                            );
-
-
-                            children.appendChild(
-                                createTreeChildWrapper(
-                                    node
-                                )
-                            );
-
-
-                            rootContainer.appendChild(
-                                children
-                            );
-
-                        }
-
-                    }
-
-                }
-            );
-
-
-            tree.appendChild(
-                rootContainer
-            );
+            }
 
 
             organizationChart.innerHTML =
@@ -3346,34 +3419,6 @@
                     b.position || ""
                 )
             );
-
-        }
-
-
-        /* ==========================================
-           HELPER FOR MULTIPLE ROOTS
-        ========================================== */
-
-        function createTreeChildWrapper(
-            node
-        ) {
-
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
-
-
-            wrapper.className =
-                "tree-child";
-
-
-            wrapper.appendChild(
-                node
-            );
-
-
-            return wrapper;
 
         }
 
