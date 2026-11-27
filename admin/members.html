@@ -545,7 +545,7 @@
 
 
         /* =====================================================
-           PHOTO UPLOAD
+           PHOTO URL
         ===================================================== */
 
         .photo-area {
@@ -649,28 +649,63 @@
         }
 
 
-        .file-input {
+        .photo-url-input {
 
             width:
                 100%;
 
+            height:
+                48px;
+
             padding:
-                10px;
+                0 13px;
 
             border:
-                1px dashed #cccccc;
+                2px solid #dddddd;
 
             border-radius:
                 8px;
 
             background:
-                #f8f8f8;
+                #ffffff;
 
             color:
-                #555555;
+                #171717;
 
             font-size:
-                12px;
+                13px;
+
+            outline:
+                none;
+
+        }
+
+
+        .photo-url-input:focus {
+
+            border-color:
+                var(--red);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(215, 25, 32, 0.10);
+
+        }
+
+
+        .photo-url-note {
+
+            margin-top:
+                8px;
+
+            color:
+                #777777;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.4;
 
         }
 
@@ -1659,8 +1694,7 @@
             </h1>
 
             <p>
-                Add, edit, manage and upload photos
-                for NIGHTFALL DEVILS members.
+                Add, edit and manage NIGHTFALL DEVILS members.
             </p>
 
         </div>
@@ -1849,9 +1883,13 @@
 
 
 
+                    <!-- =================================================
+                         PHOTO URL
+                    ================================================== -->
+
                     <div class="form-group full">
 
-                        <label>
+                        <label for="photoURL">
                             Member Photo
                         </label>
 
@@ -1877,17 +1915,24 @@
                             <div class="upload-info">
 
                                 <p>
-                                    Upload a clear profile photo
-                                    for this member.
-                                    Maximum file size: 5MB.
+                                    Use a direct image URL for the
+                                    member profile photo.
                                 </p>
 
+
                                 <input
-                                    type="file"
-                                    id="photoFile"
-                                    class="file-input"
-                                    accept="image/jpeg,image/png,image/webp"
+                                    type="url"
+                                    id="photoURL"
+                                    class="photo-url-input"
+                                    placeholder="https://example.com/member-photo.jpg"
                                 >
+
+
+                                <div class="photo-url-note">
+                                    Firebase Storage is not used.
+                                    Leave blank to use the default
+                                    NIGHTFALL DEVILS avatar.
+                                </div>
 
                             </div>
 
@@ -2020,27 +2065,20 @@
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
-        import {
-
-            ref,
-
-            uploadBytes,
-
-            getDownloadURL,
-
-            deleteObject
-
-        } from
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+        /*
+         * IMPORTANT:
+         * NO FIREBASE STORAGE IMPORT HERE.
+         *
+         * Spark Plan only:
+         * Authentication + Firestore
+         */
 
 
         import {
 
             auth,
 
-            db,
-
-            storage
+            db
 
         } from "../js/firebase.js";
 
@@ -2080,9 +2118,9 @@
                 "active"
             );
 
-        const photoFile =
+        const photoURLInput =
             document.getElementById(
-                "photoFile"
+                "photoURL"
             );
 
         const photoPreview =
@@ -2160,9 +2198,6 @@
             null;
 
         let editingPhotoURL =
-            "";
-
-        let editingPhotoPath =
             "";
 
         let membersUnsubscribe =
@@ -2250,6 +2285,10 @@
                         firebaseStatusText.textContent =
                             "Firebase: Connected • Members data synced";
 
+
+                        firebaseDot.classList.remove(
+                            "error"
+                        );
 
                         firebaseDot.classList.add(
                             "connected"
@@ -2419,86 +2458,87 @@
 
 
         /* =================================================
-           PHOTO PREVIEW
+           PHOTO URL PREVIEW
         ================================================== */
 
-        photoFile.addEventListener(
-            "change",
+        photoURLInput.addEventListener(
+            "input",
             function() {
 
-                const file =
-                    this.files[0];
+                const url =
+                    this.value.trim();
 
 
-                if (!file) {
+                if (!url) {
 
-                    return;
-
-                }
-
-
-                if (
-                    !file.type.startsWith(
-                        "image/"
-                    )
-                ) {
-
-                    showStatus(
-                        "Please select an image file.",
-                        "error"
-                    );
-
-                    this.value =
-                        "";
+                    showDefaultPhotoPreview();
 
                     return;
 
                 }
 
 
-                if (
-                    file.size >
-                    5 * 1024 * 1024
-                ) {
-
-                    showStatus(
-                        "Photo must be 5MB or smaller.",
-                        "error"
-                    );
-
-                    this.value =
-                        "";
-
-                    return;
-
-                }
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload =
-                    function(event) {
-
-                        photoPreview.innerHTML = `
-
-                            <img
-                                src="${event.target.result}"
-                                alt="Photo Preview"
-                            >
-
-                        `;
-
-                    };
-
-
-                reader.readAsDataURL(
-                    file
+                showPhotoPreview(
+                    url
                 );
 
             }
         );
+
+
+
+        /* =================================================
+           SHOW PHOTO PREVIEW
+        ================================================== */
+
+        function showPhotoPreview(
+            url
+        ) {
+
+            photoPreview.innerHTML = `
+
+                <img
+                    src="${escapeHTML(url)}"
+                    alt="Photo Preview"
+                >
+
+            `;
+
+
+            const image =
+                photoPreview.querySelector(
+                    "img"
+                );
+
+
+            image.addEventListener(
+                "error",
+                function() {
+
+                    showDefaultPhotoPreview();
+
+                }
+            );
+
+        }
+
+
+
+        /* =================================================
+           DEFAULT PHOTO PREVIEW
+        ================================================== */
+
+        function showDefaultPhotoPreview() {
+
+            photoPreview.innerHTML = `
+
+                <div class="photo-placeholder">
+                    👿
+                </div>
+
+            `;
+
+        }
 
 
 
@@ -2533,6 +2573,10 @@
                     active.value === "true";
 
 
+                const photo =
+                    photoURLInput.value.trim();
+
+
                 if (
                     !name ||
                     !username ||
@@ -2559,118 +2603,6 @@
 
 
                 try {
-
-                    let photoURL =
-                        editingPhotoURL;
-
-                    let photoPath =
-                        editingPhotoPath;
-
-
-
-                    /* =====================================
-                       UPLOAD NEW PHOTO
-                    ===================================== */
-
-                    if (
-                        photoFile.files.length >
-                        0
-                    ) {
-
-                        const file =
-                            photoFile.files[0];
-
-
-                        const extension =
-                            file.name
-                                .split(".")
-                                .pop()
-                                .toLowerCase();
-
-
-                        const safeName =
-                            name
-                                .toLowerCase()
-                                .replace(
-                                    /[^a-z0-9]+/g,
-                                    "-"
-                                )
-                                .replace(
-                                    /^-+|-+$/g,
-                                    ""
-                                );
-
-
-                        const filePath =
-                            "members/" +
-                            (
-                                safeName ||
-                                "member"
-                            ) +
-                            "-" +
-                            Date.now() +
-                            "." +
-                            extension;
-
-
-                        const storageRef =
-                            ref(
-                                storage,
-                                filePath
-                            );
-
-
-                        await uploadBytes(
-                            storageRef,
-                            file
-                        );
-
-
-                        photoURL =
-                            await getDownloadURL(
-                                storageRef
-                            );
-
-
-                        photoPath =
-                            filePath;
-
-
-
-                        /* =================================
-                           DELETE OLD PHOTO
-                        ================================= */
-
-                        if (
-                            editingPhotoPath &&
-                            editingPhotoPath !==
-                            photoPath
-                        ) {
-
-                            try {
-
-                                await deleteObject(
-                                    ref(
-                                        storage,
-                                        editingPhotoPath
-                                    )
-                                );
-
-                            } catch (
-                                deleteError
-                            ) {
-
-                                console.warn(
-                                    "Old photo could not be deleted:",
-                                    deleteError
-                                );
-
-                            }
-
-                        }
-
-                    }
-
 
 
                     /* =====================================
@@ -2706,12 +2638,7 @@
                                     isActive,
 
                                 photoURL:
-                                    photoURL ||
-                                    "",
-
-                                photoPath:
-                                    photoPath ||
-                                    "",
+                                    photo,
 
                                 createdAt:
                                     serverTimestamp(),
@@ -2765,12 +2692,7 @@
                                     isActive,
 
                                 photoURL:
-                                    photoURL ||
-                                    "",
-
-                                photoPath:
-                                    photoPath ||
-                                    "",
+                                    photo,
 
                                 updatedAt:
                                     serverTimestamp()
@@ -3080,11 +3002,6 @@
                 "";
 
 
-            editingPhotoPath =
-                member.photoPath ||
-                "";
-
-
             displayName.value =
                 member.displayName ||
                 "";
@@ -3111,7 +3028,8 @@
                     : "true";
 
 
-            photoFile.value =
+            photoURLInput.value =
+                member.photoURL ||
                 "";
 
 
@@ -3119,26 +3037,13 @@
                 member.photoURL
             ) {
 
-                photoPreview.innerHTML = `
-
-                    <img
-                        src="${escapeHTML(
-                            member.photoURL
-                        )}"
-                        alt="Current Member Photo"
-                    >
-
-                `;
+                showPhotoPreview(
+                    member.photoURL
+                );
 
             } else {
 
-                photoPreview.innerHTML = `
-
-                    <div class="photo-placeholder">
-                        👿
-                    </div>
-
-                `;
+                showDefaultPhotoPreview();
 
             }
 
@@ -3259,42 +3164,6 @@
 
             try {
 
-                /* =========================================
-                   DELETE PHOTO
-                ========================================= */
-
-                if (
-                    member.photoPath
-                ) {
-
-                    try {
-
-                        await deleteObject(
-
-                            ref(
-                                storage,
-                                member.photoPath
-                            )
-
-                        );
-
-                    } catch (photoError) {
-
-                        console.warn(
-                            "Photo deletion failed:",
-                            photoError
-                        );
-
-                    }
-
-                }
-
-
-
-                /* =========================================
-                   DELETE FIRESTORE MEMBER
-                ========================================= */
-
                 await deleteDoc(
 
                     doc(
@@ -3365,25 +3234,11 @@
                 "";
 
 
-            editingPhotoPath =
-                "";
-
-
-            photoFile.value =
-                "";
-
-
             active.value =
                 "true";
 
 
-            photoPreview.innerHTML = `
-
-                <div class="photo-placeholder">
-                    👿
-                </div>
-
-            `;
+            showDefaultPhotoPreview();
 
 
             formTitle.textContent =
@@ -3468,7 +3323,7 @@
                 )
             ) {
 
-                return "Firebase permission denied. Please check your Firestore/Storage Rules.";
+                return "Firebase permission denied. Please check your Firestore Rules.";
 
             }
 
@@ -3480,39 +3335,6 @@
             ) {
 
                 return "Your admin session has expired. Please login again.";
-
-            }
-
-
-            if (
-                code.includes(
-                    "storage/unauthorized"
-                )
-            ) {
-
-                return "Storage permission denied. Please check Firebase Storage Rules.";
-
-            }
-
-
-            if (
-                code.includes(
-                    "storage/unauthenticated"
-                )
-            ) {
-
-                return "Firebase Storage authentication failed.";
-
-            }
-
-
-            if (
-                code.includes(
-                    "storage/object-not-found"
-                )
-            ) {
-
-                return "The requested photo was not found in Firebase Storage.";
 
             }
 
@@ -3587,7 +3409,7 @@
 
         /* =================================================
            DASHBOARD
-        ================================================== */
+        ================================================= */
 
         dashboardBtn.addEventListener(
             "click",
@@ -3603,7 +3425,7 @@
 
         /* =================================================
            LOGOUT
-        ================================================== */
+        ================================================= */
 
         logoutBtn.addEventListener(
             "click",
@@ -3635,7 +3457,7 @@
 
         /* =================================================
            CLEANUP
-        ================================================== */
+        ================================================= */
 
         window.addEventListener(
             "beforeunload",
