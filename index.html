@@ -215,6 +215,7 @@
         }
 
 
+
         /* =====================================================
            ADMIN NAVIGATION
         ===================================================== */
@@ -887,7 +888,6 @@
 
         /* =====================================================
            ORGANIZATION CHART
-           ADDED - PUBLIC DISPLAY ONLY
         ===================================================== */
 
         .organization-section {
@@ -999,6 +999,9 @@
 
             align-items:
                 center;
+
+            gap:
+                0;
         }
 
 
@@ -2165,6 +2168,7 @@
 
                 <!-- ORGANIZATION -->
                 <!-- PUBLIC DISPLAY ONLY -->
+
                 <a href="#organization">
                     Organization
                 </a>
@@ -2174,6 +2178,7 @@
                 </a>
 
                 <!-- ADMIN -->
+
                 <a
                     href="admin/login.html"
                     class="admin-link"
@@ -2542,7 +2547,6 @@
 
         <!-- =================================================
              ORGANIZATION CHART
-             ADDED
         ================================================== -->
 
         <section
@@ -3170,7 +3174,6 @@
 
     <!-- =====================================================
          FIREBASE ORGANIZATION CHART
-         ADDED
     ===================================================== -->
 
     <script type="module">
@@ -3195,6 +3198,10 @@
         let members = [];
 
         let organization = [];
+
+        let membersLoaded = false;
+
+        let organizationLoaded = false;
 
 
 
@@ -3227,6 +3234,7 @@
                         }
                     );
 
+                membersLoaded = true;
 
                 renderOrganization();
 
@@ -3239,7 +3247,9 @@
                     error
                 );
 
-                showOrganizationError();
+                showOrganizationError(
+                    "Unable to load members from the community database."
+                );
 
             }
 
@@ -3276,6 +3286,7 @@
                         }
                     );
 
+                organizationLoaded = true;
 
                 renderOrganization();
 
@@ -3288,7 +3299,9 @@
                     error
                 );
 
-                showOrganizationError();
+                showOrganizationError(
+                    "Unable to load the organization structure."
+                );
 
             }
 
@@ -3301,6 +3314,31 @@
         ===================================================== */
 
         function renderOrganization() {
+
+            if (
+                !membersLoaded ||
+                !organizationLoaded
+            ) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="organization-loading">
+
+                        Loading Organizational Chart...
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            /* =================================================
+               NO ORGANIZATION CONFIGURED
+            ================================================= */
 
             if (
                 !members.length ||
@@ -3319,6 +3357,16 @@
                         appear here once the organization
                         has been configured.
 
+                        <br><br>
+
+                        <span style="font-size:12px;color:#666;">
+
+                            Admin can configure the
+                            hierarchy from the
+                            Organization section.
+
+                        </span>
+
                     </div>
 
                 `;
@@ -3329,7 +3377,9 @@
 
 
 
-            /* ONLY ACTIVE MEMBERS */
+            /* =================================================
+               ACTIVE MEMBERS ONLY
+            ================================================= */
 
             const activeMembers =
                 members.filter(
@@ -3344,7 +3394,9 @@
 
 
 
-            /* ONLY ACTIVE ORGANIZATION ASSIGNMENTS */
+            /* =================================================
+               ACTIVE ORGANIZATION ONLY
+            ================================================= */
 
             const activeOrganization =
                 organization.filter(
@@ -3359,7 +3411,9 @@
 
 
 
-            /* JOIN ORGANIZATION WITH MEMBER DATA */
+            /* =================================================
+               JOIN ORGANIZATION + MEMBERS
+            ================================================= */
 
             const nodes =
                 activeOrganization
@@ -3424,11 +3478,9 @@
 
 
 
-            /*
-             * ROOT MEMBERS
-             *
-             * parentId empty = top level
-             */
+            /* =================================================
+               FIND ROOT MEMBERS
+            ================================================= */
 
             const roots =
                 nodes.filter(
@@ -3477,13 +3529,17 @@
 
 
 
-            /* CLEAR LOADING */
+            /* =================================================
+               CLEAR CHART
+            ================================================= */
 
             organizationChart.innerHTML = "";
 
 
 
-            /* CREATE TREE */
+            /* =================================================
+               SORT ROOTS
+            ================================================= */
 
             roots.sort(
                 function (a, b) {
@@ -3496,6 +3552,11 @@
                 }
             );
 
+
+
+            /* =================================================
+               CREATE ROOT NODES
+            ================================================= */
 
             roots.forEach(
                 function (root) {
@@ -3548,7 +3609,9 @@
 
 
 
-            /* PREVENT CYCLIC STRUCTURE */
+            /* =================================================
+               PREVENT CYCLIC STRUCTURE
+            ================================================= */
 
             if (
                 path.includes(node.id)
@@ -3567,7 +3630,9 @@
 
 
 
-            /* CARD */
+            /* =================================================
+               CARD
+            ================================================= */
 
             const card =
                 document.createElement(
@@ -3598,6 +3663,10 @@
             }
 
 
+
+            /* =================================================
+               PHOTO
+            ================================================= */
 
             const photo =
                 node.member.photoURL ||
@@ -3702,7 +3771,9 @@
 
 
 
-            /* CHILDREN */
+            /* =================================================
+               FIND CHILDREN
+            ================================================= */
 
             const children =
                 allNodes
@@ -3853,14 +3924,25 @@
            ERROR
         ===================================================== */
 
-        function showOrganizationError() {
+        function showOrganizationError(
+            message
+        ) {
 
             organizationChart.innerHTML = `
 
                 <div class="organization-error">
 
-                    Unable to load the Organizational Chart.
-                    Please try again later.
+                    ${escapeHTML(message)}
+
+                    <br><br>
+
+                    <span style="font-size:12px;color:#777;">
+
+                        Please check the Firebase
+                        connection and Firestore
+                        permissions.
+
+                    </span>
 
                 </div>
 
