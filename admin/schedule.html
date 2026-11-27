@@ -701,6 +701,60 @@
       border-color: var(--red);
     }
 
+    /* =========================
+       DATE / TIME PICKER
+    ========================= */
+
+    .date-time-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .date-time-wrapper .form-control {
+      padding-right: 45px;
+      cursor: pointer;
+      color-scheme: dark;
+    }
+
+    .date-time-wrapper .form-control::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      width: 42px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .picker-button {
+      position: absolute;
+      top: 50%;
+      right: 7px;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border: 1px solid #303030;
+      background: #171717;
+      color: #ddd;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .picker-button:hover {
+      color: white;
+      border-color: var(--red);
+      background: #1d1d1d;
+    }
+
+    .date-time-wrapper .form-control:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 2px rgba(215, 25, 32, 0.12);
+    }
+
     .member-loading {
       color: #777;
       font-size: 10px;
@@ -938,6 +992,18 @@
       .add-btn {
         white-space: nowrap;
       }
+
+      .date-time-wrapper .form-control {
+        height: 46px;
+        min-height: 46px;
+        font-size: 13px;
+      }
+
+      .picker-button {
+        width: 32px;
+        height: 32px;
+        right: 7px;
+      }
     }
 
     @media (max-width: 380px) {
@@ -980,7 +1046,9 @@
     </div>
 
     <div class="topbar-right">
-      <span class="admin-email" id="adminEmail">Checking...</span>
+      <span class="admin-email" id="adminEmail">
+        Checking...
+      </span>
 
       <button class="logout-btn" id="logoutBtn">
         Logout
@@ -998,84 +1066,126 @@
        SIDEBAR OVERLAY
   ========================= -->
 
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+  ></div>
 
 
   <!-- =========================
        SIDEBAR
   ========================= -->
 
-  <aside class="sidebar" id="sidebar">
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
 
     <div class="sidebar-title">
       Main Menu
     </div>
 
-    <a href="dashboard.html" class="nav-link">
+    <a
+      href="dashboard.html"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">▣</span>
         Dashboard
       </span>
     </a>
 
-    <a href="requests.html" class="nav-link">
+    <a
+      href="requests.html"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">📩</span>
         Join Requests
       </span>
 
-      <span class="nav-badge" id="pendingBadge">
+      <span
+        class="nav-badge"
+        id="pendingBadge"
+      >
         0
       </span>
     </a>
 
-    <a href="members.html" class="nav-link">
+    <a
+      href="members.html"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">👥</span>
         Members
       </span>
     </a>
 
-    <a href="schedule.html" class="nav-link active">
+    <a
+      href="schedule.html"
+      class="nav-link active"
+    >
       <span>
         <span class="nav-icon">📅</span>
         Schedule
       </span>
     </a>
 
-    <a href="announcements.html" class="nav-link">
+    <a
+      href="announcements.html"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">📢</span>
         Announcements
       </span>
     </a>
 
-    <a href="organization.html" class="nav-link">
+    <a
+      href="organization.html"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">🏛️</span>
         Organization
       </span>
     </a>
 
-    <div class="sidebar-title" style="margin-top:25px;">
+    <div
+      class="sidebar-title"
+      style="margin-top:25px;"
+    >
       Website
     </div>
 
-    <a href="../index.html" target="_blank" class="nav-link">
+    <a
+      href="../index.html"
+      target="_blank"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">🌐</span>
         Open Website
       </span>
     </a>
 
-    <a href="../pages/schedule.html" target="_blank" class="nav-link">
+    <a
+      href="../pages/schedule.html"
+      target="_blank"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">📅</span>
         Public Schedule
       </span>
     </a>
 
-    <a href="../pages/members.html" target="_blank" class="nav-link">
+    <a
+      href="../pages/members.html"
+      target="_blank"
+      class="nav-link"
+    >
       <span>
         <span class="nav-icon">👥</span>
         Public Members
@@ -1095,12 +1205,16 @@
 
       <div class="page-title">
         <h2>Schedule Management</h2>
+
         <p>
           Manage streamer schedules and community events.
         </p>
       </div>
 
-      <button class="add-btn" id="addScheduleBtn">
+      <button
+        class="add-btn"
+        id="addScheduleBtn"
+      >
         + Add Schedule
       </button>
 
@@ -1114,43 +1228,66 @@
     <section class="stats-grid">
 
       <div class="stat-card">
+
         <div class="stat-label">
           Total Schedules
         </div>
 
-        <div class="stat-value" id="totalSchedules">
+        <div
+          class="stat-value"
+          id="totalSchedules"
+        >
           0
         </div>
+
       </div>
 
+
       <div class="stat-card upcoming">
+
         <div class="stat-label">
           Upcoming
         </div>
 
-        <div class="stat-value" id="upcomingSchedules">
+        <div
+          class="stat-value"
+          id="upcomingSchedules"
+        >
           0
         </div>
+
       </div>
 
+
       <div class="stat-card live">
+
         <div class="stat-label">
           Live Now
         </div>
 
-        <div class="stat-value" id="liveSchedules">
+        <div
+          class="stat-value"
+          id="liveSchedules"
+        >
           0
         </div>
+
       </div>
 
+
       <div class="stat-card completed">
+
         <div class="stat-label">
           Completed
         </div>
 
-        <div class="stat-value" id="completedSchedules">
+        <div
+          class="stat-value"
+          id="completedSchedules"
+        >
           0
         </div>
+
       </div>
 
     </section>
@@ -1171,22 +1308,66 @@
           placeholder="Search member, username, code, notes..."
         >
 
-        <select id="typeFilter" class="select">
-          <option value="">All Types</option>
-          <option value="Regular Live">Regular Live</option>
-          <option value="Raid / Support">Raid / Support</option>
-          <option value="Community Event">Community Event</option>
-          <option value="Challenge">Challenge</option>
-          <option value="Special Event">Special Event</option>
+
+        <select
+          id="typeFilter"
+          class="select"
+        >
+
+          <option value="">
+            All Types
+          </option>
+
+          <option value="Regular Live">
+            Regular Live
+          </option>
+
+          <option value="Raid / Support">
+            Raid / Support
+          </option>
+
+          <option value="Community Event">
+            Community Event
+          </option>
+
+          <option value="Challenge">
+            Challenge
+          </option>
+
+          <option value="Special Event">
+            Special Event
+          </option>
+
         </select>
 
-        <select id="statusFilter" class="select">
-          <option value="">All Status</option>
-          <option value="Upcoming">Upcoming</option>
-          <option value="Live Now">Live Now</option>
-          <option value="Completed">Completed</option>
-          <option value="Cancelled">Cancelled</option>
+
+        <select
+          id="statusFilter"
+          class="select"
+        >
+
+          <option value="">
+            All Status
+          </option>
+
+          <option value="Upcoming">
+            Upcoming
+          </option>
+
+          <option value="Live Now">
+            Live Now
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+
+          <option value="Cancelled">
+            Cancelled
+          </option>
+
         </select>
+
 
         <input
           type="date"
@@ -1194,7 +1375,11 @@
           class="input"
         >
 
-        <button class="clear-btn" id="clearFiltersBtn">
+
+        <button
+          class="clear-btn"
+          id="clearFiltersBtn"
+        >
           Clear
         </button>
 
@@ -1215,36 +1400,71 @@
           Community Schedule
         </h3>
 
-        <span class="result-count" id="resultCount">
+        <span
+          class="result-count"
+          id="resultCount"
+        >
           0 schedules
         </span>
 
       </div>
+
 
       <div class="table-wrapper">
 
         <table>
 
           <thead>
+
             <tr>
-              <th>Member / Streamer</th>
-              <th>Date & Time</th>
-              <th>Type</th>
-              <th>Status</th>
-              <th>TikTok</th>
-              <th>Notes</th>
-              <th>Actions</th>
+
+              <th>
+                Member / Streamer
+              </th>
+
+              <th>
+                Date & Time
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                TikTok
+              </th>
+
+              <th>
+                Notes
+              </th>
+
+              <th>
+                Actions
+              </th>
+
             </tr>
+
           </thead>
 
-          <tbody id="scheduleTableBody">
+
+          <tbody
+            id="scheduleTableBody"
+          >
 
             <tr>
+
               <td colspan="7">
+
                 <div class="loading">
                   Loading schedules...
                 </div>
+
               </td>
+
             </tr>
 
           </tbody>
@@ -1262,7 +1482,10 @@
        ADD / EDIT MODAL
   ========================= -->
 
-  <div class="modal-overlay" id="scheduleModal">
+  <div
+    class="modal-overlay"
+    id="scheduleModal"
+  >
 
     <div class="modal">
 
@@ -1272,7 +1495,11 @@
           Add Schedule
         </h3>
 
-        <button class="close-btn" id="closeModalBtn">
+        <button
+          class="close-btn"
+          id="closeModalBtn"
+          type="button"
+        >
           ×
         </button>
 
@@ -1285,7 +1512,10 @@
 
           <div class="form-grid">
 
-            <!-- MEMBER -->
+
+            <!-- =========================
+                 MEMBER
+            ========================= -->
 
             <div class="form-group full">
 
@@ -1305,7 +1535,10 @@
 
               </select>
 
-              <div class="member-loading" id="memberLoadingText">
+              <div
+                class="member-loading"
+                id="memberLoadingText"
+              >
                 Members are loaded automatically from Firebase.
               </div>
 
@@ -1315,9 +1548,12 @@
                 id="selectedMemberInfo"
               >
 
-                <div id="selectedMemberImageWrapper"></div>
+                <div
+                  id="selectedMemberImageWrapper"
+                ></div>
 
                 <div>
+
                   <div
                     class="selected-member-name"
                     id="selectedMemberName"
@@ -1327,6 +1563,7 @@
                     class="selected-member-details"
                     id="selectedMemberDetails"
                   ></div>
+
                 </div>
 
               </div>
@@ -1334,7 +1571,9 @@
             </div>
 
 
-            <!-- DATE -->
+            <!-- =========================
+                 DATE
+            ========================= -->
 
             <div class="form-group">
 
@@ -1342,17 +1581,32 @@
                 Date <span>*</span>
               </label>
 
-              <input
-                type="date"
-                id="scheduleDate"
-                class="form-control"
-                required
-              >
+              <div class="date-time-wrapper">
+
+                <input
+                  type="date"
+                  id="scheduleDate"
+                  class="form-control"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="picker-button"
+                  id="datePickerBtn"
+                  aria-label="Open date picker"
+                >
+                  📅
+                </button>
+
+              </div>
 
             </div>
 
 
-            <!-- START TIME -->
+            <!-- =========================
+                 START TIME
+            ========================= -->
 
             <div class="form-group">
 
@@ -1360,17 +1614,32 @@
                 Start Time <span>*</span>
               </label>
 
-              <input
-                type="time"
-                id="startTime"
-                class="form-control"
-                required
-              >
+              <div class="date-time-wrapper">
+
+                <input
+                  type="time"
+                  id="startTime"
+                  class="form-control"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="picker-button"
+                  id="startTimePickerBtn"
+                  aria-label="Open start time picker"
+                >
+                  🕐
+                </button>
+
+              </div>
 
             </div>
 
 
-            <!-- END TIME -->
+            <!-- =========================
+                 END TIME
+            ========================= -->
 
             <div class="form-group">
 
@@ -1378,16 +1647,31 @@
                 End Time
               </label>
 
-              <input
-                type="time"
-                id="endTime"
-                class="form-control"
-              >
+              <div class="date-time-wrapper">
+
+                <input
+                  type="time"
+                  id="endTime"
+                  class="form-control"
+                >
+
+                <button
+                  type="button"
+                  class="picker-button"
+                  id="endTimePickerBtn"
+                  aria-label="Open end time picker"
+                >
+                  🕐
+                </button>
+
+              </div>
 
             </div>
 
 
-            <!-- TYPE -->
+            <!-- =========================
+                 TYPE
+            ========================= -->
 
             <div class="form-group">
 
@@ -1430,7 +1714,9 @@
             </div>
 
 
-            <!-- STATUS -->
+            <!-- =========================
+                 STATUS
+            ========================= -->
 
             <div class="form-group">
 
@@ -1465,7 +1751,9 @@
             </div>
 
 
-            <!-- TIKTOK LINK -->
+            <!-- =========================
+                 TIKTOK LINK
+            ========================= -->
 
             <div class="form-group full">
 
@@ -1483,7 +1771,9 @@
             </div>
 
 
-            <!-- NOTES -->
+            <!-- =========================
+                 NOTES
+            ========================= -->
 
             <div class="form-group full">
 
@@ -1715,6 +2005,26 @@
 
 
     /* =====================================================
+       PICKER BUTTONS
+    ===================================================== */
+
+    const datePickerBtn =
+      document.getElementById(
+        "datePickerBtn"
+      );
+
+    const startTimePickerBtn =
+      document.getElementById(
+        "startTimePickerBtn"
+      );
+
+    const endTimePickerBtn =
+      document.getElementById(
+        "endTimePickerBtn"
+      );
+
+
+    /* =====================================================
        AUTH
     ===================================================== */
 
@@ -1792,10 +2102,6 @@
               }
             );
 
-
-            /* ---------------------------------------------
-               SORT MEMBERS
-            --------------------------------------------- */
 
             members.sort(
               (a, b) => {
@@ -2367,11 +2673,6 @@
       }
 
 
-      /*
-       * Fallback for older schedules.
-       * This does NOT hardcode members.
-       */
-
       if (
         schedule.tiktokUsername
       ) {
@@ -2569,6 +2870,7 @@
           </td>
 
           <td>
+
             <div class="date-text">
               ${escapeHTML(dateText)}
             </div>
@@ -2576,24 +2878,31 @@
             <div class="time-text">
               ${escapeHTML(timeText)}
             </div>
+
           </td>
 
           <td>
+
             <span class="type-badge">
               ${escapeHTML(
                 schedule.type ||
                 "—"
               )}
             </span>
+
           </td>
 
           <td>
-            <span class="status-badge ${statusClass}">
+
+            <span
+              class="status-badge ${statusClass}"
+            >
               ${escapeHTML(
                 schedule.status ||
                 "—"
               )}
             </span>
+
           </td>
 
           <td>
@@ -2601,6 +2910,7 @@
           </td>
 
           <td>
+
             <span
               title="${escapeAttribute(
                 schedule.notes || ""
@@ -2616,6 +2926,7 @@
             >
               ${notes}
             </span>
+
           </td>
 
           <td>
@@ -2662,6 +2973,7 @@
     ) {
 
       let photoHTML = "";
+
 
       if (photo) {
 
@@ -2813,10 +3125,14 @@
         time.split(":");
 
       let hour =
-        parseInt(parts[0], 10);
+        parseInt(
+          parts[0],
+          10
+        );
 
       const minute =
         parts[1] || "00";
+
 
       if (isNaN(hour)) {
         return time;
@@ -2871,6 +3187,155 @@
 
 
     /* =====================================================
+       OPEN NATIVE DATE / TIME PICKER
+    ===================================================== */
+
+    function openPicker(input) {
+
+      if (!input) {
+        return;
+      }
+
+
+      try {
+
+        if (
+          typeof input.showPicker ===
+          "function"
+        ) {
+
+          input.showPicker();
+
+          return;
+
+        }
+
+      } catch (error) {
+
+        console.log(
+          "showPicker unavailable:",
+          error
+        );
+
+      }
+
+
+      /*
+       * Fallback for browsers that do not support
+       * HTMLInputElement.showPicker().
+       */
+
+      input.focus();
+
+      try {
+        input.click();
+      } catch (error) {
+        console.log(
+          "Picker fallback unavailable:",
+          error
+        );
+      }
+
+    }
+
+
+    /* =====================================================
+       DATE PICKER BUTTON
+    ===================================================== */
+
+    datePickerBtn.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          scheduleDate
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       START TIME PICKER BUTTON
+    ===================================================== */
+
+    startTimePickerBtn.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          startTime
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       END TIME PICKER BUTTON
+    ===================================================== */
+
+    endTimePickerBtn.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          endTime
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       DATE INPUT CLICK
+    ===================================================== */
+
+    scheduleDate.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          scheduleDate
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       START TIME INPUT CLICK
+    ===================================================== */
+
+    startTime.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          startTime
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       END TIME INPUT CLICK
+    ===================================================== */
+
+    endTime.addEventListener(
+      "click",
+      () => {
+
+        openPicker(
+          endTime
+        );
+
+      }
+    );
+
+
+    /* =====================================================
        OPEN ADD MODAL
     ===================================================== */
 
@@ -2886,7 +3351,8 @@
 
     function openAddModal() {
 
-      editingScheduleId = null;
+      editingScheduleId =
+        null;
 
       modalTitle.textContent =
         "Add Schedule";
@@ -3086,18 +3552,8 @@
 
         const data = {
 
-          /*
-           * Main connection to members
-           */
-
           memberId:
             selectedMember.id,
-
-          /*
-           * Snapshot information.
-           * This keeps the schedule readable even
-           * if member details are later changed.
-           */
 
           streamerName:
             memberName,
@@ -3182,6 +3638,7 @@
 
                 createdBy:
                   currentUser?.email || ""
+
               }
             );
 
@@ -3346,7 +3803,8 @@
         "show"
       );
 
-      editingScheduleId = null;
+      editingScheduleId =
+        null;
 
       scheduleForm.reset();
 
