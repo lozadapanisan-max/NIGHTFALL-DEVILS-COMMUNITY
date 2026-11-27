@@ -888,6 +888,7 @@
 
         /* =====================================================
            ORGANIZATION CHART
+           AUTOMATIC ROLE-BASED ORGANIZATION
         ===================================================== */
 
         .organization-section {
@@ -912,7 +913,7 @@
 
             width: 100%;
 
-            max-width: 1200px;
+            max-width: 1400px;
 
             margin:
                 0 auto;
@@ -970,26 +971,324 @@
         }
 
 
+        /* =====================================================
+           ORGANIZATION WRAPPER
+        ===================================================== */
+
         .organization-chart-wrapper {
 
-            width: 100%;
+            width:
+                100%;
 
-            overflow-x: auto;
+            overflow-x:
+                auto;
 
-            overflow-y: hidden;
+            overflow-y:
+                hidden;
 
             padding:
-                20px 10px 45px;
+                15px 10px 50px;
 
             -webkit-overflow-scrolling:
                 touch;
+
+            scrollbar-width:
+                thin;
+
+            scrollbar-color:
+                var(--red)
+                #111111;
         }
 
 
+        .organization-chart-wrapper::-webkit-scrollbar {
+
+            height:
+                8px;
+        }
+
+
+        .organization-chart-wrapper::-webkit-scrollbar-track {
+
+            background:
+                #111111;
+
+            border-radius:
+                20px;
+        }
+
+
+        .organization-chart-wrapper::-webkit-scrollbar-thumb {
+
+            background:
+                var(--red);
+
+            border-radius:
+                20px;
+        }
+
+
+        /* =====================================================
+           MAIN ORGANIZATION AREA
+        ===================================================== */
+
         .organization-chart {
 
+            width:
+                100%;
+
             min-width:
-                900px;
+                1100px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                stretch;
+
+            gap:
+                38px;
+        }
+
+
+        /* =====================================================
+           ROLE SECTION
+        ===================================================== */
+
+        .organization-role-section {
+
+            width:
+                100%;
+
+            position:
+                relative;
+
+            padding:
+                25px 25px 35px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.025),
+                    rgba(255,255,255,0.008)
+                );
+
+            border:
+                1px solid
+                rgba(245,197,66,0.15);
+
+            border-radius:
+                20px;
+        }
+
+
+        .organization-role-section.role-founder {
+
+            border-color:
+                rgba(245,197,66,0.45);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(215,25,32,0.10),
+                    rgba(245,197,66,0.025)
+                );
+        }
+
+
+        .organization-role-section.role-admin {
+
+            border-color:
+                rgba(215,25,32,0.38);
+        }
+
+
+        .organization-role-section.role-moderator {
+
+            border-color:
+                rgba(245,197,66,0.28);
+        }
+
+
+        /* =====================================================
+           ROLE TITLE
+        ===================================================== */
+
+        .organization-role-title {
+
+            width:
+                fit-content;
+
+            min-width:
+                180px;
+
+            margin:
+                0 auto 30px;
+
+            padding:
+                10px 28px;
+
+            text-align:
+                center;
+
+            color:
+                #ffffff;
+
+            background:
+                #111111;
+
+            border:
+                2px solid
+                var(--red);
+
+            border-radius:
+                999px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1.5px;
+
+            box-shadow:
+                0 0 20px
+                rgba(215,25,32,0.12);
+
+            position:
+                relative;
+
+            z-index:
+                5;
+        }
+
+
+        .role-founder
+        .organization-role-title {
+
+            color:
+                var(--gold);
+
+            border-color:
+                var(--gold);
+
+            box-shadow:
+                0 0 25px
+                rgba(245,197,66,0.15);
+        }
+
+
+        /* =====================================================
+           ROLE CONNECTOR FROM TITLE
+        ===================================================== */
+
+        .organization-role-title::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                50%;
+
+            bottom:
+                -30px;
+
+            width:
+                2px;
+
+            height:
+                30px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--gold),
+                    var(--red)
+                );
+        }
+
+
+        /* =====================================================
+           MEMBERS ROW
+        ===================================================== */
+
+        .organization-role-members {
+
+            width:
+                100%;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                flex-start;
+
+            gap:
+                25px;
+
+            position:
+                relative;
+
+            padding-top:
+                20px;
+        }
+
+
+        /* Horizontal connector */
+        .organization-role-members.has-multiple::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                8%;
+
+            right:
+                8%;
+
+            height:
+                2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red),
+                    var(--gold),
+                    var(--red),
+                    transparent
+                );
+        }
+
+
+        /* =====================================================
+           MEMBER WRAPPER
+        ===================================================== */
+
+        .organization-member-wrapper {
+
+            min-width:
+                220px;
 
             display:
                 flex;
@@ -1000,18 +1299,97 @@
             align-items:
                 center;
 
-            gap:
-                0;
+            position:
+                relative;
         }
 
+
+        /* Vertical connector to each member */
+        .organization-role-members.has-multiple
+        .organization-member-wrapper::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -20px;
+
+            left:
+                50%;
+
+            width:
+                2px;
+
+            height:
+                20px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                var(--red);
+        }
+
+
+        /* Single member still gets connector */
+        .organization-role-members.single-member
+        .organization-member-wrapper::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -20px;
+
+            left:
+                50%;
+
+            width:
+                2px;
+
+            height:
+                20px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                var(--gold);
+        }
+
+
+        /* =====================================================
+           ORGANIZATION CARD
+        ===================================================== */
 
         .organization-card {
 
             width:
                 220px;
 
+            min-height:
+                245px;
+
             padding:
                 20px 16px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                flex-start;
 
             background:
                 linear-gradient(
@@ -1022,7 +1400,7 @@
 
             border:
                 2px solid
-                rgba(245, 197, 66, 0.55);
+                rgba(245, 197, 66, 0.45);
 
             border-radius:
                 16px;
@@ -1045,21 +1423,18 @@
         .organization-card:hover {
 
             transform:
-                translateY(-5px);
+                translateY(-6px);
 
             border-color:
                 var(--gold);
 
             box-shadow:
-                0 15px 40px
-                rgba(215, 25, 32, 0.2);
+                0 18px 45px
+                rgba(215, 25, 32, 0.25);
         }
 
 
         .organization-card.founder {
-
-            width:
-                250px;
 
             border:
                 2px solid
@@ -1068,7 +1443,7 @@
             background:
                 linear-gradient(
                     145deg,
-                    rgba(215, 25, 32, 0.25),
+                    rgba(215, 25, 32, 0.22),
                     #0b0b0b
                 );
 
@@ -1078,16 +1453,48 @@
         }
 
 
+        .organization-card.admin {
+
+            border-color:
+                rgba(215,25,32,0.65);
+        }
+
+
+        .organization-card.moderator {
+
+            border-color:
+                rgba(245,197,66,0.55);
+        }
+
+
+        .organization-card.streamer {
+
+            border-color:
+                rgba(255,255,255,0.25);
+        }
+
+
+        .organization-card.member {
+
+            border-color:
+                rgba(255,255,255,0.18);
+        }
+
+
+        /* =====================================================
+           PHOTO
+        ===================================================== */
+
         .organization-photo {
 
             width:
-                70px;
+                75px;
 
             height:
-                70px;
+                75px;
 
             margin:
-                0 auto 12px;
+                0 auto 13px;
 
             border-radius:
                 50%;
@@ -1110,6 +1517,13 @@
 
             justify-content:
                 center;
+
+            flex-shrink:
+                0;
+
+            box-shadow:
+                0 0 15px
+                rgba(245,197,66,0.12);
         }
 
 
@@ -1129,6 +1543,10 @@
         }
 
 
+        /* =====================================================
+           NAME
+        ===================================================== */
+
         .organization-name {
 
             margin-bottom:
@@ -1138,15 +1556,22 @@
                 #ffffff;
 
             font-size:
-                17px;
+                16px;
 
             font-weight:
                 900;
 
             word-break:
                 break-word;
+
+            line-height:
+                1.3;
         }
 
+
+        /* =====================================================
+           USERNAME
+        ===================================================== */
 
         .organization-username {
 
@@ -1161,8 +1586,15 @@
 
             word-break:
                 break-word;
+
+            line-height:
+                1.4;
         }
 
+
+        /* =====================================================
+           POSITION
+        ===================================================== */
 
         .organization-position {
 
@@ -1186,7 +1618,7 @@
                 var(--gold);
 
             font-size:
-                11px;
+                10px;
 
             font-weight:
                 900;
@@ -1196,123 +1628,52 @@
         }
 
 
+        /* =====================================================
+           MEMBER CODE
+        ===================================================== */
+
         .organization-code {
 
             margin-top:
-                9px;
+                10px;
 
             color:
                 #666666;
 
             font-size:
+                9px;
+
+            word-break:
+                break-word;
+        }
+
+
+        /* =====================================================
+           ROLE COUNT
+        ===================================================== */
+
+        .organization-role-count {
+
+            display:
+                block;
+
+            margin-top:
+                6px;
+
+            color:
+                #777777;
+
+            font-size:
                 10px;
-        }
 
-
-        .organization-connector {
-
-            width:
-                2px;
-
-            height:
-                45px;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    var(--gold),
-                    var(--red)
-                );
-        }
-
-
-        .organization-children {
-
-            width:
-                100%;
-
-            display:
-                flex;
-
-            justify-content:
-                center;
-
-            align-items:
-                flex-start;
-
-            gap:
-                24px;
-
-            position:
-                relative;
-
-            padding-top:
-                40px;
-        }
-
-
-        .organization-children::before {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            top:
-                0;
-
-            left:
-                10%;
-
-            right:
-                10%;
-
-            height:
-                2px;
-
-            background:
-                var(--red);
-        }
-
-
-        .organization-child {
-
-            position:
-                relative;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            align-items:
+            text-align:
                 center;
         }
 
 
-        .organization-child::before {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            top:
-                -40px;
-
-            width:
-                2px;
-
-            height:
-                40px;
-
-            background:
-                var(--red);
-        }
-
+        /* =====================================================
+           EMPTY
+        ===================================================== */
 
         .organization-empty {
 
@@ -1320,13 +1681,13 @@
                 100%;
 
             max-width:
-                650px;
+                700px;
 
             margin:
                 0 auto;
 
             padding:
-                35px 20px;
+                40px 25px;
 
             border:
                 1px dashed
@@ -1352,20 +1713,23 @@
                 block;
 
             margin-bottom:
-                6px;
+                8px;
 
             color:
                 var(--gold);
 
             font-size:
-                16px;
+                18px;
         }
 
 
         .organization-loading {
 
+            width:
+                100%;
+
             padding:
-                40px 20px;
+                45px 20px;
 
             color:
                 #999999;
@@ -1377,8 +1741,11 @@
 
         .organization-error {
 
+            width:
+                100%;
+
             padding:
-                30px 20px;
+                35px 20px;
 
             color:
                 #ff7777;
@@ -1386,7 +1753,6 @@
             text-align:
                 center;
         }
-
 
 
         /* =====================================================
@@ -1765,6 +2131,20 @@
                     1fr;
             }
 
+
+            .organization-chart {
+
+                min-width:
+                    950px;
+            }
+
+
+            .organization-role-members {
+
+                gap:
+                    18px;
+            }
+
         }
 
 
@@ -2018,12 +2398,15 @@
             }
 
 
-            /* ORGANIZATION */
+
+            /* =================================================
+               MOBILE ORGANIZATION
+            ================================================= */
 
             .organization-section {
 
                 padding:
-                    60px 12px;
+                    60px 8px;
             }
 
 
@@ -2051,14 +2434,98 @@
             .organization-chart-wrapper {
 
                 padding:
-                    10px 5px 35px;
+                    10px 3px 35px;
             }
 
 
             .organization-chart {
 
                 min-width:
-                    760px;
+                    850px;
+
+                gap:
+                    25px;
+            }
+
+
+            .organization-role-section {
+
+                padding:
+                    20px 15px 30px;
+
+                border-radius:
+                    16px;
+            }
+
+
+            .organization-role-title {
+
+                min-width:
+                    160px;
+
+                padding:
+                    9px 22px;
+
+                font-size:
+                    13px;
+            }
+
+
+            .organization-role-members {
+
+                gap:
+                    14px;
+            }
+
+
+            .organization-member-wrapper {
+
+                min-width:
+                    190px;
+            }
+
+
+            .organization-card {
+
+                width:
+                    190px;
+
+                min-height:
+                    225px;
+
+                padding:
+                    18px 13px;
+            }
+
+
+            .organization-photo {
+
+                width:
+                    65px;
+
+                height:
+                    65px;
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    14px;
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    11px;
+            }
+
+
+            .organization-position {
+
+                font-size:
+                    9px;
             }
 
         }
@@ -2576,8 +3043,8 @@
                         members of NIGHTFALL DEVILS.
 
                         The organization chart is
-                        automatically connected to
-                        the community database.
+                        automatically grouped by role
+                        from the community database.
 
                     </p>
 
@@ -3174,6 +3641,7 @@
 
     <!-- =====================================================
          FIREBASE ORGANIZATION CHART
+         AUTOMATIC ROLE GROUPING
     ===================================================== -->
 
     <script type="module">
@@ -3337,48 +3805,7 @@
 
 
             /* =================================================
-               NO ORGANIZATION CONFIGURED
-            ================================================= */
-
-            if (
-                !members.length ||
-                !organization.length
-            ) {
-
-                organizationChart.innerHTML = `
-
-                    <div class="organization-empty">
-
-                        <strong>
-                            Organizational Chart
-                        </strong>
-
-                        The organizational chart will
-                        appear here once the organization
-                        has been configured.
-
-                        <br><br>
-
-                        <span style="font-size:12px;color:#666;">
-
-                            Admin can configure the
-                            hierarchy from the
-                            Organization section.
-
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-
-            /* =================================================
-               ACTIVE MEMBERS ONLY
+               ACTIVE MEMBERS
             ================================================= */
 
             const activeMembers =
@@ -3395,7 +3822,7 @@
 
 
             /* =================================================
-               ACTIVE ORGANIZATION ONLY
+               ACTIVE ORGANIZATION
             ================================================= */
 
             const activeOrganization =
@@ -3412,7 +3839,7 @@
 
 
             /* =================================================
-               JOIN ORGANIZATION + MEMBERS
+               JOIN MEMBERS + ORGANIZATION
             ================================================= */
 
             const nodes =
@@ -3455,6 +3882,69 @@
 
 
 
+            /*
+             * IMPORTANT:
+             * If a member exists in members but does not
+             * yet have an organization document, we still
+             * show that member automatically based on role.
+             *
+             * This makes the public organization chart
+             * update automatically when members are added.
+             */
+
+            const assignedMemberIds =
+                new Set(
+                    nodes.map(
+                        function (node) {
+
+                            return node.memberId;
+
+                        }
+                    )
+                );
+
+
+            activeMembers.forEach(
+                function (member) {
+
+                    if (
+                        assignedMemberIds.has(
+                            member.id
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    nodes.push({
+
+                        id:
+                            "auto-" + member.id,
+
+                        memberId:
+                            member.id,
+
+                        parentId:
+                            "",
+
+                        order:
+                            9999,
+
+                        active:
+                            true,
+
+                        member:
+                            member
+
+                    });
+
+                }
+            );
+
+
+
             if (!nodes.length) {
 
                 organizationChart.innerHTML = `
@@ -3462,11 +3952,11 @@
                     <div class="organization-empty">
 
                         <strong>
-                            No Organization Members Yet
+                            Organizational Chart
                         </strong>
 
-                        The organization chart is
-                        currently empty.
+                        No active community members
+                        are available yet.
 
                     </div>
 
@@ -3479,58 +3969,7 @@
 
 
             /* =================================================
-               FIND ROOT MEMBERS
-            ================================================= */
-
-            const roots =
-                nodes.filter(
-                    function (node) {
-
-                        return (
-
-                            !node.parentId ||
-
-                            node.parentId === "" ||
-
-                            !nodes.some(
-                                function (parent) {
-
-                                    return (
-                                        parent.id ===
-                                        node.parentId
-                                    );
-
-                                }
-                            )
-
-                        );
-
-                    }
-                );
-
-
-
-            if (!roots.length) {
-
-                organizationChart.innerHTML = `
-
-                    <div class="organization-error">
-
-                        Unable to determine the
-                        organization hierarchy.
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-
-            /* =================================================
-               CLEAR CHART
+               CLEAR
             ================================================= */
 
             organizationChart.innerHTML = "";
@@ -3538,15 +3977,135 @@
 
 
             /* =================================================
-               SORT ROOTS
+               ROLE ORDER
             ================================================= */
 
-            roots.sort(
-                function (a, b) {
+            const roleOrder = [
 
-                    return (
-                        Number(a.order || 0) -
-                        Number(b.order || 0)
+                "FOUNDER",
+
+                "ADMIN",
+
+                "MODERATOR",
+
+                "STREAMER",
+
+                "MEMBER"
+
+            ];
+
+
+
+            /* =================================================
+               GROUP MEMBERS BY ROLE
+            ================================================= */
+
+            const groupedRoles = {};
+
+
+
+            roleOrder.forEach(
+                function (role) {
+
+                    groupedRoles[role] = [];
+
+                }
+            );
+
+
+
+            nodes.forEach(
+                function (node) {
+
+                    const role =
+                        getNodeRole(
+                            node
+                        );
+
+
+                    /*
+                     * Unknown roles are placed into MEMBER
+                     * instead of creating an unwanted section.
+                     */
+
+                    if (
+                        !roleOrder.includes(
+                            role
+                        )
+                    ) {
+
+                        groupedRoles.MEMBER.push(
+                            node
+                        );
+
+                    } else {
+
+                        groupedRoles[role].push(
+                            node
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+            /* =================================================
+               SORT EACH ROLE
+            ================================================= */
+
+            roleOrder.forEach(
+                function (role) {
+
+                    groupedRoles[role].sort(
+                        function (a, b) {
+
+                            const orderA =
+                                Number(
+                                    a.order ?? 9999
+                                );
+
+                            const orderB =
+                                Number(
+                                    b.order ?? 9999
+                                );
+
+
+                            if (
+                                orderA !==
+                                orderB
+                            ) {
+
+                                return (
+                                    orderA -
+                                    orderB
+                                );
+
+                            }
+
+
+                            const nameA =
+                                String(
+                                    a.member.displayName ||
+                                    a.member.name ||
+                                    ""
+                                ).toLowerCase();
+
+
+                            const nameB =
+                                String(
+                                    b.member.displayName ||
+                                    b.member.name ||
+                                    ""
+                                ).toLowerCase();
+
+
+                            return nameA.localeCompare(
+                                nameB
+                            );
+
+                        }
                     );
 
                 }
@@ -3555,21 +4114,40 @@
 
 
             /* =================================================
-               CREATE ROOT NODES
+               CREATE ROLE SECTIONS
             ================================================= */
 
-            roots.forEach(
-                function (root) {
+            roleOrder.forEach(
+                function (role) {
+
+                    const roleMembers =
+                        groupedRoles[
+                            role
+                        ];
+
+
+                    /*
+                     * Do not show empty roles.
+                     */
+
+                    if (
+                        !roleMembers.length
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const roleSection =
+                        createRoleSection(
+                            role,
+                            roleMembers
+                        );
+
 
                     organizationChart.appendChild(
-
-                        createOrganizationNode(
-                            root,
-                            nodes,
-                            0,
-                            []
-                        )
-
+                        roleSection
                     );
 
                 }
@@ -3580,59 +4158,210 @@
 
 
         /* =====================================================
-           CREATE ORGANIZATION NODE
+           GET ROLE
         ===================================================== */
 
-        function createOrganizationNode(
-            node,
-            allNodes,
-            level,
-            path
+        function getNodeRole(
+            node
         ) {
 
-            const group =
+            const organizationPosition =
+                node.position;
+
+
+            const memberRole =
+                node.member &&
+                node.member.role;
+
+
+            const role =
+                organizationPosition ||
+                memberRole ||
+                "MEMBER";
+
+
+            return String(
+                role
+            )
+                .trim()
+                .toUpperCase();
+
+        }
+
+
+
+        /* =====================================================
+           CREATE ROLE SECTION
+        ===================================================== */
+
+        function createRoleSection(
+            role,
+            roleMembers
+        ) {
+
+            const section =
+                document.createElement(
+                    "section"
+                );
+
+
+            section.className =
+                "organization-role-section";
+
+
+            section.classList.add(
+                "role-" +
+                role.toLowerCase()
+            );
+
+
+
+            /* =================================================
+               ROLE TITLE
+            ================================================= */
+
+            const title =
                 document.createElement(
                     "div"
                 );
 
 
-            group.style.display =
-                "flex";
+            title.className =
+                "organization-role-title";
 
 
-            group.style.flexDirection =
-                "column";
+            title.textContent =
+                role;
 
 
-            group.style.alignItems =
-                "center";
+
+            section.appendChild(
+                title
+            );
 
 
 
             /* =================================================
-               PREVENT CYCLIC STRUCTURE
+               MEMBER ROW
             ================================================= */
 
+            const membersRow =
+                document.createElement(
+                    "div"
+                );
+
+
+            membersRow.className =
+                "organization-role-members";
+
+
+
             if (
-                path.includes(node.id)
+                roleMembers.length >
+                1
             ) {
 
-                return group;
+                membersRow.classList.add(
+                    "has-multiple"
+                );
+
+            } else {
+
+                membersRow.classList.add(
+                    "single-member"
+                );
 
             }
 
 
-            const newPath =
-                [
-                    ...path,
-                    node.id
-                ];
+
+            /* =================================================
+               MEMBER CARDS
+            ================================================= */
+
+            roleMembers.forEach(
+                function (node) {
+
+                    const memberWrapper =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    memberWrapper.className =
+                        "organization-member-wrapper";
+
+
+                    const card =
+                        createMemberCard(
+                            node,
+                            role
+                        );
+
+
+                    memberWrapper.appendChild(
+                        card
+                    );
+
+
+                    membersRow.appendChild(
+                        memberWrapper
+                    );
+
+                }
+            );
+
+
+
+            section.appendChild(
+                membersRow
+            );
 
 
 
             /* =================================================
-               CARD
+               COUNT
             ================================================= */
+
+            const count =
+                document.createElement(
+                    "span"
+                );
+
+
+            count.className =
+                "organization-role-count";
+
+
+            count.textContent =
+                roleMembers.length +
+                (
+                    roleMembers.length === 1
+                        ? " MEMBER"
+                        : " MEMBERS"
+                );
+
+
+
+            section.appendChild(
+                count
+            );
+
+
+            return section;
+
+        }
+
+
+
+        /* =====================================================
+           CREATE MEMBER CARD
+        ===================================================== */
+
+        function createMemberCard(
+            node,
+            role
+        ) {
 
             const card =
                 document.createElement(
@@ -3640,55 +4369,49 @@
                 );
 
 
-            const position =
-                String(
-                    node.position ||
-                    node.member.role ||
-                    "MEMBER"
-                ).toUpperCase();
-
-
             card.className =
                 "organization-card";
 
 
-            if (
-                position === "FOUNDER"
-            ) {
-
-                card.classList.add(
-                    "founder"
-                );
-
-            }
+            card.classList.add(
+                role.toLowerCase()
+            );
 
 
 
             /* =================================================
-               PHOTO
+               MEMBER DATA
             ================================================= */
 
-            const photo =
-                node.member.photoURL ||
-                "assets/logo/nightfall-devils-logo.png";
+            const member =
+                node.member;
 
 
             const displayName =
-                node.member.displayName ||
-                node.member.name ||
+                member.displayName ||
+                member.name ||
                 "Unknown Member";
 
 
             const username =
-                node.member.tiktokUsername ||
+                member.tiktokUsername ||
                 "";
 
 
             const memberCode =
-                node.member.memberCode ||
+                member.memberCode ||
                 "";
 
 
+            const photo =
+                member.photoURL ||
+                "assets/logo/nightfall-devils-logo.png";
+
+
+
+            /* =================================================
+               CARD HTML
+            ================================================= */
 
             card.innerHTML = `
 
@@ -3698,7 +4421,8 @@
                         src="${escapeHTML(photo)}"
                         alt="${escapeHTML(displayName)}"
                         onerror="
-                            this.src='assets/logo/nightfall-devils-logo.png'
+                            this.onerror=null;
+                            this.src='assets/logo/nightfall-devils-logo.png';
                         "
                     >
 
@@ -3707,7 +4431,9 @@
 
                 <div class="organization-name">
 
-                    ${escapeHTML(displayName)}
+                    ${escapeHTML(
+                        displayName
+                    )}
 
                 </div>
 
@@ -3739,7 +4465,9 @@
                     class="organization-position"
                 >
 
-                    ${escapeHTML(position)}
+                    ${escapeHTML(
+                        role
+                    )}
 
                 </div>
 
@@ -3765,119 +4493,7 @@
             `;
 
 
-            group.appendChild(
-                card
-            );
-
-
-
-            /* =================================================
-               FIND CHILDREN
-            ================================================= */
-
-            const children =
-                allNodes
-                    .filter(
-                        function (child) {
-
-                            return (
-                                child.parentId ===
-                                node.id
-                            );
-
-                        }
-                    )
-                    .sort(
-                        function (a, b) {
-
-                            return (
-                                Number(a.order || 0) -
-                                Number(b.order || 0)
-                            );
-
-                        }
-                    );
-
-
-
-            if (children.length) {
-
-
-                /* VERTICAL CONNECTOR */
-
-                const connector =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                connector.className =
-                    "organization-connector";
-
-
-                group.appendChild(
-                    connector
-                );
-
-
-
-                /* CHILDREN CONTAINER */
-
-                const childrenContainer =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                childrenContainer.className =
-                    "organization-children";
-
-
-
-                children.forEach(
-                    function (child) {
-
-                        const childWrapper =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        childWrapper.className =
-                            "organization-child";
-
-
-                        const childNode =
-                            createOrganizationNode(
-                                child,
-                                allNodes,
-                                level + 1,
-                                newPath
-                            );
-
-
-                        childWrapper.appendChild(
-                            childNode
-                        );
-
-
-                        childrenContainer.appendChild(
-                            childWrapper
-                        );
-
-                    }
-                );
-
-
-                group.appendChild(
-                    childrenContainer
-                );
-
-            }
-
-
-
-            return group;
+            return card;
 
         }
 
@@ -3887,9 +4503,13 @@
            ESCAPE HTML
         ===================================================== */
 
-        function escapeHTML(value) {
+        function escapeHTML(
+            value
+        ) {
 
-            return String(value)
+            return String(
+                value
+            )
 
                 .replace(
                     /&/g,
@@ -3932,11 +4552,18 @@
 
                 <div class="organization-error">
 
-                    ${escapeHTML(message)}
+                    ${escapeHTML(
+                        message
+                    )}
 
                     <br><br>
 
-                    <span style="font-size:12px;color:#777;">
+                    <span
+                        style="
+                            font-size:12px;
+                            color:#777;
+                        "
+                    >
 
                         Please check the Firebase
                         connection and Firestore
