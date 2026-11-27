@@ -1,0 +1,3129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Admin - Organization Chart"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
+
+    <title>NIGHTFALL DEVILS - Organization Chart</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #d71920;
+            --red-dark: #a90f15;
+            --gold: #f5c542;
+            --gold-dark: #c99d19;
+            --bg: #050505;
+            --bg2: #0b0b0b;
+            --card: #111111;
+            --card2: #161616;
+            --border: #292929;
+            --text: #ffffff;
+            --muted: #999999;
+            --green: #22c55e;
+            --orange: #f59e0b;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+            height: 65px;
+            background: #090909;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--red);
+        }
+
+        .brand-text {
+            line-height: 1.1;
+        }
+
+        .brand-name {
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-email {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .logout-btn {
+            border: 1px solid #333;
+            background: #111;
+            color: #fff;
+            padding: 8px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--red);
+            background: #181818;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 1px solid #333;
+            background: #111;
+            color: white;
+            padding: 8px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            bottom: 0;
+            width: 235px;
+            background: #090909;
+            border-right: 1px solid var(--border);
+            padding: 18px 12px;
+            z-index: 900;
+            overflow-y: auto;
+        }
+
+        .side-title {
+            color: #666;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin: 8px 10px 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 12px;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .nav-link:hover {
+            background: #161616;
+            color: #fff;
+        }
+
+        .nav-link.active {
+            background: rgba(215, 25, 32, .15);
+            color: #fff;
+            border-left: 3px solid var(--red);
+        }
+
+        .nav-icon {
+            width: 21px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .badge {
+            margin-left: auto;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            border-radius: 20px;
+            background: var(--red);
+            color: #fff;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 235px;
+            padding: 92px 25px 35px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            border: 1px solid var(--border);
+            background: #151515;
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #202020;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #111;
+            border-color: var(--gold);
+        }
+
+        .btn-danger {
+            background: #331010;
+            border-color: #612020;
+            color: #ff8d8d;
+        }
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 310px minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 15px 17px;
+            border-bottom: 1px solid var(--border);
+            background: #101010;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .panel-subtitle {
+            font-size: 11px;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        .panel-body {
+            padding: 16px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 13px;
+        }
+
+        .form-label {
+            display: block;
+            color: #bbb;
+            font-size: 11px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 39px;
+            background: #0b0b0b;
+            border: 1px solid #303030;
+            border-radius: 7px;
+            color: #fff;
+            padding: 0 11px;
+            outline: none;
+            font-size: 12px;
+        }
+
+        .form-control:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(215, 25, 32, .08);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        .form-help {
+            color: #666;
+            font-size: 10px;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #bbb;
+            font-size: 12px;
+            margin: 5px 0 15px;
+        }
+
+        .checkbox-row input {
+            accent-color: var(--red);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .form-buttons .btn {
+            flex: 1;
+        }
+
+        /* =========================
+           MEMBER INFO
+        ========================= */
+
+        .selected-member {
+            display: none;
+            background: #0b0b0b;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 13px;
+        }
+
+        .selected-member.show {
+            display: block;
+        }
+
+        .selected-member-name {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .selected-member-details {
+            color: #777;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        /* =========================
+           CHART AREA
+        ========================= */
+
+        .chart-panel {
+            min-width: 0;
+        }
+
+        .chart-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 13px 16px;
+            border-bottom: 1px solid var(--border);
+            background: #101010;
+        }
+
+        .chart-stats {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            background: #171717;
+            border: 1px solid #292929;
+            border-radius: 20px;
+            padding: 6px 9px;
+            color: #aaa;
+            font-size: 10px;
+        }
+
+        .stat-pill strong {
+            color: #fff;
+        }
+
+        .chart-wrapper {
+            padding: 25px;
+            overflow-x: auto;
+            min-height: 500px;
+        }
+
+        .chart {
+            min-width: 650px;
+        }
+
+        /* =========================
+           TREE
+        ========================= */
+
+        .tree-root {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tree-node {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tree-card {
+            width: 205px;
+            background: linear-gradient(180deg, #181818, #0f0f0f);
+            border: 1px solid #303030;
+            border-radius: 11px;
+            padding: 13px;
+            text-align: center;
+            position: relative;
+            transition: .2s;
+        }
+
+        .tree-card:hover {
+            border-color: var(--red);
+            transform: translateY(-2px);
+        }
+
+        .tree-card.founder {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(245, 197, 66, .08);
+        }
+
+        .tree-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--red);
+            background: #222;
+            margin: 0 auto 8px;
+        }
+
+        .founder .tree-avatar {
+            border-color: var(--gold);
+        }
+
+        .tree-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+            word-break: break-word;
+        }
+
+        .tree-role {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 3px 7px;
+            border-radius: 20px;
+            background: rgba(215, 25, 32, .12);
+            color: #ff6b6b;
+            border: 1px solid rgba(215, 25, 32, .25);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .founder .tree-role {
+            color: var(--gold);
+            background: rgba(245, 197, 66, .08);
+            border-color: rgba(245, 197, 66, .25);
+        }
+
+        .tree-code {
+            color: #666;
+            font-size: 9px;
+            margin-top: 6px;
+        }
+
+        .tree-children {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 45px;
+            position: relative;
+        }
+
+        .tree-children::before {
+            content: "";
+            position: absolute;
+            top: -23px;
+            left: 50%;
+            right: 50%;
+            height: 1px;
+            background: #393939;
+        }
+
+        .tree-child {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tree-child::before {
+            content: "";
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            width: 1px;
+            height: 45px;
+            background: #393939;
+        }
+
+        .tree-child:first-child::after,
+        .tree-child:last-child::after {
+            content: "";
+            position: absolute;
+            top: -23px;
+            width: 50%;
+            height: 1px;
+            background: #393939;
+        }
+
+        .tree-child:first-child::after {
+            right: 0;
+        }
+
+        .tree-child:last-child::after {
+            left: 0;
+        }
+
+        .tree-empty {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+
+        .tree-empty-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .tree-empty-title {
+            color: #aaa;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .tree-empty-text {
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           LIST
+        ========================= */
+
+        .assignment-list {
+            margin-top: 18px;
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+
+        .assignment-title {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .assignment-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+            background: #101010;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 9px 10px;
+            margin-bottom: 6px;
+        }
+
+        .assignment-main {
+            min-width: 0;
+        }
+
+        .assignment-name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .assignment-meta {
+            color: #666;
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        .assignment-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .mini-btn {
+            width: 29px;
+            height: 29px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #171717;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .mini-btn:hover {
+            border-color: var(--red);
+            color: #fff;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            padding: 10px 12px;
+            border-radius: 7px;
+            margin-bottom: 12px;
+            font-size: 11px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .25);
+            color: #6ee7a0;
+        }
+
+        .status.error {
+            background: rgba(215, 25, 32, .08);
+            border: 1px solid rgba(215, 25, 32, .3);
+            color: #ff7777;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 30px;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .layout {
+                grid-template-columns: 280px minmax(0, 1fr);
+            }
+
+            .tree-card {
+                width: 180px;
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .topbar {
+                padding: 0 13px;
+            }
+
+            .admin-email,
+            .top-actions .logout-btn {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: .25s;
+                width: 245px;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, .5);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 82px 12px 25px;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                flex-direction: column;
+            }
+
+            .header-actions {
+                width: 100%;
+            }
+
+            .header-actions .btn {
+                flex: 1;
+            }
+
+            .chart-wrapper {
+                padding: 18px 10px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .brand-name {
+                font-size: 13px;
+            }
+
+            .brand-sub {
+                font-size: 9px;
+            }
+
+            .page-title {
+                font-size: 21px;
+            }
+
+            .panel-body {
+                padding: 13px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .chart {
+                min-width: 570px;
+            }
+
+            .tree-card {
+                width: 165px;
+                padding: 11px;
+            }
+
+            .tree-avatar {
+                width: 45px;
+                height: 45px;
+            }
+
+            .tree-children {
+                gap: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         TOPBAR
+    ========================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <img
+                class="brand-logo"
+                src="../assets/logo/nightfall-devils-logo.png"
+                alt="NIGHTFALL DEVILS"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="brand-text">
+                <div class="brand-name">
+                    NIGHTFALL DEVILS
+                </div>
+
+                <div class="brand-sub">
+                    ADMIN PANEL
+                </div>
+            </div>
+
+        </div>
+
+        <div class="top-actions">
+
+            <span
+                class="admin-email"
+                id="adminEmail"
+            >
+                Loading...
+            </span>
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="side-title">
+            Main Menu
+        </div>
+
+        <a
+            href="dashboard.html"
+            class="nav-link"
+        >
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a
+            href="requests.html"
+            class="nav-link"
+        >
+            <span class="nav-icon">📥</span>
+            <span>Join Requests</span>
+            <span
+                class="badge"
+                id="requestBadge"
+            >
+                0
+            </span>
+        </a>
+
+        <a
+            href="members.html"
+            class="nav-link"
+        >
+            <span class="nav-icon">👥</span>
+            <span>Members</span>
+        </a>
+
+        <a
+            href="organization.html"
+            class="nav-link active"
+        >
+            <span class="nav-icon">🌳</span>
+            <span>Organization</span>
+        </a>
+
+        <a
+            href="schedule.html"
+            class="nav-link"
+        >
+            <span class="nav-icon">📅</span>
+            <span>Schedule</span>
+        </a>
+
+        <a
+            href="announcements.html"
+            class="nav-link"
+        >
+            <span class="nav-icon">📢</span>
+            <span>Announcements</span>
+        </a>
+
+
+        <div class="side-title">
+            Website
+        </div>
+
+        <a
+            href="../index.html"
+            class="nav-link"
+            target="_blank"
+        >
+            <span class="nav-icon">🌐</span>
+            <span>View Website</span>
+        </a>
+
+        <a
+            href="../pages/join.html"
+            class="nav-link"
+            target="_blank"
+        >
+            <span class="nav-icon">📝</span>
+            <span>Join Page</span>
+        </a>
+
+
+        <div class="side-title">
+            Account
+        </div>
+
+        <a
+            href="#"
+            class="nav-link"
+            id="sideLogout"
+        >
+            <span class="nav-icon">🚪</span>
+            <span>Logout</span>
+        </a>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+        <div class="page-header">
+
+            <div>
+
+                <div class="page-title">
+                    Organization Chart
+                </div>
+
+                <div class="page-subtitle">
+                    Manage the NIGHTFALL DEVILS organization hierarchy.
+                </div>
+
+            </div>
+
+            <div class="header-actions">
+
+                <button
+                    class="btn"
+                    id="refreshBtn"
+                >
+                    ↻ Refresh
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="scrollFormBtn"
+                >
+                    + Add Position
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="status"
+            id="statusBox"
+        ></div>
+
+
+        <div class="layout">
+
+            <!-- =========================
+                 FORM PANEL
+            ========================= -->
+
+            <section
+                class="panel"
+                id="formPanel"
+            >
+
+                <div class="panel-header">
+
+                    <div class="panel-title">
+                        Organization Assignment
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Connect a member to the organization chart.
+                    </div>
+
+                </div>
+
+
+                <div class="panel-body">
+
+                    <div
+                        class="selected-member"
+                        id="selectedMember"
+                    >
+
+                        <div
+                            class="selected-member-name"
+                            id="selectedMemberName"
+                        >
+                            —
+                        </div>
+
+                        <div
+                            class="selected-member-details"
+                            id="selectedMemberDetails"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <form id="organizationForm">
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Select Member
+                            </label>
+
+                            <select
+                                class="form-control"
+                                id="memberSelect"
+                                required
+                            >
+
+                                <option value="">
+                                    Loading members...
+                                </option>
+
+                            </select>
+
+                            <div class="form-help">
+                                Members are loaded automatically from the Members collection.
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Position / Organizational Role
+                            </label>
+
+                            <select
+                                class="form-control"
+                                id="position"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Position
+                                </option>
+
+                                <option value="FOUNDER">
+                                    FOUNDER
+                                </option>
+
+                                <option value="CO-FOUNDER">
+                                    CO-FOUNDER
+                                </option>
+
+                                <option value="ADMIN">
+                                    ADMIN
+                                </option>
+
+                                <option value="HEAD MODERATOR">
+                                    HEAD MODERATOR
+                                </option>
+
+                                <option value="MODERATOR">
+                                    MODERATOR
+                                </option>
+
+                                <option value="STREAMER">
+                                    STREAMER
+                                </option>
+
+                                <option value="MEMBER">
+                                    MEMBER
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Reports To / Parent
+                            </label>
+
+                            <select
+                                class="form-control"
+                                id="parentId"
+                            >
+
+                                <option value="">
+                                    — TOP LEVEL / NO PARENT —
+                                </option>
+
+                            </select>
+
+                            <div class="form-help">
+                                Example: Admin can report to Founder. Moderator can report to Admin.
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+                                    Display Order
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="displayOrder"
+                                    min="0"
+                                    value="0"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+                                    Status
+                                </label>
+
+                                <select
+                                    class="form-control"
+                                    id="active"
+                                >
+
+                                    <option value="true">
+                                        ACTIVE
+                                    </option>
+
+                                    <option value="false">
+                                        INACTIVE
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <label class="checkbox-row">
+
+                            <input
+                                type="checkbox"
+                                id="showOnChart"
+                                checked
+                            >
+
+                            <span>
+                                Show this member on organization chart
+                            </span>
+
+                        </label>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="saveBtn"
+                            >
+                                Save Assignment
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn"
+                                id="cancelBtn"
+                                style="display:none;"
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- ASSIGNMENT LIST -->
+
+                    <div class="assignment-list">
+
+                        <div class="assignment-title">
+                            Current Assignments
+                        </div>
+
+                        <div id="assignmentList">
+
+                            <div class="loading">
+                                Loading...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 CHART PANEL
+            ========================= -->
+
+            <section class="panel chart-panel">
+
+                <div class="chart-toolbar">
+
+                    <div>
+
+                        <div class="panel-title">
+                            NIGHTFALL DEVILS Organization
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Live organizational hierarchy
+                        </div>
+
+                    </div>
+
+                    <div class="chart-stats">
+
+                        <div class="stat-pill">
+                            Members:
+                            <strong id="memberCount">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="stat-pill">
+                            Positions:
+                            <strong id="positionCount">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <div
+                        class="chart"
+                        id="organizationChart"
+                    >
+
+                        <div class="loading">
+                            Loading organization chart...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
+    <script type="module">
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+        import {
+            collection,
+            addDoc,
+            updateDoc,
+            deleteDoc,
+            doc,
+            onSnapshot,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+        import {
+            auth,
+            db
+        } from "../js/firebase.js";
+
+
+        /* ==========================================
+           GLOBAL DATA
+        ========================================== */
+
+        let members = [];
+        let organizations = [];
+
+        let editingId = null;
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const adminEmail =
+            document.getElementById("adminEmail");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+        const sideLogout =
+            document.getElementById("sideLogout");
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const organizationForm =
+            document.getElementById("organizationForm");
+
+        const memberSelect =
+            document.getElementById("memberSelect");
+
+        const positionSelect =
+            document.getElementById("position");
+
+        const parentSelect =
+            document.getElementById("parentId");
+
+        const displayOrder =
+            document.getElementById("displayOrder");
+
+        const activeSelect =
+            document.getElementById("active");
+
+        const showOnChart =
+            document.getElementById("showOnChart");
+
+        const saveBtn =
+            document.getElementById("saveBtn");
+
+        const cancelBtn =
+            document.getElementById("cancelBtn");
+
+        const selectedMember =
+            document.getElementById("selectedMember");
+
+        const selectedMemberName =
+            document.getElementById("selectedMemberName");
+
+        const selectedMemberDetails =
+            document.getElementById("selectedMemberDetails");
+
+        const assignmentList =
+            document.getElementById("assignmentList");
+
+        const organizationChart =
+            document.getElementById("organizationChart");
+
+        const memberCount =
+            document.getElementById("memberCount");
+
+        const positionCount =
+            document.getElementById("positionCount");
+
+        const statusBox =
+            document.getElementById("statusBox");
+
+        const requestBadge =
+            document.getElementById("requestBadge");
+
+
+        /* ==========================================
+           AUTH CHECK
+        ========================================== */
+
+        onAuthStateChanged(auth, user => {
+
+            if (!user) {
+
+                window.location.href = "login.html";
+
+                return;
+            }
+
+            adminEmail.textContent =
+                user.email || "Admin";
+
+        });
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        async function logout() {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href = "login.html";
+
+            } catch (error) {
+
+                showStatus(
+                    "Logout failed: " + error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+        logoutBtn.addEventListener(
+            "click",
+            logout
+        );
+
+        sideLogout.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                logout();
+
+            }
+        );
+
+
+        /* ==========================================
+           MOBILE MENU
+        ========================================== */
+
+        menuBtn.addEventListener(
+            "click",
+            () => {
+
+                sidebar.classList.toggle("open");
+
+            }
+        );
+
+
+        /* ==========================================
+           STATUS MESSAGE
+        ========================================== */
+
+        function showStatus(
+            message,
+            type = "success"
+        ) {
+
+            statusBox.textContent = message;
+
+            statusBox.className =
+                "status show " + type;
+
+            setTimeout(() => {
+
+                statusBox.classList.remove("show");
+
+            }, 4000);
+
+        }
+
+
+        /* ==========================================
+           LOAD MEMBERS
+        ========================================== */
+
+        onSnapshot(
+            collection(db, "members"),
+            snapshot => {
+
+                members = snapshot.docs.map(item => ({
+
+                    id: item.id,
+
+                    ...item.data()
+
+                }));
+
+                members.sort(
+                    (a, b) =>
+                        String(a.displayName || "")
+                            .localeCompare(
+                                String(b.displayName || "")
+                            )
+                );
+
+                memberCount.textContent =
+                    members.length;
+
+                renderMemberOptions();
+
+                renderParentOptions();
+
+                renderChart();
+
+                renderAssignments();
+
+            },
+            error => {
+
+                console.error(error);
+
+                showStatus(
+                    "Unable to load members: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           LOAD ORGANIZATION
+        ========================================== */
+
+        onSnapshot(
+            collection(db, "organization"),
+            snapshot => {
+
+                organizations =
+                    snapshot.docs.map(item => ({
+
+                        id: item.id,
+
+                        ...item.data()
+
+                    }));
+
+                organizations.sort(
+                    (a, b) =>
+                        Number(a.order || 0) -
+                        Number(b.order || 0)
+                );
+
+                positionCount.textContent =
+                    organizations.length;
+
+                renderParentOptions();
+
+                renderChart();
+
+                renderAssignments();
+
+            },
+            error => {
+
+                console.error(error);
+
+                showStatus(
+                    "Unable to load organization data: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           MEMBER DROPDOWN
+        ========================================== */
+
+        function renderMemberOptions() {
+
+            const currentValue =
+                memberSelect.value;
+
+            memberSelect.innerHTML = "";
+
+            const first =
+                document.createElement("option");
+
+            first.value = "";
+
+            first.textContent =
+                members.length
+                    ? "Select Member"
+                    : "No members available";
+
+            memberSelect.appendChild(first);
+
+
+            members.forEach(member => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value =
+                    member.id;
+
+                const username =
+                    member.tiktokUsername
+                        ? " @" + member.tiktokUsername
+                        : "";
+
+                option.textContent =
+                    `${member.displayName || "Unnamed"}${username}`;
+
+                memberSelect.appendChild(option);
+
+            });
+
+
+            if (
+                currentValue &&
+                members.some(
+                    member =>
+                        member.id === currentValue
+                )
+            ) {
+
+                memberSelect.value =
+                    currentValue;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           PARENT DROPDOWN
+        ========================================== */
+
+        function renderParentOptions() {
+
+            const currentValue =
+                parentSelect.value;
+
+            parentSelect.innerHTML = "";
+
+            const rootOption =
+                document.createElement("option");
+
+            rootOption.value = "";
+
+            rootOption.textContent =
+                "— TOP LEVEL / NO PARENT —";
+
+            parentSelect.appendChild(
+                rootOption
+            );
+
+
+            organizations
+                .filter(org => {
+
+                    if (
+                        !org.memberId ||
+                        org.memberId === memberSelect.value
+                    ) {
+
+                        return false;
+
+                    }
+
+                    return true;
+
+                })
+                .sort(
+                    (a, b) =>
+                        Number(a.order || 0) -
+                        Number(b.order || 0)
+                )
+                .forEach(org => {
+
+                    const member =
+                        findMember(
+                            org.memberId
+                        );
+
+                    if (!member) {
+                        return;
+                    }
+
+                    const option =
+                        document.createElement("option");
+
+                    option.value =
+                        org.id;
+
+                    option.textContent =
+                        `${member.displayName || "Unnamed"} — ${org.position || "POSITION"}`;
+
+                    parentSelect.appendChild(
+                        option
+                    );
+
+                });
+
+
+            if (
+                currentValue &&
+                [...parentSelect.options]
+                    .some(
+                        option =>
+                            option.value === currentValue
+                    )
+            ) {
+
+                parentSelect.value =
+                    currentValue;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           MEMBER SELECT CHANGE
+        ========================================== */
+
+        memberSelect.addEventListener(
+            "change",
+            () => {
+
+                const member =
+                    findMember(
+                        memberSelect.value
+                    );
+
+                if (!member) {
+
+                    selectedMember.classList.remove(
+                        "show"
+                    );
+
+                    renderParentOptions();
+
+                    return;
+                }
+
+
+                selectedMemberName.textContent =
+                    member.displayName || "Unnamed";
+
+
+                selectedMemberDetails.textContent =
+                    [
+                        member.tiktokUsername
+                            ? "@" + member.tiktokUsername
+                            : "",
+                        member.memberCode
+                            ? member.memberCode
+                            : "",
+                        member.role
+                            ? member.role
+                            : ""
+                    ]
+                    .filter(Boolean)
+                    .join(" • ");
+
+
+                selectedMember.classList.add(
+                    "show"
+                );
+
+
+                renderParentOptions();
+
+
+                /*
+                 * If this member already has
+                 * an organization assignment,
+                 * load it automatically.
+                 */
+
+                const existing =
+                    organizations.find(
+                        org =>
+                            org.memberId ===
+                            member.id
+                    );
+
+
+                if (
+                    existing &&
+                    !editingId
+                ) {
+
+                    loadOrganizationForEdit(
+                        existing
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           FIND MEMBER
+        ========================================== */
+
+        function findMember(id) {
+
+            return members.find(
+                member =>
+                    member.id === id
+            );
+
+        }
+
+
+        /* ==========================================
+           FORM SUBMIT
+        ========================================== */
+
+        organizationForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const memberId =
+                    memberSelect.value;
+
+                const position =
+                    positionSelect.value.trim();
+
+                const parentId =
+                    parentSelect.value;
+
+                const order =
+                    Number(
+                        displayOrder.value || 0
+                    );
+
+                const active =
+                    activeSelect.value === "true";
+
+                const visible =
+                    showOnChart.checked;
+
+
+                if (!memberId) {
+
+                    showStatus(
+                        "Please select a member.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!position) {
+
+                    showStatus(
+                        "Please select a position.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * Prevent member from being
+                 * their own parent.
+                 */
+
+                if (
+                    editingId &&
+                    parentId === editingId
+                ) {
+
+                    showStatus(
+                        "A member cannot be their own parent.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                saveBtn.disabled = true;
+
+                saveBtn.textContent =
+                    "Saving...";
+
+
+                try {
+
+                    const member =
+                        findMember(memberId);
+
+
+                    const data = {
+
+                        memberId: memberId,
+
+                        position: position,
+
+                        parentId: parentId || "",
+
+                        order: order,
+
+                        active: active,
+
+                        showOnChart: visible,
+
+                        memberCode:
+                            member?.memberCode ||
+                            "",
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    };
+
+
+                    if (editingId) {
+
+                        await updateDoc(
+                            doc(
+                                db,
+                                "organization",
+                                editingId
+                            ),
+                            data
+                        );
+
+
+                        showStatus(
+                            "Organization assignment updated successfully.",
+                            "success"
+                        );
+
+                    } else {
+
+                        data.createdAt =
+                            serverTimestamp();
+
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "organization"
+                            ),
+                            data
+                        );
+
+
+                        showStatus(
+                            "Organization assignment added successfully.",
+                            "success"
+                        );
+
+                    }
+
+
+                    resetForm();
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showStatus(
+                        "Save failed: " +
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    saveBtn.disabled = false;
+
+                    saveBtn.textContent =
+                        editingId
+                            ? "Update Assignment"
+                            : "Save Assignment";
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           LOAD FOR EDIT
+        ========================================== */
+
+        function loadOrganizationForEdit(
+            organization
+        ) {
+
+            editingId =
+                organization.id;
+
+
+            memberSelect.value =
+                organization.memberId || "";
+
+
+            positionSelect.value =
+                organization.position || "";
+
+
+            displayOrder.value =
+                organization.order ?? 0;
+
+
+            activeSelect.value =
+                organization.active === false
+                    ? "false"
+                    : "true";
+
+
+            showOnChart.checked =
+                organization.showOnChart !== false;
+
+
+            renderParentOptions();
+
+
+            parentSelect.value =
+                organization.parentId || "";
+
+
+            const member =
+                findMember(
+                    organization.memberId
+                );
+
+
+            if (member) {
+
+                selectedMemberName.textContent =
+                    member.displayName || "Unnamed";
+
+
+                selectedMemberDetails.textContent =
+                    [
+                        member.tiktokUsername
+                            ? "@" + member.tiktokUsername
+                            : "",
+                        member.memberCode
+                            ? member.memberCode
+                            : "",
+                        member.role
+                            ? member.role
+                            : ""
+                    ]
+                    .filter(Boolean)
+                    .join(" • ");
+
+
+                selectedMember.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            saveBtn.textContent =
+                "Update Assignment";
+
+            cancelBtn.style.display =
+                "block";
+
+
+            document.getElementById(
+                "formPanel"
+            ).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+
+        /* ==========================================
+           RESET FORM
+        ========================================== */
+
+        function resetForm() {
+
+            editingId = null;
+
+            organizationForm.reset();
+
+            displayOrder.value = 0;
+
+            activeSelect.value =
+                "true";
+
+            showOnChart.checked =
+                true;
+
+            selectedMember.classList.remove(
+                "show"
+            );
+
+            cancelBtn.style.display =
+                "none";
+
+            saveBtn.textContent =
+                "Save Assignment";
+
+            renderParentOptions();
+
+        }
+
+
+        cancelBtn.addEventListener(
+            "click",
+            resetForm
+        );
+
+
+        /* ==========================================
+           ASSIGNMENT LIST
+        ========================================== */
+
+        function renderAssignments() {
+
+            if (!organizations.length) {
+
+                assignmentList.innerHTML = `
+                    <div class="loading">
+                        No organization assignments yet.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            const sorted =
+                [...organizations].sort(
+                    (a, b) =>
+                        Number(a.order || 0) -
+                        Number(b.order || 0)
+                );
+
+
+            assignmentList.innerHTML = "";
+
+
+            sorted.forEach(org => {
+
+                const member =
+                    findMember(
+                        org.memberId
+                    );
+
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "assignment-item";
+
+
+                const main =
+                    document.createElement("div");
+
+                main.className =
+                    "assignment-main";
+
+
+                const name =
+                    document.createElement("div");
+
+                name.className =
+                    "assignment-name";
+
+                name.textContent =
+                    member?.displayName ||
+                    "Unknown Member";
+
+
+                const meta =
+                    document.createElement("div");
+
+                meta.className =
+                    "assignment-meta";
+
+                const username =
+                    member?.tiktokUsername
+                        ? "@" +
+                          member.tiktokUsername
+                        : "";
+
+                const status =
+                    org.active === false
+                        ? "INACTIVE"
+                        : "ACTIVE";
+
+                meta.textContent =
+                    [
+                        org.position || "No Position",
+                        username,
+                        status
+                    ]
+                    .filter(Boolean)
+                    .join(" • ");
+
+
+                main.appendChild(name);
+
+                main.appendChild(meta);
+
+
+                const actions =
+                    document.createElement("div");
+
+                actions.className =
+                    "assignment-actions";
+
+
+                const editBtn =
+                    document.createElement("button");
+
+                editBtn.className =
+                    "mini-btn";
+
+                editBtn.title =
+                    "Edit";
+
+                editBtn.textContent =
+                    "✏️";
+
+
+                editBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        loadOrganizationForEdit(
+                            org
+                        );
+
+                    }
+                );
+
+
+                const toggleBtn =
+                    document.createElement("button");
+
+                toggleBtn.className =
+                    "mini-btn";
+
+                toggleBtn.title =
+                    "Toggle Status";
+
+                toggleBtn.textContent =
+                    org.active === false
+                        ? "🔴"
+                        : "🟢";
+
+
+                toggleBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        toggleOrganization(
+                            org
+                        );
+
+                    }
+                );
+
+
+                const deleteBtn =
+                    document.createElement("button");
+
+                deleteBtn.className =
+                    "mini-btn";
+
+                deleteBtn.title =
+                    "Delete";
+
+                deleteBtn.textContent =
+                    "🗑️";
+
+
+                deleteBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        deleteOrganization(
+                            org
+                        );
+
+                    }
+                );
+
+
+                actions.appendChild(editBtn);
+
+                actions.appendChild(toggleBtn);
+
+                actions.appendChild(deleteBtn);
+
+
+                item.appendChild(main);
+
+                item.appendChild(actions);
+
+
+                assignmentList.appendChild(item);
+
+            });
+
+        }
+
+
+        /* ==========================================
+           TOGGLE ORGANIZATION
+        ========================================== */
+
+        async function toggleOrganization(
+            organization
+        ) {
+
+            try {
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "organization",
+                        organization.id
+                    ),
+                    {
+
+                        active:
+                            organization.active === false,
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                showStatus(
+                    "Organization status updated.",
+                    "success"
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showStatus(
+                    "Unable to update status: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           DELETE ORGANIZATION
+        ========================================== */
+
+        async function deleteOrganization(
+            organization
+        ) {
+
+            const member =
+                findMember(
+                    organization.memberId
+                );
+
+
+            const name =
+                member?.displayName ||
+                "this assignment";
+
+
+            const confirmed =
+                confirm(
+                    `Delete organization assignment for ${name}?`
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                /*
+                 * Before deleting, remove references
+                 * from child organization records.
+                 */
+
+                const children =
+                    organizations.filter(
+                        org =>
+                            org.parentId ===
+                            organization.id
+                    );
+
+
+                for (
+                    const child
+                    of children
+                ) {
+
+                    await updateDoc(
+                        doc(
+                            db,
+                            "organization",
+                            child.id
+                        ),
+                        {
+
+                            parentId: "",
+
+                            updatedAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+                }
+
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "organization",
+                        organization.id
+                    )
+                );
+
+
+                if (
+                    editingId ===
+                    organization.id
+                ) {
+
+                    resetForm();
+
+                }
+
+
+                showStatus(
+                    "Organization assignment deleted.",
+                    "success"
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showStatus(
+                    "Delete failed: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           BUILD ORGANIZATION TREE
+        ========================================== */
+
+        function renderChart() {
+
+            const visibleOrganizations =
+                organizations.filter(
+                    org =>
+                        org.active !== false &&
+                        org.showOnChart !== false &&
+                        findMember(org.memberId)
+                );
+
+
+            if (!visibleOrganizations.length) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="tree-empty">
+
+                        <div class="tree-empty-icon">
+                            🌳
+                        </div>
+
+                        <div class="tree-empty-title">
+                            Organization Chart is Empty
+                        </div>
+
+                        <div class="tree-empty-text">
+                            Add a member assignment from the left panel.
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            /*
+             * Root organizations have
+             * no parent.
+             */
+
+            const roots =
+                visibleOrganizations
+                    .filter(
+                        org =>
+                            !org.parentId ||
+                            !visibleOrganizations.some(
+                                parent =>
+                                    parent.id ===
+                                    org.parentId
+                            )
+                    )
+                    .sort(
+                        compareOrganization
+                    );
+
+
+            const tree =
+                document.createElement("div");
+
+            tree.className =
+                "tree-root";
+
+
+            const rootContainer =
+                document.createElement("div");
+
+            rootContainer.className =
+                "tree-node";
+
+
+            roots.forEach(
+                (root, index) => {
+
+                    const node =
+                        buildTreeNode(
+                            root,
+                            visibleOrganizations,
+                            new Set()
+                        );
+
+
+                    if (index === 0) {
+
+                        rootContainer.appendChild(
+                            node
+                        );
+
+                    } else {
+
+                        /*
+                         * Multiple top-level founders
+                         * are grouped together.
+                         */
+
+                        const existing =
+                            rootContainer.querySelector(
+                                ":scope > .tree-children"
+                            );
+
+
+                        if (existing) {
+
+                            existing.appendChild(
+                                createTreeChildWrapper(
+                                    node
+                                )
+                            );
+
+                        } else {
+
+                            const children =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            children.className =
+                                "tree-children";
+
+
+                            const firstNode =
+                                rootContainer.firstElementChild;
+
+
+                            rootContainer.innerHTML =
+                                "";
+
+
+                            children.appendChild(
+                                createTreeChildWrapper(
+                                    firstNode
+                                )
+                            );
+
+                            children.appendChild(
+                                createTreeChildWrapper(
+                                    node
+                                )
+                            );
+
+
+                            rootContainer.appendChild(
+                                children
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            tree.appendChild(
+                rootContainer
+            );
+
+
+            organizationChart.innerHTML = "";
+
+            organizationChart.appendChild(
+                tree
+            );
+
+        }
+
+
+        /* ==========================================
+           BUILD TREE NODE
+        ========================================== */
+
+        function buildTreeNode(
+            organization,
+            allOrganizations,
+            visited
+        ) {
+
+            const node =
+                document.createElement("div");
+
+            node.className =
+                "tree-node";
+
+
+            const card =
+                createTreeCard(
+                    organization
+                );
+
+
+            node.appendChild(card);
+
+
+            /*
+             * Prevent infinite recursion
+             * if incorrect parent data exists.
+             */
+
+            const nextVisited =
+                new Set(visited);
+
+            nextVisited.add(
+                organization.id
+            );
+
+
+            const children =
+                allOrganizations
+                    .filter(
+                        org =>
+                            org.parentId ===
+                            organization.id &&
+                            !nextVisited.has(
+                                org.id
+                            )
+                    )
+                    .sort(
+                        compareOrganization
+                    );
+
+
+            if (children.length) {
+
+                const childrenContainer =
+                    document.createElement("div");
+
+                childrenContainer.className =
+                    "tree-children";
+
+
+                children.forEach(
+                    child => {
+
+                        const wrapper =
+                            document.createElement(
+                                "div"
+                            );
+
+                        wrapper.className =
+                            "tree-child";
+
+
+                        const childNode =
+                            buildTreeNode(
+                                child,
+                                allOrganizations,
+                                nextVisited
+                            );
+
+
+                        wrapper.appendChild(
+                            childNode
+                        );
+
+
+                        childrenContainer.appendChild(
+                            wrapper
+                        );
+
+                    }
+                );
+
+
+                node.appendChild(
+                    childrenContainer
+                );
+
+            }
+
+
+            return node;
+
+        }
+
+
+        /* ==========================================
+           TREE CARD
+        ========================================== */
+
+        function createTreeCard(
+            organization
+        ) {
+
+            const member =
+                findMember(
+                    organization.memberId
+                );
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "tree-card";
+
+
+            if (
+                String(
+                    organization.position || ""
+                ).toUpperCase() === "FOUNDER"
+            ) {
+
+                card.classList.add(
+                    "founder"
+                );
+
+            }
+
+
+            const photo =
+                document.createElement("img");
+
+            photo.className =
+                "tree-avatar";
+
+
+            photo.src =
+                member?.photoURL ||
+                "../assets/logo/nightfall-devils-logo.png";
+
+
+            photo.alt =
+                member?.displayName ||
+                "Member";
+
+
+            photo.onerror =
+                () => {
+
+                    photo.src =
+                        "../assets/logo/nightfall-devils-logo.png";
+
+                };
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "tree-name";
+
+            name.textContent =
+                member?.displayName ||
+                "Unknown Member";
+
+
+            const role =
+                document.createElement("div");
+
+            role.className =
+                "tree-role";
+
+            role.textContent =
+                organization.position ||
+                "MEMBER";
+
+
+            const code =
+                document.createElement("div");
+
+            code.className =
+                "tree-code";
+
+            code.textContent =
+                member?.memberCode ||
+                organization.memberCode ||
+                "";
+
+
+            card.appendChild(photo);
+
+            card.appendChild(name);
+
+            card.appendChild(role);
+
+            if (code.textContent) {
+
+                card.appendChild(code);
+
+            }
+
+
+            return card;
+
+        }
+
+
+        /* ==========================================
+           SORT
+        ========================================== */
+
+        function compareOrganization(
+            a,
+            b
+        ) {
+
+            const orderA =
+                Number(
+                    a.order || 0
+                );
+
+            const orderB =
+                Number(
+                    b.order || 0
+                );
+
+
+            if (
+                orderA !==
+                orderB
+            ) {
+
+                return (
+                    orderA -
+                    orderB
+                );
+
+            }
+
+
+            return String(
+                a.position || ""
+            ).localeCompare(
+                String(
+                    b.position || ""
+                )
+            );
+
+        }
+
+
+        /* ==========================================
+           HELPER FOR MULTIPLE ROOTS
+        ========================================== */
+
+        function createTreeChildWrapper(
+            node
+        ) {
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+            wrapper.className =
+                "tree-child";
+
+
+            wrapper.appendChild(
+                node
+            );
+
+
+            return wrapper;
+
+        }
+
+
+        /* ==========================================
+           REFRESH
+        ========================================== */
+
+        document.getElementById(
+            "refreshBtn"
+        ).addEventListener(
+            "click",
+            () => {
+
+                renderMemberOptions();
+
+                renderParentOptions();
+
+                renderChart();
+
+                renderAssignments();
+
+                showStatus(
+                    "Organization chart refreshed.",
+                    "success"
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           SCROLL TO FORM
+        ========================================== */
+
+        document.getElementById(
+            "scrollFormBtn"
+        ).addEventListener(
+            "click",
+            () => {
+
+                document.getElementById(
+                    "formPanel"
+                ).scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+
+        /* ==========================================
+           JOIN REQUEST BADGE
+        ========================================== */
+
+        onSnapshot(
+            collection(
+                db,
+                "memberRequests"
+            ),
+            snapshot => {
+
+                const pending =
+                    snapshot.docs.filter(
+                        item =>
+                            item.data().status ===
+                            "pending"
+                    ).length;
+
+
+                requestBadge.textContent =
+                    pending;
+
+            },
+            error => {
+
+                console.warn(
+                    "Request badge error:",
+                    error
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
