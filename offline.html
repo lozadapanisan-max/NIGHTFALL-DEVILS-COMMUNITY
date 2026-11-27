@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d71920"
+    >
+
+    <title>
+        Offline | NIGHTFALL DEVILS
+    </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #d71920;
+            --gold: #f5c542;
+            --dark: #050505;
+            --card: #101010;
+            --border: #292929;
+            --text: #ffffff;
+            --muted: #a7a7a7;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(215, 25, 32, 0.16),
+                    transparent 45%
+                ),
+                var(--dark);
+
+            color: var(--text);
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            text-align: center;
+        }
+
+        .offline-container {
+            width: 100%;
+            max-width: 500px;
+
+            padding: 40px 25px;
+
+            background: rgba(16, 16, 16, 0.95);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+
+            object-fit: contain;
+
+            margin-bottom: 25px;
+
+            border-radius: 50%;
+
+            border: 3px solid var(--gold);
+
+            box-shadow:
+                0 0 25px rgba(
+                    245,
+                    197,
+                    66,
+                    0.20
+                );
+        }
+
+        .offline-icon {
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 30px;
+
+            line-height: 1.2;
+
+            margin-bottom: 12px;
+
+            color: var(--gold);
+        }
+
+        .subtitle {
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            margin-bottom: 25px;
+
+            border-radius: 999px;
+
+            background: rgba(
+                215,
+                25,
+                32,
+                0.12
+            );
+
+            border: 1px solid rgba(
+                215,
+                25,
+                32,
+                0.35
+            );
+
+            color: #ffffff;
+
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 10px
+                rgba(215, 25, 32, 0.8);
+        }
+
+        .retry-btn {
+            width: 100%;
+
+            min-height: 50px;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: var(--red);
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .retry-btn:hover {
+            background: #a80f15;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(215, 25, 32, 0.25);
+        }
+
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            margin-top: 25px;
+
+            color: #666666;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+
+            .offline-container {
+                padding: 35px 20px;
+            }
+
+            .logo {
+                width: 90px;
+                height: 90px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="offline-container">
+
+        <img
+            src="./assets/logo/nightfall-devils-logo.png"
+            alt="NIGHTFALL DEVILS Logo"
+            class="logo"
+        >
+
+        <div class="offline-icon">
+            📡
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            You are currently offline
+        </div>
+
+        <h1>
+            NIGHTFALL DEVILS
+        </h1>
+
+        <p class="subtitle">
+            No internet connection detected.
+            Some community information may not
+            be available right now.
+        </p>
+
+        <button
+            type="button"
+            class="retry-btn"
+            onclick="window.location.reload()"
+        >
+            🔄 TRY AGAIN
+        </button>
+
+        <div class="footer">
+            NIGHTFALL DEVILS<br>
+            Official TikTok Community
+        </div>
+
+    </main>
+
+</body>
+</html>
