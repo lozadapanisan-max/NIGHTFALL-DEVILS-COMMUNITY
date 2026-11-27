@@ -25,19 +25,13 @@
 
     <style>
 
-        /* =====================================================
-           RESET
-        ===================================================== */
-
         * {
             box-sizing: border-box;
         }
 
-
         html {
             scroll-behavior: smooth;
         }
-
 
         body {
 
@@ -56,17 +50,12 @@
 
         }
 
-
         button,
         input,
         select {
             font-family: inherit;
         }
 
-
-        /* =====================================================
-           COLORS
-        ===================================================== */
 
         :root {
 
@@ -910,7 +899,7 @@
 
 
         /* =====================================================
-           ADMIN MEMBER CARD
+           MEMBER CARD
         ===================================================== */
 
         .member-card {
@@ -1074,10 +1063,6 @@
 
         }
 
-
-        /* =====================================================
-           CARD STATUS
-        ===================================================== */
 
         .card-status {
 
@@ -1270,6 +1255,93 @@
 
             font-size:
                 40px;
+
+        }
+
+
+        /* =====================================================
+           FIREBASE STATUS
+        ===================================================== */
+
+        .firebase-status {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                20px;
+
+            padding:
+                10px 13px;
+
+            border:
+                1px solid rgba(245, 197, 66, 0.35);
+
+            border-radius:
+                8px;
+
+            background:
+                rgba(245, 197, 66, 0.06);
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .firebase-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            border-radius:
+                50%;
+
+            background:
+                #999999;
+
+            box-shadow:
+                0 0 8px
+                rgba(153, 153, 153, 0.5);
+
+        }
+
+
+        .firebase-dot.connected {
+
+            background:
+                #22c55e;
+
+            box-shadow:
+                0 0 10px
+                rgba(34, 197, 94, 0.75);
+
+        }
+
+
+        .firebase-dot.error {
+
+            background:
+                var(--red);
+
+            box-shadow:
+                0 0 10px
+                rgba(215, 25, 32, 0.75);
 
         }
 
@@ -1579,8 +1651,6 @@
     <main class="admin-main">
 
 
-        <!-- PAGE HEADING -->
-
         <div class="page-heading">
 
             <h1>
@@ -1592,6 +1662,22 @@
                 Add, edit, manage and upload photos
                 for NIGHTFALL DEVILS members.
             </p>
+
+        </div>
+
+
+        <!-- FIREBASE STATUS -->
+
+        <div class="firebase-status">
+
+            <span
+                class="firebase-dot"
+                id="firebaseDot"
+            ></span>
+
+            <span id="firebaseStatusText">
+                Firebase: Checking connection...
+            </span>
 
         </div>
 
@@ -1632,8 +1718,6 @@
                 <div class="form-grid">
 
 
-                    <!-- DISPLAY NAME -->
-
                     <div class="form-group">
 
                         <label for="displayName">
@@ -1654,8 +1738,6 @@
                     </div>
 
 
-
-                    <!-- TIKTOK USERNAME -->
 
                     <div class="form-group">
 
@@ -1678,8 +1760,6 @@
 
 
 
-                    <!-- MEMBER CODE -->
-
                     <div class="form-group">
 
                         <label for="memberCode">
@@ -1700,8 +1780,6 @@
                     </div>
 
 
-
-                    <!-- ROLE -->
 
                     <div class="form-group">
 
@@ -1747,8 +1825,6 @@
 
 
 
-                    <!-- STATUS -->
-
                     <div class="form-group">
 
                         <label for="active">
@@ -1772,8 +1848,6 @@
                     </div>
 
 
-
-                    <!-- PHOTO -->
 
                     <div class="form-group full">
 
@@ -1805,6 +1879,7 @@
                                 <p>
                                     Upload a clear profile photo
                                     for this member.
+                                    Maximum file size: 5MB.
                                 </p>
 
                                 <input
@@ -1824,8 +1899,6 @@
 
 
 
-                <!-- ACTION -->
-
                 <div class="form-actions">
 
                     <button
@@ -1839,7 +1912,6 @@
                 </div>
 
 
-                <!-- STATUS -->
 
                 <div
                     id="formStatus"
@@ -1934,7 +2006,7 @@
 
             addDoc,
 
-            getDocs,
+            onSnapshot,
 
             updateDoc,
 
@@ -1942,11 +2014,7 @@
 
             doc,
 
-            serverTimestamp,
-
-            orderBy,
-
-            query
+            serverTimestamp
 
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
@@ -1974,7 +2042,7 @@
 
             storage
 
-        } from "../firebase-config.js";
+        } from "../js/firebase.js";
 
 
 
@@ -1987,112 +2055,99 @@
                 "memberForm"
             );
 
-
         const displayName =
             document.getElementById(
                 "displayName"
             );
-
 
         const tiktokUsername =
             document.getElementById(
                 "tiktokUsername"
             );
 
-
         const memberCode =
             document.getElementById(
                 "memberCode"
             );
-
 
         const role =
             document.getElementById(
                 "role"
             );
 
-
         const active =
             document.getElementById(
                 "active"
             );
-
 
         const photoFile =
             document.getElementById(
                 "photoFile"
             );
 
-
         const photoPreview =
             document.getElementById(
                 "photoPreview"
             );
-
-
-        const photoPlaceholder =
-            document.getElementById(
-                "photoPlaceholder"
-            );
-
 
         const saveMemberBtn =
             document.getElementById(
                 "saveMemberBtn"
             );
 
-
         const formStatus =
             document.getElementById(
                 "formStatus"
             );
-
 
         const membersGrid =
             document.getElementById(
                 "membersGrid"
             );
 
-
         const loadingBox =
             document.getElementById(
                 "loadingBox"
             );
-
 
         const emptyBox =
             document.getElementById(
                 "emptyBox"
             );
 
-
         const membersCount =
             document.getElementById(
                 "membersCount"
             );
-
 
         const formTitle =
             document.getElementById(
                 "formTitle"
             );
 
-
         const cancelEditBtn =
             document.getElementById(
                 "cancelEditBtn"
             );
-
 
         const logoutBtn =
             document.getElementById(
                 "logoutBtn"
             );
 
-
         const dashboardBtn =
             document.getElementById(
                 "dashboardBtn"
+            );
+
+        const firebaseDot =
+            document.getElementById(
+                "firebaseDot"
+            );
+
+        const firebaseStatusText =
+            document.getElementById(
+                "firebaseStatusText"
             );
 
 
@@ -2109,6 +2164,9 @@
 
         let editingPhotoPath =
             "";
+
+        let membersUnsubscribe =
+            null;
 
 
 
@@ -2139,10 +2197,224 @@
                 }
 
 
-                loadMembers();
+                firebaseStatusText.textContent =
+                    "Firebase Authentication: Connected • Loading members...";
+
+
+                firebaseDot.classList.add(
+                    "connected"
+                );
+
+
+                listenToMembers();
 
             }
         );
+
+
+
+        /* =================================================
+           REALTIME MEMBERS LISTENER
+        ================================================== */
+
+        function listenToMembers() {
+
+            loadingBox.style.display =
+                "block";
+
+            emptyBox.style.display =
+                "none";
+
+
+            if (membersUnsubscribe) {
+
+                membersUnsubscribe();
+
+            }
+
+
+            membersUnsubscribe =
+                onSnapshot(
+
+                    collection(
+                        db,
+                        "members"
+                    ),
+
+                    function(snapshot) {
+
+                        loadingBox.style.display =
+                            "none";
+
+
+                        firebaseStatusText.textContent =
+                            "Firebase: Connected • Members data synced";
+
+
+                        firebaseDot.classList.add(
+                            "connected"
+                        );
+
+
+                        const members =
+                            [];
+
+
+                        snapshot.forEach(
+                            function(documentSnapshot) {
+
+                                members.push({
+
+                                    id:
+                                        documentSnapshot.id,
+
+                                    ...documentSnapshot.data()
+
+                                });
+
+                            }
+                        );
+
+
+                        members.sort(
+                            function(a, b) {
+
+                                return (
+                                    String(
+                                        a.displayName ||
+                                        ""
+                                    ).localeCompare(
+                                        String(
+                                            b.displayName ||
+                                            ""
+                                        )
+                                    )
+                                );
+
+                            }
+                        );
+
+
+                        membersCount.textContent =
+                            members.length +
+                            (
+                                members.length === 1
+                                    ? " MEMBER"
+                                    : " MEMBERS"
+                            );
+
+
+                        membersGrid.innerHTML =
+                            "";
+
+
+                        if (
+                            members.length === 0
+                        ) {
+
+                            emptyBox.style.display =
+                                "block";
+
+                            emptyBox.innerHTML = `
+
+                                <div class="empty-icon">
+                                    👿
+                                </div>
+
+                                <strong>
+                                    No members yet.
+                                </strong>
+
+                                <p>
+                                    Add your first member above.
+                                </p>
+
+                            `;
+
+                            return;
+
+                        }
+
+
+                        emptyBox.style.display =
+                            "none";
+
+
+                        members.forEach(
+                            function(member) {
+
+                                renderMember(
+                                    member.id,
+                                    member
+                                );
+
+                            }
+                        );
+
+                    },
+
+                    function(error) {
+
+                        console.error(
+                            "Members realtime listener error:",
+                            error
+                        );
+
+
+                        loadingBox.style.display =
+                            "none";
+
+
+                        membersGrid.innerHTML =
+                            "";
+
+
+                        membersCount.textContent =
+                            "0 MEMBERS";
+
+
+                        emptyBox.style.display =
+                            "block";
+
+
+                        emptyBox.innerHTML = `
+
+                            <div class="empty-icon">
+                                ⚠️
+                            </div>
+
+                            <strong>
+                                Unable to load members.
+                            </strong>
+
+                            <p>
+                                ${escapeHTML(
+                                    getFirebaseErrorMessage(
+                                        error
+                                    )
+                                )}
+                            </p>
+
+                        `;
+
+
+                        firebaseDot.classList.remove(
+                            "connected"
+                        );
+
+                        firebaseDot.classList.add(
+                            "error"
+                        );
+
+
+                        firebaseStatusText.textContent =
+                            "Firebase: Firestore connection error";
+
+                    }
+
+                );
+
+        }
 
 
 
@@ -2210,10 +2482,12 @@
                     function(event) {
 
                         photoPreview.innerHTML = `
+
                             <img
                                 src="${event.target.result}"
                                 alt="Photo Preview"
                             >
+
                         `;
 
                     };
@@ -2289,7 +2563,6 @@
                     let photoURL =
                         editingPhotoURL;
 
-
                     let photoPath =
                         editingPhotoPath;
 
@@ -2311,7 +2584,8 @@
                         const extension =
                             file.name
                                 .split(".")
-                                .pop();
+                                .pop()
+                                .toLowerCase();
 
 
                         const safeName =
@@ -2320,12 +2594,19 @@
                                 .replace(
                                     /[^a-z0-9]+/g,
                                     "-"
+                                )
+                                .replace(
+                                    /^-+|-+$/g,
+                                    ""
                                 );
 
 
                         const filePath =
                             "members/" +
-                            safeName +
+                            (
+                                safeName ||
+                                "member"
+                            ) +
                             "-" +
                             Date.now() +
                             "." +
@@ -2353,6 +2634,7 @@
 
                         photoPath =
                             filePath;
+
 
 
                         /* =================================
@@ -2400,10 +2682,12 @@
                     ) {
 
                         await addDoc(
+
                             collection(
                                 db,
                                 "members"
                             ),
+
                             {
 
                                 displayName:
@@ -2436,6 +2720,7 @@
                                     serverTimestamp()
 
                             }
+
                         );
 
 
@@ -2455,11 +2740,13 @@
                     else {
 
                         await updateDoc(
+
                             doc(
                                 db,
                                 "members",
                                 editingMemberId
                             ),
+
                             {
 
                                 displayName:
@@ -2489,6 +2776,7 @@
                                     serverTimestamp()
 
                             }
+
                         );
 
 
@@ -2502,8 +2790,6 @@
 
                     resetForm();
 
-                    await loadMembers();
-
                 } catch (error) {
 
                     console.error(
@@ -2513,7 +2799,10 @@
 
 
                     showStatus(
-                        "❌ Unable to save member. Please check Firebase settings and try again.",
+                        "❌ " +
+                        getFirebaseErrorMessage(
+                            error
+                        ),
                         "error"
                     );
 
@@ -2529,115 +2818,6 @@
 
             }
         );
-
-
-
-        /* =================================================
-           LOAD MEMBERS
-        ================================================== */
-
-        async function loadMembers() {
-
-            loadingBox.style.display =
-                "block";
-
-            emptyBox.style.display =
-                "none";
-
-            membersGrid.innerHTML =
-                "";
-
-
-            try {
-
-                const membersQuery =
-                    query(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        orderBy(
-                            "displayName",
-                            "asc"
-                        )
-                    );
-
-
-                const snapshot =
-                    await getDocs(
-                        membersQuery
-                    );
-
-
-                loadingBox.style.display =
-                    "none";
-
-
-                membersCount.textContent =
-                    snapshot.size +
-                    (
-                        snapshot.size === 1
-                            ? " MEMBER"
-                            : " MEMBERS"
-                    );
-
-
-                if (
-                    snapshot.empty
-                ) {
-
-                    emptyBox.style.display =
-                        "block";
-
-                    return;
-
-                }
-
-
-                snapshot.forEach(
-                    function(documentSnapshot) {
-
-                        renderMember(
-                            documentSnapshot.id,
-                            documentSnapshot.data()
-                        );
-
-                    }
-                );
-
-            } catch (error) {
-
-                console.error(
-                    "Load members error:",
-                    error
-                );
-
-
-                loadingBox.style.display =
-                    "none";
-
-
-                emptyBox.style.display =
-                    "block";
-
-
-                emptyBox.innerHTML = `
-                    <div class="empty-icon">
-                        ⚠️
-                    </div>
-
-                    <strong>
-                        Unable to load members.
-                    </strong>
-
-                    <p>
-                        Please check your Firestore rules.
-                    </p>
-                `;
-
-            }
-
-        }
 
 
 
@@ -2689,7 +2869,6 @@
                                 member.displayName ||
                                 "Member"
                             )}"
-                            onerror="this.src='${defaultPhoto}'"
                         >
 
                     </div>
@@ -2746,7 +2925,6 @@
                         type="button"
                         class="card-btn edit"
                         data-action="edit"
-                        data-id="${id}"
                     >
                         ✏️ Edit
                     </button>
@@ -2756,11 +2934,11 @@
                         type="button"
                         class="card-btn toggle"
                         data-action="toggle"
-                        data-id="${id}"
                     >
-                        ${member.active === false
-                            ? "🟢 Activate"
-                            : "⚪ Disable"
+                        ${
+                            member.active === false
+                                ? "🟢 Activate"
+                                : "⚪ Disable"
                         }
                     </button>
 
@@ -2769,7 +2947,6 @@
                         type="button"
                         class="card-btn delete"
                         data-action="delete"
-                        data-id="${id}"
                     >
                         🗑️ Delete
                     </button>
@@ -2786,7 +2963,7 @@
 
 
             /* =============================================
-               BUTTON EVENTS
+               EDIT
             ============================================= */
 
             card
@@ -2806,6 +2983,11 @@
                 );
 
 
+
+            /* =============================================
+               TOGGLE
+            ============================================= */
+
             card
                 .querySelector(
                     '[data-action="toggle"]'
@@ -2823,6 +3005,11 @@
                 );
 
 
+
+            /* =============================================
+               DELETE
+            ============================================= */
+
             card
                 .querySelector(
                     '[data-action="delete"]'
@@ -2838,6 +3025,38 @@
 
                     }
                 );
+
+
+
+            /* =============================================
+               IMAGE ERROR
+            ============================================= */
+
+            const image =
+                card.querySelector(
+                    "img"
+                );
+
+
+            image.addEventListener(
+                "error",
+                function() {
+
+                    if (
+                        this.src !==
+                        new URL(
+                            defaultPhoto,
+                            window.location.href
+                        ).href
+                    ) {
+
+                        this.src =
+                            defaultPhoto;
+
+                    }
+
+                }
+            );
 
         }
 
@@ -2915,9 +3134,7 @@
 
                 photoPreview.innerHTML = `
 
-                    <div
-                        class="photo-placeholder"
-                    >
+                    <div class="photo-placeholder">
                         👿
                     </div>
 
@@ -2964,11 +3181,13 @@
             try {
 
                 await updateDoc(
+
                     doc(
                         db,
                         "members",
                         id
                     ),
+
                     {
 
                         active:
@@ -2978,10 +3197,16 @@
                             serverTimestamp()
 
                     }
+
                 );
 
 
-                await loadMembers();
+                showStatus(
+                    currentStatus
+                        ? "⚪ Member disabled."
+                        : "🟢 Member activated.",
+                    "success"
+                );
 
             } catch (error) {
 
@@ -2991,8 +3216,12 @@
                 );
 
 
-                alert(
-                    "Unable to update member status."
+                showStatus(
+                    "❌ " +
+                    getFirebaseErrorMessage(
+                        error
+                    ),
+                    "error"
                 );
 
             }
@@ -3041,10 +3270,12 @@
                     try {
 
                         await deleteObject(
+
                             ref(
                                 storage,
                                 member.photoPath
                             )
+
                         );
 
                     } catch (photoError) {
@@ -3059,16 +3290,19 @@
                 }
 
 
+
                 /* =========================================
                    DELETE FIRESTORE MEMBER
                 ========================================= */
 
                 await deleteDoc(
+
                     doc(
                         db,
                         "members",
                         id
                     )
+
                 );
 
 
@@ -3076,9 +3310,6 @@
                     "✅ Member deleted successfully.",
                     "success"
                 );
-
-
-                await loadMembers();
 
             } catch (error) {
 
@@ -3089,7 +3320,10 @@
 
 
                 showStatus(
-                    "❌ Unable to delete member.",
+                    "❌ " +
+                    getFirebaseErrorMessage(
+                        error
+                    ),
                     "error"
                 );
 
@@ -3145,10 +3379,7 @@
 
             photoPreview.innerHTML = `
 
-                <div
-                    class="photo-placeholder"
-                    id="photoPlaceholder"
-                >
+                <div class="photo-placeholder">
                     👿
                 </div>
 
@@ -3184,7 +3415,8 @@
 
 
             formStatus.className =
-                "form-status " + type;
+                "form-status " +
+                type;
 
 
             formStatus.scrollIntoView({
@@ -3216,6 +3448,103 @@
 
 
         /* =================================================
+           FIREBASE ERROR MESSAGE
+        ================================================== */
+
+        function getFirebaseErrorMessage(
+            error
+        ) {
+
+            const code =
+                error &&
+                error.code
+                    ? error.code
+                    : "";
+
+
+            if (
+                code.includes(
+                    "permission-denied"
+                )
+            ) {
+
+                return "Firebase permission denied. Please check your Firestore/Storage Rules.";
+
+            }
+
+
+            if (
+                code.includes(
+                    "unauthenticated"
+                )
+            ) {
+
+                return "Your admin session has expired. Please login again.";
+
+            }
+
+
+            if (
+                code.includes(
+                    "storage/unauthorized"
+                )
+            ) {
+
+                return "Storage permission denied. Please check Firebase Storage Rules.";
+
+            }
+
+
+            if (
+                code.includes(
+                    "storage/unauthenticated"
+                )
+            ) {
+
+                return "Firebase Storage authentication failed.";
+
+            }
+
+
+            if (
+                code.includes(
+                    "storage/object-not-found"
+                )
+            ) {
+
+                return "The requested photo was not found in Firebase Storage.";
+
+            }
+
+
+            if (
+                code.includes(
+                    "failed-precondition"
+                )
+            ) {
+
+                return "Firebase operation failed because a required configuration or index is missing.";
+
+            }
+
+
+            if (
+                error &&
+                error.message
+            ) {
+
+                return error.message;
+
+            }
+
+
+            return "Firebase operation failed. Please check your Firebase configuration.";
+
+        }
+
+
+
+        /* =================================================
            HTML ESCAPE
         ================================================== */
 
@@ -3223,7 +3552,9 @@
             value
         ) {
 
-            return String(value)
+            return String(
+                value
+            )
 
                 .replace(
                     /&/g,
@@ -3284,6 +3615,7 @@
                         auth
                     );
 
+
                     window.location.href =
                         "login.html";
 
@@ -3293,6 +3625,27 @@
                         "Logout error:",
                         error
                     );
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================================
+           CLEANUP
+        ================================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            function() {
+
+                if (
+                    membersUnsubscribe
+                ) {
+
+                    membersUnsubscribe();
 
                 }
 
