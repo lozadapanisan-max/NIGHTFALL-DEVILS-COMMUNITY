@@ -1,1 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Member Registration"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0b0b"
+    >
+
+    <title>Member Registration | NIGHTFALL DEVILS</title>
+
+    <link
+        rel="icon"
+        href="assets/logo.png"
+    >
+
+    <style>
+        :root {
+            --red: #d71920;
+            --red-dark: #a90f15;
+            --gold: #f5c542;
+            --black: #050505;
+            --dark: #0b0b0b;
+            --card: #111111;
+            --card2: #151515;
+            --border: #292929;
+            --text: #ffffff;
+            --muted: #a8a8a8;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(215, 25, 32, 0.12),
+                    transparent 38%
+                ),
+                var(--black);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+            width: 100%;
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 5%;
+            background: rgba(5, 5, 5, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            background: #111;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .brand-subtitle {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-top: 3px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            color: #fff;
+            background: #111;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .page {
+            width: 100%;
+            min-height: calc(100vh - 72px);
+            display: flex;
+            justify-content: center;
+            padding: 45px 18px 60px;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 13px;
+            border-radius: 999px;
+            background: rgba(215, 25, 32, 0.12);
+            border: 1px solid rgba(215, 25, 32, 0.5);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            font-size: clamp(28px, 6vw, 44px);
+            font-weight: 950;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intro h1 span {
+            color: var(--red);
+        }
+
+        .intro p {
+            max-width: 590px;
+            margin: 13px auto 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .register-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(255,255,255,0.01)
+                ),
+                var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.4),
+                0 0 0 1px rgba(215,25,32,0.03);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding-bottom: 20px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(215,25,32,0.12);
+            border: 1px solid rgba(215,25,32,0.35);
+            font-size: 23px;
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            font-weight: 850;
+        }
+
+        .card-header p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #eeeeee;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: var(--red);
+        }
+
+        .optional {
+            color: #777;
+            font-size: 10px;
+            font-weight: 500;
+            margin-left: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            color: #fff;
+            background: var(--card2);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .form-control::placeholder {
+            color: #656565;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold);
+            background: #181818;
+            box-shadow:
+                0 0 0 3px rgba(245,197,66,0.08);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .field-help {
+            margin-top: 6px;
+            color: #777;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .username-input {
+            position: relative;
+        }
+
+        .username-input .form-control {
+            padding-left: 35px;
+        }
+
+        .username-at {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-weight: 800;
+            z-index: 2;
+        }
+
+        /* =========================
+           AGREEMENT
+        ========================= */
+
+        .agreement-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 15px;
+            margin: 6px 0 20px;
+            background: rgba(245,197,66,0.035);
+            border: 1px solid rgba(245,197,66,0.15);
+            border-radius: 10px;
+        }
+
+        .agreement-box input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--red);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .agreement-box label {
+            color: #c9c9c9;
+            font-size: 12px;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .agreement-box strong {
+            color: var(--gold);
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .form-status {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .form-status.show {
+            display: block;
+        }
+
+        .form-status.success {
+            color: #b7f7ca;
+            background: rgba(34,197,94,0.09);
+            border: 1px solid rgba(34,197,94,0.3);
+        }
+
+        .form-status.error {
+            color: #ffc1c1;
+            background: rgba(239,68,68,0.09);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+
+        .form-status.info {
+            color: #ffeeb0;
+            background: rgba(245,197,66,0.08);
+            border: 1px solid rgba(245,197,66,0.25);
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .submit-btn {
+            width: 100%;
+            min-height: 52px;
+            border: 0;
+            border-radius: 10px;
+            background: var(--red);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            box-shadow:
+                0 8px 25px rgba(215,25,32,0.2);
+        }
+
+        .submit-btn:hover {
+            background: #ed1c24;
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 30px rgba(215,25,32,0.3);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.65;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: -3px;
+            border: 2px solid rgba(255,255,255,0.35);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .bottom-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .info-item {
+            padding: 13px 10px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: #0d0d0d;
+        }
+
+        .info-item-icon {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .info-item-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #ddd;
+        }
+
+        .info-item-text {
+            color: #777;
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 25px 15px 35px;
+            color: #555;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .topbar {
+                min-height: 65px;
+                padding: 10px 14px;
+            }
+
+            .brand-logo {
+                width: 39px;
+                height: 39px;
+            }
+
+            .brand-name {
+                font-size: 15px;
+            }
+
+            .brand-subtitle {
+                font-size: 8px;
+            }
+
+            .back-btn {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .page {
+                padding: 30px 12px 45px;
+            }
+
+            .register-card {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .bottom-info {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h1 {
+                font-size: 30px;
+            }
+
+            .intro p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .brand-subtitle {
+                display: none;
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
+
+            .back-btn {
+                padding: 8px 9px;
+            }
+
+            .register-card {
+                padding: 17px 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="topbar">
+
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="NIGHTFALL DEVILS Home"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="NIGHTFALL DEVILS Logo"
+                class="brand-logo"
+                onerror="this.style.display='none';"
+            >
+
+            <div class="brand-text">
+
+                <div class="brand-name">
+                    NIGHTFALL DEVILS
+                </div>
+
+                <div class="brand-subtitle">
+                    TIKTOK COMMUNITY
+                </div>
+
+            </div>
+
+        </a>
+
+        <a
+            href="index.html"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="page">
+
+        <div class="register-wrapper">
+
+            <section class="intro">
+
+                <div class="badge">
+                    👿 OFFICIAL MEMBER REGISTRATION
+                </div>
+
+                <h1>
+                    JOIN <span>NIGHTFALL DEVILS</span>
+                </h1>
+
+                <p>
+                    Become part of our TikTok community.
+                    Submit your registration and wait for
+                    the admin team to review your request.
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 REGISTRATION CARD
+            ========================= -->
+
+            <section class="register-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Member Registration
+                        </h2>
+
+                        <p>
+                            Please provide your correct information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="formStatus"
+                    class="form-status"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+                <form
+                    id="memberRegisterForm"
+                    novalidate
+                >
+
+                    <!-- =========================
+                         TIKTOK USERNAME
+                    ========================= -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="tiktokUsername"
+                            class="form-label"
+                        >
+                            TikTok Username
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="username-input">
+
+                            <span class="username-at">
+                                @
+                            </span>
+
+                            <input
+                                type="text"
+                                id="tiktokUsername"
+                                name="tiktokUsername"
+                                class="form-control"
+                                placeholder="yourusername"
+                                maxlength="50"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="field-help">
+                            Enter your TikTok username without the @ symbol.
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         DISPLAY NAME
+                    ========================= -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="displayName"
+                            class="form-label"
+                        >
+                            Display Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="displayName"
+                            name="displayName"
+                            class="form-control"
+                            placeholder="Your TikTok display name"
+                            maxlength="80"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         REFERRED BY
+                    ========================= -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="referredBy"
+                            class="form-label"
+                        >
+                            Referred By
+                            <span class="optional">
+                                OPTIONAL
+                            </span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="referredBy"
+                            name="referredBy"
+                            class="form-control"
+                            placeholder="Name or TikTok username"
+                            maxlength="80"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         MESSAGE
+                    ========================= -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="message"
+                            class="form-label"
+                        >
+                            Message
+                            <span class="optional">
+                                OPTIONAL
+                            </span>
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            class="form-control"
+                            placeholder="Tell us something about yourself or why you want to join..."
+                            maxlength="500"
+                        ></textarea>
+
+                        <div class="field-help">
+                            Maximum 500 characters.
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         AGREEMENT
+                    ========================= -->
+
+                    <div class="agreement-box">
+
+                        <input
+                            type="checkbox"
+                            id="agreement"
+                            name="agreement"
+                            required
+                        >
+
+                        <label for="agreement">
+
+                            I agree to follow the
+                            <strong>NIGHTFALL DEVILS</strong>
+                            community rules. I understand that I
+                            should not disclose personal information
+                            of myself or other members.
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- =========================
+                         SUBMIT
+                    ========================= -->
+
+                    <button
+                        type="submit"
+                        id="submitRegisterBtn"
+                        class="submit-btn"
+                    >
+                        👿 SUBMIT MEMBERSHIP REQUEST
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- =========================
+                 INFO BOXES
+            ========================= -->
+
+            <div class="bottom-info">
+
+                <div class="info-item">
+
+                    <div class="info-item-icon">
+                        🔒
+                    </div>
+
+                    <div class="info-item-title">
+                        PRIVACY
+                    </div>
+
+                    <div class="info-item-text">
+                        Protect personal information
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-item-icon">
+                        👥
+                    </div>
+
+                    <div class="info-item-title">
+                        COMMUNITY
+                    </div>
+
+                    <div class="info-item-text">
+                        Friends and TikTok streamers
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-item-icon">
+                        ⏳
+                    </div>
+
+                    <div class="info-item-title">
+                        REVIEW
+                    </div>
+
+                    <div class="info-item-text">
+                        Admin approval required
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026
+        <strong>NIGHTFALL DEVILS</strong>
+        · TikTok Community
+
+        <br>
+
+        Founded October 18, 2026
+
+    </footer>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            query,
+            where,
+            getDocs,
+            serverTimestamp
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        /* ==========================================
+           FIREBASE CONFIG
+        ========================================== */
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
+
+            authDomain:
+                "nightfall-devils-b0d77.firebaseapp.com",
+
+            projectId:
+                "nightfall-devils-b0d77",
+
+            storageBucket:
+                "nightfall-devils-b0d77.firebasestorage.app",
+
+            messagingSenderId:
+                "758952684668",
+
+            appId:
+                "1:758952684668:web:5be641ca90c9d5134f2df9",
+
+            measurementId:
+                "G-R6MZ05M4DR"
+
+        };
+
+
+        /* ==========================================
+           INITIALIZE FIREBASE
+        ========================================== */
+
+        const app =
+            initializeApp(firebaseConfig);
+
+        const db =
+            getFirestore(app);
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const form =
+            document.getElementById(
+                "memberRegisterForm"
+            );
+
+        const formStatus =
+            document.getElementById(
+                "formStatus"
+            );
+
+        const submitBtn =
+            document.getElementById(
+                "submitRegisterBtn"
+            );
+
+        const tiktokUsername =
+            document.getElementById(
+                "tiktokUsername"
+            );
+
+        const displayName =
+            document.getElementById(
+                "displayName"
+            );
+
+        const referredBy =
+            document.getElementById(
+                "referredBy"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+        const agreement =
+            document.getElementById(
+                "agreement"
+            );
+
+
+        /* ==========================================
+           STATUS MESSAGE
+        ========================================== */
+
+        function showStatus(
+            text,
+            type = "info"
+        ) {
+
+            formStatus.textContent = text;
+
+            formStatus.className =
+                "form-status show " + type;
+
+        }
+
+
+        function clearStatus() {
+
+            formStatus.textContent = "";
+
+            formStatus.className =
+                "form-status";
+
+        }
+
+
+        /* ==========================================
+           CLEAN TIKTOK USERNAME
+        ========================================== */
+
+        function cleanUsername(value) {
+
+            return value
+                .trim()
+                .replace(/^@+/, "")
+                .toLowerCase();
+
+        }
+
+
+        /* ==========================================
+           VALIDATE USERNAME
+        ========================================== */
+
+        function validUsername(username) {
+
+            /*
+             * TikTok usernames can contain letters,
+             * numbers, underscores and periods.
+             */
+
+            return /^[a-zA-Z0-9._]{2,50}$/
+                .test(username);
+
+        }
+
+
+        /* ==========================================
+           CHECK EXISTING PENDING REQUEST
+        ========================================== */
+
+        async function hasPendingRequest(
+            username
+        ) {
+
+            const requestsRef =
+                collection(
+                    db,
+                    "memberRequests"
+                );
+
+            const q =
+                query(
+                    requestsRef,
+                    where(
+                        "tiktokUsername",
+                        "==",
+                        username
+                    ),
+                    where(
+                        "status",
+                        "==",
+                        "pending"
+                    )
+                );
+
+            const snapshot =
+                await getDocs(q);
+
+            return !snapshot.empty;
+
+        }
+
+
+        /* ==========================================
+           RESET BUTTON
+        ========================================== */
+
+        function resetSubmitButton() {
+
+            submitBtn.disabled = false;
+
+            submitBtn.innerHTML =
+                "👿 SUBMIT MEMBERSHIP REQUEST";
+
+        }
+
+
+        /* ==========================================
+           SUBMIT FORM
+        ========================================== */
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                clearStatus();
+
+
+                /* ------------------------------
+                   GET VALUES
+                ------------------------------ */
+
+                const username =
+                    cleanUsername(
+                        tiktokUsername.value
+                    );
+
+                const name =
+                    displayName.value.trim();
+
+                const referral =
+                    referredBy.value.trim();
+
+                const userMessage =
+                    message.value.trim();
+
+
+                /* ------------------------------
+                   VALIDATION
+                ------------------------------ */
+
+                if (!username) {
+
+                    showStatus(
+                        "Please enter your TikTok username.",
+                        "error"
+                    );
+
+                    tiktokUsername.focus();
+
+                    return;
+
+                }
+
+
+                if (!validUsername(username)) {
+
+                    showStatus(
+                        "Invalid TikTok username. Use only letters, numbers, periods, or underscores.",
+                        "error"
+                    );
+
+                    tiktokUsername.focus();
+
+                    return;
+
+                }
+
+
+                if (!name) {
+
+                    showStatus(
+                        "Please enter your display name.",
+                        "error"
+                    );
+
+                    displayName.focus();
+
+                    return;
+
+                }
+
+
+                if (!agreement.checked) {
+
+                    showStatus(
+                        "Please agree to the NIGHTFALL DEVILS community rules before submitting.",
+                        "error"
+                    );
+
+                    agreement.focus();
+
+                    return;
+
+                }
+
+
+                if (userMessage.length > 500) {
+
+                    showStatus(
+                        "Your message is too long. Maximum 500 characters.",
+                        "error"
+                    );
+
+                    message.focus();
+
+                    return;
+
+                }
+
+
+                /* ------------------------------
+                   LOADING
+                ------------------------------ */
+
+                submitBtn.disabled = true;
+
+                submitBtn.innerHTML =
+                    '<span class="loading-spinner"></span> SUBMITTING...';
+
+
+                try {
+
+                    /* --------------------------
+                       CHECK DUPLICATE
+                    -------------------------- */
+
+                    const alreadyPending =
+                        await hasPendingRequest(
+                            username
+                        );
+
+
+                    if (alreadyPending) {
+
+                        showStatus(
+                            "You already have a pending membership request. Please wait for the NIGHTFALL DEVILS admin team to review it.",
+                            "info"
+                        );
+
+                        resetSubmitButton();
+
+                        return;
+
+                    }
+
+
+                    /* --------------------------
+                       CREATE REQUEST
+                    -------------------------- */
+
+                    await addDoc(
+                        collection(
+                            db,
+                            "memberRequests"
+                        ),
+                        {
+
+                            tiktokUsername:
+                                username,
+
+                            displayName:
+                                name,
+
+                            referredBy:
+                                referral || "",
+
+                            message:
+                                userMessage || "",
+
+                            status:
+                                "pending",
+
+                            createdAt:
+                                serverTimestamp(),
+
+                            source:
+                                "member-register.html"
+
+                        }
+                    );
+
+
+                    /* --------------------------
+                       SUCCESS
+                    -------------------------- */
+
+                    showStatus(
+                        "✅ Your membership request has been submitted successfully! The NIGHTFALL DEVILS admin team will review your request.",
+                        "success"
+                    );
+
+
+                    form.reset();
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+
+                    resetSubmitButton();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Member registration error:",
+                        error
+                    );
+
+
+                    let errorMessage =
+                        "Unable to submit your request. Please try again.";
+
+                    if (
+                        error &&
+                        error.code ===
+                        "permission-denied"
+                    ) {
+
+                        errorMessage =
+                            "Permission denied by Firebase. Please check your Firestore Rules.";
+
+                    }
+
+
+                    showStatus(
+                        "❌ " + errorMessage,
+                        "error"
+                    );
+
+
+                    resetSubmitButton();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           REMOVE @ FROM USERNAME
+        ========================================== */
+
+        tiktokUsername.addEventListener(
+            "input",
+            function() {
+
+                if (
+                    this.value.startsWith("@")
+                ) {
+
+                    this.value =
+                        this.value.replace(
+                            /^@+/,
+                            ""
+                        );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           CHARACTER LIMIT FEEDBACK
+        ========================================== */
+
+        message.addEventListener(
+            "input",
+            function() {
+
+                if (
+                    this.value.length > 500
+                ) {
+
+                    this.value =
+                        this.value.substring(
+                            0,
+                            500
+                        );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           ENTER PROTECTION
+        ========================================== */
+
+        form.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" &&
+                    event.target.tagName !==
+                    "TEXTAREA"
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           FIREBASE READY
+        ========================================== */
+
+        console.log(
+            "NIGHTFALL DEVILS member registration ready."
+        );
+
+    </script>
+
+</body>
+
+</html>
