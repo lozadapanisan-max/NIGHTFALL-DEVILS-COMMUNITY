@@ -1615,6 +1615,100 @@
 
         }
 
+
+        /* =====================================================
+           COMPACT MEMBER CARDS
+           ADDITION ONLY - EXISTING CODE ABOVE IS UNCHANGED
+        ===================================================== */
+
+        .members-grid {
+            gap: 10px;
+        }
+
+        .member-card-top {
+            grid-template-columns: 85px 1fr;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .member-card-photo {
+            width: 85px;
+            height: 85px;
+        }
+
+        .member-actions {
+            gap: 5px;
+            padding: 7px;
+        }
+
+        .card-btn {
+            min-height: 32px;
+            border-radius: 6px;
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           COMPACT MOBILE MEMBER CARDS
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .members-grid {
+                gap: 8px;
+            }
+
+            .member-card-top {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 7px;
+            }
+
+            .member-card-photo {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+            }
+
+            .member-actions {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4px;
+                padding: 6px;
+            }
+
+            .card-btn {
+                min-height: 32px;
+                padding: 2px;
+                font-size: 9px;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .members-grid {
+                gap: 6px;
+            }
+
+            .member-card-top {
+                padding: 6px;
+                gap: 5px;
+            }
+
+            .member-actions {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3px;
+                padding: 5px;
+            }
+
+            .card-btn {
+                min-height: 30px;
+                font-size: 8px;
+            }
+
+        }
+
     </style>
 
 </head>
