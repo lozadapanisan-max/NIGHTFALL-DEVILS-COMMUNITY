@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -15,15 +14,9 @@
         content="#0b0b0b"
     >
 
-    <meta
-        name="description"
-        content="NIGHTFALL DEVILS Admin Member Requests"
-    >
-
     <title>Member Requests | NIGHTFALL DEVILS</title>
 
     <style>
-
         :root {
             --red: #d71920;
             --red-dark: #a90f15;
@@ -46,10 +39,6 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: Arial, Helvetica, sans-serif;
             background:
@@ -63,10 +52,6 @@
             min-height: 100vh;
         }
 
-        body.modal-open {
-            overflow: hidden;
-        }
-
         button,
         input,
         select,
@@ -78,16 +63,11 @@
             cursor: pointer;
         }
 
-        button:disabled {
-            cursor: not-allowed;
-            opacity: .65;
-        }
-
         .topbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            min-height: 70px;
+            height: 70px;
             background: rgba(8, 8, 8, 0.96);
             border-bottom: 1px solid var(--border);
             display: flex;
@@ -101,7 +81,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: 0;
         }
 
         .brand img {
@@ -111,11 +90,6 @@
             border-radius: 50%;
             border: 2px solid var(--gold);
             background: #000;
-            flex-shrink: 0;
-        }
-
-        .brand-text {
-            min-width: 0;
         }
 
         .brand-text h1 {
@@ -153,6 +127,12 @@
             transform: translateY(-1px);
         }
 
+        .btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-primary {
             background: var(--red);
             border-color: var(--red);
@@ -170,31 +150,16 @@
             font-weight: 700;
         }
 
-        .btn-gold:hover {
-            background: #ffd85e;
-            border-color: #ffd85e;
-        }
-
         .btn-danger {
             background: rgba(239, 68, 68, .12);
             color: #ff8b8b;
             border-color: rgba(239, 68, 68, .35);
         }
 
-        .btn-danger:hover {
-            background: rgba(239, 68, 68, .2);
-            border-color: var(--danger);
-        }
-
         .btn-success {
             background: rgba(34, 197, 94, .12);
             color: #68e091;
             border-color: rgba(34, 197, 94, .35);
-        }
-
-        .btn-success:hover {
-            background: rgba(34, 197, 94, .2);
-            border-color: var(--green);
         }
 
         .btn-small {
@@ -223,7 +188,6 @@
         .page-header p {
             color: var(--muted);
             font-size: 14px;
-            line-height: 1.5;
         }
 
         .stats {
@@ -234,12 +198,11 @@
         }
 
         .stat-card {
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.03),
-                    rgba(255,255,255,.01)
-                );
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,.03),
+                rgba(255,255,255,.01)
+            );
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 18px;
@@ -305,7 +268,6 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--muted);
-            pointer-events: none;
         }
 
         .search {
@@ -318,15 +280,9 @@
             outline: none;
         }
 
-        .search::placeholder {
-            color: #666;
-        }
-
         .search:focus,
-        .select:focus,
-        .form-control:focus {
+        .select:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(245, 197, 66, .08);
         }
 
         .select {
@@ -348,7 +304,6 @@
 
         .table-scroll {
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -393,14 +348,12 @@
         .user-name {
             font-weight: 700;
             color: white;
-            word-break: break-word;
         }
 
         .username {
             color: var(--gold);
             margin-top: 3px;
             font-size: 12px;
-            word-break: break-word;
         }
 
         .muted {
@@ -454,10 +407,6 @@
         .empty-icon {
             font-size: 40px;
             margin-bottom: 12px;
-        }
-
-        .empty p {
-            margin-bottom: 6px;
         }
 
         .loading {
@@ -569,7 +518,6 @@
             color: white;
             font-size: 13px;
             word-break: break-word;
-            line-height: 1.5;
         }
 
         .modal-footer {
@@ -602,8 +550,8 @@
             outline: none;
         }
 
-        .form-control:disabled {
-            opacity: .7;
+        .form-control:focus {
+            border-color: var(--gold);
         }
 
         textarea.form-control {
@@ -686,7 +634,6 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 20px 70px rgba(0,0,0,.45);
         }
 
         .access-card img {
@@ -719,16 +666,9 @@
             font-size: 10px;
             text-align: left;
             word-break: break-word;
-            line-height: 1.6;
-        }
-
-        .firebase-error {
-            color: #ff8b8b;
-            margin-top: 8px;
         }
 
         @media (max-width: 900px) {
-
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -737,11 +677,9 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
-
         }
 
         @media (max-width: 650px) {
-
             .topbar {
                 height: auto;
                 min-height: 65px;
@@ -809,11 +747,9 @@
             .modal-footer .btn {
                 flex: 1;
             }
-
         }
 
         @media (max-width: 420px) {
-
             .stats {
                 grid-template-columns: 1fr;
             }
@@ -825,29 +761,13 @@
             .top-actions .dashboard-btn {
                 display: none;
             }
-
-            .top-actions {
-                margin-left: auto;
-            }
-
-            .top-actions .btn {
-                padding: 8px 10px;
-            }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================================
-         ACCESS DENIED
-    ========================================== -->
-
+    <!-- ACCESS DENIED -->
     <div
         id="accessDenied"
         class="access-denied"
@@ -861,17 +781,13 @@
                 alt="NIGHTFALL DEVILS"
             >
 
-            <h2>
-                Access Denied
-            </h2>
+            <h2>Login Required</h2>
 
-            <p>
-                You must be logged in as an
-                administrator to access Member Requests.
+            <p id="accessMessage">
+                You must be logged in to access Member Requests.
             </p>
 
             <button
-                type="button"
                 class="btn btn-primary"
                 id="goLoginBtn"
             >
@@ -889,14 +805,8 @@
     </div>
 
 
-    <!-- =========================================
-         MAIN APP
-    ========================================== -->
-
-    <div
-        id="app"
-        style="display:none;"
-    >
+    <!-- MAIN APP -->
+    <div id="app" style="display:none;">
 
         <header class="topbar">
 
@@ -925,7 +835,6 @@
             <div class="top-actions">
 
                 <button
-                    type="button"
                     class="btn dashboard-btn"
                     id="dashboardBtn"
                 >
@@ -933,7 +842,6 @@
                 </button>
 
                 <button
-                    type="button"
                     class="btn btn-primary"
                     id="logoutBtn"
                 >
@@ -947,11 +855,6 @@
 
         <main class="container">
 
-
-            <!-- =================================
-                 PAGE HEADER
-            ================================== -->
-
             <div class="page-header">
 
                 <div>
@@ -961,15 +864,14 @@
                     </h2>
 
                     <p>
-                        Review and manage applications
-                        from NIGHTFALL DEVILS members.
+                        Review and manage applications from
+                        NIGHTFALL DEVILS members.
                     </p>
 
                 </div>
 
 
                 <button
-                    type="button"
                     class="btn"
                     id="refreshBtn"
                 >
@@ -979,12 +881,9 @@
             </div>
 
 
-            <!-- =================================
-                 STATS
-            ================================== -->
+            <!-- STATS -->
 
             <section class="stats">
-
 
                 <div class="stat-card pending">
 
@@ -1049,13 +948,10 @@
 
                 </div>
 
-
             </section>
 
 
-            <!-- =================================
-                 TOOLBAR
-            ================================== -->
+            <!-- TOOLBAR -->
 
             <section class="toolbar">
 
@@ -1070,7 +966,6 @@
                         id="searchInput"
                         class="search"
                         placeholder="Search name, TikTok username, member code..."
-                        autocomplete="off"
                     >
 
                 </div>
@@ -1102,9 +997,7 @@
             </section>
 
 
-            <!-- =================================
-                 TABLE
-            ================================== -->
+            <!-- TABLE -->
 
             <section class="table-wrap">
 
@@ -1171,15 +1064,12 @@
 
             </section>
 
-
         </main>
 
     </div>
 
 
-    <!-- =========================================
-         VIEW MODAL
-    ========================================== -->
+    <!-- VIEW MODAL -->
 
     <div
         class="modal-backdrop"
@@ -1195,7 +1085,6 @@
                 </h3>
 
                 <button
-                    type="button"
                     class="close-btn"
                     id="closeViewBtn"
                 >
@@ -1218,7 +1107,6 @@
             <div class="modal-footer">
 
                 <button
-                    type="button"
                     class="btn"
                     id="closeViewBtn2"
                 >
@@ -1232,9 +1120,7 @@
     </div>
 
 
-    <!-- =========================================
-         APPROVE MODAL
-    ========================================== -->
+    <!-- APPROVE MODAL -->
 
     <div
         class="modal-backdrop"
@@ -1250,7 +1136,6 @@
                 </h3>
 
                 <button
-                    type="button"
                     class="close-btn"
                     id="closeApproveBtn"
                 >
@@ -1262,11 +1147,10 @@
 
             <div class="modal-body">
 
-
                 <div class="notice notice-info">
 
-                    Approving this request will create
-                    an approved member record in the
+                    Approving this request will create an
+                    approved member record in the
                     <strong>members</strong> collection.
 
                 </div>
@@ -1314,7 +1198,6 @@
                         id="memberEmailInput"
                         class="form-control"
                         placeholder="Member email"
-                        autocomplete="email"
                     >
 
                 </div>
@@ -1375,14 +1258,12 @@
 
                 </div>
 
-
             </div>
 
 
             <div class="modal-footer">
 
                 <button
-                    type="button"
                     class="btn"
                     id="cancelApproveBtn"
                 >
@@ -1390,7 +1271,6 @@
                 </button>
 
                 <button
-                    type="button"
                     class="btn btn-success"
                     id="confirmApproveBtn"
                 >
@@ -1404,9 +1284,7 @@
     </div>
 
 
-    <!-- =========================================
-         REJECT MODAL
-    ========================================== -->
+    <!-- REJECT MODAL -->
 
     <div
         class="modal-backdrop"
@@ -1422,7 +1300,6 @@
                 </h3>
 
                 <button
-                    type="button"
                     class="close-btn"
                     id="closeRejectBtn"
                 >
@@ -1465,7 +1342,6 @@
             <div class="modal-footer">
 
                 <button
-                    type="button"
                     class="btn"
                     id="cancelRejectBtn"
                 >
@@ -1473,7 +1349,6 @@
                 </button>
 
                 <button
-                    type="button"
                     class="btn btn-danger"
                     id="confirmRejectBtn"
                 >
@@ -1487,9 +1362,7 @@
     </div>
 
 
-    <!-- =========================================
-         TOAST
-    ========================================== -->
+    <!-- TOAST -->
 
     <div
         id="toast"
@@ -1501,9 +1374,7 @@
     </div>
 
 
-    <!-- =========================================
-         FIREBASE
-    ========================================== -->
+    <!-- FIREBASE -->
 
     <script type="module">
 
@@ -1526,12 +1397,11 @@
             collection,
             onSnapshot,
             doc,
-            getDoc,
+            getDocs,
             setDoc,
             updateDoc,
-            where,
             query,
-            getDocs,
+            where,
             serverTimestamp
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
@@ -1567,10 +1437,6 @@
         };
 
 
-        /* ==========================================
-           INITIALIZE FIREBASE
-        ========================================== */
-
         const app =
             initializeApp(
                 firebaseConfig
@@ -1578,19 +1444,15 @@
 
 
         const auth =
-            getAuth(
-                app
-            );
+            getAuth(app);
 
 
         const db =
-            getFirestore(
-                app
-            );
+            getFirestore(app);
 
 
         /* ==========================================
-           DOM ELEMENTS
+           DOM
         ========================================== */
 
         const appEl =
@@ -1602,6 +1464,12 @@
         const accessDenied =
             document.getElementById(
                 "accessDenied"
+            );
+
+
+        const accessMessage =
+            document.getElementById(
+                "accessMessage"
             );
 
 
@@ -1719,73 +1587,24 @@
             );
 
 
-        const refreshBtn =
-            document.getElementById(
-                "refreshBtn"
-            );
-
-
-        const dashboardBtn =
-            document.getElementById(
-                "dashboardBtn"
-            );
-
-
-        const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
-            );
-
-
-        const goLoginBtn =
-            document.getElementById(
-                "goLoginBtn"
-            );
-
-
-        const confirmApproveBtn =
-            document.getElementById(
-                "confirmApproveBtn"
-            );
-
-
-        const confirmRejectBtn =
-            document.getElementById(
-                "confirmRejectBtn"
-            );
-
-
         /* ==========================================
            STATE
         ========================================== */
 
-        let currentUser =
-            null;
+        let currentUser = null;
 
+        let allRequests = [];
 
-        let allRequests =
-            [];
+        let selectedRequest = null;
 
-
-        let selectedRequest =
-            null;
-
-
-        let unsubscribeRequests =
-            null;
-
-
-        let isProcessing =
-            false;
+        let unsubscribeRequests = null;
 
 
         /* ==========================================
-           ESCAPE HTML
+           HELPERS
         ========================================== */
 
-        function escapeHtml(
-            value
-        ) {
+        function escapeHtml(value) {
 
             if (
                 value === null ||
@@ -1827,10 +1646,6 @@
         }
 
 
-        /* ==========================================
-           TOAST
-        ========================================== */
-
         function showToast(
             message,
             type = "success"
@@ -1859,152 +1674,8 @@
                         );
 
                     },
-                    4000
+                    3500
                 );
-
-        }
-
-
-        /* ==========================================
-           FIREBASE ERROR MESSAGE
-        ========================================== */
-
-        function getFirebaseErrorMessage(
-            error
-        ) {
-
-            if (!error) {
-
-                return "Unknown Firebase error.";
-
-            }
-
-
-            const code =
-                error.code ||
-                "";
-
-
-            const message =
-                error.message ||
-                "";
-
-
-            if (
-                code ===
-                "permission-denied"
-            ) {
-
-                return (
-                    "Permission denied. " +
-                    "Please check your Firestore Rules " +
-                    "and make sure you are logged in."
-                );
-
-            }
-
-
-            if (
-                code ===
-                "failed-precondition"
-            ) {
-
-                return (
-                    "Firestore requires an index or " +
-                    "the query cannot be completed."
-                );
-
-            }
-
-
-            if (
-                code ===
-                "unavailable"
-            ) {
-
-                return (
-                    "Firebase is temporarily unavailable. " +
-                    "Please check your internet connection."
-                );
-
-            }
-
-
-            if (
-                code ===
-                "unauthenticated"
-            ) {
-
-                return (
-                    "Your Firebase login session has expired. " +
-                    "Please login again."
-                );
-
-            }
-
-
-            return message ||
-                "Firebase operation failed.";
-
-        }
-
-
-        /* ==========================================
-           DATE
-        ========================================== */
-
-        function getTimestampMillis(
-            value
-        ) {
-
-            if (!value) {
-
-                return 0;
-
-            }
-
-
-            try {
-
-                if (
-                    typeof value.toMillis ===
-                    "function"
-                ) {
-
-                    return value.toMillis();
-
-                }
-
-
-                if (
-                    typeof value.toDate ===
-                    "function"
-                ) {
-
-                    return value
-                        .toDate()
-                        .getTime();
-
-                }
-
-
-                const time =
-                    new Date(
-                        value
-                    ).getTime();
-
-
-                return Number.isNaN(
-                    time
-                )
-                    ? 0
-                    : time;
-
-            } catch {
-
-                return 0;
-
-            }
 
         }
 
@@ -2036,15 +1707,13 @@
                 } else {
 
                     date =
-                        new Date(
-                            timestamp
-                        );
+                        new Date(timestamp);
 
                 }
 
 
                 if (
-                    Number.isNaN(
+                    isNaN(
                         date.getTime()
                     )
                 ) {
@@ -2074,9 +1743,53 @@
         }
 
 
-        /* ==========================================
-           USERNAME
-        ========================================== */
+        function timestampToNumber(
+            timestamp
+        ) {
+
+            if (!timestamp) {
+
+                return 0;
+
+            }
+
+
+            try {
+
+                if (
+                    typeof timestamp.toDate ===
+                    "function"
+                ) {
+
+                    return timestamp
+                        .toDate()
+                        .getTime();
+
+                }
+
+
+                const date =
+                    new Date(
+                        timestamp
+                    );
+
+
+                const time =
+                    date.getTime();
+
+
+                return isNaN(time)
+                    ? 0
+                    : time;
+
+            } catch {
+
+                return 0;
+
+            }
+
+        }
+
 
         function normalizeUsername(
             username
@@ -2094,68 +1807,6 @@
 
         }
 
-
-        /* ==========================================
-           ROLE
-        ========================================== */
-
-        function normalizeRole(
-            role
-        ) {
-
-            return String(
-                role || ""
-            )
-                .trim()
-                .toLowerCase()
-                .replace(
-                    /[_-]+/g,
-                    " "
-                )
-                .replace(
-                    /\s+/g,
-                    " "
-                );
-
-        }
-
-
-        function isAdminRole(
-            role
-        ) {
-
-            const normalized =
-                normalizeRole(
-                    role
-                );
-
-
-            return [
-
-                "admin",
-
-                "administrator",
-
-                "super admin",
-
-                "superadmin",
-
-                "super administrator",
-
-                "founder",
-
-                "owner"
-
-            ].includes(
-                normalized
-            );
-
-        }
-
-
-        /* ==========================================
-           MEMBER CODE
-        ========================================== */
 
         function generateMemberCode(
             request
@@ -2196,18 +1847,10 @@
                 );
 
 
-            return (
-                "NFD-26-MEM-" +
-                initials +
-                random
-            );
+            return `NFD-26-MEM-${initials}${random}`;
 
         }
 
-
-        /* ==========================================
-           STATUS BADGE
-        ========================================== */
 
         function getStatusBadge(
             status
@@ -2221,13 +1864,15 @@
 
 
             if (
-                value ===
-                "approved"
+                value === "approved" ||
+                value === "active"
             ) {
 
                 return `
                     <span class="badge badge-approved">
-                        Approved
+                        ${escapeHtml(
+                            value
+                        )}
                     </span>
                 `;
 
@@ -2235,8 +1880,7 @@
 
 
             if (
-                value ===
-                "rejected"
+                value === "rejected"
             ) {
 
                 return `
@@ -2258,426 +1902,10 @@
 
 
         /* ==========================================
-           ADMIN ACCESS CHECK
-        ========================================== */
-
-        async function checkAdminAccess(
-            user
-        ) {
-
-            if (!user) {
-
-                return {
-                    allowed: false,
-                    reason:
-                        "No authenticated user."
-                };
-
-            }
-
-
-            console.log(
-                "Checking admin access:",
-                user.email,
-                user.uid
-            );
-
-
-            /* ======================================
-               METHOD 1
-               CUSTOM CLAIMS
-            ====================================== */
-
-            try {
-
-                const tokenResult =
-                    await user.getIdTokenResult(
-                        true
-                    );
-
-
-                const claims =
-                    tokenResult.claims ||
-                    {};
-
-
-                console.log(
-                    "Custom claims:",
-                    claims
-                );
-
-
-                if (
-                    claims.admin === true
-                ) {
-
-                    return {
-                        allowed: true,
-                        reason:
-                            "Firebase admin custom claim"
-                    };
-
-                }
-
-
-                if (
-                    isAdminRole(
-                        claims.role
-                    )
-                ) {
-
-                    return {
-                        allowed: true,
-                        reason:
-                            "Firebase role custom claim"
-                    };
-
-                }
-
-            } catch (error) {
-
-                console.warn(
-                    "Custom claims check failed:",
-                    error
-                );
-
-            }
-
-
-            /* ======================================
-               METHOD 2
-               members/{UID}
-            ====================================== */
-
-            try {
-
-                const memberRef =
-                    doc(
-                        db,
-                        "members",
-                        user.uid
-                    );
-
-
-                const memberSnap =
-                    await getDoc(
-                        memberRef
-                    );
-
-
-                if (
-                    memberSnap.exists()
-                ) {
-
-                    const data =
-                        memberSnap.data();
-
-
-                    console.log(
-                        "members/{uid}:",
-                        data
-                    );
-
-
-                    if (
-                        isAdminRole(
-                            data.role
-                        )
-                    ) {
-
-                        return {
-                            allowed: true,
-                            reason:
-                                "Admin role found in members/{uid}"
-                        };
-
-                    }
-
-                }
-
-            } catch (error) {
-
-                console.warn(
-                    "UID member check failed:",
-                    error
-                );
-
-            }
-
-
-            /* ======================================
-               METHOD 3
-               EXACT EMAIL
-            ====================================== */
-
-            if (user.email) {
-
-                try {
-
-                    const emailQuery =
-                        query(
-                            collection(
-                                db,
-                                "members"
-                            ),
-                            where(
-                                "email",
-                                "==",
-                                user.email
-                            )
-                        );
-
-
-                    const emailSnap =
-                        await getDocs(
-                            emailQuery
-                        );
-
-
-                    for (
-                        const memberDoc
-                        of emailSnap.docs
-                    ) {
-
-                        const data =
-                            memberDoc.data();
-
-
-                        if (
-                            isAdminRole(
-                                data.role
-                            )
-                        ) {
-
-                            return {
-                                allowed: true,
-                                reason:
-                                    "Admin role found by exact email"
-                            };
-
-                        }
-
-                    }
-
-                } catch (error) {
-
-                    console.warn(
-                        "Email query failed:",
-                        error
-                    );
-
-                }
-
-            }
-
-
-            /* ======================================
-               METHOD 4
-               FULL MEMBERS SCAN
-            ====================================== */
-
-            try {
-
-                const membersSnap =
-                    await getDocs(
-                        collection(
-                            db,
-                            "members"
-                        )
-                    );
-
-
-                console.log(
-                    "Members scanned:",
-                    membersSnap.size
-                );
-
-
-                const authEmail =
-                    String(
-                        user.email ||
-                        ""
-                    )
-                        .trim()
-                        .toLowerCase();
-
-
-                for (
-                    const memberDoc
-                    of membersSnap.docs
-                ) {
-
-                    const data =
-                        memberDoc.data();
-
-
-                    const memberEmail =
-                        String(
-                            data.email ||
-                            ""
-                        )
-                            .trim()
-                            .toLowerCase();
-
-
-                    const memberUid =
-                        String(
-                            data.uid ||
-                            ""
-                        )
-                            .trim();
-
-
-                    const sameEmail =
-                        Boolean(
-                            authEmail &&
-                            memberEmail &&
-                            authEmail ===
-                            memberEmail
-                        );
-
-
-                    const sameUid =
-                        Boolean(
-                            memberUid &&
-                            memberUid ===
-                            user.uid
-                        );
-
-
-                    if (
-                        sameEmail ||
-                        sameUid
-                    ) {
-
-                        console.log(
-                            "Matching member:",
-                            memberDoc.id,
-                            data
-                        );
-
-
-                        if (
-                            isAdminRole(
-                                data.role
-                            )
-                        ) {
-
-                            return {
-                                allowed: true,
-                                reason:
-                                    sameUid
-                                        ? "Admin role found by member UID field"
-                                        : "Admin role found by member email scan"
-                            };
-
-                        }
-
-                    }
-
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "Members scan failed:",
-                    error
-                );
-
-
-                return {
-                    allowed: false,
-                    reason:
-                        "Unable to read members collection: " +
-                        getFirebaseErrorMessage(
-                            error
-                        )
-                };
-
-            }
-
-
-            /* ======================================
-               DENIED
-            ====================================== */
-
-            return {
-                allowed: false,
-                reason:
-                    "Authenticated account found, but no Admin, Super Admin, Founder, Administrator, Superadmin, or Owner role was found."
-            };
-
-        }
-
-
-        /* ==========================================
-           ACCESS DEBUG
-        ========================================== */
-
-        function showAccessDebug(
-            user,
-            reason
-        ) {
-
-            debugBox.style.display =
-                "block";
-
-
-            debugBox.innerHTML = `
-
-                <strong style="color:#f5c542;">
-                    Login Debug
-                </strong>
-
-                <br><br>
-
-                <strong>Email:</strong>
-                ${escapeHtml(
-                    user?.email ||
-                    "No email"
-                )}
-
-                <br>
-
-                <strong>UID:</strong>
-                ${escapeHtml(
-                    user?.uid ||
-                    "No UID"
-                )}
-
-                <br><br>
-
-                <strong>Reason:</strong>
-                ${escapeHtml(
-                    reason
-                )}
-
-                <br><br>
-
-                <span style="color:#aaa;">
-                    Firestore check:
-                    <br>
-                    members collection →
-                    your member record →
-                    role must be Admin,
-                    Super Admin, Founder,
-                    Administrator, Superadmin,
-                    or Owner.
-                </span>
-
-            `;
-
-        }
-
-
-        /* ==========================================
            LOAD REQUESTS
            
-           IMPORTANT FIX:
-           NO orderBy()
-           
-           Old documents without createdAt
-           will no longer break the listener.
+           ORIGINAL SIMPLE VERSION
+           NO ORDER BY
         ========================================== */
 
         function loadRequests() {
@@ -2744,11 +1972,7 @@
                                 );
 
 
-                            /*
-                             * LOCAL SORT
-                             *
-                             * Newest request first.
-                             */
+                            /* SORT LOCALLY */
 
                             allRequests.sort(
                                 (
@@ -2757,10 +1981,10 @@
                                 ) => {
 
                                     return (
-                                        getTimestampMillis(
+                                        timestampToNumber(
                                             b.createdAt
                                         ) -
-                                        getTimestampMillis(
+                                        timestampToNumber(
                                             a.createdAt
                                         )
                                     );
@@ -2778,15 +2002,9 @@
                         error => {
 
                             console.error(
-                                "memberRequests Firestore error:",
+                                "Firestore memberRequests error:",
                                 error
                             );
-
-
-                            const message =
-                                getFirebaseErrorMessage(
-                                    error
-                                );
 
 
                             requestsBody.innerHTML = `
@@ -2805,9 +2023,10 @@
                                                 Unable to load member requests.
                                             </p>
 
-                                            <small class="firebase-error">
+                                            <small>
                                                 ${escapeHtml(
-                                                    message
+                                                    error.message ||
+                                                    "Unknown Firestore error"
                                                 )}
                                             </small>
 
@@ -2821,7 +2040,8 @@
 
 
                             showToast(
-                                message,
+                                error.message ||
+                                "Unable to load member requests.",
                                 "error"
                             );
 
@@ -2832,7 +2052,7 @@
             } catch (error) {
 
                 console.error(
-                    "Load requests initialization error:",
+                    "Load requests error:",
                     error
                 );
 
@@ -2850,14 +2070,12 @@
                                 </div>
 
                                 <p>
-                                    Failed to initialize member requests.
+                                    Failed to load member requests.
                                 </p>
 
-                                <small class="firebase-error">
+                                <small>
                                     ${escapeHtml(
-                                        getFirebaseErrorMessage(
-                                            error
-                                        )
+                                        error.message
                                     )}
                                 </small>
 
@@ -2875,7 +2093,7 @@
 
 
         /* ==========================================
-           UPDATE STATS
+           STATS
         ========================================== */
 
         function updateStats() {
@@ -2932,7 +2150,7 @@
 
 
         /* ==========================================
-           RENDER REQUESTS
+           RENDER
         ========================================== */
 
         function renderRequests() {
@@ -2943,7 +2161,7 @@
                     .toLowerCase();
 
 
-            const selectedStatus =
+            const status =
                 statusFilter.value;
 
 
@@ -2959,10 +2177,9 @@
 
 
                         if (
-                            selectedStatus !==
-                            "all" &&
+                            status !== "all" &&
                             requestStatus !==
-                            selectedStatus
+                            status
                         ) {
 
                             return false;
@@ -2989,14 +2206,10 @@
 
                             request.email,
 
-                            request.message,
-
-                            request.role
+                            request.message
 
                         ]
-                            .filter(
-                                Boolean
-                            )
+                            .filter(Boolean)
                             .join(" ")
                             .toLowerCase();
 
@@ -3009,9 +2222,7 @@
                 );
 
 
-            if (
-                !filtered.length
-            ) {
+            if (!filtered.length) {
 
                 requestsBody.innerHTML = `
 
@@ -3084,7 +2295,6 @@
             let actionButtons = `
 
                 <button
-                    type="button"
                     class="btn btn-small"
                     onclick="window.viewRequest('${request.id}')"
                 >
@@ -3095,14 +2305,12 @@
 
 
             if (
-                status ===
-                "pending"
+                status === "pending"
             ) {
 
                 actionButtons += `
 
                     <button
-                        type="button"
                         class="btn btn-small btn-success"
                         onclick="window.openApprove('${request.id}')"
                     >
@@ -3110,51 +2318,10 @@
                     </button>
 
                     <button
-                        type="button"
                         class="btn btn-small btn-danger"
                         onclick="window.openReject('${request.id}')"
                     >
                         Reject
-                    </button>
-
-                `;
-
-            }
-
-
-            if (
-                status ===
-                "approved"
-            ) {
-
-                actionButtons += `
-
-                    <button
-                        type="button"
-                        class="btn btn-small btn-gold"
-                        onclick="window.viewRequest('${request.id}')"
-                    >
-                        Approved
-                    </button>
-
-                `;
-
-            }
-
-
-            if (
-                status ===
-                "rejected"
-            ) {
-
-                actionButtons += `
-
-                    <button
-                        type="button"
-                        class="btn btn-small btn-danger"
-                        onclick="window.viewRequest('${request.id}')"
-                    >
-                        Rejected
                     </button>
 
                 `;
@@ -3176,8 +2343,7 @@
 
                         <div class="username">
                             @${escapeHtml(
-                                username ||
-                                "unknown"
+                                username
                             )}
                         </div>
 
@@ -3185,21 +2351,17 @@
 
 
                     <td>
-
                         ${escapeHtml(
                             request.referredBy ||
                             "—"
                         )}
-
                     </td>
 
 
                     <td>
-
                         ${getStatusBadge(
                             status
                         )}
-
                     </td>
 
 
@@ -3252,9 +2414,7 @@
         ========================================== */
 
         window.viewRequest =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -3318,22 +2478,6 @@
                     <div class="detail-item">
 
                         <div class="detail-label">
-                            Email
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.email ||
-                                "Not provided"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
                             Referred By
                         </div>
 
@@ -3341,22 +2485,6 @@
                             ${escapeHtml(
                                 request.referredBy ||
                                 "—"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Role
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.role ||
-                                "Not assigned"
                             )}
                         </div>
 
@@ -3397,12 +2525,44 @@
                     <div class="detail-item">
 
                         <div class="detail-label">
+                            Email
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(
+                                request.email ||
+                                "Not provided"
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
                             Date Applied
                         </div>
 
                         <div class="detail-value">
                             ${formatDate(
                                 request.createdAt
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Role
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(
+                                request.role ||
+                                "Not assigned"
                             )}
                         </div>
 
@@ -3423,27 +2583,6 @@
                         </div>
 
                     </div>
-
-
-                    ${
-                        request.rejectionReason
-                            ? `
-                                <div class="detail-item full">
-
-                                    <div class="detail-label">
-                                        Rejection Reason
-                                    </div>
-
-                                    <div class="detail-value">
-                                        ${escapeHtml(
-                                            request.rejectionReason
-                                        )}
-                                    </div>
-
-                                </div>
-                            `
-                            : ""
-                    }
 
 
                     <div class="detail-item full">
@@ -3467,22 +2606,15 @@
                     "show"
                 );
 
-
-                document.body.classList.add(
-                    "modal-open"
-                );
-
             };
 
 
         /* ==========================================
-           OPEN APPROVE
+           APPROVE MODAL
         ========================================== */
 
         window.openApprove =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -3504,37 +2636,15 @@
                 }
 
 
-                if (
-                    String(
-                        request.status ||
-                        ""
-                    ).toLowerCase() !==
-                    "pending"
-                ) {
-
-                    showToast(
-                        "Only pending requests can be approved.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
                 selectedRequest =
                     request;
 
 
-                const existingCode =
+                memberCodeInput.value =
                     request.memberCode ||
                     generateMemberCode(
                         request
                     );
-
-
-                memberCodeInput.value =
-                    existingCode;
 
 
                 memberEmailInput.value =
@@ -3555,21 +2665,6 @@
                     "show"
                 );
 
-
-                document.body.classList.add(
-                    "modal-open"
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        memberEmailInput.focus();
-
-                    },
-                    100
-                );
-
             };
 
 
@@ -3580,34 +2675,12 @@
         async function approveRequest() {
 
             if (
-                isProcessing
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                !selectedRequest
-            ) {
-
-                showToast(
-                    "No request selected.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            if (
+                !selectedRequest ||
                 !currentUser
             ) {
 
                 showToast(
-                    "You are not logged in.",
+                    "No request selected or user is not logged in.",
                     "error"
                 );
 
@@ -3627,8 +2700,7 @@
 
             const email =
                 memberEmailInput.value
-                    .trim()
-                    .toLowerCase();
+                    .trim();
 
 
             const role =
@@ -3651,98 +2723,23 @@
             }
 
 
-            if (
-                email &&
-                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                    .test(
-                        email
-                    )
-            ) {
-
-                showToast(
-                    "Please enter a valid email address.",
-                    "error"
+            const button =
+                document.getElementById(
+                    "confirmApproveBtn"
                 );
 
-                return;
 
-            }
-
-
-            isProcessing =
+            button.disabled =
                 true;
 
 
-            confirmApproveBtn.disabled =
-                true;
-
-
-            confirmApproveBtn.textContent =
+            button.textContent =
                 "Approving...";
 
 
             try {
 
-                /* ==================================
-                   CHECK IF MEMBER RECORD ALREADY EXISTS
-                ================================== */
-
-                const memberRef =
-                    doc(
-                        db,
-                        "members",
-                        request.id
-                    );
-
-
-                const existingMemberSnap =
-                    await getDoc(
-                        memberRef
-                    );
-
-
-                if (
-                    existingMemberSnap.exists()
-                ) {
-
-                    const existingData =
-                        existingMemberSnap.data();
-
-
-                    if (
-                        existingData.memberCode ===
-                        memberCode
-                    ) {
-
-                        /*
-                         * The member may have already
-                         * been created before the request
-                         * update completed.
-                         */
-
-                        showToast(
-                            "This request already has a member record.",
-                            "error"
-                        );
-
-                        return;
-
-                    }
-
-
-                    showToast(
-                        "A member record already exists for this request.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                /* ==================================
-                   CHECK DUPLICATE MEMBER CODE
-                ================================== */
+                /* CHECK DUPLICATE CODE */
 
                 const existingMemberQuery =
                     query(
@@ -3758,18 +2755,26 @@
                     );
 
 
-                const existingMemberSnapByCode =
+                const existingMemberSnap =
                     await getDocs(
                         existingMemberQuery
                     );
 
 
+                const duplicateExists =
+                    existingMemberSnap.docs.some(
+                        memberDoc =>
+                            memberDoc.id !==
+                            request.id
+                    );
+
+
                 if (
-                    !existingMemberSnapByCode.empty
+                    duplicateExists
                 ) {
 
                     showToast(
-                        "Member code already exists. Please generate another code.",
+                        "Member code already exists.",
                         "error"
                     );
 
@@ -3778,9 +2783,15 @@
                 }
 
 
-                /* ==================================
-                   CREATE MEMBER
-                ================================== */
+                /* MEMBER DOCUMENT */
+
+                const memberRef =
+                    doc(
+                        db,
+                        "members",
+                        request.id
+                    );
+
 
                 await setDoc(
                     memberRef,
@@ -3833,13 +2844,14 @@
                         updatedAt:
                             serverTimestamp()
 
+                    },
+                    {
+                        merge: true
                     }
                 );
 
 
-                /* ==================================
-                   UPDATE MEMBER REQUEST
-                ================================== */
+                /* UPDATE REQUEST */
 
                 await updateDoc(
                     doc(
@@ -3883,19 +2895,12 @@
                 );
 
 
-                document.body.classList.remove(
-                    "modal-open"
-                );
-
-
                 selectedRequest =
                     null;
 
 
                 showToast(
-                    email
-                        ? "Member approved successfully. Authentication account will be created automatically."
-                        : "Member approved successfully. Add an email later to enable member login.",
+                    "Member approved successfully.",
                     "success"
                 );
 
@@ -3903,33 +2908,24 @@
             } catch (error) {
 
                 console.error(
-                    "Approve request error:",
+                    "Approve error:",
                     error
                 );
 
 
-                const message =
-                    getFirebaseErrorMessage(
-                        error
-                    );
-
-
                 showToast(
-                    message,
+                    error.message ||
+                    "Failed to approve member.",
                     "error"
                 );
 
             } finally {
 
-                isProcessing =
+                button.disabled =
                     false;
 
 
-                confirmApproveBtn.disabled =
-                    false;
-
-
-                confirmApproveBtn.textContent =
+                button.textContent =
                     "✓ Approve Member";
 
             }
@@ -3938,13 +2934,11 @@
 
 
         /* ==========================================
-           OPEN REJECT
+           REJECT MODAL
         ========================================== */
 
         window.openReject =
-            function(
-                requestId
-            ) {
+            function(requestId) {
 
                 const request =
                     allRequests.find(
@@ -3966,24 +2960,6 @@
                 }
 
 
-                if (
-                    String(
-                        request.status ||
-                        ""
-                    ).toLowerCase() !==
-                    "pending"
-                ) {
-
-                    showToast(
-                        "Only pending requests can be rejected.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
                 selectedRequest =
                     request;
 
@@ -3997,21 +2973,6 @@
                     "show"
                 );
 
-
-                document.body.classList.add(
-                    "modal-open"
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        rejectReasonInput.focus();
-
-                    },
-                    100
-                );
-
             };
 
 
@@ -4022,57 +2983,37 @@
         async function rejectRequest() {
 
             if (
-                isProcessing
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                !selectedRequest
-            ) {
-
-                showToast(
-                    "No request selected.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            if (
+                !selectedRequest ||
                 !currentUser
             ) {
 
                 showToast(
-                    "You are not logged in.",
+                    "No request selected or user is not logged in.",
                     "error"
                 );
 
                 return;
 
             }
-
-
-            isProcessing =
-                true;
-
-
-            confirmRejectBtn.disabled =
-                true;
-
-
-            confirmRejectBtn.textContent =
-                "Rejecting...";
 
 
             const reason =
                 rejectReasonInput.value
                     .trim();
+
+
+            const button =
+                document.getElementById(
+                    "confirmRejectBtn"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "Rejecting...";
 
 
             try {
@@ -4113,11 +3054,6 @@
                 );
 
 
-                document.body.classList.remove(
-                    "modal-open"
-                );
-
-
                 selectedRequest =
                     null;
 
@@ -4137,23 +3073,18 @@
 
 
                 showToast(
-                    getFirebaseErrorMessage(
-                        error
-                    ),
+                    error.message ||
+                    "Failed to reject request.",
                     "error"
                 );
 
             } finally {
 
-                isProcessing =
+                button.disabled =
                     false;
 
 
-                confirmRejectBtn.disabled =
-                    false;
-
-
-                confirmRejectBtn.textContent =
+                button.textContent =
                     "✕ Reject Request";
 
             }
@@ -4173,157 +3104,121 @@
                 "show"
             );
 
-
-            if (
-                !viewModal.classList.contains(
-                    "show"
-                ) &&
-                !approveModal.classList.contains(
-                    "show"
-                ) &&
-                !rejectModal.classList.contains(
-                    "show"
-                )
-            ) {
-
-                document.body.classList.remove(
-                    "modal-open"
-                );
-
-            }
-
         }
 
 
         /* ==========================================
-           SEARCH
+           EVENTS
         ========================================== */
 
         searchInput.addEventListener(
             "input",
-            () => {
-
-                renderRequests();
-
-            }
+            renderRequests
         );
 
-
-        /* ==========================================
-           STATUS FILTER
-        ========================================== */
 
         statusFilter.addEventListener(
             "change",
-            () => {
-
-                renderRequests();
-
-            }
+            renderRequests
         );
 
 
-        /* ==========================================
-           REFRESH
-        ========================================== */
+        document
+            .getElementById(
+                "refreshBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
-        refreshBtn.addEventListener(
-            "click",
-            () => {
+                    loadRequests();
 
-                renderRequests();
-
-                showToast(
-                    "Request list refreshed.",
-                    "success"
-                );
-
-            }
-        );
-
-
-        /* ==========================================
-           DASHBOARD
-        ========================================== */
-
-        dashboardBtn.addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }
-        );
-
-
-        /* ==========================================
-           LOGIN
-        ========================================== */
-
-        goLoginBtn.addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    "login.html";
-
-            }
-        );
-
-
-        /* ==========================================
-           LOGOUT
-        ========================================== */
-
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
-
-                try {
-
-                    if (
-                        unsubscribeRequests
-                    ) {
-
-                        unsubscribeRequests();
-
-                        unsubscribeRequests =
-                            null;
-
-                    }
-
-
-                    await signOut(
-                        auth
+                    showToast(
+                        "Request list refreshed.",
+                        "success"
                     );
 
+                }
+            );
+
+
+        document
+            .getElementById(
+                "dashboardBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "goLoginBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
                     window.location.href =
                         "login.html";
 
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
+                }
+            );
 
 
-                    showToast(
-                        "Logout failed.",
-                        "error"
-                    );
+        document
+            .getElementById(
+                "logoutBtn"
+            )
+            .addEventListener(
+                "click",
+                async () => {
+
+                    try {
+
+                        if (
+                            unsubscribeRequests
+                        ) {
+
+                            unsubscribeRequests();
+
+                            unsubscribeRequests =
+                                null;
+
+                        }
+
+
+                        await signOut(
+                            auth
+                        );
+
+
+                        window.location.href =
+                            "login.html";
+
+                    } catch (error) {
+
+                        console.error(
+                            error
+                        );
+
+
+                        showToast(
+                            "Logout failed.",
+                            "error"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-
-        /* ==========================================
-           CLOSE VIEW
-        ========================================== */
 
         document
             .getElementById(
@@ -4331,13 +3226,10 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
+                () =>
                     closeModal(
                         viewModal
-                    );
-
-                }
+                    )
             );
 
 
@@ -4347,19 +3239,12 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
+                () =>
                     closeModal(
                         viewModal
-                    );
-
-                }
+                    )
             );
 
-
-        /* ==========================================
-           CLOSE APPROVE
-        ========================================== */
 
         document
             .getElementById(
@@ -4367,19 +3252,10 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
-                    if (
-                        !isProcessing
-                    ) {
-
-                        closeModal(
-                            approveModal
-                        );
-
-                    }
-
-                }
+                () =>
+                    closeModal(
+                        approveModal
+                    )
             );
 
 
@@ -4389,25 +3265,12 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
-                    if (
-                        !isProcessing
-                    ) {
-
-                        closeModal(
-                            approveModal
-                        );
-
-                    }
-
-                }
+                () =>
+                    closeModal(
+                        approveModal
+                    )
             );
 
-
-        /* ==========================================
-           CLOSE REJECT
-        ========================================== */
 
         document
             .getElementById(
@@ -4415,19 +3278,10 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
-                    if (
-                        !isProcessing
-                    ) {
-
-                        closeModal(
-                            rejectModal
-                        );
-
-                    }
-
-                }
+                () =>
+                    closeModal(
+                        rejectModal
+                    )
             );
 
 
@@ -4437,45 +3291,32 @@
             )
             .addEventListener(
                 "click",
-                () => {
-
-                    if (
-                        !isProcessing
-                    ) {
-
-                        closeModal(
-                            rejectModal
-                        );
-
-                    }
-
-                }
+                () =>
+                    closeModal(
+                        rejectModal
+                    )
             );
 
 
-        /* ==========================================
-           APPROVE BUTTON
-        ========================================== */
-
-        confirmApproveBtn.addEventListener(
-            "click",
-            approveRequest
-        );
-
-
-        /* ==========================================
-           REJECT BUTTON
-        ========================================== */
-
-        confirmRejectBtn.addEventListener(
-            "click",
-            rejectRequest
-        );
+        document
+            .getElementById(
+                "confirmApproveBtn"
+            )
+            .addEventListener(
+                "click",
+                approveRequest
+            );
 
 
-        /* ==========================================
-           CLOSE WHEN CLICK OUTSIDE
-        ========================================== */
+        document
+            .getElementById(
+                "confirmRejectBtn"
+            )
+            .addEventListener(
+                "click",
+                rejectRequest
+            );
+
 
         [
             viewModal,
@@ -4494,15 +3335,9 @@
                             modal
                         ) {
 
-                            if (
-                                !isProcessing
-                            ) {
-
-                                closeModal(
-                                    modal
-                                );
-
-                            }
+                            closeModal(
+                                modal
+                            );
 
                         }
 
@@ -4513,10 +3348,6 @@
         );
 
 
-        /* ==========================================
-           ESCAPE KEY
-        ========================================== */
-
         document.addEventListener(
             "keydown",
             event => {
@@ -4526,23 +3357,17 @@
                     "Escape"
                 ) {
 
-                    if (
-                        !isProcessing
-                    ) {
+                    closeModal(
+                        viewModal
+                    );
 
-                        closeModal(
-                            viewModal
-                        );
+                    closeModal(
+                        approveModal
+                    );
 
-                        closeModal(
-                            approveModal
-                        );
-
-                        closeModal(
-                            rejectModal
-                        );
-
-                    }
+                    closeModal(
+                        rejectModal
+                    );
 
                 }
 
@@ -4551,13 +3376,16 @@
 
 
         /* ==========================================
-           AUTH STATE
+           AUTH
+           
+           SIMPLE ORIGINAL FLOW
+           ANY AUTHENTICATED ADMIN LOGIN
+           CAN OPEN THIS PAGE.
         ========================================== */
 
         onAuthStateChanged(
             auth,
-
-            async user => {
+            user => {
 
                 console.log(
                     "AUTH STATE:",
@@ -4565,26 +3393,10 @@
                 );
 
 
-                /* ==============================
-                   NOT LOGGED IN
-                ============================== */
-
                 if (!user) {
 
                     currentUser =
                         null;
-
-
-                    if (
-                        unsubscribeRequests
-                    ) {
-
-                        unsubscribeRequests();
-
-                        unsubscribeRequests =
-                            null;
-
-                    }
 
 
                     appEl.style.display =
@@ -4595,10 +3407,12 @@
                         "flex";
 
 
-                    showAccessDebug(
-                        null,
-                        "No Firebase Authentication user is logged in."
-                    );
+                    accessMessage.textContent =
+                        "You must be logged in to access Member Requests.";
+
+
+                    debugBox.style.display =
+                        "none";
 
 
                     return;
@@ -4606,142 +3420,26 @@
                 }
 
 
-                /* ==============================
-                   LOGGED IN
-                ============================== */
-
                 currentUser =
                     user;
 
 
-                try {
-
-                    /*
-                     * Refresh Firebase ID token.
-                     */
-
-                    await user.getIdToken(
-                        true
-                    );
-
-
-                    /*
-                     * Check admin access.
-                     */
-
-                    const access =
-                        await checkAdminAccess(
-                            user
-                        );
-
-
-                    console.log(
-                        "ADMIN ACCESS RESULT:",
-                        access
-                    );
-
-
-                    if (
-                        !access.allowed
-                    ) {
-
-                        appEl.style.display =
-                            "none";
-
-
-                        accessDenied.style.display =
-                            "flex";
-
-
-                        showAccessDebug(
-                            user,
-                            access.reason
-                        );
-
-
-                        return;
-
-                    }
-
-
-                    /* ==============================
-                       ADMIN ACCESS GRANTED
-                    ============================== */
-
-                    accessDenied.style.display =
-                        "none";
-
-
-                    debugBox.style.display =
-                        "none";
-
-
-                    appEl.style.display =
-                        "block";
-
-
-                    /*
-                     * Load member requests.
-                     */
-
-                    loadRequests();
-
-                } catch (error) {
-
-                    console.error(
-                        "Admin authentication error:",
-                        error
-                    );
-
-
-                    appEl.style.display =
-                        "none";
-
-
-                    accessDenied.style.display =
-                        "flex";
-
-
-                    showAccessDebug(
-                        user,
-                        "Authentication/Firestore error: " +
-                        getFirebaseErrorMessage(
-                            error
-                        )
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* ==========================================
-           GLOBAL ERROR LOGGING
-        ========================================== */
-
-        window.addEventListener(
-            "error",
-            event => {
-
-                console.error(
-                    "Global JavaScript error:",
-                    event.error ||
-                    event.message
+                console.log(
+                    "Logged in:",
+                    user.email,
+                    user.uid
                 );
 
-            }
-        );
+
+                accessDenied.style.display =
+                    "none";
 
 
-        window.addEventListener(
-            "unhandledrejection",
-            event => {
+                appEl.style.display =
+                    "block";
 
-                console.error(
-                    "Unhandled Promise error:",
-                    event.reason
-                );
+
+                loadRequests();
 
             }
         );
