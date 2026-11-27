@@ -20,10 +20,45 @@
         content="#d71920"
     >
 
+    <!-- =====================================================
+         PWA / INSTALLABLE APP
+    ====================================================== -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="assets/logo/nightfall-devils-logo.png"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="NIGHTFALL DEVILS"
+    >
+
     <title>NIGHTFALL DEVILS | Official Community</title>
 
 
     <!-- MAIN CSS -->
+
     <link
         rel="stylesheet"
         href="css/style.css"
@@ -542,6 +577,48 @@
                 translateY(-3px);
 
             background: #fff9e5;
+        }
+
+
+
+        /* =====================================================
+           PWA INSTALL BUTTON
+        ===================================================== */
+
+        .hero-btn-install {
+
+            background: #111111;
+
+            color: var(--gold);
+
+            border:
+                2px solid
+                var(--gold);
+
+            cursor: pointer;
+
+            font-family: inherit;
+        }
+
+
+        .hero-btn-install:hover {
+
+            transform:
+                translateY(-3px);
+
+            background: var(--gold);
+
+            color: #111111;
+
+            box-shadow:
+                0 8px 25px
+                rgba(245, 197, 66, 0.25);
+        }
+
+
+        .hero-btn-install[hidden] {
+
+            display: none !important;
         }
 
 
@@ -1993,7 +2070,7 @@
 
             /* =================================================
                HERO
-            ================================================= */
+            ================================================== */
 
             .home-hero {
 
@@ -2121,8 +2198,6 @@
             }
 
 
-            /* REMOVE HORIZONTAL SCROLL */
-
             .organization-chart-wrapper {
 
                 width: 100%;
@@ -2138,8 +2213,6 @@
             }
 
 
-            /* CHART FITS PHONE */
-
             .organization-chart {
 
                 width: 100%;
@@ -2151,8 +2224,6 @@
                 gap: 24px;
             }
 
-
-            /* ROLE SECTION */
 
             .organization-role-section {
 
@@ -2168,8 +2239,6 @@
                 overflow: visible;
             }
 
-
-            /* ROLE TITLE */
 
             .organization-role-title {
 
@@ -2199,12 +2268,6 @@
             }
 
 
-
-            /* =================================================
-               MEMBERS GRID
-               2 CARDS PER ROW
-            ================================================= */
-
             .organization-role-members {
 
                 width: 100%;
@@ -2228,20 +2291,11 @@
             }
 
 
-            /*
-             * Hide desktop horizontal connector.
-             */
-
             .organization-role-members.has-multiple::before {
 
                 display: none;
             }
 
-
-            /*
-             * Hide vertical connectors because
-             * cards are now arranged in a grid.
-             */
 
             .organization-role-members.has-multiple
             .organization-member-wrapper::before {
@@ -2256,8 +2310,6 @@
                 display: none;
             }
 
-
-            /* MEMBER WRAPPER */
 
             .organization-member-wrapper {
 
@@ -2276,10 +2328,6 @@
                 position: relative;
             }
 
-
-            /* =================================================
-               MOBILE CARD
-            ================================================= */
 
             .organization-card {
 
@@ -2308,10 +2356,6 @@
             }
 
 
-            /* =================================================
-               MOBILE PHOTO
-            ================================================= */
-
             .organization-photo {
 
                 width: 58px;
@@ -2322,10 +2366,6 @@
                     0 auto 9px;
             }
 
-
-            /* =================================================
-               MOBILE NAME
-            ================================================= */
 
             .organization-name {
 
@@ -2340,10 +2380,6 @@
                 overflow-wrap: anywhere;
             }
 
-
-            /* =================================================
-               MOBILE USERNAME
-            ================================================= */
 
             .organization-username {
 
@@ -2360,10 +2396,6 @@
                 overflow-wrap: anywhere;
             }
 
-
-            /* =================================================
-               MOBILE POSITION
-            ================================================= */
 
             .organization-position {
 
@@ -2384,10 +2416,6 @@
             }
 
 
-            /* =================================================
-               MOBILE MEMBER CODE
-            ================================================= */
-
             .organization-code {
 
                 width: 100%;
@@ -2404,10 +2432,6 @@
             }
 
 
-            /* =================================================
-               ROLE COUNT
-            ================================================= */
-
             .organization-role-count {
 
                 margin-top: 7px;
@@ -2415,10 +2439,6 @@
                 font-size: 9px;
             }
 
-
-            /* =================================================
-               EMPTY / ERROR / LOADING
-            ================================================= */
 
             .organization-empty,
             .organization-loading,
@@ -2546,10 +2566,6 @@
             }
 
 
-            /*
-             * EXACTLY 2 CARDS PER ROW
-             */
-
             .organization-role-members {
 
                 grid-template-columns:
@@ -2654,10 +2670,6 @@
                     15px 5px 18px;
             }
 
-
-            /*
-             * KEEP 2 CARDS PER ROW
-             */
 
             .organization-role-members {
 
@@ -2901,6 +2913,23 @@
                         👥 VIEW MEMBERS
 
                     </a>
+
+
+                    <!-- =================================================
+                         PWA INSTALL BUTTON
+                         Hidden until browser supports installation
+                    ================================================== -->
+
+                    <button
+                        type="button"
+                        class="hero-btn hero-btn-install"
+                        id="installAppBtn"
+                        hidden
+                    >
+
+                        📲 INSTALL APP
+
+                    </button>
 
                 </div>
 
@@ -3746,6 +3775,173 @@
 
             }
         );
+
+    </script>
+
+
+
+    <!-- =====================================================
+         PWA INSTALL + SERVICE WORKER
+    ===================================================== -->
+
+    <script>
+
+        let deferredInstallPrompt = null;
+
+
+        const installAppBtn =
+            document.getElementById(
+                "installAppBtn"
+            );
+
+
+
+        /* =====================================================
+           CAPTURE INSTALL PROMPT
+        ===================================================== */
+
+        window.addEventListener(
+            "beforeinstallprompt",
+            function (event) {
+
+                event.preventDefault();
+
+                deferredInstallPrompt =
+                    event;
+
+
+                if (installAppBtn) {
+
+                    installAppBtn.hidden =
+                        false;
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           INSTALL APP BUTTON
+        ===================================================== */
+
+        if (installAppBtn) {
+
+            installAppBtn.addEventListener(
+                "click",
+                async function () {
+
+                    if (
+                        !deferredInstallPrompt
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    deferredInstallPrompt.prompt();
+
+
+                    try {
+
+                        await
+                            deferredInstallPrompt
+                                .userChoice;
+
+                    } catch (error) {
+
+                        console.error(
+                            "PWA install prompt error:",
+                            error
+                        );
+
+                    }
+
+
+                    deferredInstallPrompt =
+                        null;
+
+
+                    installAppBtn.hidden =
+                        true;
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           APP INSTALLED
+        ===================================================== */
+
+        window.addEventListener(
+            "appinstalled",
+            function () {
+
+                deferredInstallPrompt =
+                    null;
+
+
+                if (installAppBtn) {
+
+                    installAppBtn.hidden =
+                        true;
+
+                }
+
+
+                console.log(
+                    "NIGHTFALL DEVILS app installed."
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SERVICE WORKER
+        ===================================================== */
+
+        if (
+            "serviceWorker" in navigator
+        ) {
+
+            window.addEventListener(
+                "load",
+                function () {
+
+                    navigator.serviceWorker
+                        .register("./sw.js")
+                        .then(
+                            function (registration) {
+
+                                console.log(
+                                    "PWA Service Worker registered:",
+                                    registration.scope
+                                );
+
+                            }
+                        )
+                        .catch(
+                            function (error) {
+
+                                console.error(
+                                    "PWA Service Worker registration failed:",
+                                    error
+                                );
+
+                            }
+                        );
+
+                }
+            );
+
+        }
 
     </script>
 
