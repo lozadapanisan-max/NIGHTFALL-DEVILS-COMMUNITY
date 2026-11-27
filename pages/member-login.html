@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,7 +12,7 @@
 
     <meta
         name="theme-color"
-        content="#050505"
+        content="#080808"
     >
 
     <meta
@@ -21,17 +22,23 @@
 
     <title>Member Login | NIGHTFALL DEVILS</title>
 
+
     <style>
+
         :root {
             --red: #d71920;
+            --red-dark: #a90f15;
             --gold: #f5c542;
-            --black: #050505;
-            --dark: #0b0b0b;
-            --card: #111111;
+            --bg: #080808;
+            --panel: #111111;
+            --panel-2: #151515;
             --border: #292929;
             --text: #ffffff;
             --muted: #999999;
+            --green: #22c55e;
+            --danger: #ef4444;
         }
+
 
         * {
             box-sizing: border-box;
@@ -39,328 +46,817 @@
             padding: 0;
         }
 
+
+        html {
+            min-height: 100%;
+        }
+
+
         body {
             min-height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--text);
+
             background:
                 radial-gradient(
-                    circle at top,
-                    rgba(215, 25, 32, 0.15),
-                    transparent 40%
+                    circle at 15% 15%,
+                    rgba(215, 25, 32, .18),
+                    transparent 30%
                 ),
-                var(--black);
-            color: var(--text);
-        }
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(245, 197, 66, .08),
+                    transparent 30%
+                ),
+                var(--bg);
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .page {
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 25px 15px;
+
+            padding: 20px;
         }
 
-        .login-wrapper {
+
+        .page {
             width: 100%;
-            max-width: 430px;
+            max-width: 470px;
         }
 
-        .brand {
+
+        .logo-area {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
+
 
         .logo {
-            width: 75px;
-            height: 75px;
-            object-fit: cover;
+            width: 88px;
+            height: 88px;
+
+            object-fit: contain;
+
             border-radius: 50%;
+
             border: 2px solid var(--gold);
-            margin-bottom: 12px;
+
+            background: #000;
+
+            box-shadow:
+                0 0 0 5px rgba(245, 197, 66, .05),
+                0 12px 35px rgba(0, 0, 0, .5);
         }
 
-        .brand h1 {
-            font-size: 25px;
+
+        .brand-title {
+            margin-top: 13px;
+
+            font-size: 23px;
             font-weight: 900;
-            letter-spacing: 1px;
-        }
 
-        .brand h1 span {
-            color: var(--red);
-        }
+            letter-spacing: 1.5px;
 
-        .brand p {
-            margin-top: 5px;
             color: var(--gold);
-            font-size: 10px;
-            letter-spacing: 2px;
         }
+
+
+        .brand-subtitle {
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
 
         .card {
-            background: var(--card);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.035),
+                    rgba(255,255,255,.012)
+                ),
+                var(--panel);
+
             border: 1px solid var(--border);
-            border-radius: 17px;
+
+            border-radius: 18px;
+
             padding: 28px;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,.45);
+
+            backdrop-filter: blur(12px);
         }
 
-        .card-title {
+
+        .card-header {
             text-align: center;
-            margin-bottom: 23px;
+            margin-bottom: 24px;
         }
 
-        .card-title h2 {
-            font-size: 20px;
-            font-weight: 850;
-        }
 
-        .card-title p {
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .form-group {
-            margin-bottom: 17px;
-        }
-
-        label {
-            display: block;
-            font-size: 12px;
-            font-weight: 800;
+        .card-header h1 {
+            font-size: 22px;
             margin-bottom: 7px;
         }
 
-        .input {
-            width: 100%;
-            height: 48px;
-            padding: 0 14px;
-            border-radius: 9px;
-            border: 1px solid var(--border);
-            outline: none;
-            background: #151515;
-            color: white;
-            transition: .2s;
+
+        .card-header p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        .input:focus {
-            border-color: var(--gold);
-            box-shadow:
-                0 0 0 3px rgba(245,197,66,.08);
+
+        .form-group {
+            margin-bottom: 16px;
         }
 
-        .input::placeholder {
-            color: #666;
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d8d8d8;
+
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .password-wrap {
+
+        .input-wrap {
             position: relative;
         }
 
-        .password-wrap .input {
-            padding-right: 48px;
+
+        .input-icon {
+            position: absolute;
+
+            left: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            pointer-events: none;
         }
 
-        .show-password {
+
+        .form-control {
+            width: 100%;
+
+            height: 47px;
+
+            background: #0b0b0b;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            color: white;
+
+            padding:
+                0 44px 0 40px;
+
+            outline: none;
+
+            transition: .2s ease;
+        }
+
+
+        .form-control::placeholder {
+            color: #626262;
+        }
+
+
+        .form-control:focus {
+            border-color: var(--gold);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(245, 197, 66, .07);
+        }
+
+
+        .password-toggle {
             position: absolute;
-            right: 5px;
-            top: 5px;
-            width: 38px;
-            height: 38px;
+
+            right: 7px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 34px;
+            height: 34px;
+
             border: 0;
-            border-radius: 7px;
+
             background: transparent;
-            color: var(--gold);
+
+            color: var(--muted);
+
+            border-radius: 7px;
+
             cursor: pointer;
         }
+
+
+        .password-toggle:hover {
+            background: #1c1c1c;
+            color: var(--gold);
+        }
+
+
+        .form-options {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            margin-top: -5px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .forgot-btn {
+            border: 0;
+
+            background: transparent;
+
+            color: var(--gold);
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+
+        .forgot-btn:hover {
+            text-decoration: underline;
+        }
+
 
         .login-btn {
             width: 100%;
-            height: 51px;
-            margin-top: 5px;
-            border: 0;
+
+            height: 48px;
+
+            border: 1px solid var(--red);
+
             border-radius: 9px;
+
             background: var(--red);
+
             color: white;
-            font-size: 14px;
-            font-weight: 900;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
             cursor: pointer;
-            transition: .2s;
+
+            transition: .2s ease;
         }
 
+
         .login-btn:hover {
-            transform: translateY(-2px);
-            background: #ed1c24;
+            background: var(--red-dark);
+
+            border-color: var(--red-dark);
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(215, 25, 32, .22);
         }
+
+
+        .login-btn:active {
+            transform: scale(.99);
+        }
+
 
         .login-btn:disabled {
             opacity: .6;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
-        .status {
-            display: none;
-            padding: 12px 13px;
-            margin-bottom: 17px;
-            border-radius: 8px;
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 22px 0;
+        }
+
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: var(--border);
+        }
+
+
+        .divider span {
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+
+        .register-link {
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 45px;
+
+            border-radius: 9px;
+
+            border: 1px solid var(--border);
+
+            background: var(--panel-2);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+
+        .register-link:hover {
+            border-color: var(--gold);
+
+            color: var(--gold);
+        }
+
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: var(--muted);
+
+            text-decoration: none;
+
             font-size: 12px;
+        }
+
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+
+        .message {
+            display: none;
+
+            padding: 11px 13px;
+
+            border-radius: 9px;
+
+            margin-bottom: 16px;
+
+            font-size: 12px;
+
             line-height: 1.5;
         }
 
-        .status.show {
+
+        .message.show {
             display: block;
         }
 
-        .status.error {
-            background: rgba(239,68,68,.1);
-            border: 1px solid rgba(239,68,68,.3);
-            color: #ffb4b4;
+
+        .message.error {
+            color: #ff9999;
+
+            background:
+                rgba(239, 68, 68, .08);
+
+            border:
+                1px solid
+                rgba(239, 68, 68, .25);
         }
 
-        .status.success {
-            background: rgba(34,197,94,.1);
-            border: 1px solid rgba(34,197,94,.3);
-            color: #b8f5ca;
+
+        .message.success {
+            color: #7bea9c;
+
+            background:
+                rgba(34, 197, 94, .08);
+
+            border:
+                1px solid
+                rgba(34, 197, 94, .25);
         }
 
-        .status.info {
-            background: rgba(245,197,66,.08);
-            border: 1px solid rgba(245,197,66,.25);
-            color: #ffe9a0;
+
+        .message.info {
+            color: #fcd96a;
+
+            background:
+                rgba(245, 197, 66, .08);
+
+            border:
+                1px solid
+                rgba(245, 197, 66, .25);
         }
 
-        .links {
-            margin-top: 20px;
+
+        .footer {
             text-align: center;
-            font-size: 12px;
-            color: var(--muted);
-            line-height: 2;
+
+            margin-top: 18px;
+
+            color: #555;
+
+            font-size: 10px;
+
+            line-height: 1.5;
         }
 
-        .links a {
-            color: var(--gold);
-            font-weight: 700;
+
+        /* ================================
+           LOADING
+        ================================= */
+
+        .loading-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 5000;
+
+            background:
+                rgba(0,0,0,.82);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            backdrop-filter: blur(6px);
         }
 
-        .links a:hover {
-            color: white;
+
+        .loading-overlay.show {
+            display: flex;
         }
 
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 20px 0;
-        }
 
-        .back {
-            display: block;
+        .loading-box {
             text-align: center;
-            color: #777;
-            font-size: 11px;
         }
 
-        .back:hover {
-            color: var(--gold);
-        }
 
         .spinner {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border: 2px solid rgba(255,255,255,.35);
-            border-top-color: white;
+            width: 38px;
+            height: 38px;
+
+            border:
+                3px solid #333;
+
+            border-top-color:
+                var(--gold);
+
             border-radius: 50%;
-            animation: spin .7s linear infinite;
-            vertical-align: -3px;
-            margin-right: 7px;
+
+            animation:
+                spin .8s linear infinite;
+
+            margin:
+                0 auto 12px;
         }
+
+
+        .loading-text {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
 
         @keyframes spin {
+
             to {
-                transform: rotate(360deg);
+                transform:
+                    rotate(360deg);
             }
+
         }
 
-        @media(max-width:450px) {
+
+        /* ================================
+           FORGOT PASSWORD MODAL
+        ================================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 4000;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,.78);
+
+            backdrop-filter:
+                blur(7px);
+        }
+
+
+        .modal.show {
+            display: flex;
+        }
+
+
+        .modal-card {
+            width: 100%;
+            max-width: 430px;
+
+            background: var(--panel);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 25px 80px
+                rgba(0,0,0,.6);
+        }
+
+
+        .modal-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .modal-header h2 {
+            font-size: 18px;
+
+            color: var(--gold);
+        }
+
+
+        .close-btn {
+            width: 34px;
+            height: 34px;
+
+            border:
+                1px solid var(--border);
+
+            background: #171717;
+
+            color: white;
+
+            border-radius: 7px;
+
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+
+        .close-btn:hover {
+            background: var(--red);
+
+            border-color: var(--red);
+        }
+
+
+        .modal-description {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            margin-bottom: 16px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 14px;
+        }
+
+
+        .modal-actions button {
+            flex: 1;
+        }
+
+
+        .secondary-btn {
+            height: 45px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--panel-2);
+
+            color: white;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+
+        .secondary-btn:hover {
+            border-color: var(--gold);
+
+            color: var(--gold);
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+                padding: 14px;
+                align-items: flex-start;
+            }
+
+
+            .page {
+                margin-top: 25px;
+            }
+
+
+            .logo {
+                width: 76px;
+                height: 76px;
+            }
+
+
+            .brand-title {
+                font-size: 20px;
+            }
+
 
             .card {
-                padding: 22px 17px;
+                padding: 21px 17px;
+                border-radius: 15px;
             }
 
-            .brand h1 {
-                font-size: 22px;
+
+            .card-header h1 {
+                font-size: 20px;
             }
 
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
     <main class="page">
 
-        <div class="login-wrapper">
 
-            <div class="brand">
+        <!-- LOGO -->
 
-                <img
-                    src="../assets/logo.png"
-                    alt="NIGHTFALL DEVILS"
-                    class="logo"
-                    onerror="this.style.display='none';"
-                >
+        <div class="logo-area">
+
+            <img
+                src="../assets/logo.png"
+                alt="NIGHTFALL DEVILS"
+                class="logo"
+            >
+
+            <div class="brand-title">
+                NIGHTFALL DEVILS
+            </div>
+
+            <div class="brand-subtitle">
+                Official Member Portal
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <section class="card">
+
+
+            <div class="card-header">
 
                 <h1>
-                    NIGHTFALL <span>DEVILS</span>
+                    Member Login
                 </h1>
 
                 <p>
-                    MEMBER PORTAL
+                    Sign in to access your
+                    NIGHTFALL DEVILS member portal.
                 </p>
 
             </div>
 
 
-            <section class="card">
+            <!-- MESSAGE -->
 
-                <div class="card-title">
-
-                    <h2>
-                        👿 Member Login
-                    </h2>
-
-                    <p>
-                        Login to access your member dashboard.
-                    </p>
-
-                </div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
 
-                <div
-                    id="status"
-                    class="status"
-                    role="alert"
-                ></div>
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
 
 
-                <form id="loginForm">
+                <!-- EMAIL -->
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <label for="email">
-                            Email Address
-                        </label>
+                    <label
+                        class="form-label"
+                        for="email"
+                    >
+                        Email Address
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
 
                         <input
                             type="email"
                             id="email"
-                            class="input"
+                            class="form-control"
                             placeholder="Enter your email"
                             autocomplete="email"
                             required
@@ -368,83 +864,239 @@
 
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="password">
-                            Password
-                        </label>
-
-                        <div class="password-wrap">
-
-                            <input
-                                type="password"
-                                id="password"
-                                class="input"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                id="showPassword"
-                                class="show-password"
-                                aria-label="Show password"
-                            >
-                                👁
-                            </button>
-
-                        </div>
-
-                    </div>
+                </div>
 
 
-                    <button
-                        type="submit"
-                        id="loginBtn"
-                        class="login-btn"
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="password"
                     >
-                        🔐 LOGIN
-                    </button>
+                        Password
+                    </label>
 
-                </form>
+                    <div class="input-wrap">
 
+                        <span class="input-icon">
+                            🔒
+                        </span>
 
-                <div class="links">
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
 
-                    <div>
-                        Don't have an account?
-                        <a href="member-register.html">
-                            Register here
-                        </a>
-                    </div>
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
 
-                    <div>
-                        <a href="#" id="forgotPassword">
-                            Forgot Password?
-                        </a>
                     </div>
 
                 </div>
 
 
-                <div class="divider"></div>
+                <!-- FORGOT -->
+
+                <div class="form-options">
+
+                    <button
+                        type="button"
+                        id="forgotPasswordBtn"
+                        class="forgot-btn"
+                    >
+                        Forgot password?
+                    </button>
+
+                </div>
 
 
-                <a
-                    href="../index.html"
-                    class="back"
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    id="loginBtn"
+                    class="login-btn"
                 >
-                    ← Back to NIGHTFALL DEVILS Website
-                </a>
+                    🔐 LOGIN
+                </button>
 
-            </section>
 
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <a
+                href="member-register.html"
+                class="register-link"
+            >
+                📝 APPLY AS A MEMBER
+            </a>
+
+
+            <!-- BACK -->
+
+            <a
+                href="../index.html"
+                class="back-link"
+            >
+                ← Back to NIGHTFALL DEVILS
+            </a>
+
+
+        </section>
+
+
+        <div class="footer">
+            NIGHTFALL DEVILS © 2026
+            <br>
+            Official Community Member Portal
         </div>
+
 
     </main>
 
+
+    <!-- FORGOT PASSWORD MODAL -->
+
+    <div
+        id="forgotModal"
+        class="modal"
+    >
+
+        <div class="modal-card">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    Reset Password
+                </h2>
+
+                <button
+                    type="button"
+                    id="closeForgotBtn"
+                    class="close-btn"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <p class="modal-description">
+
+                Enter the email address connected
+                to your NIGHTFALL DEVILS member
+                account. Firebase will send a
+                password reset email.
+
+            </p>
+
+
+            <div
+                id="forgotMessage"
+                class="message"
+            ></div>
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="forgotEmail"
+                >
+                    Email Address
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">
+                        ✉
+                    </span>
+
+                    <input
+                        type="email"
+                        id="forgotEmail"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelForgotBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    id="sendResetBtn"
+                    class="login-btn"
+                >
+                    SEND RESET LINK
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loadingOverlay"
+        class="loading-overlay"
+    >
+
+        <div class="loading-box">
+
+            <div class="spinner"></div>
+
+            <div
+                id="loadingText"
+                class="loading-text"
+            >
+                Signing in...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FIREBASE -->
 
     <script type="module">
 
@@ -453,13 +1105,16 @@
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
+
         import {
             getAuth,
             signInWithEmailAndPassword,
             sendPasswordResetEmail,
-            onAuthStateChanged
+            onAuthStateChanged,
+            signOut
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
 
         import {
             getFirestore,
@@ -506,93 +1161,527 @@
         ========================================== */
 
         const app =
-            initializeApp(firebaseConfig);
+            initializeApp(
+                firebaseConfig
+            );
+
 
         const auth =
             getAuth(app);
+
 
         const db =
             getFirestore(app);
 
 
         /* ==========================================
-           ELEMENTS
+           DOM
         ========================================== */
 
         const loginForm =
-            document.getElementById("loginForm");
+            document.getElementById(
+                "loginForm"
+            );
 
-        const email =
-            document.getElementById("email");
 
-        const password =
-            document.getElementById("password");
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
+
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
 
         const loginBtn =
-            document.getElementById("loginBtn");
+            document.getElementById(
+                "loginBtn"
+            );
 
-        const status =
-            document.getElementById("status");
 
-        const showPassword =
-            document.getElementById("showPassword");
+        const togglePassword =
+            document.getElementById(
+                "togglePassword"
+            );
 
-        const forgotPassword =
-            document.getElementById("forgotPassword");
+
+        const forgotPasswordBtn =
+            document.getElementById(
+                "forgotPasswordBtn"
+            );
+
+
+        const forgotModal =
+            document.getElementById(
+                "forgotModal"
+            );
+
+
+        const closeForgotBtn =
+            document.getElementById(
+                "closeForgotBtn"
+            );
+
+
+        const cancelForgotBtn =
+            document.getElementById(
+                "cancelForgotBtn"
+            );
+
+
+        const sendResetBtn =
+            document.getElementById(
+                "sendResetBtn"
+            );
+
+
+        const forgotEmail =
+            document.getElementById(
+                "forgotEmail"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const forgotMessage =
+            document.getElementById(
+                "forgotMessage"
+            );
+
+
+        const loadingOverlay =
+            document.getElementById(
+                "loadingOverlay"
+            );
+
+
+        const loadingText =
+            document.getElementById(
+                "loadingText"
+            );
 
 
         /* ==========================================
-           STATUS
+           MESSAGE
         ========================================== */
 
-        function showStatus(
-            message,
-            type = "info"
+        function showMessage(
+            text,
+            type = "error"
         ) {
 
-            status.textContent = message;
+            message.textContent =
+                text;
 
-            status.className =
-                "status show " + type;
+            message.className =
+                "message show " +
+                type;
 
         }
 
 
-        function clearStatus() {
+        function clearMessage() {
 
-            status.textContent = "";
+            message.textContent =
+                "";
 
-            status.className = "status";
+            message.className =
+                "message";
+
+        }
+
+
+        function showForgotMessage(
+            text,
+            type = "error"
+        ) {
+
+            forgotMessage.textContent =
+                text;
+
+            forgotMessage.className =
+                "message show " +
+                type;
+
+        }
+
+
+        function clearForgotMessage() {
+
+            forgotMessage.textContent =
+                "";
+
+            forgotMessage.className =
+                "message";
 
         }
 
 
         /* ==========================================
-           PASSWORD SHOW/HIDE
+           LOADING
         ========================================== */
 
-        showPassword.addEventListener(
+        function showLoading(
+            text = "Please wait..."
+        ) {
+
+            loadingText.textContent =
+                text;
+
+            loadingOverlay.classList.add(
+                "show"
+            );
+
+        }
+
+
+        function hideLoading() {
+
+            loadingOverlay.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* ==========================================
+           PASSWORD TOGGLE
+        ========================================== */
+
+        togglePassword.addEventListener(
             "click",
-            function() {
+            () => {
+
+                const isPassword =
+                    passwordInput.type ===
+                    "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                togglePassword.textContent =
+                    isPassword
+                        ? "🙈"
+                        : "👁";
+
+
+                togglePassword.setAttribute(
+                    "aria-label",
+                    isPassword
+                        ? "Hide password"
+                        : "Show password"
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           FIREBASE ERROR MESSAGE
+        ========================================== */
+
+        function getAuthErrorMessage(
+            error
+        ) {
+
+            switch (
+                error.code
+            ) {
+
+                case
+                    "auth/invalid-email":
+
+                    return "Please enter a valid email address.";
+
+
+                case
+                    "auth/user-not-found":
+
+                    return "No account was found with this email address.";
+
+
+                case
+                    "auth/wrong-password":
+
+                    return "Incorrect email or password.";
+
+
+                case
+                    "auth/invalid-credential":
+
+                    return "Incorrect email or password.";
+
+
+                case
+                    "auth/too-many-requests":
+
+                    return "Too many login attempts. Please wait and try again.";
+
+
+                case
+                    "auth/user-disabled":
+
+                    return "This account has been disabled.";
+
+
+                case
+                    "auth/network-request-failed":
+
+                    return "Network error. Please check your internet connection.";
+
+
+                case
+                    "auth/operation-not-allowed":
+
+                    return "Email/password login is not enabled in Firebase Authentication.";
+
+
+                default:
+
+                    return (
+                        error.message ||
+                        "Unable to sign in."
+                    );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           FIND MEMBER
+        ========================================== */
+
+        async function findMemberByUser(
+            user
+        ) {
+
+            /*
+             * First try UID.
+             */
+
+            const uidQuery =
+                query(
+                    collection(
+                        db,
+                        "members"
+                    ),
+                    where(
+                        "uid",
+                        "==",
+                        user.uid
+                    )
+                );
+
+
+            const uidSnapshot =
+                await getDocs(
+                    uidQuery
+                );
+
+
+            if (
+                !uidSnapshot.empty
+            ) {
+
+                return {
+                    id:
+                        uidSnapshot.docs[0].id,
+
+                    data:
+                        uidSnapshot.docs[0].data()
+                };
+
+            }
+
+
+            /*
+             * Fallback to email.
+             */
+
+            if (
+                user.email
+            ) {
+
+                const emailQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        where(
+                            "email",
+                            "==",
+                            user.email
+                        )
+                    );
+
+
+                const emailSnapshot =
+                    await getDocs(
+                        emailQuery
+                    );
+
 
                 if (
-                    password.type === "password"
+                    !emailSnapshot.empty
                 ) {
 
-                    password.type = "text";
+                    return {
+                        id:
+                            emailSnapshot.docs[0].id,
 
-                    showPassword.textContent = "🙈";
-
-                } else {
-
-                    password.type = "password";
-
-                    showPassword.textContent = "👁";
+                        data:
+                            emailSnapshot.docs[0].data()
+                    };
 
                 }
 
             }
-        );
+
+
+            return null;
+
+        }
+
+
+        /* ==========================================
+           CHECK MEMBER ACCESS
+        ========================================== */
+
+        async function checkMemberAccess(
+            user
+        ) {
+
+            const result =
+                await findMemberByUser(
+                    user
+                );
+
+
+            if (!result) {
+
+                await signOut(
+                    auth
+                );
+
+                showMessage(
+                    "Your Firebase account exists, but no NIGHTFALL DEVILS member record was found. Please contact an administrator.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            const member =
+                result.data;
+
+
+            const status =
+                String(
+                    member.status ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            /*
+             * Only approved/active
+             * members can enter.
+             */
+
+            if (
+                status !== "approved" &&
+                status !== "active"
+            ) {
+
+                await signOut(
+                    auth
+                );
+
+
+                if (
+                    status === "pending"
+                ) {
+
+                    showMessage(
+                        "Your membership is still pending approval.",
+                        "info"
+                    );
+
+                } else if (
+                    status === "rejected"
+                ) {
+
+                    showMessage(
+                        "Your membership request was rejected. Please contact NIGHTFALL DEVILS administration.",
+                        "error"
+                    );
+
+                } else if (
+                    status === "suspended"
+                ) {
+
+                    showMessage(
+                        "Your member account is currently suspended.",
+                        "error"
+                    );
+
+                } else {
+
+                    showMessage(
+                        "Your member account is not currently active.",
+                        "error"
+                    );
+
+                }
+
+                return false;
+
+            }
+
+
+            /*
+             * Save useful member data.
+             */
+
+            localStorage.setItem(
+                "nightfallMemberId",
+                result.id
+            );
+
+
+            localStorage.setItem(
+                "nightfallMemberUsername",
+                member.tiktokUsername ||
+                ""
+            );
+
+
+            localStorage.setItem(
+                "nightfallMemberCode",
+                member.memberCode ||
+                ""
+            );
+
+
+            return true;
+
+        }
 
 
         /* ==========================================
@@ -601,53 +1690,59 @@
 
         loginForm.addEventListener(
             "submit",
-            async function(event) {
+            async event => {
 
                 event.preventDefault();
 
-                clearStatus();
+                clearMessage();
 
-                const userEmail =
-                    email.value
+
+                const email =
+                    emailInput.value
                         .trim()
                         .toLowerCase();
 
-                const userPassword =
-                    password.value;
+
+                const password =
+                    passwordInput.value;
 
 
-                if (!userEmail) {
+                if (!email) {
 
-                    showStatus(
-                        "Please enter your email address.",
-                        "error"
+                    showMessage(
+                        "Please enter your email address."
                     );
 
-                    email.focus();
+                    emailInput.focus();
 
                     return;
 
                 }
 
 
-                if (!userPassword) {
+                if (!password) {
 
-                    showStatus(
-                        "Please enter your password.",
-                        "error"
+                    showMessage(
+                        "Please enter your password."
                     );
 
-                    password.focus();
+                    passwordInput.focus();
 
                     return;
 
                 }
 
 
-                loginBtn.disabled = true;
+                loginBtn.disabled =
+                    true;
 
-                loginBtn.innerHTML =
-                    '<span class="spinner"></span> LOGGING IN...';
+                loginBtn.textContent =
+                    "SIGNING IN...";
+
+
+                showLoading(
+                    "Signing in..."
+                );
 
 
                 try {
@@ -655,63 +1750,25 @@
                     const credential =
                         await signInWithEmailAndPassword(
                             auth,
-                            userEmail,
-                            userPassword
+                            email,
+                            password
                         );
 
 
-                    const user =
-                        credential.user;
-
-
-                    /*
-                     * Check if the logged-in account
-                     * has an approved member record.
-                     */
-
-                    const membersRef =
-                        collection(
-                            db,
-                            "members"
+                    const allowed =
+                        await checkMemberAccess(
+                            credential.user
                         );
 
 
-                    const memberQuery =
-                        query(
-                            membersRef,
-                            where(
-                                "email",
-                                "==",
-                                userEmail
-                            )
-                        );
+                    if (!allowed) {
 
+                        hideLoading();
 
-                    const memberSnapshot =
-                        await getDocs(
-                            memberQuery
-                        );
+                        loginBtn.disabled =
+                            false;
 
-
-                    if (
-                        memberSnapshot.empty
-                    ) {
-
-                        /*
-                         * Account exists in Firebase Auth
-                         * but no approved member profile.
-                         */
-
-                        showStatus(
-                            "Your account is not yet registered as an approved NIGHTFALL DEVILS member.",
-                            "error"
-                        );
-
-                        await auth.signOut();
-
-                        loginBtn.disabled = false;
-
-                        loginBtn.innerHTML =
+                        loginBtn.textContent =
                             "🔐 LOGIN";
 
                         return;
@@ -719,146 +1776,37 @@
                     }
 
 
-                    const memberDoc =
-                        memberSnapshot.docs[0];
-
-                    const memberData =
-                        memberDoc.data();
-
-
-                    /*
-                     * Optional member status check.
-                     */
-
-                    if (
-                        memberData.status &&
-                        memberData.status !== "approved" &&
-                        memberData.status !== "active"
-                    ) {
-
-                        showStatus(
-                            "Your membership is currently not active. Please contact the NIGHTFALL DEVILS admin.",
-                            "error"
-                        );
-
-                        await auth.signOut();
-
-                        loginBtn.disabled = false;
-
-                        loginBtn.innerHTML =
-                            "🔐 LOGIN";
-
-                        return;
-
-                    }
-
-
-                    showStatus(
-                        "✅ Login successful. Opening your member dashboard...",
-                        "success"
+                    showLoading(
+                        "Opening member portal..."
                     );
 
 
-                    /*
-                     * Save member document ID locally
-                     * for dashboard use.
-                     */
-
-                    localStorage.setItem(
-                        "nightfallMemberId",
-                        memberDoc.id
-                    );
-
-
-                    localStorage.setItem(
-                        "nightfallMemberUsername",
-                        memberData.tiktokUsername || ""
-                    );
-
-
-                    setTimeout(
-                        function() {
-
-                            window.location.href =
-                                "member-dashboard.html";
-
-                        },
-                        700
-                    );
+                    window.location.href =
+                        "member-dashboard.html";
 
 
                 } catch (error) {
 
                     console.error(
-                        "Member login error:",
+                        "Login error:",
                         error
                     );
 
 
-                    let message =
-                        "Unable to login. Please check your email and password.";
+                    hideLoading();
 
 
-                    if (
-                        error.code ===
-                        "auth/invalid-credential"
-                    ) {
-
-                        message =
-                            "Incorrect email or password.";
-
-                    } else if (
-                        error.code ===
-                        "auth/user-not-found"
-                    ) {
-
-                        message =
-                            "No account was found with this email.";
-
-                    } else if (
-                        error.code ===
-                        "auth/wrong-password"
-                    ) {
-
-                        message =
-                            "Incorrect password.";
-
-                    } else if (
-                        error.code ===
-                        "auth/invalid-email"
-                    ) {
-
-                        message =
-                            "Please enter a valid email address.";
-
-                    } else if (
-                        error.code ===
-                        "auth/too-many-requests"
-                    ) {
-
-                        message =
-                            "Too many login attempts. Please try again later.";
-
-                    } else if (
-                        error.code ===
-                        "permission-denied"
-                    ) {
-
-                        message =
-                            "Firebase permission denied. Please check Firestore Rules.";
-
-                    }
-
-
-                    showStatus(
-                        "❌ " + message,
-                        "error"
+                    showMessage(
+                        getAuthErrorMessage(
+                            error
+                        )
                     );
 
 
-                    loginBtn.disabled = false;
+                    loginBtn.disabled =
+                        false;
 
-                    loginBtn.innerHTML =
+                    loginBtn.textContent =
                         "🔐 LOGIN";
 
                 }
@@ -871,44 +1819,130 @@
            FORGOT PASSWORD
         ========================================== */
 
-        forgotPassword.addEventListener(
+        function openForgotModal() {
+
+            clearForgotMessage();
+
+
+            if (
+                emailInput.value.trim()
+            ) {
+
+                forgotEmail.value =
+                    emailInput.value
+                        .trim()
+                        .toLowerCase();
+
+            }
+
+
+            forgotModal.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    forgotEmail.focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        function closeForgotModal() {
+
+            forgotModal.classList.remove(
+                "show"
+            );
+
+            clearForgotMessage();
+
+        }
+
+
+        forgotPasswordBtn.addEventListener(
             "click",
-            async function(event) {
+            openForgotModal
+        );
 
-                event.preventDefault();
 
-                clearStatus();
+        closeForgotBtn.addEventListener(
+            "click",
+            closeForgotModal
+        );
 
-                const userEmail =
-                    email.value
+
+        cancelForgotBtn.addEventListener(
+            "click",
+            closeForgotModal
+        );
+
+
+        forgotModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    forgotModal
+                ) {
+
+                    closeForgotModal();
+
+                }
+
+            }
+        );
+
+
+        sendResetBtn.addEventListener(
+            "click",
+            async () => {
+
+                clearForgotMessage();
+
+
+                const email =
+                    forgotEmail.value
                         .trim()
                         .toLowerCase();
 
 
-                if (!userEmail) {
+                if (!email) {
 
-                    showStatus(
-                        "Enter your email address first, then click Forgot Password.",
-                        "info"
+                    showForgotMessage(
+                        "Please enter your email address.",
+                        "error"
                     );
 
-                    email.focus();
+                    forgotEmail.focus();
 
                     return;
 
                 }
 
 
+                sendResetBtn.disabled =
+                    true;
+
+                sendResetBtn.textContent =
+                    "SENDING...";
+
+
                 try {
 
                     await sendPasswordResetEmail(
                         auth,
-                        userEmail
+                        email
                     );
 
 
-                    showStatus(
-                        "✅ Password reset email sent. Please check your email.",
+                    showForgotMessage(
+                        "Password reset email sent. Please check your inbox and follow the reset link.",
                         "success"
                     );
 
@@ -921,33 +1955,72 @@
                     );
 
 
-                    let message =
-                        "Unable to send password reset email.";
+                    let text =
+                        "Unable to send the password reset email.";
 
 
-                    if (
-                        error.code ===
-                        "auth/user-not-found"
+                    switch (
+                        error.code
                     ) {
 
-                        message =
-                            "No account was found with this email.";
+                        case
+                            "auth/invalid-email":
 
-                    } else if (
-                        error.code ===
-                        "auth/invalid-email"
-                    ) {
+                            text =
+                                "Please enter a valid email address.";
 
-                        message =
-                            "Please enter a valid email address.";
+                            break;
+
+
+                        case
+                            "auth/user-not-found":
+
+                            text =
+                                "No Firebase Authentication account was found with this email.";
+
+                            break;
+
+
+                        case
+                            "auth/too-many-requests":
+
+                            text =
+                                "Too many requests. Please try again later.";
+
+                            break;
+
+
+                        case
+                            "auth/network-request-failed":
+
+                            text =
+                                "Network error. Please check your internet connection.";
+
+                            break;
+
+
+                        default:
+
+                            text =
+                                error.message ||
+                                text;
 
                     }
 
 
-                    showStatus(
-                        "❌ " + message,
+                    showForgotMessage(
+                        text,
                         "error"
                     );
+
+
+                } finally {
+
+                    sendResetBtn.disabled =
+                        false;
+
+                    sendResetBtn.textContent =
+                        "SEND RESET LINK";
 
                 }
 
@@ -956,25 +2029,58 @@
 
 
         /* ==========================================
-           CHECK CURRENT LOGIN
+           AUTH STATE
         ========================================== */
 
         onAuthStateChanged(
             auth,
-            function(user) {
+            async user => {
 
-                if (user) {
+                /*
+                 * If already logged in,
+                 * check whether this is a
+                 * valid NIGHTFALL member.
+                 */
 
-                    /*
-                     * Do not automatically redirect here.
-                     * This allows the user to see the page
-                     * after returning from another screen.
-                     */
+                if (!user) {
+                    return;
+                }
 
-                    console.log(
-                        "Authenticated member:",
-                        user.email
+
+                try {
+
+                    showLoading(
+                        "Checking member account..."
                     );
+
+
+                    const allowed =
+                        await checkMemberAccess(
+                            user
+                        );
+
+
+                    if (
+                        allowed
+                    ) {
+
+                        window.location.href =
+                            "member-dashboard.html";
+
+                    } else {
+
+                        hideLoading();
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Auth state error:",
+                        error
+                    );
+
+                    hideLoading();
 
                 }
 
@@ -982,8 +2088,23 @@
         );
 
 
-        console.log(
-            "NIGHTFALL DEVILS member login ready."
+        /* ==========================================
+           ESC KEY
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeForgotModal();
+
+                }
+
+            }
         );
 
     </script>
