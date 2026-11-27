@@ -25,11 +25,6 @@
 
     <style>
 
-        /* =====================================================
-           NIGHTFALL DEVILS ADMIN LOGIN
-           RED + WHITE + GOLD THEME
-        ===================================================== */
-
         :root {
 
             --red: #d71920;
@@ -49,10 +44,6 @@
 
         }
 
-
-        /* =====================================================
-           RESET
-        ===================================================== */
 
         * {
             box-sizing: border-box;
@@ -109,11 +100,6 @@
         }
 
 
-
-        /* =====================================================
-           PAGE WRAPPER
-        ===================================================== */
-
         .login-page {
 
             width: 100%;
@@ -130,11 +116,6 @@
 
         }
 
-
-
-        /* =====================================================
-           BACK HOME
-        ===================================================== */
 
         .back-home {
 
@@ -165,7 +146,6 @@
             text-decoration: none;
 
             font-size: 13px;
-
             font-weight: 700;
 
             transition: 0.25s ease;
@@ -188,11 +168,6 @@
 
         }
 
-
-
-        /* =====================================================
-           LOGIN CARD
-        ===================================================== */
 
         .login-card {
 
@@ -252,17 +227,13 @@
         }
 
 
-
-        /* =====================================================
-           LOGO
-        ===================================================== */
-
         .login-logo {
 
             width: 92px;
             height: 92px;
 
-            margin: 0 auto 18px;
+            margin:
+                0 auto 18px;
 
             display: block;
 
@@ -280,11 +251,6 @@
 
         }
 
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
 
         .login-header {
 
@@ -358,11 +324,6 @@
         }
 
 
-
-        /* =====================================================
-           FORM
-        ===================================================== */
-
         .login-form {
             width: 100%;
         }
@@ -404,7 +365,8 @@
             left: 14px;
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             font-size: 16px;
 
@@ -421,7 +383,8 @@
 
             height: 50px;
 
-            padding: 0 45px 0 42px;
+            padding:
+                0 45px 0 42px;
 
             border:
                 1px solid
@@ -460,11 +423,6 @@
         }
 
 
-
-        /* =====================================================
-           PASSWORD TOGGLE
-        ===================================================== */
-
         .password-toggle {
 
             position: absolute;
@@ -472,7 +430,8 @@
             top: 50%;
             right: 10px;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             width: 34px;
             height: 34px;
@@ -507,17 +466,11 @@
         }
 
 
-
-        /* =====================================================
-           LOGIN OPTIONS
-        ===================================================== */
-
         .login-options {
 
             display: flex;
 
             align-items: center;
-
             justify-content: space-between;
 
             gap: 10px;
@@ -578,11 +531,6 @@
         }
 
 
-
-        /* =====================================================
-           LOGIN BUTTON
-        ===================================================== */
-
         .login-button {
 
             width: 100%;
@@ -628,7 +576,8 @@
 
         .login-button:hover {
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
 
             box-shadow:
                 0 12px 30px
@@ -638,7 +587,10 @@
 
 
         .login-button:active {
-            transform: translateY(0);
+
+            transform:
+                translateY(0);
+
         }
 
 
@@ -652,11 +604,6 @@
 
         }
 
-
-
-        /* =====================================================
-           SECURITY NOTICE
-        ===================================================== */
 
         .security-notice {
 
@@ -709,11 +656,6 @@
         }
 
 
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
         .login-footer {
 
             margin-top: 25px;
@@ -750,11 +692,6 @@
 
         }
 
-
-
-        /* =====================================================
-           ERROR / SUCCESS MESSAGE
-        ===================================================== */
 
         .login-message {
 
@@ -794,75 +731,64 @@
 
         .login-message.success {
 
-            color: #c8ffcf;
+            color: #d9ffd9;
 
             background:
-                rgba(40, 180, 70, 0.10);
+                rgba(46, 160, 67, 0.10);
 
             border:
                 1px solid
-                rgba(40, 180, 70, 0.35);
+                rgba(46, 160, 67, 0.35);
 
         }
 
 
+        .login-message.info {
 
-        /* =====================================================
-           DEBUG BOX
-        ===================================================== */
+            color: #fff1b5;
 
-        .debug-box {
-
-            display: none;
-
-            margin-top: 18px;
-
-            padding: 13px;
-
-            background: #080808;
+            background:
+                rgba(245, 197, 66, 0.08);
 
             border:
                 1px solid
-                rgba(255, 255, 255, 0.10);
+                rgba(245, 197, 66, 0.25);
 
-            border-radius: 9px;
+        }
+
+
+        .admin-debug {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius: 8px;
+
+            background:
+                rgba(0,0,0,0.35);
+
+            color: #777777;
 
             font-size: 10px;
 
             line-height: 1.6;
-
-            color: #888888;
 
             word-break: break-word;
 
         }
 
 
-        .debug-box.show {
+        .admin-debug.show {
             display: block;
         }
 
-
-        .debug-title {
-
-            color: var(--gold);
-
-            font-weight: 900;
-
-            margin-bottom: 7px;
-
-        }
-
-
-        .debug-value {
-            color: #dddddd;
-        }
-
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
 
         @media (max-width: 600px) {
 
@@ -879,7 +805,8 @@
                 top: 14px;
                 left: 14px;
 
-                padding: 9px 12px;
+                padding:
+                    9px 12px;
 
                 font-size: 12px;
 
@@ -890,7 +817,8 @@
 
                 max-width: 100%;
 
-                padding: 32px 22px;
+                padding:
+                    32px 22px;
 
                 border-radius: 15px;
 
@@ -906,26 +834,28 @@
 
 
             .login-header h1 {
+
                 font-size: 24px;
+
             }
 
 
             .login-header p {
+
                 font-size: 12px;
+
             }
 
         }
 
 
-
-        /* =====================================================
-           VERY SMALL PHONES
-        ===================================================== */
-
         @media (max-width: 380px) {
 
             .login-card {
-                padding: 28px 18px;
+
+                padding:
+                    28px 18px;
+
             }
 
 
@@ -938,7 +868,9 @@
 
 
             .login-header h1 {
+
                 font-size: 22px;
+
             }
 
         }
@@ -948,13 +880,8 @@
 </head>
 
 
-
 <body>
 
-
-    <!-- =====================================================
-         BACK TO HOME
-    ===================================================== -->
 
     <a
         href="../index.html"
@@ -966,18 +893,11 @@
     </a>
 
 
-
-    <!-- =====================================================
-         LOGIN PAGE
-    ===================================================== -->
-
     <main class="login-page">
 
 
         <section class="login-card">
 
-
-            <!-- LOGO -->
 
             <img
                 src="../assets/logo/nightfall-devils-logo.png"
@@ -985,9 +905,6 @@
                 class="login-logo"
             >
 
-
-
-            <!-- HEADER -->
 
             <div class="login-header">
 
@@ -1014,17 +931,17 @@
             </div>
 
 
-
-            <!-- MESSAGE -->
-
             <div
                 class="login-message error"
                 id="loginMessage"
             ></div>
 
 
+            <div
+                class="admin-debug"
+                id="adminDebug"
+            ></div>
 
-            <!-- LOGIN FORM -->
 
             <form
                 class="login-form"
@@ -1032,15 +949,15 @@
             >
 
 
-                <!-- EMAIL -->
-
                 <div class="form-group">
 
                     <label
                         for="adminEmail"
                         class="form-label"
                     >
+
                         Admin Email
+
                     </label>
 
 
@@ -1065,16 +982,15 @@
                 </div>
 
 
-
-                <!-- PASSWORD -->
-
                 <div class="form-group">
 
                     <label
                         for="adminPassword"
                         class="form-label"
                     >
+
                         Password
+
                     </label>
 
 
@@ -1101,16 +1017,15 @@
                             id="passwordToggle"
                             aria-label="Show password"
                         >
+
                             👁️
+
                         </button>
 
                     </div>
 
                 </div>
 
-
-
-                <!-- OPTIONS -->
 
                 <div class="login-options">
 
@@ -1133,14 +1048,13 @@
                         class="forgot-password"
                         id="forgotPassword"
                     >
+
                         Forgot Password?
+
                     </a>
 
                 </div>
 
-
-
-                <!-- LOGIN BUTTON -->
 
                 <button
                     type="submit"
@@ -1159,9 +1073,6 @@
 
             </form>
 
-
-
-            <!-- SECURITY NOTICE -->
 
             <div class="security-notice">
 
@@ -1182,84 +1093,6 @@
 
             </div>
 
-
-
-            <!-- DEBUG -->
-
-            <div
-                class="debug-box"
-                id="debugBox"
-            >
-
-                <div class="debug-title">
-                    🔎 LOGIN DEBUG
-                </div>
-
-                <div>
-                    Email:
-                    <span
-                        class="debug-value"
-                        id="debugEmail"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div>
-                    UID:
-                    <span
-                        class="debug-value"
-                        id="debugUid"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div>
-                    Member ID:
-                    <span
-                        class="debug-value"
-                        id="debugMemberId"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div>
-                    Role:
-                    <span
-                        class="debug-value"
-                        id="debugRole"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div>
-                    Status:
-                    <span
-                        class="debug-value"
-                        id="debugStatus"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div>
-                    Auth:
-                    <span
-                        class="debug-value"
-                        id="debugAuth"
-                    >
-                        -
-                    </span>
-                </div>
-
-            </div>
-
-
-
-            <!-- FOOTER -->
 
             <div class="login-footer">
 
@@ -1282,115 +1115,71 @@
 
         </section>
 
-
     </main>
 
 
 
-    <!-- =====================================================
-         FIREBASE AUTHENTICATION
-    ===================================================== -->
-
     <script type="module">
 
+
         /* =====================================================
-           FIREBASE AUTH IMPORTS
+           FIREBASE IMPORTS
         ===================================================== */
 
         import {
+
             signInWithEmailAndPassword,
-            sendPasswordResetEmail,
-            setPersistence,
-            browserLocalPersistence,
-            onAuthStateChanged
-        }
-        from
-            "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+            sendPasswordResetEmail
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 
         import {
-            collection,
-            query,
-            where,
-            getDocs,
+
             doc,
-            getDoc
-        }
-        from
-            "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+            getDoc,
+
+            collection,
+
+            query,
+
+            where,
+
+            getDocs
+
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
         import {
+
             auth,
+
             db
-        }
-        from
-            "../firebase-config.js";
+
+        } from "../firebase-config.js";
 
 
 
         /* =====================================================
-           DOM
+           ADMIN EMAILS
+           
+           IMPORTANT:
+           These are authorized ADMIN emails.
+           
+           You can add more later.
         ===================================================== */
 
-        const loginForm =
-            document.getElementById("loginForm");
+        const ADMIN_EMAILS = [
 
+            "nightfalldevils@gmail.com"
 
-        const adminEmail =
-            document.getElementById("adminEmail");
-
-
-        const adminPassword =
-            document.getElementById("adminPassword");
-
-
-        const passwordToggle =
-            document.getElementById("passwordToggle");
-
-
-        const loginMessage =
-            document.getElementById("loginMessage");
-
-
-        const forgotPassword =
-            document.getElementById("forgotPassword");
-
-
-        const rememberMe =
-            document.getElementById("rememberMe");
-
-
-        const loginButton =
-            document.getElementById("loginButton");
-
-
-        const debugBox =
-            document.getElementById("debugBox");
-
-
-        const debugEmail =
-            document.getElementById("debugEmail");
-
-
-        const debugUid =
-            document.getElementById("debugUid");
-
-
-        const debugMemberId =
-            document.getElementById("debugMemberId");
-
-
-        const debugRole =
-            document.getElementById("debugRole");
-
-
-        const debugStatus =
-            document.getElementById("debugStatus");
-
-
-        const debugAuth =
-            document.getElementById("debugAuth");
+        ].map(
+            email => email.toLowerCase()
+        );
 
 
 
@@ -1403,23 +1192,69 @@
             "admin",
             "super admin",
             "superadmin",
-            "founder"
+            "founder",
+            "administrator"
 
         ];
 
 
 
         /* =====================================================
-           NORMALIZE ROLE
+           DOM
         ===================================================== */
 
-        function normalizeRole(role) {
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
 
-            return String(role || "")
-                .trim()
-                .toLowerCase();
 
-        }
+        const adminEmail =
+            document.getElementById(
+                "adminEmail"
+            );
+
+
+        const adminPassword =
+            document.getElementById(
+                "adminPassword"
+            );
+
+
+        const passwordToggle =
+            document.getElementById(
+                "passwordToggle"
+            );
+
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        const forgotPassword =
+            document.getElementById(
+                "forgotPassword"
+            );
+
+
+        const rememberMe =
+            document.getElementById(
+                "rememberMe"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        const adminDebug =
+            document.getElementById(
+                "adminDebug"
+            );
 
 
 
@@ -1431,10 +1266,6 @@
             message,
             type = "error"
         ) {
-
-            if (!loginMessage) {
-                return;
-            }
 
             loginMessage.textContent =
                 message;
@@ -1453,10 +1284,6 @@
 
         function hideMessage() {
 
-            if (!loginMessage) {
-                return;
-            }
-
             loginMessage.className =
                 "login-message error";
 
@@ -1471,66 +1298,47 @@
            DEBUG
         ===================================================== */
 
-        function showDebug(data = {}) {
+        function showDebug(
+            data
+        ) {
 
-            if (!debugBox) {
+            if (!adminDebug) {
                 return;
             }
 
-            debugEmail.textContent =
-                data.email || "-";
+            adminDebug.innerHTML =
+                data;
 
-            debugUid.textContent =
-                data.uid || "-";
-
-            debugMemberId.textContent =
-                data.memberId || "-";
-
-            debugRole.textContent =
-                data.role || "-";
-
-            debugStatus.textContent =
-                data.status || "-";
-
-            debugAuth.textContent =
-                data.auth || "-";
-
-            debugBox.classList.add("show");
+            adminDebug.classList.add(
+                "show"
+            );
 
         }
 
 
 
         /* =====================================================
-           LOGIN BUTTON STATE
+           RESET BUTTON
         ===================================================== */
 
-        function setLoading(
-            loading
-        ) {
+        function resetButton() {
 
             if (!loginButton) {
                 return;
             }
 
             loginButton.disabled =
-                loading;
-
-            loginButton.style.opacity =
-                loading ? "0.65" : "1";
-
-            loginButton.style.cursor =
-                loading ? "wait" : "pointer";
+                false;
 
             const span =
-                loginButton.querySelector("span");
+                loginButton.querySelector(
+                    "span"
+                );
 
             if (span) {
 
                 span.textContent =
-                    loading
-                        ? "CHECKING ADMIN ACCESS..."
-                        : "LOGIN TO ADMIN PANEL";
+                    "LOGIN TO ADMIN PANEL";
 
             }
 
@@ -1539,36 +1347,106 @@
 
 
         /* =====================================================
-           FIND MEMBER RECORD
+           LOADING BUTTON
         ===================================================== */
 
-        async function findMemberRecord(
-            user
+        function loadingButton() {
+
+            if (!loginButton) {
+                return;
+            }
+
+            loginButton.disabled =
+                true;
+
+            const span =
+                loginButton.querySelector(
+                    "span"
+                );
+
+            if (span) {
+
+                span.textContent =
+                    "VERIFYING ADMIN...";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           NORMALIZE ROLE
+        ===================================================== */
+
+        function normalizeRole(
+            role
         ) {
 
-            /* ================================================
-               1. TRY DOCUMENT ID = UID
-            ================================================= */
+            return String(
+                role || ""
+            )
+            .trim()
+            .toLowerCase();
+
+        }
+
+
+
+        /* =====================================================
+           CHECK ADMIN ROLE
+        ===================================================== */
+
+        function isAdminRole(
+            role
+        ) {
+
+            return ADMIN_ROLES.includes(
+                normalizeRole(role)
+            );
+
+        }
+
+
+
+        /* =====================================================
+           FIND MEMBER BY UID
+        ===================================================== */
+
+        async function findMemberByUID(
+            uid
+        ) {
+
+            if (!uid) {
+                return null;
+            }
 
             try {
 
-                const directDoc =
+                const memberRef =
+                    doc(
+                        db,
+                        "members",
+                        uid
+                    );
+
+
+                const memberSnap =
                     await getDoc(
-                        doc(
-                            db,
-                            "members",
-                            user.uid
-                        )
+                        memberRef
                     );
 
 
-                if (directDoc.exists()) {
+                if (
+                    memberSnap.exists()
+                ) {
 
                     return {
 
-                        id: directDoc.id,
+                        id:
+                            memberSnap.id,
 
-                        data: directDoc.data()
+                        ...memberSnap.data()
 
                     };
 
@@ -1576,108 +1454,12 @@
 
             } catch (error) {
 
-                console.warn(
-                    "Direct UID member lookup failed:",
+                console.error(
+                    "UID member lookup error:",
                     error
                 );
 
             }
-
-
-
-            /* ================================================
-               2. TRY UID FIELD
-            ================================================= */
-
-            try {
-
-                const uidQuery =
-                    query(
-                        collection(db, "members"),
-                        where("uid", "==", user.uid)
-                    );
-
-
-                const uidSnapshot =
-                    await getDocs(uidQuery);
-
-
-                if (!uidSnapshot.empty) {
-
-                    const memberDoc =
-                        uidSnapshot.docs[0];
-
-                    return {
-
-                        id: memberDoc.id,
-
-                        data: memberDoc.data()
-
-                    };
-
-                }
-
-            } catch (error) {
-
-                console.warn(
-                    "UID member query failed:",
-                    error
-                );
-
-            }
-
-
-
-            /* ================================================
-               3. TRY EMAIL FIELD
-            ================================================= */
-
-            if (user.email) {
-
-                try {
-
-                    const emailQuery =
-                        query(
-                            collection(db, "members"),
-                            where(
-                                "email",
-                                "==",
-                                user.email.toLowerCase()
-                            )
-                        );
-
-
-                    const emailSnapshot =
-                        await getDocs(emailQuery);
-
-
-                    if (!emailSnapshot.empty) {
-
-                        const memberDoc =
-                            emailSnapshot.docs[0];
-
-                        return {
-
-                            id: memberDoc.id,
-
-                            data: memberDoc.data()
-
-                        };
-
-                    }
-
-                } catch (error) {
-
-                    console.warn(
-                        "Email member query failed:",
-                        error
-                    );
-
-                }
-
-            }
-
-
 
             return null;
 
@@ -1686,153 +1468,199 @@
 
 
         /* =====================================================
-           CHECK ADMIN ACCESS
+           FIND MEMBER BY EMAIL
         ===================================================== */
 
-        async function checkAdminAccess(
+        async function findMemberByEmail(
+            email
+        ) {
+
+            if (!email) {
+                return null;
+            }
+
+            try {
+
+                const membersRef =
+                    collection(
+                        db,
+                        "members"
+                    );
+
+
+                const q =
+                    query(
+                        membersRef,
+                        where(
+                            "email",
+                            "==",
+                            email
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                if (
+                    !snapshot.empty
+                ) {
+
+                    const memberDoc =
+                        snapshot.docs[0];
+
+
+                    return {
+
+                        id:
+                            memberDoc.id,
+
+                        ...memberDoc.data()
+
+                    };
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Email member lookup error:",
+                    error
+                );
+
+            }
+
+            return null;
+
+        }
+
+
+
+        /* =====================================================
+           CHECK FIREBASE CUSTOM CLAIMS
+        ===================================================== */
+
+        async function getAdminClaims(
             user
         ) {
 
-            if (!user) {
+            try {
+
+                const tokenResult =
+                    await user.getIdTokenResult(
+                        true
+                    );
+
+
+                const claims =
+                    tokenResult.claims || {};
+
+
+                const claimRole =
+                    normalizeRole(
+                        claims.role
+                    );
+
+
+                const claimAdmin =
+                    claims.admin === true;
+
+
+                const claimFounder =
+                    claims.founder === true;
+
+
+                const claimSuperAdmin =
+                    claims.superAdmin === true ||
+                    claims.super_admin === true;
+
 
                 return {
 
-                    allowed: false,
+                    claims,
 
-                    reason:
-                        "No Firebase Authentication user is logged in."
+                    isAdmin:
+                        claimAdmin ||
+                        claimFounder ||
+                        claimSuperAdmin ||
+                        isAdminRole(
+                            claimRole
+                        )
+
+                };
+
+            } catch (error) {
+
+                console.error(
+                    "Custom claims error:",
+                    error
+                );
+
+
+                return {
+
+                    claims: {},
+
+                    isAdmin: false
 
                 };
 
             }
 
-
-            const member =
-                await findMemberRecord(user);
+        }
 
 
 
-            /* ================================================
-               NO MEMBER RECORD
-            ================================================= */
+        /* =====================================================
+           SAVE ADMIN SESSION
+        ===================================================== */
 
-            if (!member) {
+        function saveAdminSession(
+            user,
+            member
+        ) {
 
-                showDebug({
+            const session = {
 
-                    email: user.email || "-",
+                uid:
+                    user.uid,
 
-                    uid: user.uid || "-",
+                email:
+                    user.email || "",
 
-                    memberId: "-",
+                displayName:
+                    user.displayName ||
+                    member?.displayName ||
+                    "NIGHTFALL DEVILS Admin",
 
-                    role: "-",
+                memberId:
+                    member?.id ||
+                    user.uid,
 
-                    status: "-",
+                memberCode:
+                    member?.memberCode ||
+                    "ADMIN",
 
-                    auth: "SIGNED IN"
+                role:
+                    member?.role ||
+                    "Admin",
 
-                });
+                status:
+                    member?.status ||
+                    "active",
 
+                loginAt:
+                    new Date().toISOString()
 
-                return {
-
-                    allowed: false,
-
-                    reason:
-                        "Firebase login succeeded, but no member record was found in the members collection."
-
-                };
-
-            }
-
-
-
-            const data =
-                member.data || {};
-
-
-            const role =
-                normalizeRole(data.role);
-
-
-            const status =
-                normalizeRole(data.status);
+            };
 
 
+            localStorage.setItem(
+                "nightfallAdminSession",
+                JSON.stringify(session)
+            );
 
-            showDebug({
-
-                email: user.email || "-",
-
-                uid: user.uid || "-",
-
-                memberId: member.id || "-",
-
-                role: data.role || "-",
-
-                status: data.status || "-",
-
-                auth: "SIGNED IN"
-
-            });
-
-
-
-            /* ================================================
-               CHECK ROLE
-            ================================================= */
-
-            if (
-                !ADMIN_ROLES.includes(role)
-            ) {
-
-                return {
-
-                    allowed: false,
-
-                    reason:
-                        "Your account is authenticated, but your member role is not authorized for the Admin Panel. Current role: " +
-                        (data.role || "Not Set")
-
-                };
-
-            }
-
-
-
-            /* ================================================
-               CHECK STATUS
-            ================================================= */
-
-            if (
-                status &&
-                [
-                    "inactive",
-                    "suspended",
-                    "disabled",
-                    "rejected"
-                ].includes(status)
-            ) {
-
-                return {
-
-                    allowed: false,
-
-                    reason:
-                        "Your admin account is currently " +
-                        (data.status || "inactive") +
-                        "."
-
-                };
-
-            }
-
-
-
-            /* ================================================
-               SAVE ADMIN SESSION
-            ================================================= */
 
             localStorage.setItem(
                 "nightfallAdminUID",
@@ -1847,27 +1675,217 @@
 
 
             localStorage.setItem(
-                "nightfallAdminMemberId",
-                member.id
+                "nightfallAdminRole",
+                session.role
             );
 
 
             localStorage.setItem(
-                "nightfallAdminRole",
-                data.role || ""
+                "nightfallAdmin",
+                "true"
             );
 
+        }
 
+
+
+        /* =====================================================
+           VERIFY ADMIN
+        ===================================================== */
+
+        async function verifyAdmin(
+            user
+        ) {
+
+            const email =
+                String(
+                    user.email || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (!email) {
+
+                return {
+
+                    allowed: false,
+
+                    reason:
+                        "Firebase account has no email address."
+
+                };
+
+            }
+
+
+
+            /* =================================================
+               1. CHECK MEMBER BY UID
+            ================================================= */
+
+            let member =
+                await findMemberByUID(
+                    user.uid
+                );
+
+
+            /* =================================================
+               2. CHECK MEMBER BY EMAIL
+            ================================================= */
+
+            if (!member) {
+
+                member =
+                    await findMemberByEmail(
+                        email
+                    );
+
+            }
+
+
+
+            /* =================================================
+               3. CHECK CUSTOM CLAIMS
+            ================================================= */
+
+            const claimResult =
+                await getAdminClaims(
+                    user
+                );
+
+
+            const claims =
+                claimResult.claims;
+
+
+
+            /* =================================================
+               4. CHECK MEMBER ROLE
+            ================================================= */
+
+            if (member) {
+
+                const role =
+                    normalizeRole(
+                        member.role
+                    );
+
+
+                const status =
+                    normalizeRole(
+                        member.status
+                    );
+
+
+                if (
+                    isAdminRole(role)
+                ) {
+
+                    if (
+                        status === "rejected" ||
+                        status === "disabled" ||
+                        status === "suspended" ||
+                        status === "inactive"
+                    ) {
+
+                        return {
+
+                            allowed: false,
+
+                            reason:
+                                "Your admin member account is currently " +
+                                status +
+                                "."
+
+                        };
+
+                    }
+
+
+                    return {
+
+                        allowed: true,
+
+                        member,
+
+                        source:
+                            "member-role"
+
+                    };
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               5. CHECK CUSTOM CLAIMS
+            ================================================= */
+
+            if (
+                claimResult.isAdmin
+            ) {
+
+                return {
+
+                    allowed: true,
+
+                    member,
+
+                    source:
+                        "firebase-custom-claims",
+
+                    claims
+
+                };
+
+            }
+
+
+
+            /* =================================================
+               6. OFFICIAL ADMIN EMAIL FALLBACK
+               
+               This fixes the current situation where the
+               Firebase Auth account exists but the members
+               document has not yet been created.
+            ================================================= */
+
+            if (
+                ADMIN_EMAILS.includes(
+                    email
+                )
+            ) {
+
+                return {
+
+                    allowed: true,
+
+                    member,
+
+                    source:
+                        "authorized-admin-email",
+
+                    claims
+
+                };
+
+            }
+
+
+
+            /* =================================================
+               DENIED
+            ================================================= */
 
             return {
 
-                allowed: true,
+                allowed: false,
 
-                memberId: member.id,
-
-                role: data.role,
-
-                status: data.status
+                reason:
+                    "Firebase login succeeded, but this account is not registered as an authorized administrator."
 
             };
 
@@ -1927,40 +1945,166 @@
 
 
         /* =====================================================
-           LOGIN FORM
+           LOGIN
         ===================================================== */
 
-        if (loginForm) {
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
 
-            loginForm.addEventListener(
-                "submit",
-                async function (event) {
-
-                    event.preventDefault();
+                event.preventDefault();
 
 
-                    hideMessage();
+                hideMessage();
 
 
-                    const email =
-                        adminEmail.value
-                            .trim()
-                            .toLowerCase();
+                if (adminDebug) {
+
+                    adminDebug.classList.remove(
+                        "show"
+                    );
+
+                }
 
 
-                    const password =
-                        adminPassword.value;
+                const email =
+                    adminEmail.value
+                    .trim()
+                    .toLowerCase();
 
 
+                const password =
+                    adminPassword.value;
+
+
+                if (
+                    email === "" ||
+                    password === ""
+                ) {
+
+                    showMessage(
+                        "⚠️ Please enter your admin email and password.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                loadingButton();
+
+
+                try {
+
+
+                    /* =========================================
+                       FIREBASE LOGIN
+                    ========================================= */
+
+                    const credential =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
+                        );
+
+
+                    const user =
+                        credential.user;
+
+
+                    console.log(
+                        "Firebase login successful:",
+                        user.uid,
+                        user.email
+                    );
+
+
+
+                    /* =========================================
+                       VERIFY ADMIN
+                    ========================================= */
+
+                    showMessage(
+                        "🔐 Login successful. Verifying administrator access...",
+                        "info"
+                    );
+
+
+                    const verification =
+                        await verifyAdmin(
+                            user
+                        );
+
+
+                    console.log(
+                        "Admin verification:",
+                        verification
+                    );
+
+
+
+                    /* =========================================
+                       DENIED
+                    ========================================= */
 
                     if (
-                        !email ||
-                        !password
+                        !verification.allowed
                     ) {
 
                         showMessage(
-                            "⚠️ Please enter your admin email and password."
+                            "🚫 ACCESS DENIED: " +
+                            verification.reason,
+                            "error"
                         );
+
+
+                        showDebug(
+
+                            "<strong>Login Debug</strong><br><br>" +
+
+                            "Email: " +
+                            (
+                                user.email ||
+                                "No email"
+                            ) +
+
+                            "<br>" +
+
+                            "UID: " +
+                            (
+                                user.uid ||
+                                "No UID"
+                            ) +
+
+                            "<br><br>" +
+
+                            "Member record: " +
+                            (
+                                verification.member
+                                    ? "Found"
+                                    : "Not found"
+                            ) +
+
+                            "<br>" +
+
+                            "Custom admin claim: " +
+                            (
+                                verification.claims?.admin === true
+                                    ? "Yes"
+                                    : "No"
+                            ) +
+
+                            "<br><br>" +
+
+                            "Reason: " +
+                            verification.reason
+
+                        );
+
+
+                        resetButton();
 
                         return;
 
@@ -1968,287 +2112,157 @@
 
 
 
-                    setLoading(true);
+                    /* =========================================
+                       SAVE ADMIN SESSION
+                    ========================================= */
+
+                    saveAdminSession(
+                        user,
+                        verification.member
+                    );
 
 
 
-                    try {
+                    /* =========================================
+                       REMEMBER EMAIL
+                    ========================================= */
 
-                        /* ======================================
-                           FORCE LOCAL AUTH PERSISTENCE
-                        ====================================== */
+                    if (
+                        rememberMe &&
+                        rememberMe.checked
+                    ) {
 
-                        await setPersistence(
-                            auth,
-                            browserLocalPersistence
+                        localStorage.setItem(
+                            "nightfallAdminEmail",
+                            email
                         );
 
+                    } else {
 
-
-                        /* ======================================
-                           FIREBASE LOGIN
-                        ====================================== */
-
-                        const credential =
-                            await signInWithEmailAndPassword(
-                                auth,
-                                email,
-                                password
-                            );
-
-
-                        const user =
-                            credential.user;
-
-
-
-                        console.log(
-                            "================================="
+                        localStorage.removeItem(
+                            "nightfallAdminEmail"
                         );
-
-                        console.log(
-                            "NIGHTFALL DEVILS ADMIN LOGIN"
-                        );
-
-                        console.log(
-                            "EMAIL:",
-                            user.email
-                        );
-
-                        console.log(
-                            "UID:",
-                            user.uid
-                        );
-
-                        console.log(
-                            "AUTH:",
-                            !!auth.currentUser
-                        );
-
-                        console.log(
-                            "================================="
-                        );
-
-
-
-                        /* ======================================
-                           WAIT FOR AUTH SESSION
-                        ====================================== */
-
-                        await user.reload();
-
-
-
-                        /* ======================================
-                           CHECK ADMIN MEMBER RECORD
-                        ====================================== */
-
-                        const access =
-                            await checkAdminAccess(
-                                auth.currentUser
-                            );
-
-
-
-                        if (!access.allowed) {
-
-                            showMessage(
-                                "🚫 ACCESS DENIED: " +
-                                access.reason
-                            );
-
-
-                            setLoading(false);
-
-
-                            /*
-                             * Keep the Firebase session
-                             * for debugging, but do not
-                             * enter admin panel.
-                             */
-
-                            return;
-
-                        }
-
-
-
-                        /* ======================================
-                           SUCCESS
-                        ====================================== */
-
-                        showMessage(
-                            "✅ Admin verified. Opening Admin Panel...",
-                            "success"
-                        );
-
-
-                        console.log(
-                            "ADMIN ACCESS GRANTED"
-                        );
-
-
-                        console.log(
-                            "ROLE:",
-                            access.role
-                        );
-
-
-                        console.log(
-                            "MEMBER ID:",
-                            access.memberId
-                        );
-
-
-
-                        /* ======================================
-                           REDIRECT
-                        ====================================== */
-
-                        setTimeout(
-                            function () {
-
-                                window.location.replace(
-                                    "dashboard.html"
-                                );
-
-                            },
-                            700
-                        );
-
-
-
-                    } catch (error) {
-
-                        console.error(
-                            "================================="
-                        );
-
-                        console.error(
-                            "FIREBASE ADMIN LOGIN ERROR"
-                        );
-
-                        console.error(
-                            "CODE:",
-                            error.code
-                        );
-
-                        console.error(
-                            "MESSAGE:",
-                            error.message
-                        );
-
-                        console.error(
-                            "================================="
-                        );
-
-
-
-                        let message =
-                            "⚠️ Unable to login. Please check your email and password.";
-
-
-
-                        switch (
-                            error.code
-                        ) {
-
-                            case
-                                "auth/invalid-credential":
-
-                                message =
-                                    "⚠️ Invalid admin email or password.";
-
-                                break;
-
-
-                            case
-                                "auth/invalid-email":
-
-                                message =
-                                    "⚠️ Please enter a valid email address.";
-
-                                break;
-
-
-                            case
-                                "auth/user-disabled":
-
-                                message =
-                                    "⚠️ This Firebase account has been disabled.";
-
-                                break;
-
-
-                            case
-                                "auth/user-not-found":
-
-                                message =
-                                    "⚠️ No Firebase Authentication account exists for this email.";
-
-                                break;
-
-
-                            case
-                                "auth/wrong-password":
-
-                                message =
-                                    "⚠️ Incorrect password.";
-
-                                break;
-
-
-                            case
-                                "auth/too-many-requests":
-
-                                message =
-                                    "⚠️ Too many login attempts. Please try again later.";
-
-                                break;
-
-
-                            case
-                                "auth/network-request-failed":
-
-                                message =
-                                    "⚠️ Network error. Please check your internet connection.";
-
-                                break;
-
-
-                            case
-                                "auth/operation-not-allowed":
-
-                                message =
-                                    "⚠️ Email/Password Authentication is not enabled in Firebase.";
-
-                                break;
-
-
-                            default:
-
-                                message =
-                                    "⚠️ Firebase Error: " +
-                                    (
-                                        error.message ||
-                                        "Unknown error."
-                                    );
-
-                        }
-
-
-
-                        showMessage(message);
-
-
-                        setLoading(false);
 
                     }
 
-                }
-            );
 
-        }
+
+                    /* =========================================
+                       SUCCESS MESSAGE
+                    ========================================= */
+
+                    showMessage(
+                        "✅ Administrator verified. Opening Admin Dashboard...",
+                        "success"
+                    );
+
+
+
+                    /* =========================================
+                       REDIRECT
+                    ========================================= */
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        700
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Firebase Authentication Error:",
+                        error
+                    );
+
+
+                    let errorMessage =
+                        "⚠️ Invalid admin email or password.";
+
+
+                    if (
+                        error.code ===
+                        "auth/invalid-credential"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ Invalid admin email or password.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ Please enter a valid admin email.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/user-disabled"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ This admin account has been disabled.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/too-many-requests"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ Too many login attempts. Please try again later.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ Network error. Please check your internet connection.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/operation-not-allowed"
+                    ) {
+
+                        errorMessage =
+                            "⚠️ Email/Password authentication is not enabled in Firebase.";
+
+                    }
+
+
+                    showMessage(
+                        errorMessage,
+                        "error"
+                    );
+
+
+                    resetButton();
+
+                }
+
+            }
+        );
 
 
 
@@ -2256,103 +2270,101 @@
            FORGOT PASSWORD
         ===================================================== */
 
-        if (forgotPassword) {
+        forgotPassword.addEventListener(
+            "click",
+            async function (event) {
 
-            forgotPassword.addEventListener(
-                "click",
-                async function (event) {
-
-                    event.preventDefault();
+                event.preventDefault();
 
 
-                    const email =
-                        adminEmail.value
-                            .trim()
-                            .toLowerCase();
+                const email =
+                    adminEmail.value
+                    .trim()
+                    .toLowerCase();
 
 
+                if (!email) {
 
-                    if (!email) {
+                    showMessage(
+                        "⚠️ Enter your admin email first.",
+                        "error"
+                    );
 
-                        showMessage(
-                            "⚠️ Enter your admin email first."
-                        );
+                    adminEmail.focus();
 
-                        adminEmail.focus();
-
-                        return;
-
-                    }
-
-
-
-                    try {
-
-                        await sendPasswordResetEmail(
-                            auth,
-                            email
-                        );
-
-
-                        showMessage(
-                            "✅ Password reset email sent. Please check your email.",
-                            "success"
-                        );
-
-
-                    } catch (error) {
-
-                        console.error(
-                            "Password Reset Error:",
-                            error
-                        );
-
-
-                        let message =
-                            "⚠️ Unable to send password reset email.";
-
-
-                        if (
-                            error.code ===
-                            "auth/invalid-email"
-                        ) {
-
-                            message =
-                                "⚠️ Please enter a valid email address.";
-
-                        }
-
-
-                        else if (
-                            error.code ===
-                            "auth/user-not-found"
-                        ) {
-
-                            message =
-                                "⚠️ No Firebase Authentication account was found with this email.";
-
-                        }
-
-
-                        else if (
-                            error.code ===
-                            "auth/network-request-failed"
-                        ) {
-
-                            message =
-                                "⚠️ Network error. Please check your internet connection.";
-
-                        }
-
-
-                        showMessage(message);
-
-                    }
+                    return;
 
                 }
-            );
 
-        }
+
+                try {
+
+                    await sendPasswordResetEmail(
+                        auth,
+                        email
+                    );
+
+
+                    showMessage(
+                        "✅ Password reset email sent. Please check your email.",
+                        "success"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Password Reset Error:",
+                        error
+                    );
+
+
+                    let message =
+                        "⚠️ Unable to send password reset email.";
+
+
+                    if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        message =
+                            "⚠️ Please enter a valid admin email.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        message =
+                            "⚠️ No Firebase Authentication account was found with this email.";
+
+                    }
+
+
+                    else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message =
+                            "⚠️ Network error. Please check your internet connection.";
+
+                    }
+
+
+                    showMessage(
+                        message,
+                        "error"
+                    );
+
+                }
+
+            }
+        );
 
 
 
@@ -2366,11 +2378,7 @@
             );
 
 
-        if (
-            savedEmail &&
-            adminEmail &&
-            rememberMe
-        ) {
+        if (savedEmail) {
 
             adminEmail.value =
                 savedEmail;
@@ -2383,113 +2391,29 @@
 
 
         /* =====================================================
-           HIDE MESSAGE WHILE TYPING
+           CLEAR MESSAGE WHILE TYPING
         ===================================================== */
 
-        if (adminEmail) {
+        adminEmail.addEventListener(
+            "input",
+            function () {
 
-            adminEmail.addEventListener(
-                "input",
-                hideMessage
-            );
+                hideMessage();
 
-        }
-
-
-        if (adminPassword) {
-
-            adminPassword.addEventListener(
-                "input",
-                hideMessage
-            );
-
-        }
+            }
+        );
 
 
+        adminPassword.addEventListener(
+            "input",
+            function () {
 
-        /* =====================================================
-           CHECK EXISTING AUTH SESSION
-           IMPORTANT:
-           DO NOT REDIRECT IMMEDIATELY.
-           VERIFY ADMIN FIRST.
-        ===================================================== */
-
-        onAuthStateChanged(
-            auth,
-            async function (user) {
-
-                if (!user) {
-
-                    console.log(
-                        "No existing Firebase Auth session."
-                    );
-
-                    return;
-
-                }
-
-
-
-                console.log(
-                    "Existing Firebase Auth session:",
-                    user.email,
-                    user.uid
-                );
-
-
-
-                try {
-
-                    const access =
-                        await checkAdminAccess(
-                            user
-                        );
-
-
-                    if (
-                        access.allowed
-                    ) {
-
-                        showMessage(
-                            "✅ Existing admin session detected. Opening Admin Panel...",
-                            "success"
-                        );
-
-
-                        setTimeout(
-                            function () {
-
-                                window.location.replace(
-                                    "dashboard.html"
-                                );
-
-                            },
-                            500
-                        );
-
-                    } else {
-
-                        console.warn(
-                            "Existing account is not admin:",
-                            access.reason
-                        );
-
-                    }
-
-                } catch (error) {
-
-                    console.error(
-                        "Existing session admin check failed:",
-                        error
-                    );
-
-                }
+                hideMessage();
 
             }
         );
 
     </script>
-
 
 </body>
 
