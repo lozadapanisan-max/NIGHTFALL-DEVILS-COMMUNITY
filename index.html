@@ -886,6 +886,507 @@
 
 
         /* =====================================================
+           ORGANIZATION CHART
+           ADDED - PUBLIC DISPLAY ONLY
+        ===================================================== */
+
+        .organization-section {
+
+            padding:
+                80px 20px;
+
+            background:
+                #050505;
+
+            border-top:
+                1px solid
+                rgba(245, 197, 66, 0.15);
+
+            border-bottom:
+                1px solid
+                rgba(245, 197, 66, 0.15);
+        }
+
+
+        .organization-container {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            margin:
+                0 auto;
+        }
+
+
+        .organization-heading {
+
+            max-width: 750px;
+
+            margin:
+                0 auto 45px;
+
+            text-align:
+                center;
+        }
+
+
+        .organization-heading h2 {
+
+            margin:
+                0 0 10px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                clamp(28px, 5vw, 42px);
+
+            font-weight:
+                900;
+        }
+
+
+        .organization-heading h2 span {
+
+            color:
+                var(--red);
+        }
+
+
+        .organization-heading p {
+
+            margin:
+                0;
+
+            color:
+                #aaaaaa;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .organization-chart-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            overflow-y: hidden;
+
+            padding:
+                20px 10px 45px;
+
+            -webkit-overflow-scrolling:
+                touch;
+        }
+
+
+        .organization-chart {
+
+            min-width:
+                900px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+        }
+
+
+        .organization-card {
+
+            width:
+                220px;
+
+            padding:
+                20px 16px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #181818,
+                    #0b0b0b
+                );
+
+            border:
+                2px solid
+                rgba(245, 197, 66, 0.55);
+
+            border-radius:
+                16px;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0, 0, 0, 0.4);
+
+            transition:
+                0.25s ease;
+
+            position:
+                relative;
+        }
+
+
+        .organization-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                var(--gold);
+
+            box-shadow:
+                0 15px 40px
+                rgba(215, 25, 32, 0.2);
+        }
+
+
+        .organization-card.founder {
+
+            width:
+                250px;
+
+            border:
+                2px solid
+                var(--gold);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(215, 25, 32, 0.25),
+                    #0b0b0b
+                );
+
+            box-shadow:
+                0 0 35px
+                rgba(245, 197, 66, 0.12);
+        }
+
+
+        .organization-photo {
+
+            width:
+                70px;
+
+            height:
+                70px;
+
+            margin:
+                0 auto 12px;
+
+            border-radius:
+                50%;
+
+            overflow:
+                hidden;
+
+            border:
+                2px solid
+                var(--gold);
+
+            background:
+                #111111;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+        }
+
+
+        .organization-photo img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+        }
+
+
+        .organization-name {
+
+            margin-bottom:
+                6px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+
+            word-break:
+                break-word;
+        }
+
+
+        .organization-username {
+
+            margin-bottom:
+                10px;
+
+            color:
+                #999999;
+
+            font-size:
+                12px;
+
+            word-break:
+                break-word;
+        }
+
+
+        .organization-position {
+
+            display:
+                inline-block;
+
+            padding:
+                5px 12px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(215, 25, 32, 0.16);
+
+            border:
+                1px solid
+                rgba(215, 25, 32, 0.4);
+
+            color:
+                var(--gold);
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.7px;
+        }
+
+
+        .organization-code {
+
+            margin-top:
+                9px;
+
+            color:
+                #666666;
+
+            font-size:
+                10px;
+        }
+
+
+        .organization-connector {
+
+            width:
+                2px;
+
+            height:
+                45px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--gold),
+                    var(--red)
+                );
+        }
+
+
+        .organization-children {
+
+            width:
+                100%;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                flex-start;
+
+            gap:
+                24px;
+
+            position:
+                relative;
+
+            padding-top:
+                40px;
+        }
+
+
+        .organization-children::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                10%;
+
+            right:
+                10%;
+
+            height:
+                2px;
+
+            background:
+                var(--red);
+        }
+
+
+        .organization-child {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+        }
+
+
+        .organization-child::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -40px;
+
+            width:
+                2px;
+
+            height:
+                40px;
+
+            background:
+                var(--red);
+        }
+
+
+        .organization-empty {
+
+            width:
+                100%;
+
+            max-width:
+                650px;
+
+            margin:
+                0 auto;
+
+            padding:
+                35px 20px;
+
+            border:
+                1px dashed
+                rgba(245, 197, 66, 0.4);
+
+            border-radius:
+                14px;
+
+            text-align:
+                center;
+
+            color:
+                #999999;
+
+            line-height:
+                1.7;
+        }
+
+
+        .organization-empty strong {
+
+            display:
+                block;
+
+            margin-bottom:
+                6px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                16px;
+        }
+
+
+        .organization-loading {
+
+            padding:
+                40px 20px;
+
+            color:
+                #999999;
+
+            text-align:
+                center;
+        }
+
+
+        .organization-error {
+
+            padding:
+                30px 20px;
+
+            color:
+                #ff7777;
+
+            text-align:
+                center;
+        }
+
+
+
+        /* =====================================================
            HOW TO JOIN
         ===================================================== */
 
@@ -1513,6 +2014,50 @@
                     60px 16px;
             }
 
+
+            /* ORGANIZATION */
+
+            .organization-section {
+
+                padding:
+                    60px 12px;
+            }
+
+
+            .organization-heading {
+
+                margin-bottom:
+                    30px;
+            }
+
+
+            .organization-heading h2 {
+
+                font-size:
+                    29px;
+            }
+
+
+            .organization-heading p {
+
+                font-size:
+                    13px;
+            }
+
+
+            .organization-chart-wrapper {
+
+                padding:
+                    10px 5px 35px;
+            }
+
+
+            .organization-chart {
+
+                min-width:
+                    760px;
+            }
+
         }
 
 
@@ -1618,8 +2163,9 @@
                     Schedule
                 </a>
 
-                <!-- ORGANIZATION ADDED -->
-                <a href="admin/organization.html">
+                <!-- ORGANIZATION -->
+                <!-- PUBLIC DISPLAY ONLY -->
+                <a href="#organization">
                     Organization
                 </a>
 
@@ -1984,6 +2530,71 @@
                         another member's personal
                         information.
                     </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ORGANIZATION CHART
+             ADDED
+        ================================================== -->
+
+        <section
+            class="organization-section"
+            id="organization"
+        >
+
+            <div class="organization-container">
+
+
+                <div class="organization-heading">
+
+                    <h2>
+
+                        ORGANIZATIONAL
+
+                        <span>
+                            CHART
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Meet the leadership and
+                        members of NIGHTFALL DEVILS.
+
+                        The organization chart is
+                        automatically connected to
+                        the community database.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="organization-chart-wrapper">
+
+                    <div
+                        class="organization-chart"
+                        id="organizationChart"
+                    >
+
+                        <div class="organization-loading">
+
+                            Loading Organizational Chart...
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -2552,6 +3163,710 @@
 
             }
         );
+
+    </script>
+
+
+
+    <!-- =====================================================
+         FIREBASE ORGANIZATION CHART
+         ADDED
+    ===================================================== -->
+
+    <script type="module">
+
+        import {
+            collection,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        import {
+            db
+        } from "./js/firebase.js";
+
+
+        const organizationChart =
+            document.getElementById(
+                "organizationChart"
+            );
+
+
+        let members = [];
+
+        let organization = [];
+
+
+
+        /* =====================================================
+           LOAD MEMBERS
+        ===================================================== */
+
+        onSnapshot(
+
+            collection(
+                db,
+                "members"
+            ),
+
+            function (snapshot) {
+
+                members =
+                    snapshot.docs.map(
+                        function (document) {
+
+                            return {
+
+                                id:
+                                    document.id,
+
+                                ...document.data()
+
+                            };
+
+                        }
+                    );
+
+
+                renderOrganization();
+
+            },
+
+            function (error) {
+
+                console.error(
+                    "Members loading error:",
+                    error
+                );
+
+                showOrganizationError();
+
+            }
+
+        );
+
+
+
+        /* =====================================================
+           LOAD ORGANIZATION
+        ===================================================== */
+
+        onSnapshot(
+
+            collection(
+                db,
+                "organization"
+            ),
+
+            function (snapshot) {
+
+                organization =
+                    snapshot.docs.map(
+                        function (document) {
+
+                            return {
+
+                                id:
+                                    document.id,
+
+                                ...document.data()
+
+                            };
+
+                        }
+                    );
+
+
+                renderOrganization();
+
+            },
+
+            function (error) {
+
+                console.error(
+                    "Organization loading error:",
+                    error
+                );
+
+                showOrganizationError();
+
+            }
+
+        );
+
+
+
+        /* =====================================================
+           RENDER ORGANIZATION
+        ===================================================== */
+
+        function renderOrganization() {
+
+            if (
+                !members.length ||
+                !organization.length
+            ) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="organization-empty">
+
+                        <strong>
+                            Organizational Chart
+                        </strong>
+
+                        The organizational chart will
+                        appear here once the organization
+                        has been configured.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            /* ONLY ACTIVE MEMBERS */
+
+            const activeMembers =
+                members.filter(
+                    function (member) {
+
+                        return (
+                            member.active !== false
+                        );
+
+                    }
+                );
+
+
+
+            /* ONLY ACTIVE ORGANIZATION ASSIGNMENTS */
+
+            const activeOrganization =
+                organization.filter(
+                    function (item) {
+
+                        return (
+                            item.active !== false
+                        );
+
+                    }
+                );
+
+
+
+            /* JOIN ORGANIZATION WITH MEMBER DATA */
+
+            const nodes =
+                activeOrganization
+                    .map(
+                        function (item) {
+
+                            const member =
+                                activeMembers.find(
+                                    function (currentMember) {
+
+                                        return (
+                                            currentMember.id ===
+                                            item.memberId
+                                        );
+
+                                    }
+                                );
+
+
+                            if (!member) {
+
+                                return null;
+
+                            }
+
+
+                            return {
+
+                                ...item,
+
+                                member:
+                                    member
+
+                            };
+
+                        }
+                    )
+                    .filter(Boolean);
+
+
+
+            if (!nodes.length) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="organization-empty">
+
+                        <strong>
+                            No Organization Members Yet
+                        </strong>
+
+                        The organization chart is
+                        currently empty.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            /*
+             * ROOT MEMBERS
+             *
+             * parentId empty = top level
+             */
+
+            const roots =
+                nodes.filter(
+                    function (node) {
+
+                        return (
+
+                            !node.parentId ||
+
+                            node.parentId === "" ||
+
+                            !nodes.some(
+                                function (parent) {
+
+                                    return (
+                                        parent.id ===
+                                        node.parentId
+                                    );
+
+                                }
+                            )
+
+                        );
+
+                    }
+                );
+
+
+
+            if (!roots.length) {
+
+                organizationChart.innerHTML = `
+
+                    <div class="organization-error">
+
+                        Unable to determine the
+                        organization hierarchy.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            /* CLEAR LOADING */
+
+            organizationChart.innerHTML = "";
+
+
+
+            /* CREATE TREE */
+
+            roots.sort(
+                function (a, b) {
+
+                    return (
+                        Number(a.order || 0) -
+                        Number(b.order || 0)
+                    );
+
+                }
+            );
+
+
+            roots.forEach(
+                function (root) {
+
+                    organizationChart.appendChild(
+
+                        createOrganizationNode(
+                            root,
+                            nodes,
+                            0,
+                            []
+                        )
+
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CREATE ORGANIZATION NODE
+        ===================================================== */
+
+        function createOrganizationNode(
+            node,
+            allNodes,
+            level,
+            path
+        ) {
+
+            const group =
+                document.createElement(
+                    "div"
+                );
+
+
+            group.style.display =
+                "flex";
+
+
+            group.style.flexDirection =
+                "column";
+
+
+            group.style.alignItems =
+                "center";
+
+
+
+            /* PREVENT CYCLIC STRUCTURE */
+
+            if (
+                path.includes(node.id)
+            ) {
+
+                return group;
+
+            }
+
+
+            const newPath =
+                [
+                    ...path,
+                    node.id
+                ];
+
+
+
+            /* CARD */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            const position =
+                String(
+                    node.position ||
+                    node.member.role ||
+                    "MEMBER"
+                ).toUpperCase();
+
+
+            card.className =
+                "organization-card";
+
+
+            if (
+                position === "FOUNDER"
+            ) {
+
+                card.classList.add(
+                    "founder"
+                );
+
+            }
+
+
+
+            const photo =
+                node.member.photoURL ||
+                "assets/logo/nightfall-devils-logo.png";
+
+
+            const displayName =
+                node.member.displayName ||
+                node.member.name ||
+                "Unknown Member";
+
+
+            const username =
+                node.member.tiktokUsername ||
+                "";
+
+
+            const memberCode =
+                node.member.memberCode ||
+                "";
+
+
+
+            card.innerHTML = `
+
+                <div class="organization-photo">
+
+                    <img
+                        src="${escapeHTML(photo)}"
+                        alt="${escapeHTML(displayName)}"
+                        onerror="
+                            this.src='assets/logo/nightfall-devils-logo.png'
+                        "
+                    >
+
+                </div>
+
+
+                <div class="organization-name">
+
+                    ${escapeHTML(displayName)}
+
+                </div>
+
+
+                ${
+                    username
+                        ? `
+
+                            <div
+                                class="organization-username"
+                            >
+
+                                @${escapeHTML(
+                                    String(username)
+                                        .replace(
+                                            /^@/,
+                                            ""
+                                        )
+                                )}
+
+                            </div>
+
+                          `
+                        : ""
+                }
+
+
+                <div
+                    class="organization-position"
+                >
+
+                    ${escapeHTML(position)}
+
+                </div>
+
+
+                ${
+                    memberCode
+                        ? `
+
+                            <div
+                                class="organization-code"
+                            >
+
+                                ${escapeHTML(
+                                    memberCode
+                                )}
+
+                            </div>
+
+                          `
+                        : ""
+                }
+
+            `;
+
+
+            group.appendChild(
+                card
+            );
+
+
+
+            /* CHILDREN */
+
+            const children =
+                allNodes
+                    .filter(
+                        function (child) {
+
+                            return (
+                                child.parentId ===
+                                node.id
+                            );
+
+                        }
+                    )
+                    .sort(
+                        function (a, b) {
+
+                            return (
+                                Number(a.order || 0) -
+                                Number(b.order || 0)
+                            );
+
+                        }
+                    );
+
+
+
+            if (children.length) {
+
+
+                /* VERTICAL CONNECTOR */
+
+                const connector =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                connector.className =
+                    "organization-connector";
+
+
+                group.appendChild(
+                    connector
+                );
+
+
+
+                /* CHILDREN CONTAINER */
+
+                const childrenContainer =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                childrenContainer.className =
+                    "organization-children";
+
+
+
+                children.forEach(
+                    function (child) {
+
+                        const childWrapper =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        childWrapper.className =
+                            "organization-child";
+
+
+                        const childNode =
+                            createOrganizationNode(
+                                child,
+                                allNodes,
+                                level + 1,
+                                newPath
+                            );
+
+
+                        childWrapper.appendChild(
+                            childNode
+                        );
+
+
+                        childrenContainer.appendChild(
+                            childWrapper
+                        );
+
+                    }
+                );
+
+
+                group.appendChild(
+                    childrenContainer
+                );
+
+            }
+
+
+
+            return group;
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        function showOrganizationError() {
+
+            organizationChart.innerHTML = `
+
+                <div class="organization-error">
+
+                    Unable to load the Organizational Chart.
+                    Please try again later.
+
+                </div>
+
+            `;
+
+        }
 
     </script>
 
