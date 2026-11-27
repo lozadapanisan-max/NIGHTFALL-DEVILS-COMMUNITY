@@ -18,25 +18,25 @@ import {
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyAo19m_S4LUXkMF8itUBpzgt1nsR24sn98",
+        "AIzaSySyBMluGWd9aUPCFBrkPFqGDKwZYvRkHqxQ",
 
     authDomain:
-        "nightfall-devils.firebaseapp.com",
+        "nightfall-devils-b0d77.firebaseapp.com",
 
     projectId:
-        "nightfall-devils",
+        "nightfall-devils-b0d77",
 
     storageBucket:
-        "nightfall-devils.firebasestorage.app",
+        "nightfall-devils-b0d77.firebasestorage.app",
 
     messagingSenderId:
-        "1026752308802",
+        "758952684668",
 
     appId:
-        "1:1026752308802:web:31931a927aaedbe524afdb",
+        "1:758952684668:web:b641ca90c9d5134f2df9",
 
     measurementId:
-        "G-7CNMDHR6J6"
+        "G-R6MZ05M4DR"
 
 };
 
