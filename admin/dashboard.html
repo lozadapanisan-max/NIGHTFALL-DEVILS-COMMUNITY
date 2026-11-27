@@ -1462,6 +1462,572 @@
 
 
         /* =====================================================
+           ORGANIZATION CHART
+        ===================================================== */
+
+        .organization-panel {
+
+            margin-top:
+                18px;
+
+            padding:
+                20px;
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.18);
+
+            border-radius:
+                12px;
+
+            background:
+                #111111;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .organization-header {
+
+            margin-bottom:
+                20px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+        }
+
+
+        .organization-title {
+
+            margin:
+                0;
+
+            color:
+                #ffffff;
+
+            font-size:
+                18px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .organization-title span {
+
+            color:
+                var(--red);
+
+        }
+
+
+        .organization-subtitle {
+
+            margin-top:
+                4px;
+
+            color:
+                #777777;
+
+            font-size:
+                11px;
+
+        }
+
+
+        .organization-view-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                9px 13px;
+
+            border:
+                1px solid
+                rgba(245,197,66,0.35);
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(245,197,66,0.06);
+
+            color:
+                var(--gold);
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .organization-view-button:hover {
+
+            background:
+                var(--gold);
+
+            color:
+                #111111;
+
+        }
+
+
+        .organization-chart-wrapper {
+
+            width:
+                100%;
+
+            overflow-x:
+                auto;
+
+            padding:
+                10px 5px 25px;
+
+        }
+
+
+        .organization-chart {
+
+            min-width:
+                760px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+        }
+
+
+        .organization-root {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+        }
+
+
+        .organization-node {
+
+            position:
+                relative;
+
+            min-width:
+                180px;
+
+            max-width:
+                220px;
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                rgba(245,197,66,0.30);
+
+            border-radius:
+                11px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1b1b1b,
+                    #101010
+                );
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.25);
+
+        }
+
+
+        .organization-node.founder {
+
+            border:
+                1px solid
+                rgba(245,197,66,0.75);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(215,25,32,0.28),
+                    rgba(245,197,66,0.08)
+                );
+
+        }
+
+
+        .organization-node.admin {
+
+            border-color:
+                rgba(215,25,32,0.55);
+
+        }
+
+
+        .organization-node.moderator {
+
+            border-color:
+                rgba(59,130,246,0.45);
+
+        }
+
+
+        .organization-node.streamer {
+
+            border-color:
+                rgba(34,197,94,0.40);
+
+        }
+
+
+        .organization-avatar {
+
+            width:
+                46px;
+
+            height:
+                46px;
+
+            margin:
+                0 auto 8px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid
+                rgba(245,197,66,0.30);
+
+            border-radius:
+                50%;
+
+            background:
+                #222222;
+
+            color:
+                var(--gold);
+
+            font-size:
+                19px;
+
+            font-weight:
+                900;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .organization-avatar img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+        }
+
+
+        .organization-name {
+
+            color:
+                #ffffff;
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .organization-username {
+
+            margin-top:
+                3px;
+
+            color:
+                var(--gold);
+
+            font-size:
+                10px;
+
+        }
+
+
+        .organization-position {
+
+            display:
+                inline-block;
+
+            margin-top:
+                7px;
+
+            padding:
+                4px 8px;
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(215,25,32,0.12);
+
+            color:
+                #ff7479;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.7px;
+
+        }
+
+
+        .organization-code {
+
+            margin-top:
+                6px;
+
+            color:
+                #666666;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .organization-connector {
+
+            width:
+                2px;
+
+            height:
+                30px;
+
+            background:
+                rgba(245,197,66,0.45);
+
+        }
+
+
+        .organization-level {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                18px;
+
+            padding-top:
+                30px;
+
+            width:
+                100%;
+
+        }
+
+
+        .organization-level::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                10%;
+
+            right:
+                10%;
+
+            height:
+                1px;
+
+            background:
+                rgba(245,197,66,0.35);
+
+        }
+
+
+        .organization-branch {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            min-width:
+                180px;
+
+        }
+
+
+        .organization-branch::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                -30px;
+
+            width:
+                2px;
+
+            height:
+                30px;
+
+            background:
+                rgba(245,197,66,0.35);
+
+        }
+
+
+        .organization-children {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                14px;
+
+            margin-top:
+                20px;
+
+            padding-top:
+                20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.06);
+
+        }
+
+
+        .organization-empty {
+
+            padding:
+                35px 20px;
+
+            text-align:
+                center;
+
+            color:
+                #777777;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .organization-empty-icon {
+
+            margin-bottom:
+                8px;
+
+            font-size:
+                35px;
+
+        }
+
+
+        .organization-count {
+
+            color:
+                #777777;
+
+            font-size:
+                10px;
+
+        }
+
+
+
+        /* =====================================================
            LOADING
         ===================================================== */
 
@@ -1778,6 +2344,33 @@
 
             }
 
+
+            .organization-panel {
+
+                padding:
+                    15px;
+
+            }
+
+
+            .organization-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .organization-view-button {
+
+                width:
+                    100%;
+
+            }
+
         }
 
 
@@ -2005,6 +2598,24 @@
             </span>
 
             Members
+
+        </a>
+
+
+        <!-- =================================================
+             ORGANIZATION
+        ================================================== -->
+
+        <a
+            href="organization.html"
+            class="sidebar-link"
+        >
+
+            <span class="sidebar-icon">
+                🏛️
+            </span>
+
+            Organization
 
         </a>
 
@@ -2323,6 +2934,31 @@
 
 
 
+                        <!-- =================================================
+                             ORGANIZATION QUICK ACTION
+                        ================================================== -->
+
+                        <a
+                            href="organization.html"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+                                🏛️
+                            </div>
+
+                            <div class="quick-action-title">
+                                Organization Chart
+                            </div>
+
+                            <div class="quick-action-text">
+                                Manage community hierarchy
+                            </div>
+
+                        </a>
+
+
+
                         <a
                             href="schedule.html"
                             class="quick-action"
@@ -2412,6 +3048,82 @@
 
                 </div>
 
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ORGANIZATIONAL CHART
+            ================================================== -->
+
+            <section
+                class="organization-panel"
+                id="organizationChart"
+            >
+
+                <div class="organization-header">
+
+                    <div>
+
+                        <h2 class="organization-title">
+
+                            🏛️ ORGANIZATION
+                            <span>CHART</span>
+
+                        </h2>
+
+                        <div class="organization-subtitle">
+
+                            NIGHTFALL DEVILS community structure
+
+                            • Real-time Firebase data
+
+                            • Total:
+                            <span
+                                class="organization-count"
+                                id="organizationCount"
+                            >
+                                0 members
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="organization.html"
+                        class="organization-view-button"
+                    >
+
+                        ⚙️ MANAGE ORGANIZATION
+
+                    </a>
+
+                </div>
+
+
+                <div class="organization-chart-wrapper">
+
+                    <div
+                        class="organization-chart"
+                        id="organizationChartContainer"
+                    >
+
+                        <div class="organization-empty">
+
+                            <div class="organization-empty-icon">
+                                ⏳
+                            </div>
+
+                            Loading organizational chart...
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </section>
 
@@ -2589,6 +3301,22 @@
             );
 
 
+        /* =====================================================
+           ORGANIZATION ELEMENTS
+        ===================================================== */
+
+        const organizationChartContainer =
+            document.getElementById(
+                "organizationChartContainer"
+            );
+
+
+        const organizationCount =
+            document.getElementById(
+                "organizationCount"
+            );
+
+
 
         /* =====================================================
            DATA
@@ -2599,6 +3327,10 @@
         let schedulesData = [];
 
         let announcementsData = [];
+
+        let allMembers = [];
+
+        let organizationData = [];
 
 
 
@@ -2675,6 +3407,15 @@
              */
 
             loadAnnouncements();
+
+
+            /*
+             * ORGANIZATION
+             */
+
+            loadMembersForOrganization();
+
+            loadOrganization();
 
         }
 
@@ -2996,6 +3737,848 @@
                 }
 
             );
+
+        }
+
+
+
+        /* =====================================================
+           LOAD MEMBERS FOR ORGANIZATION
+        ===================================================== */
+
+        function loadMembersForOrganization() {
+
+            const membersRef =
+                collection(
+                    db,
+                    "members"
+                );
+
+
+            onSnapshot(
+
+                membersRef,
+
+                function (snapshot) {
+
+                    allMembers = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            allMembers.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    renderOrganizationChart();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "MEMBERS ORGANIZATION ERROR:",
+                        error
+                    );
+
+
+                    organizationChartContainer.innerHTML = `
+
+                        <div class="organization-empty">
+
+                            <div class="organization-empty-icon">
+                                ⚠️
+                            </div>
+
+                            Unable to load members.
+
+                            <br>
+
+                            Please check Firestore permissions.
+
+                        </div>
+
+                    `;
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LOAD ORGANIZATION
+        ===================================================== */
+
+        function loadOrganization() {
+
+            const organizationRef =
+                collection(
+                    db,
+                    "organization"
+                );
+
+
+            onSnapshot(
+
+                organizationRef,
+
+                function (snapshot) {
+
+                    organizationData = [];
+
+
+                    snapshot.forEach(
+                        function (docSnapshot) {
+
+                            organizationData.push({
+
+                                id:
+                                    docSnapshot.id,
+
+                                ...docSnapshot.data()
+
+                            });
+
+                        }
+                    );
+
+
+                    renderOrganizationChart();
+
+                    setConnectedStatus();
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "ORGANIZATION ERROR:",
+                        error
+                    );
+
+
+                    organizationChartContainer.innerHTML = `
+
+                        <div class="organization-empty">
+
+                            <div class="organization-empty-icon">
+                                ⚠️
+                            </div>
+
+                            Organizational data cannot be loaded.
+
+                            <br>
+
+                            Please check the
+                            <strong style="color:#f5c542;">
+                                organization
+                            </strong>
+                            Firestore collection.
+
+                        </div>
+
+                    `;
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ORGANIZATION CHART
+        ===================================================== */
+
+        function renderOrganizationChart() {
+
+            if (
+                !organizationChartContainer
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                allMembers.length === 0
+            ) {
+
+                organizationCount.textContent =
+                    "0 members";
+
+
+                organizationChartContainer.innerHTML = `
+
+                    <div class="organization-empty">
+
+                        <div class="organization-empty-icon">
+                            👥
+                        </div>
+
+                        No members found.
+
+                        <br>
+
+                        Add members first from
+                        <strong style="color:#f5c542;">
+                            Members
+                        </strong>
+                        page.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Create map of organization assignments
+             */
+
+            const orgMap =
+                new Map();
+
+
+            organizationData.forEach(
+                function (item) {
+
+                    if (
+                        item.memberId
+                    ) {
+
+                        orgMap.set(
+                            item.memberId,
+                            item
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Only active members
+             */
+
+            const activeMembers =
+                allMembers.filter(
+                    function (member) {
+
+                        return (
+                            member.active !== false
+                        );
+
+                    }
+                );
+
+
+            organizationCount.textContent =
+                activeMembers.length +
+                (
+                    activeMembers.length === 1
+                        ? " member"
+                        : " members"
+                );
+
+
+            /*
+             * Build assignment nodes
+             */
+
+            const nodes =
+                activeMembers.map(
+                    function (member) {
+
+                        const assignment =
+                            orgMap.get(
+                                member.id
+                            ) || {};
+
+
+                        return {
+
+                            member:
+                                member,
+
+                            memberId:
+                                member.id,
+
+                            position:
+                                String(
+                                    assignment.position ||
+                                    member.role ||
+                                    "MEMBER"
+                                ).toUpperCase(),
+
+                            parentId:
+                                assignment.parentId ||
+                                "",
+
+                            order:
+                                Number(
+                                    assignment.order ||
+                                    999
+                                )
+
+                        };
+
+                    }
+                );
+
+
+            /*
+             * Sort
+             */
+
+            nodes.sort(
+                function (a, b) {
+
+                    if (
+                        a.order !==
+                        b.order
+                    ) {
+
+                        return (
+                            a.order -
+                            b.order
+                        );
+
+                    }
+
+
+                    return String(
+                        a.member.displayName ||
+                        ""
+                    ).localeCompare(
+                        String(
+                            b.member.displayName ||
+                            ""
+                        )
+                    );
+
+                }
+            );
+
+
+            /*
+             * Find founder/root.
+             */
+
+            let roots =
+                nodes.filter(
+                    function (node) {
+
+                        return (
+                            node.position ===
+                            "FOUNDER"
+                        );
+
+                    }
+                );
+
+
+            /*
+             * If no FOUNDER assignment,
+             * find members without parent.
+             */
+
+            if (
+                roots.length === 0
+            ) {
+
+                roots =
+                    nodes.filter(
+                        function (node) {
+
+                            return !node.parentId;
+
+                        }
+                    );
+
+            }
+
+
+            /*
+             * If still no root,
+             * use first member.
+             */
+
+            if (
+                roots.length === 0 &&
+                nodes.length > 0
+            ) {
+
+                roots = [
+                    nodes[0]
+                ];
+
+            }
+
+
+            /*
+             * Build HTML
+             */
+
+            let html = "";
+
+
+            roots.forEach(
+                function (root, index) {
+
+                    html +=
+                        renderOrganizationNode(
+                            root,
+                            nodes,
+                            0
+                        );
+
+                    /*
+                     * Only add line if
+                     * another root exists.
+                     */
+
+                    if (
+                        index <
+                        roots.length - 1
+                    ) {
+
+                        html += `
+
+                            <div
+                                class="organization-connector"
+                            ></div>
+
+                        `;
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Find unassigned members.
+             */
+
+            const assignedIds =
+                new Set();
+
+
+            function collectChildren(
+                parentId
+            ) {
+
+                nodes
+                    .filter(
+                        function (node) {
+
+                            return (
+                                node.parentId ===
+                                parentId
+                            );
+
+                        }
+                    )
+                    .forEach(
+                        function (node) {
+
+                            assignedIds.add(
+                                node.memberId
+                            );
+
+                            collectChildren(
+                                node.memberId
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            roots.forEach(
+                function (root) {
+
+                    assignedIds.add(
+                        root.memberId
+                    );
+
+                    collectChildren(
+                        root.memberId
+                    );
+
+                }
+            );
+
+
+            const unassigned =
+                nodes.filter(
+                    function (node) {
+
+                        return !assignedIds.has(
+                            node.memberId
+                        );
+
+                    }
+                );
+
+
+            if (
+                unassigned.length > 0
+            ) {
+
+                html += `
+
+                    <div
+                        style="
+                            margin-top:30px;
+                            width:100%;
+                            border-top:1px solid rgba(255,255,255,0.06);
+                            padding-top:20px;
+                        "
+                    >
+
+                        <div
+                            style="
+                                text-align:center;
+                                color:#777;
+                                font-size:10px;
+                                font-weight:800;
+                                letter-spacing:1px;
+                                margin-bottom:15px;
+                            "
+                        >
+                            UNASSIGNED / OTHER MEMBERS
+                        </div>
+
+                        <div
+                            style="
+                                display:flex;
+                                justify-content:center;
+                                flex-wrap:wrap;
+                                gap:14px;
+                            "
+                        >
+
+                            ${unassigned
+                                .map(
+                                    function (node) {
+
+                                        return renderOrganizationCard(
+                                            node
+                                        );
+
+                                    }
+                                )
+                                .join("")
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            organizationChartContainer.innerHTML =
+                html;
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ORGANIZATION NODE
+        ===================================================== */
+
+        function renderOrganizationNode(
+            node,
+            nodes,
+            depth
+        ) {
+
+            if (
+                depth > 10
+            ) {
+
+                return "";
+
+            }
+
+
+            const children =
+                nodes
+                    .filter(
+                        function (child) {
+
+                            return (
+                                child.parentId ===
+                                node.memberId
+                            );
+
+                        }
+                    )
+                    .sort(
+                        function (a, b) {
+
+                            return (
+                                a.order -
+                                b.order
+                            );
+
+                        }
+                    );
+
+
+            let html = `
+
+                <div class="organization-root">
+
+                    ${renderOrganizationCard(
+                        node
+                    )}
+
+            `;
+
+
+            if (
+                children.length > 0
+            ) {
+
+                html += `
+
+                    <div
+                        class="organization-connector"
+                    ></div>
+
+                    <div
+                        class="organization-level"
+                    >
+
+                `;
+
+
+                children.forEach(
+                    function (child) {
+
+                        html += `
+
+                            <div
+                                class="organization-branch"
+                            >
+
+                                ${renderOrganizationNode(
+                                    child,
+                                    nodes,
+                                    depth + 1
+                                )}
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                html += `
+
+                    </div>
+
+                `;
+
+            }
+
+
+            html += `
+
+                </div>
+
+            `;
+
+
+            return html;
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ORGANIZATION CARD
+        ===================================================== */
+
+        function renderOrganizationCard(
+            node
+        ) {
+
+            const member =
+                node.member || {};
+
+
+            const name =
+                escapeHTML(
+                    member.displayName ||
+                    "Unknown Member"
+                );
+
+
+            const username =
+                cleanUsername(
+                    member.tiktokUsername ||
+                    member.username ||
+                    ""
+                );
+
+
+            const position =
+                escapeHTML(
+                    String(
+                        node.position ||
+                        member.role ||
+                        "MEMBER"
+                    ).toUpperCase()
+                );
+
+
+            const code =
+                escapeHTML(
+                    member.memberCode ||
+                    member.code ||
+                    ""
+                );
+
+
+            const photo =
+                String(
+                    member.photoURL ||
+                    ""
+                ).trim();
+
+
+            const roleClass =
+                String(
+                    position
+                )
+                .toLowerCase()
+                .replace(
+                    /[^a-z0-9_-]/g,
+                    ""
+                );
+
+
+            let avatarHTML = "";
+
+
+            if (photo) {
+
+                avatarHTML = `
+
+                    <img
+                        src="${escapeHTML(photo)}"
+                        alt="${name}"
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement.innerHTML='👿';
+                        "
+                    >
+
+                `;
+
+            }
+
+            else {
+
+                avatarHTML = "👿";
+
+            }
+
+
+            return `
+
+                <div
+                    class="
+                        organization-node
+                        ${roleClass}
+                    "
+                >
+
+                    <div
+                        class="organization-avatar"
+                    >
+
+                        ${avatarHTML}
+
+                    </div>
+
+
+                    <div
+                        class="organization-name"
+                    >
+
+                        ${name}
+
+                    </div>
+
+
+                    ${
+                        username
+                            ? `
+                                <div
+                                    class="organization-username"
+                                >
+                                    @${escapeHTML(username)}
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    <div
+                        class="organization-position"
+                    >
+
+                        ${position}
+
+                    </div>
+
+
+                    ${
+                        code
+                            ? `
+                                <div
+                                    class="organization-code"
+                                >
+                                    ${code}
+                                </div>
+                            `
+                            : ""
+                    }
+
+                </div>
+
+            `;
 
         }
 
