@@ -68,6 +68,8 @@
                 Arial,
                 Helvetica,
                 sans-serif;
+
+            overflow-x: hidden;
         }
 
 
@@ -893,6 +895,9 @@
 
         .organization-section {
 
+            width:
+                100%;
+
             padding:
                 80px 20px;
 
@@ -906,6 +911,9 @@
             border-bottom:
                 1px solid
                 rgba(245, 197, 66, 0.15);
+
+            overflow:
+                hidden;
         }
 
 
@@ -917,6 +925,9 @@
 
             margin:
                 0 auto;
+
+            min-width:
+                0;
         }
 
 
@@ -980,6 +991,9 @@
             width:
                 100%;
 
+            max-width:
+                100%;
+
             overflow-x:
                 auto;
 
@@ -998,6 +1012,9 @@
             scrollbar-color:
                 var(--red)
                 #111111;
+
+            overscroll-behavior-x:
+                contain;
         }
 
 
@@ -1028,6 +1045,7 @@
         }
 
 
+
         /* =====================================================
            MAIN ORGANIZATION AREA
         ===================================================== */
@@ -1052,6 +1070,7 @@
             gap:
                 38px;
         }
+
 
 
         /* =====================================================
@@ -1082,6 +1101,9 @@
 
             border-radius:
                 20px;
+
+            min-width:
+                0;
         }
 
 
@@ -1111,6 +1133,7 @@
             border-color:
                 rgba(245,197,66,0.28);
         }
+
 
 
         /* =====================================================
@@ -1183,6 +1206,7 @@
         }
 
 
+
         /* =====================================================
            ROLE CONNECTOR FROM TITLE
         ===================================================== */
@@ -1219,6 +1243,7 @@
         }
 
 
+
         /* =====================================================
            MEMBERS ROW
         ===================================================== */
@@ -1245,10 +1270,14 @@
 
             padding-top:
                 20px;
+
+            min-width:
+                0;
         }
 
 
         /* Horizontal connector */
+
         .organization-role-members.has-multiple::before {
 
             content:
@@ -1281,6 +1310,7 @@
         }
 
 
+
         /* =====================================================
            MEMBER WRAPPER
         ===================================================== */
@@ -1304,7 +1334,9 @@
         }
 
 
+
         /* Vertical connector to each member */
+
         .organization-role-members.has-multiple
         .organization-member-wrapper::before {
 
@@ -1334,7 +1366,9 @@
         }
 
 
+
         /* Single member still gets connector */
+
         .organization-role-members.single-member
         .organization-member-wrapper::before {
 
@@ -1362,6 +1396,7 @@
             background:
                 var(--gold);
         }
+
 
 
         /* =====================================================
@@ -1417,6 +1452,12 @@
 
             position:
                 relative;
+
+            min-width:
+                0;
+
+            overflow:
+                hidden;
         }
 
 
@@ -1481,6 +1522,7 @@
         }
 
 
+
         /* =====================================================
            PHOTO
         ===================================================== */
@@ -1543,11 +1585,18 @@
         }
 
 
+
         /* =====================================================
            NAME
         ===================================================== */
 
         .organization-name {
+
+            width:
+                100%;
+
+            max-width:
+                100%;
 
             margin-bottom:
                 6px;
@@ -1564,9 +1613,13 @@
             word-break:
                 break-word;
 
+            overflow-wrap:
+                anywhere;
+
             line-height:
                 1.3;
         }
+
 
 
         /* =====================================================
@@ -1574,6 +1627,12 @@
         ===================================================== */
 
         .organization-username {
+
+            width:
+                100%;
+
+            max-width:
+                100%;
 
             margin-bottom:
                 10px;
@@ -1587,9 +1646,13 @@
             word-break:
                 break-word;
 
+            overflow-wrap:
+                anywhere;
+
             line-height:
                 1.4;
         }
+
 
 
         /* =====================================================
@@ -1600,6 +1663,9 @@
 
             display:
                 inline-block;
+
+            max-width:
+                100%;
 
             padding:
                 5px 12px;
@@ -1625,7 +1691,14 @@
 
             letter-spacing:
                 0.7px;
+
+            white-space:
+                normal;
+
+            overflow-wrap:
+                anywhere;
         }
+
 
 
         /* =====================================================
@@ -1633,6 +1706,12 @@
         ===================================================== */
 
         .organization-code {
+
+            width:
+                100%;
+
+            max-width:
+                100%;
 
             margin-top:
                 10px;
@@ -1645,7 +1724,11 @@
 
             word-break:
                 break-word;
+
+            overflow-wrap:
+                anywhere;
         }
+
 
 
         /* =====================================================
@@ -1669,6 +1752,7 @@
             text-align:
                 center;
         }
+
 
 
         /* =====================================================
@@ -1753,6 +1837,7 @@
             text-align:
                 center;
         }
+
 
 
         /* =====================================================
@@ -2401,26 +2486,55 @@
 
             /* =================================================
                MOBILE ORGANIZATION
+               STACKED / NO HORIZONTAL OVERFLOW
             ================================================= */
 
             .organization-section {
 
+                width:
+                    100%;
+
                 padding:
-                    60px 8px;
+                    55px 10px;
+
+                overflow:
+                    hidden;
+            }
+
+
+            .organization-container {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                overflow:
+                    hidden;
             }
 
 
             .organization-heading {
 
+                width:
+                    100%;
+
                 margin-bottom:
-                    30px;
+                    28px;
+
+                padding:
+                    0 6px;
             }
 
 
             .organization-heading h2 {
 
                 font-size:
-                    29px;
+                    27px;
+
+                line-height:
+                    1.15;
             }
 
 
@@ -2428,104 +2542,541 @@
 
                 font-size:
                     13px;
+
+                line-height:
+                    1.6;
             }
 
+
+            /*
+             * Remove horizontal scrolling on mobile.
+             */
 
             .organization-chart-wrapper {
 
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
                 padding:
-                    10px 3px 35px;
+                    5px 0 25px;
+
+                overflow-x:
+                    hidden;
+
+                overflow-y:
+                    visible;
             }
 
 
+            /*
+             * IMPORTANT:
+             * The desktop chart has min-width 1100px.
+             * On mobile we remove that so the chart can
+             * fit the phone screen.
+             */
+
             .organization-chart {
 
+                width:
+                    100%;
+
                 min-width:
-                    850px;
+                    0;
+
+                max-width:
+                    100%;
 
                 gap:
+                    24px;
+            }
+
+
+            /*
+             * Each role section becomes a compact
+             * full-width mobile section.
+             */
+
+            .organization-role-section {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                padding:
+                    18px 10px 22px;
+
+                border-radius:
+                    14px;
+
+                overflow:
+                    visible;
+            }
+
+
+            /*
+             * Smaller role title.
+             */
+
+            .organization-role-title {
+
+                width:
+                    auto;
+
+                min-width:
+                    0;
+
+                max-width:
+                    90%;
+
+                margin:
+                    0 auto 24px;
+
+                padding:
+                    8px 20px;
+
+                font-size:
+                    12px;
+
+                letter-spacing:
+                    1px;
+            }
+
+
+            /*
+             * Shorter connector on mobile.
+             */
+
+            .organization-role-title::after {
+
+                bottom:
+                    -24px;
+
+                height:
+                    24px;
+            }
+
+
+            /*
+             * MEMBER ROW
+             *
+             * Desktop = horizontal.
+             * Mobile = vertical.
+             */
+
+            .organization-role-members {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                padding-top:
+                    16px;
+
+                display:
+                    flex;
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    center;
+
+                justify-content:
+                    flex-start;
+
+                gap:
+                    18px;
+            }
+
+
+            /*
+             * Remove the long horizontal
+             * connector on mobile.
+             */
+
+            .organization-role-members.has-multiple::before {
+
+                display:
+                    none;
+            }
+
+
+            /*
+             * Member wrapper becomes full width.
+             */
+
+            .organization-member-wrapper {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                min-width:
+                    0;
+
+                display:
+                    flex;
+
+                align-items:
+                    center;
+
+                justify-content:
+                    center;
+            }
+
+
+            /*
+             * Vertical connector for every card.
+             */
+
+            .organization-role-members.has-multiple
+            .organization-member-wrapper::before {
+
+                top:
+                    -18px;
+
+                left:
+                    50%;
+
+                width:
+                    2px;
+
+                height:
+                    18px;
+
+                transform:
+                    translateX(-50%);
+
+                background:
+                    var(--red);
+            }
+
+
+            .organization-role-members.single-member
+            .organization-member-wrapper::before {
+
+                top:
+                    -16px;
+
+                height:
+                    16px;
+
+                background:
+                    var(--gold);
+            }
+
+
+            /*
+             * MOBILE CARD
+             */
+
+            .organization-card {
+
+                width:
+                    100%;
+
+                max-width:
+                    300px;
+
+                min-height:
+                    0;
+
+                padding:
+                    16px 14px;
+
+                border-radius:
+                    14px;
+
+                overflow:
+                    hidden;
+            }
+
+
+            /*
+             * Slightly smaller founder/admin/etc
+             * card on smaller phones.
+             */
+
+            .organization-card:hover {
+
+                transform:
+                    none;
+            }
+
+
+            /*
+             * MOBILE PHOTO
+             */
+
+            .organization-photo {
+
+                width:
+                    62px;
+
+                height:
+                    62px;
+
+                margin-bottom:
+                    10px;
+            }
+
+
+            /*
+             * MOBILE NAME
+             */
+
+            .organization-name {
+
+                width:
+                    100%;
+
+                font-size:
+                    14px;
+
+                line-height:
+                    1.3;
+
+                word-break:
+                    break-word;
+
+                overflow-wrap:
+                    anywhere;
+            }
+
+
+            /*
+             * MOBILE USERNAME
+             */
+
+            .organization-username {
+
+                width:
+                    100%;
+
+                margin-bottom:
+                    8px;
+
+                font-size:
+                    11px;
+
+                line-height:
+                    1.35;
+
+                word-break:
+                    break-word;
+
+                overflow-wrap:
+                    anywhere;
+            }
+
+
+            /*
+             * MOBILE POSITION
+             */
+
+            .organization-position {
+
+                max-width:
+                    90%;
+
+                padding:
+                    5px 10px;
+
+                font-size:
+                    9px;
+
+                line-height:
+                    1.3;
+
+                white-space:
+                    normal;
+
+                word-break:
+                    break-word;
+
+                overflow-wrap:
+                    anywhere;
+            }
+
+
+            /*
+             * MOBILE MEMBER CODE
+             */
+
+            .organization-code {
+
+                width:
+                    100%;
+
+                margin-top:
+                    8px;
+
+                font-size:
+                    8px;
+
+                line-height:
+                    1.3;
+
+                word-break:
+                    break-word;
+
+                overflow-wrap:
+                    anywhere;
+            }
+
+
+            /*
+             * ROLE COUNT
+             */
+
+            .organization-role-count {
+
+                margin-top:
+                    7px;
+
+                font-size:
+                    9px;
+            }
+
+
+            /*
+             * EMPTY / ERROR / LOADING
+             */
+
+            .organization-empty,
+            .organization-loading,
+            .organization-error {
+
+                width:
+                    100%;
+
+                max-width:
+                    100%;
+
+                padding:
+                    30px 15px;
+
+                font-size:
+                    13px;
+
+                overflow-wrap:
+                    anywhere;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 480px) {
+
+            .organization-section {
+
+                padding-left:
+                    8px;
+
+                padding-right:
+                    8px;
+            }
+
+
+            .organization-heading h2 {
+
+                font-size:
                     25px;
+            }
+
+
+            .organization-heading p {
+
+                font-size:
+                    12px;
             }
 
 
             .organization-role-section {
 
                 padding:
-                    20px 15px 30px;
+                    16px 8px 20px;
 
                 border-radius:
-                    16px;
+                    13px;
             }
 
 
             .organization-role-title {
 
-                min-width:
-                    160px;
+                max-width:
+                    85%;
 
                 padding:
-                    9px 22px;
-
-                font-size:
-                    13px;
-            }
-
-
-            .organization-role-members {
-
-                gap:
-                    14px;
-            }
-
-
-            .organization-member-wrapper {
-
-                min-width:
-                    190px;
-            }
-
-
-            .organization-card {
-
-                width:
-                    190px;
-
-                min-height:
-                    225px;
-
-                padding:
-                    18px 13px;
-            }
-
-
-            .organization-photo {
-
-                width:
-                    65px;
-
-                height:
-                    65px;
-            }
-
-
-            .organization-name {
-
-                font-size:
-                    14px;
-            }
-
-
-            .organization-username {
+                    8px 18px;
 
                 font-size:
                     11px;
             }
 
 
+            .organization-card {
+
+                max-width:
+                    275px;
+
+                padding:
+                    15px 12px;
+            }
+
+
+            .organization-photo {
+
+                width:
+                    58px;
+
+                height:
+                    58px;
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    13px;
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    10px;
+            }
+
+
             .organization-position {
 
                 font-size:
-                    9px;
+                    8px;
+
+                padding:
+                    4px 9px;
+            }
+
+
+            .organization-code {
+
+                font-size:
+                    8px;
             }
 
         }
@@ -2562,6 +3113,75 @@
 
                 height:
                     40px;
+            }
+
+
+            /*
+             * EXTRA SMALL ORGANIZATION
+             */
+
+            .organization-section {
+
+                padding:
+                    48px 6px;
+            }
+
+
+            .organization-role-section {
+
+                padding:
+                    15px 6px 18px;
+            }
+
+
+            .organization-card {
+
+                width:
+                    calc(100% - 10px);
+
+                max-width:
+                    260px;
+
+                padding:
+                    14px 10px;
+            }
+
+
+            .organization-photo {
+
+                width:
+                    54px;
+
+                height:
+                    54px;
+            }
+
+
+            .organization-name {
+
+                font-size:
+                    12px;
+            }
+
+
+            .organization-username {
+
+                font-size:
+                    9px;
+            }
+
+
+            .organization-position {
+
+                font-size:
+                    8px;
+            }
+
+
+            .organization-code {
+
+                font-size:
+                    7px;
             }
 
         }
