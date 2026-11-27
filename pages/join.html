@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -464,6 +465,7 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 1.5;
+            word-break: break-word;
         }
 
         .form-status.success {
@@ -580,6 +582,7 @@
             .agreement-box {
                 padding: 13px;
             }
+
         }
 
     </style>
@@ -673,7 +676,7 @@
 
         <!-- =================================================
              JOIN PROCESS
-        ================================================= -->
+        ================================================== -->
 
         <section class="join-process">
 
@@ -736,7 +739,7 @@
 
         <!-- =================================================
              APPROVAL NOTICE
-        ================================================= -->
+        ================================================== -->
 
         <div class="approval-notice">
 
@@ -755,7 +758,7 @@
 
         <!-- =================================================
              FORM
-        ================================================= -->
+        ================================================== -->
 
         <section class="join-form-wrapper">
 
@@ -1023,6 +1026,7 @@
             serverTimestamp
         } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
+
         import {
             db
         } from "../js/firebase.js";
@@ -1040,6 +1044,24 @@
 
         const submitButton =
             document.getElementById("submitJoinBtn");
+
+
+        /* =================================================
+           CHECK FIREBASE
+        ================================================= */
+
+        if (!db) {
+
+            console.error(
+                "NIGHTFALL DEVILS FIREBASE ERROR: Firestore DB is not initialized."
+            );
+
+            showStatus(
+                "❌ Firebase is not connected. Please contact the Admin.",
+                "error"
+            );
+
+        }
 
 
         /* =================================================
@@ -1120,6 +1142,22 @@
 
 
                 /* -----------------------------------------
+                   CHECK FIREBASE
+                ----------------------------------------- */
+
+                if (!db) {
+
+                    showStatus(
+                        "❌ Firebase is not connected. Please contact the Admin.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* -----------------------------------------
                    DISABLE BUTTON
                 ----------------------------------------- */
 
@@ -1135,32 +1173,48 @@
                        SAVE TO FIRESTORE
                     ------------------------------------- */
 
-                    await addDoc(
-                        collection(
-                            db,
-                            "memberRequests"
-                        ),
-                        {
+                    const requestData = {
 
-                            tiktokUsername:
-                                tiktokUsername,
+                        tiktokUsername:
+                            tiktokUsername,
 
-                            displayName:
-                                displayName,
+                        displayName:
+                            displayName,
 
-                            referredBy:
-                                referredBy,
+                        referredBy:
+                            referredBy,
 
-                            message:
-                                message,
+                        message:
+                            message,
 
-                            status:
-                                "pending",
+                        status:
+                            "pending",
 
-                            createdAt:
-                                serverTimestamp()
+                        createdAt:
+                            serverTimestamp()
 
-                        }
+                    };
+
+
+                    console.log(
+                        "NIGHTFALL DEVILS - SUBMITTING REQUEST:",
+                        requestData
+                    );
+
+
+                    const requestRef =
+                        await addDoc(
+                            collection(
+                                db,
+                                "memberRequests"
+                            ),
+                            requestData
+                        );
+
+
+                    console.log(
+                        "NIGHTFALL DEVILS - REQUEST SAVED:",
+                        requestRef.id
                     );
 
 
@@ -1190,21 +1244,61 @@
 
                 } catch (error) {
 
+                    /* -------------------------------------
+                       FULL FIREBASE ERROR
+                    ------------------------------------- */
+
                     console.error(
-                        "NIGHTFALL DEVILS JOIN REQUEST ERROR:",
+                        "===================================="
+                    );
+
+                    console.error(
+                        "NIGHTFALL DEVILS JOIN REQUEST ERROR"
+                    );
+
+                    console.error(
+                        "ERROR CODE:",
+                        error.code
+                    );
+
+                    console.error(
+                        "ERROR MESSAGE:",
+                        error.message
+                    );
+
+                    console.error(
+                        "FULL ERROR:",
                         error
+                    );
+
+                    console.error(
+                        "===================================="
                     );
 
 
                     /* -------------------------------------
-                       ERROR
+                       SHOW EXACT ERROR
                     ------------------------------------- */
 
+                    const errorCode =
+                        error.code ||
+                        "unknown-error";
+
+                    const errorMessage =
+                        error.message ||
+                        "Unknown Firebase error.";
+
+
                     showStatus(
-                        "❌ Unable to submit your request right now. Please try again.",
+                        "❌ Firebase Error: " +
+                        errorCode +
+                        " — " +
+                        errorMessage,
                         "error"
                     );
 
+
+                    /* Restore button */
 
                     submitButton.disabled =
                         false;
