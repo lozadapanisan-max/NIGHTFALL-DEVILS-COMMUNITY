@@ -1,1375 +1,2582 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Schedule | NIGHTFALL DEVILS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #d71920;
+      --red-dark: #a80f15;
+      --gold: #f5c542;
+
+      --bg: #050505;
+      --bg2: #090909;
+      --card: #101010;
+      --card2: #151515;
+
+      --border: #292929;
+
+      --white: #ffffff;
+      --text: #dddddd;
+      --muted: #8d8d8d;
+
+      --green: #22c55e;
+      --yellow: #eab308;
+      --blue: #3b82f6;
+      --gray: #6b7280;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(215, 25, 32, 0.08),
+          transparent 35%
+        ),
+        var(--bg);
 
-    <meta charset="UTF-8">
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
 
-    <meta
-        name="description"
-        content="NIGHTFALL DEVILS Streamer Support Schedule"
-    >
+    /* ==========================================
+       HEADER
+    ========================================== */
 
-    <title>NIGHTFALL DEVILS - Schedule</title>
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
 
-    <link
-        rel="stylesheet"
-        href="../css/style.css"
-    >
+      height: 72px;
 
-    <style>
+      background: rgba(5, 5, 5, 0.92);
 
-        /* =====================================================
-           SCHEDULE PAGE
-        ===================================================== */
+      border-bottom: 1px solid rgba(255,255,255,0.08);
 
-        .schedule-page {
-            min-height: 100vh;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
 
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(215, 25, 32, 0.18),
-                    transparent 35%
-                ),
-                #090909;
-        }
+    .header-container {
+      max-width: 1250px;
+      height: 100%;
 
+      margin: auto;
+      padding: 0 22px;
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-        .schedule-hero {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
-            padding:
-                80px 20px 45px;
+      min-width: max-content;
+    }
 
-            text-align: center;
-        }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
 
-        .schedule-hero h1 {
+      border-radius: 11px;
 
-            margin:
-                0 0 10px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          #76090d
+        );
 
-            color:
-                #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-            font-size:
-                clamp(36px, 7vw, 60px);
+      font-size: 17px;
+      font-weight: 800;
 
-            font-weight:
-                900;
+      box-shadow:
+        0 0 25px rgba(215,25,32,0.2);
+    }
 
-            letter-spacing:
-                1px;
-        }
+    .brand-text strong {
+      display: block;
 
-        .schedule-hero h1 span {
+      font-size: 13px;
+      font-weight: 800;
 
-            color:
-                #f5c542;
-        }
+      color: var(--gold);
 
-        .schedule-hero p {
+      letter-spacing: .5px;
+    }
 
-            max-width:
-                720px;
+    .brand-text span {
+      display: block;
 
-            margin:
-                0 auto;
+      color: #777;
 
-            color:
-                #dddddd;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+    }
 
-            font-size:
-                15px;
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-            line-height:
-                1.7;
-        }
+    .nav a {
+      color: #999;
 
+      padding: 8px 11px;
 
-        /* =====================================================
-           IMPORTANT NOTICE
-        ===================================================== */
+      border-radius: 7px;
 
-        .schedule-notice {
+      font-size: 10px;
+      font-weight: 500;
 
-            width:
-                calc(100% - 40px);
+      transition: .2s ease;
+    }
 
-            max-width:
-                1000px;
+    .nav a:hover {
+      color: #fff;
+      background: #151515;
+    }
 
-            margin:
-                0 auto 30px;
+    .nav a.active {
+      color: #fff;
 
-            padding:
-                18px 20px;
+      background:
+        rgba(215,25,32,0.13);
 
-            box-sizing:
-                border-box;
+      border-bottom:
+        2px solid var(--red);
+    }
 
-            background:
-                #ffffff;
+    .menu-btn {
+      display: none;
 
-            border:
-                2px solid #f5c542;
+      width: 40px;
+      height: 40px;
 
-            border-left:
-                6px solid #d71920;
+      border: 1px solid #303030;
+      border-radius: 8px;
 
-            border-radius:
-                12px;
+      background: #111;
 
-            color:
-                #333333;
+      color: #fff;
 
-            box-shadow:
-                0 10px 30px
-                rgba(0, 0, 0, 0.25);
-        }
+      cursor: pointer;
 
-        .schedule-notice strong {
+      font-size: 18px;
+    }
 
-            display:
-                block;
+    /* ==========================================
+       MOBILE NAV
+    ========================================== */
 
-            margin-bottom:
-                5px;
+    .mobile-nav {
+      display: none;
 
-            color:
-                #d71920;
+      position: fixed;
 
-            font-size:
-                16px;
-        }
+      top: 72px;
+      left: 0;
+      right: 0;
 
-        .schedule-notice span {
+      background: rgba(8,8,8,.98);
 
-            color:
-                #555555;
+      border-bottom: 1px solid #292929;
 
-            font-size:
-                14px;
+      padding: 12px;
 
-            line-height:
-                1.5;
-        }
+      z-index: 999;
+    }
 
+    .mobile-nav.show {
+      display: block;
+    }
 
-        /* =====================================================
-           CONTROLS
-        ===================================================== */
+    .mobile-nav a {
+      display: block;
 
-        .schedule-controls {
+      padding: 13px;
 
-            width:
-                100%;
+      border-radius: 8px;
 
-            max-width:
-                1000px;
+      color: #aaa;
 
-            margin:
-                0 auto 25px;
+      font-size: 11px;
 
-            padding:
-                0 20px;
+      margin-bottom: 4px;
+    }
 
-            box-sizing:
-                border-box;
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: #151515;
+      color: #fff;
+    }
 
-            display:
-                grid;
+    /* ==========================================
+       HERO
+    ========================================== */
 
-            grid-template-columns:
-                1fr 200px;
+    .hero {
+      position: relative;
 
-            gap:
-                15px;
-        }
+      min-height: 330px;
 
-        .schedule-search,
-        .schedule-filter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-            width:
-                100%;
+      text-align: center;
 
-            box-sizing:
-                border-box;
+      overflow: hidden;
 
-            height:
-                50px;
+      border-bottom: 1px solid #1c1c1c;
+    }
 
-            padding:
-                0 15px;
+    .hero::before {
+      content: "";
 
-            border:
-                2px solid #dddddd;
+      position: absolute;
 
-            border-radius:
-                9px;
+      width: 500px;
+      height: 500px;
 
-            background:
-                #ffffff;
+      top: -250px;
+      left: 50%;
 
-            color:
-                #171717;
+      transform: translateX(-50%);
 
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
+      background:
+        radial-gradient(
+          circle,
+          rgba(215,25,32,.18),
+          transparent 70%
+        );
 
-            font-size:
-                14px;
+      pointer-events: none;
+    }
 
-            outline:
-                none;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 2;
 
-        .schedule-search:focus,
-        .schedule-filter:focus {
+      padding: 50px 20px;
+    }
 
-            border-color:
-                #d71920;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
 
-            box-shadow:
-                0 0 0 3px
-                rgba(215, 25, 32, 0.12);
-        }
+      padding: 6px 12px;
 
+      border: 1px solid rgba(245,197,66,.25);
 
-        /* =====================================================
-           SCHEDULE CONTAINER
-        ===================================================== */
+      background:
+        rgba(245,197,66,.06);
 
-        .schedule-container {
+      border-radius: 30px;
 
-            width:
-                100%;
+      color: var(--gold);
 
-            max-width:
-                1000px;
+      font-size: 9px;
+      font-weight: 600;
 
-            margin:
-                0 auto;
+      margin-bottom: 16px;
+    }
 
-            padding:
-                0 20px 70px;
+    .live-dot {
+      width: 7px;
+      height: 7px;
 
-            box-sizing:
-                border-box;
-        }
+      background: var(--red);
 
+      border-radius: 50%;
 
-        /* =====================================================
-           SCHEDULE GRID
-        ===================================================== */
+      box-shadow:
+        0 0 10px var(--red);
 
-        .schedule-grid {
+      animation: livePulse 1.5s infinite;
+    }
 
-            display:
-                grid;
+    @keyframes livePulse {
 
-            grid-template-columns:
-                repeat(2, 1fr);
+      50% {
+        opacity: .35;
+      }
 
-            gap:
-                18px;
-        }
+    }
 
+    .hero h1 {
+      font-size: clamp(34px, 7vw, 62px);
 
-        /* =====================================================
-           SCHEDULE CARD
-        ===================================================== */
+      line-height: 1.05;
 
-        .schedule-card {
+      font-weight: 800;
 
-            position:
-                relative;
+      letter-spacing: -2px;
+    }
 
-            overflow:
-                hidden;
+    .hero h1 span {
+      color: var(--red);
+    }
 
-            background:
-                #ffffff;
+    .hero p {
+      max-width: 650px;
 
-            border:
-                2px solid #f5c542;
+      margin: 15px auto 0;
 
-            border-radius:
-                15px;
+      color: #888;
 
-            padding:
-                22px;
+      font-size: 12px;
 
-            box-sizing:
-                border-box;
+      line-height: 1.8;
+    }
 
-            box-shadow:
-                0 12px 35px
-                rgba(0, 0, 0, 0.3);
+    /* ==========================================
+       MAIN
+    ========================================== */
 
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-        }
+    .main {
+      max-width: 1200px;
 
-        .schedule-card:hover {
+      margin: auto;
 
-            transform:
-                translateY(-4px);
+      padding:
+        45px 22px 80px;
+    }
 
-            box-shadow:
-                0 18px 40px
-                rgba(0, 0, 0, 0.4);
-        }
+    /* ==========================================
+       LIVE NOW
+    ========================================== */
 
+    .section-heading {
+      margin-bottom: 18px;
+    }
 
-        /* =====================================================
-           CARD TOP
-        ===================================================== */
+    .section-heading h2 {
+      font-size: 18px;
 
-        .schedule-top {
+      font-weight: 700;
+    }
 
-            display:
-                flex;
+    .section-heading p {
+      margin-top: 3px;
 
-            align-items:
-                center;
+      color: #777;
 
-            justify-content:
-                space-between;
+      font-size: 10px;
+    }
 
-            gap:
-                10px;
+    .live-section {
+      margin-bottom: 45px;
+    }
 
-            margin-bottom:
-                15px;
-        }
+    .live-container {
+      display: grid;
 
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(250px, 1fr)
+        );
 
-        /* =====================================================
-           DATE
-        ===================================================== */
+      gap: 15px;
+    }
 
-        .schedule-date {
+    .live-card {
+      position: relative;
 
-            display:
-                inline-flex;
+      padding: 20px;
 
-            align-items:
-                center;
+      border-radius: 14px;
 
-            gap:
-                6px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,25,32,.13),
+          #101010
+        );
 
-            padding:
-                7px 11px;
+      border:
+        1px solid rgba(215,25,32,.35);
 
-            border-radius:
-                20px;
+      overflow: hidden;
+    }
 
-            background:
-                #d71920;
+    .live-card::after {
+      content: "";
 
-            color:
-                #ffffff;
+      position: absolute;
 
-            font-size:
-                12px;
+      width: 120px;
+      height: 120px;
 
-            font-weight:
-                800;
-        }
+      right: -45px;
+      bottom: -55px;
 
+      border-radius: 50%;
 
-        /* =====================================================
-           ACTIVITY
-        ===================================================== */
+      background:
+        rgba(215,25,32,.08);
+    }
 
-        .schedule-type {
+    .live-label {
+      display: inline-flex;
 
-            display:
-                inline-flex;
+      align-items: center;
+      gap: 6px;
 
-            align-items:
-                center;
+      padding: 5px 9px;
 
-            padding:
-                7px 11px;
+      border-radius: 20px;
 
-            border-radius:
-                20px;
+      background:
+        rgba(215,25,32,.14);
 
-            background:
-                #fff4c9;
+      color: #ff5c61;
 
-            color:
-                #7b5c00;
+      font-size: 8px;
+      font-weight: 700;
 
-            font-size:
-                11px;
+      margin-bottom: 13px;
+    }
 
-            font-weight:
-                900;
+    .live-card h3 {
+      font-size: 16px;
 
-            text-transform:
-                uppercase;
-        }
+      font-weight: 700;
+    }
 
+    .live-card .username {
+      margin-top: 3px;
 
-        /* =====================================================
-           STREAMER
-        ===================================================== */
+      color: #777;
 
-        .schedule-name {
+      font-size: 9px;
+    }
 
-            margin:
-                0 0 4px;
+    .live-meta {
+      display: flex;
 
-            color:
-                #171717;
+      flex-wrap: wrap;
 
-            font-size:
-                22px;
+      gap: 8px;
 
-            font-weight:
-                900;
-        }
+      margin-top: 14px;
+    }
 
-        .schedule-username {
+    .live-meta span {
+      padding: 5px 8px;
 
-            margin-bottom:
-                15px;
+      background: #181818;
 
-            color:
-                #777777;
+      border: 1px solid #292929;
 
-            font-size:
-                14px;
-        }
+      border-radius: 6px;
 
+      color: #aaa;
 
-        /* =====================================================
-           DETAILS
-        ===================================================== */
+      font-size: 8px;
+    }
 
-        .schedule-details {
+    .watch-btn {
+      display: inline-flex;
 
-            display:
-                grid;
+      align-items: center;
+      justify-content: center;
 
-            grid-template-columns:
-                1fr 1fr;
+      margin-top: 16px;
 
-            gap:
-                10px;
+      padding: 9px 13px;
 
-            margin-bottom:
-                15px;
-        }
+      background: var(--red);
 
-        .detail-box {
+      border-radius: 7px;
 
-            padding:
-                11px;
+      font-size: 9px;
+      font-weight: 700;
 
-            background:
-                #f7f7f7;
+      transition: .2s;
+    }
 
-            border-radius:
-                8px;
-        }
+    .watch-btn:hover {
+      background: #ef1b23;
 
-        .detail-label {
+      transform: translateY(-1px);
+    }
 
-            display:
-                block;
+    /* ==========================================
+       FILTERS
+    ========================================== */
 
-            margin-bottom:
-                3px;
+    .schedule-toolbar {
+      display: flex;
 
-            color:
-                #888888;
+      flex-wrap: wrap;
 
-            font-size:
-                11px;
+      align-items: center;
 
-            text-transform:
-                uppercase;
-        }
+      gap: 10px;
 
-        .detail-value {
+      margin-bottom: 22px;
 
-            color:
-                #333333;
+      padding: 13px;
 
-            font-size:
-                14px;
+      background: #0d0d0d;
 
-            font-weight:
-                700;
-        }
+      border:
+        1px solid #252525;
 
+      border-radius: 11px;
+    }
 
-        /* =====================================================
-           NOTES
-        ===================================================== */
+    .search {
+      position: relative;
 
-        .schedule-notes {
+      flex: 1;
 
-            padding:
-                12px;
+      min-width: 200px;
+    }
 
-            background:
-                #fff9e5;
+    .search-icon {
+      position: absolute;
 
-            border-left:
-                4px solid #f5c542;
+      left: 12px;
+      top: 50%;
 
-            border-radius:
-                6px;
+      transform: translateY(-50%);
 
-            color:
-                #555555;
+      color: #666;
 
-            font-size:
-                13px;
+      font-size: 12px;
+    }
 
-            line-height:
-                1.5;
-        }
+    .search input {
+      width: 100%;
+      height: 38px;
 
+      background: #080808;
 
-        /* =====================================================
-           STATUS
-        ===================================================== */
+      border: 1px solid #292929;
 
-        .schedule-status {
+      border-radius: 7px;
 
-            margin-top:
-                13px;
+      outline: none;
 
-            color:
-                #27843c;
+      color: #fff;
 
-            font-size:
-                12px;
+      padding:
+        0 11px 0 34px;
 
-            font-weight:
-                700;
-        }
+      font-size: 10px;
+    }
 
-        .schedule-status::before {
+    .search input:focus {
+      border-color: var(--red);
+    }
 
-            content:
-                "";
+    .filter {
+      height: 38px;
 
-            display:
-                inline-block;
+      background: #080808;
 
-            width:
-                7px;
+      border: 1px solid #292929;
 
-            height:
-                7px;
+      border-radius: 7px;
 
-            margin-right:
-                5px;
+      color: #aaa;
 
-            border-radius:
-                50%;
+      outline: none;
 
-            background:
-                #27843c;
-        }
+      padding: 0 10px;
 
+      font-size: 9px;
 
-        /* =====================================================
-           NO RESULTS
-        ===================================================== */
+      min-width: 125px;
+    }
 
-        .schedule-no-results {
+    .filter:focus {
+      border-color: var(--red);
+    }
 
-            display:
-                none;
+    .filter option {
+      background: #111;
+      color: #fff;
+    }
 
-            padding:
-                40px 20px;
+    .date-filter {
+      color-scheme: dark;
+    }
 
-            color:
-                #ffffff;
+    .clear-btn {
+      height: 38px;
 
-            text-align:
-                center;
+      border:
+        1px solid #303030;
 
-            font-size:
-                16px;
-        }
+      border-radius: 7px;
 
+      background: #151515;
 
-        /* =====================================================
-           ADD NOTE
-        ===================================================== */
+      color: #aaa;
 
-        .schedule-footer-note {
+      padding: 0 12px;
 
-            margin-top:
-                30px;
+      cursor: pointer;
 
-            color:
-                #aaaaaa;
+      font-size: 9px;
+    }
 
-            text-align:
-                center;
+    .clear-btn:hover {
+      color: #fff;
 
-            font-size:
-                13px;
+      border-color: var(--gold);
+    }
 
-            line-height:
-                1.6;
-        }
+    /* ==========================================
+       SCHEDULE GROUP
+    ========================================== */
 
+    .schedule-section {
+      margin-bottom: 42px;
+    }
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+    .schedule-list {
+      display: grid;
 
-        @media (max-width: 750px) {
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(290px, 1fr)
+        );
 
-            .schedule-grid {
+      gap: 14px;
+    }
 
-                grid-template-columns:
-                    1fr;
-            }
+    .schedule-card {
+      position: relative;
 
-        }
+      background:
+        linear-gradient(
+          145deg,
+          #121212,
+          #0c0c0c
+        );
 
+      border:
+        1px solid #292929;
 
-        @media (max-width: 600px) {
+      border-radius: 13px;
 
-            .schedule-hero {
+      padding: 18px;
 
-                padding:
-                    55px 16px 35px;
-            }
+      transition: .2s;
 
-            .schedule-hero h1 {
+      overflow: hidden;
+    }
 
-                font-size:
-                    36px;
-            }
+    .schedule-card:hover {
+      transform: translateY(-2px);
 
-            .schedule-notice {
+      border-color:
+        rgba(245,197,66,.25);
 
-                width:
-                    calc(100% - 32px);
-            }
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.25);
+    }
 
-            .schedule-controls {
+    .schedule-top {
+      display: flex;
 
-                grid-template-columns:
-                    1fr;
+      justify-content: space-between;
 
-                padding:
-                    0 16px;
-            }
+      align-items: flex-start;
 
-            .schedule-container {
+      gap: 10px;
 
-                padding:
-                    0 16px 50px;
-            }
+      margin-bottom: 14px;
+    }
 
-            .schedule-card {
+    .schedule-date-box {
+      display: flex;
 
-                padding:
-                    18px;
-            }
+      align-items: center;
 
-            .schedule-details {
+      gap: 9px;
+    }
 
-                grid-template-columns:
-                    1fr;
-            }
+    .calendar-icon {
+      width: 38px;
+      height: 38px;
 
-            .schedule-top {
+      border-radius: 9px;
 
-                align-items:
-                    flex-start;
+      background:
+        rgba(215,25,32,.12);
 
-                flex-direction:
-                    column;
-            }
+      border:
+        1px solid rgba(215,25,32,.2);
 
-        }
+      display: flex;
 
-    </style>
+      align-items: center;
+      justify-content: center;
 
+      font-size: 17px;
+    }
+
+    .date-text strong {
+      display: block;
+
+      font-size: 11px;
+
+      color: #fff;
+    }
+
+    .date-text span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: #777;
+
+      font-size: 8px;
+    }
+
+    /* ==========================================
+       STATUS
+    ========================================== */
+
+    .status {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      padding: 5px 8px;
+
+      border-radius: 20px;
+
+      font-size: 7px;
+
+      font-weight: 700;
+
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+    }
+
+    .status.upcoming {
+      color: var(--yellow);
+
+      background:
+        rgba(234,179,8,.09);
+
+      border:
+        1px solid rgba(234,179,8,.18);
+    }
+
+    .status.upcoming .status-dot {
+      background: var(--yellow);
+    }
+
+    .status.live {
+      color: #ff5258;
+
+      background:
+        rgba(215,25,32,.1);
+
+      border:
+        1px solid rgba(215,25,32,.25);
+    }
+
+    .status.live .status-dot {
+      background: var(--red);
+
+      box-shadow:
+        0 0 7px var(--red);
+
+      animation: livePulse 1.3s infinite;
+    }
+
+    .status.completed {
+      color: var(--green);
+
+      background:
+        rgba(34,197,94,.08);
+
+      border:
+        1px solid rgba(34,197,94,.18);
+    }
+
+    .status.completed .status-dot {
+      background: var(--green);
+    }
+
+    .status.cancelled {
+      color: #9ca3af;
+
+      background:
+        rgba(107,114,128,.08);
+
+      border:
+        1px solid rgba(107,114,128,.18);
+    }
+
+    .status.cancelled .status-dot {
+      background: #6b7280;
+    }
+
+    /* ==========================================
+       STREAMER
+    ========================================== */
+
+    .streamer {
+      margin-bottom: 12px;
+    }
+
+    .streamer h3 {
+      font-size: 15px;
+
+      font-weight: 700;
+
+      color: #fff;
+    }
+
+    .streamer p {
+      color: #777;
+
+      font-size: 9px;
+
+      margin-top: 2px;
+    }
+
+    /* ==========================================
+       INFO
+    ========================================== */
+
+    .schedule-info {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 7px;
+
+      margin-top: 12px;
+    }
+
+    .info-item {
+      padding: 9px;
+
+      border:
+        1px solid #242424;
+
+      border-radius: 7px;
+
+      background: #0a0a0a;
+    }
+
+    .info-item span {
+      display: block;
+
+      color: #666;
+
+      font-size: 7px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .6px;
+
+      margin-bottom: 3px;
+    }
+
+    .info-item strong {
+      display: block;
+
+      color: #ccc;
+
+      font-size: 9px;
+
+      font-weight: 600;
+    }
+
+    .type-badge {
+      display: inline-block;
+
+      padding: 4px 7px;
+
+      border-radius: 5px;
+
+      background: #181818;
+
+      border: 1px solid #292929;
+
+      color: #aaa;
+
+      font-size: 7px;
+    }
+
+    .notes {
+      margin-top: 11px;
+
+      padding-top: 11px;
+
+      border-top:
+        1px solid #202020;
+
+      color: #777;
+
+      font-size: 8px;
+
+      line-height: 1.6;
+    }
+
+    .schedule-actions {
+      display: flex;
+
+      gap: 7px;
+
+      margin-top: 13px;
+    }
+
+    .tiktok-btn {
+      flex: 1;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 34px;
+
+      border-radius: 7px;
+
+      background: var(--red);
+
+      color: #fff;
+
+      font-size: 8px;
+
+      font-weight: 700;
+
+      transition: .2s;
+    }
+
+    .tiktok-btn:hover {
+      background: #ef1b23;
+    }
+
+    .tiktok-btn.disabled {
+      background: #181818;
+
+      color: #555;
+
+      border:
+        1px solid #292929;
+
+      pointer-events: none;
+    }
+
+    /* ==========================================
+       EMPTY STATE
+    ========================================== */
+
+    .empty {
+      text-align: center;
+
+      padding: 60px 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #101010,
+          #0b0b0b
+        );
+
+      border:
+        1px solid #252525;
+
+      border-radius: 13px;
+
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 35px;
+
+      opacity: .35;
+
+      margin-bottom: 12px;
+    }
+
+    .empty h3 {
+      font-size: 14px;
+
+      color: #aaa;
+    }
+
+    .empty p {
+      margin-top: 5px;
+
+      color: #555;
+
+      font-size: 9px;
+    }
+
+    /* ==========================================
+       LOADING
+    ========================================== */
+
+    .loading {
+      text-align: center;
+
+      padding: 60px 20px;
+
+      color: #666;
+
+      grid-column: 1 / -1;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+
+      margin: 0 auto 12px;
+
+      border:
+        3px solid #282828;
+
+      border-top-color:
+        var(--red);
+
+      border-radius: 50%;
+
+      animation:
+        spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+    /* ==========================================
+       FOOTER
+    ========================================== */
+
+    .footer {
+      border-top:
+        1px solid #1e1e1e;
+
+      background: #080808;
+
+      padding:
+        25px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+
+      margin: auto;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+    }
+
+    .footer p {
+      color: #555;
+
+      font-size: 8px;
+    }
+
+    .footer strong {
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+
+      gap: 13px;
+    }
+
+    .footer-links a {
+      color: #666;
+
+      font-size: 8px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 850px) {
+
+      .nav {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .header-container {
+        padding: 0 15px;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+
+      .hero {
+        min-height: 280px;
+      }
+
+      .hero-content {
+        padding:
+          40px 18px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .main {
+        padding:
+          35px 14px 60px;
+      }
+
+      .schedule-toolbar {
+        padding: 10px;
+      }
+
+      .search {
+        min-width: 100%;
+      }
+
+      .filter {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .clear-btn {
+        width: 100%;
+      }
+
+      .schedule-list {
+        grid-template-columns: 1fr;
+      }
+
+      .live-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        flex-direction: column;
+
+        text-align: center;
+      }
+
+    }
+
+    @media (max-width: 400px) {
+
+      .brand-text strong {
+        font-size: 11px;
+      }
+
+      .brand-text span {
+        font-size: 7px;
+      }
+
+      .brand-logo {
+        width: 38px;
+        height: 38px;
+      }
+
+      .schedule-card {
+        padding: 14px;
+      }
+
+      .schedule-info {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
 </head>
 
-
-<body class="schedule-page">
-
-
-    <!-- =====================================================
-         HEADER
-    ===================================================== -->
-
-    <header class="site-header">
-
-        <div class="container">
-
-            <a
-                href="../index.html"
-                class="logo"
-            >
-                NIGHTFALL DEVILS 👿
-            </a>
+<body>
 
 
-            <nav class="nav-menu">
+<!-- ==========================================
+     HEADER
+========================================== -->
 
-                <a href="../index.html">
-                    Home
-                </a>
+<header class="header">
 
-                <a href="rules.html">
-                    Rules
-                </a>
+  <div class="header-container">
 
-                <a href="join.html">
-                    Join
-                </a>
+    <a href="../index.html" class="brand">
 
-                <a
-                    href="schedule.html"
-                    class="active"
-                >
-                    Schedule
-                </a>
+      <div class="brand-logo">
+        N
+      </div>
 
-                <a href="members.html">
-                    Members
-                </a>
+      <div class="brand-text">
 
-            </nav>
+        <strong>
+          NIGHTFALL DEVILS
+        </strong>
+
+        <span>
+          COMMUNITY
+        </span>
+
+      </div>
+
+    </a>
 
 
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Open Menu"
-            >
-                ☰
-            </button>
+    <nav class="nav">
+
+      <a href="../index.html">
+        Home
+      </a>
+
+      <a href="rules.html">
+        Rules
+      </a>
+
+      <a href="join.html">
+        Join
+      </a>
+
+      <a
+        href="schedule.html"
+        class="active"
+      >
+        Schedule
+      </a>
+
+      <a href="../index.html#organization">
+        Organization
+      </a>
+
+      <a href="members.html">
+        Members
+      </a>
+
+    </nav>
+
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open Menu"
+    >
+      ☰
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- ==========================================
+     MOBILE NAV
+========================================== -->
+
+<div
+  class="mobile-nav"
+  id="mobileNav"
+>
+
+  <a href="../index.html">
+    Home
+  </a>
+
+  <a href="rules.html">
+    Rules
+  </a>
+
+  <a href="join.html">
+    Join
+  </a>
+
+  <a
+    href="schedule.html"
+    class="active"
+  >
+    Schedule
+  </a>
+
+  <a href="../index.html#organization">
+    Organization
+  </a>
+
+  <a href="members.html">
+    Members
+  </a>
+
+</div>
+
+
+<!-- ==========================================
+     HERO
+========================================== -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+
+      <span class="live-dot"></span>
+
+      LIVE COMMUNITY SCHEDULE
+
+    </div>
+
+    <h1>
+      NIGHTFALL
+      <span>SCHEDULE</span>
+    </h1>
+
+    <p>
+      Check upcoming streamer lives, community activities,
+      raids, support schedules, and special events.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="main">
+
+
+  <!-- ========================================
+       LIVE NOW
+  ========================================= -->
+
+  <section
+    class="live-section"
+    id="liveSection"
+    style="display:none;"
+  >
+
+    <div class="section-heading">
+
+      <h2>
+        🔴 Live Now
+      </h2>
+
+      <p>
+        Support our members who are currently live.
+      </p>
+
+    </div>
+
+
+    <div
+      class="live-container"
+      id="liveContainer"
+    ></div>
+
+  </section>
+
+
+  <!-- ========================================
+       ALL SCHEDULES
+  ========================================= -->
+
+  <section class="schedule-section">
+
+    <div class="section-heading">
+
+      <h2>
+        📅 Community Schedule
+      </h2>
+
+      <p>
+        All schedules are updated automatically.
+      </p>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="schedule-toolbar">
+
+      <div class="search">
+
+        <span class="search-icon">
+          🔍
+        </span>
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search streamer, username, event..."
+        >
+
+      </div>
+
+
+      <select
+        id="typeFilter"
+        class="filter"
+      >
+
+        <option value="all">
+          All Types
+        </option>
+
+        <option value="Regular Live">
+          Regular Live
+        </option>
+
+        <option value="Raid / Support">
+          Raid / Support
+        </option>
+
+        <option value="Community Event">
+          Community Event
+        </option>
+
+        <option value="Challenge">
+          Challenge
+        </option>
+
+        <option value="Special Event">
+          Special Event
+        </option>
+
+      </select>
+
+
+      <select
+        id="statusFilter"
+        class="filter"
+      >
+
+        <option value="all">
+          All Status
+        </option>
+
+        <option value="Upcoming">
+          Upcoming
+        </option>
+
+        <option value="Live Now">
+          Live Now
+        </option>
+
+        <option value="Completed">
+          Completed
+        </option>
+
+        <option value="Cancelled">
+          Cancelled
+        </option>
+
+      </select>
+
+
+      <input
+        type="date"
+        id="dateFilter"
+        class="filter date-filter"
+      >
+
+
+      <button
+        type="button"
+        id="clearFilters"
+        class="clear-btn"
+      >
+        Clear
+      </button>
+
+    </div>
+
+
+    <!-- SCHEDULE LIST -->
+
+    <div
+      class="schedule-list"
+      id="scheduleList"
+    >
+
+      <div class="loading">
+
+        <div class="spinner"></div>
+
+        Loading schedules...
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <p>
+      © 2026
+      <strong>NIGHTFALL DEVILS</strong>.
+      All rights reserved.
+    </p>
+
+
+    <div class="footer-links">
+
+      <a href="../index.html">
+        Home
+      </a>
+
+      <a href="join.html">
+        Join Community
+      </a>
+
+      <a href="schedule.html">
+        Schedule
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- ==========================================
+     FIREBASE
+========================================== -->
+
+<script type="module">
+
+  import {
+    collection,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+  import {
+    db
+  } from "../js/firebase.js";
+
+
+  /* ==========================================
+     VARIABLES
+  ========================================== */
+
+  let schedules = [];
+
+
+  /* ==========================================
+     ELEMENTS
+  ========================================== */
+
+  const scheduleList =
+    document.getElementById(
+      "scheduleList"
+    );
+
+  const liveSection =
+    document.getElementById(
+      "liveSection"
+    );
+
+  const liveContainer =
+    document.getElementById(
+      "liveContainer"
+    );
+
+  const searchInput =
+    document.getElementById(
+      "searchInput"
+    );
+
+  const typeFilter =
+    document.getElementById(
+      "typeFilter"
+    );
+
+  const statusFilter =
+    document.getElementById(
+      "statusFilter"
+    );
+
+  const dateFilter =
+    document.getElementById(
+      "dateFilter"
+    );
+
+  const clearFilters =
+    document.getElementById(
+      "clearFilters"
+    );
+
+
+  /* ==========================================
+     REAL-TIME FIREBASE LISTENER
+  ========================================== */
+
+  const schedulesRef =
+    collection(
+      db,
+      "schedules"
+    );
+
+
+  onSnapshot(
+
+    schedulesRef,
+
+    (snapshot) => {
+
+      schedules = [];
+
+      snapshot.forEach(
+        (documentSnapshot) => {
+
+          schedules.push({
+
+            id:
+              documentSnapshot.id,
+
+            ...documentSnapshot.data()
+
+          });
+
+        }
+      );
+
+
+      /*
+       * SORT BY DATE + START TIME
+       */
+
+      schedules.sort(
+        (a, b) => {
+
+          const aValue =
+            `${a.date || ""} ${a.startTime || ""}`;
+
+          const bValue =
+            `${b.date || ""} ${b.startTime || ""}`;
+
+          return aValue.localeCompare(
+            bValue
+          );
+
+        }
+      );
+
+
+      /*
+       * RENDER EVERYTHING
+       */
+
+      renderLiveSchedules();
+
+      renderSchedules();
+
+    },
+
+    (error) => {
+
+      console.error(
+        "Firebase schedule error:",
+        error
+      );
+
+
+      scheduleList.innerHTML = `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            ⚠️
+          </div>
+
+          <h3>
+            Unable to Load Schedule
+          </h3>
+
+          <p>
+            Please check your internet connection
+            or Firebase configuration.
+          </p>
 
         </div>
 
-    </header>
+      `;
+
+    }
+
+  );
 
 
+  /* ==========================================
+     FILTER FUNCTION
+  ========================================== */
 
-    <!-- =====================================================
-         MAIN
-    ===================================================== -->
+  function getFilteredSchedules() {
 
-    <main>
+    const search =
+      searchInput.value
+        .trim()
+        .toLowerCase();
 
+    const type =
+      typeFilter.value;
 
-        <!-- HERO -->
+    const status =
+      statusFilter.value;
 
-        <section class="schedule-hero">
-
-            <h1>
-                STREAMER
-                <span>SCHEDULE</span>
-            </h1>
-
-            <p>
-                Check the NIGHTFALL DEVILS schedule
-                for LIVE streams, raids, and community
-                support activities.
-            </p>
-
-        </section>
+    const date =
+      dateFilter.value;
 
 
+    return schedules.filter(
+      (item) => {
 
-        <!-- NOTICE -->
+        const streamer =
+          String(
+            item.streamerName || ""
+          ).toLowerCase();
 
-        <div class="schedule-notice">
 
-            <strong>
-                👿 SUPPORT OUR STREAMERS
-            </strong>
+        const username =
+          String(
+            item.tiktokUsername || ""
+          ).toLowerCase();
+
+
+        const notes =
+          String(
+            item.notes || ""
+          ).toLowerCase();
+
+
+        const scheduleType =
+          String(
+            item.type || ""
+          ).toLowerCase();
+
+
+        const matchesSearch =
+          !search ||
+
+          streamer.includes(search) ||
+
+          username.includes(search) ||
+
+          notes.includes(search) ||
+
+          scheduleType.includes(search);
+
+
+        const matchesType =
+          type === "all" ||
+          item.type === type;
+
+
+        const matchesStatus =
+          status === "all" ||
+          item.status === status;
+
+
+        const matchesDate =
+          !date ||
+          item.date === date;
+
+
+        return (
+          matchesSearch &&
+          matchesType &&
+          matchesStatus &&
+          matchesDate
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ==========================================
+     RENDER SCHEDULES
+  ========================================== */
+
+  function renderSchedules() {
+
+    const filtered =
+      getFilteredSchedules();
+
+
+    if (!filtered.length) {
+
+      scheduleList.innerHTML = `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            📅
+          </div>
+
+          <h3>
+            No Schedule Found
+          </h3>
+
+          <p>
+            There are no schedules matching
+            your selected filters.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    scheduleList.innerHTML =
+      filtered
+        .map(
+          createScheduleCard
+        )
+        .join("");
+
+  }
+
+
+  /* ==========================================
+     CREATE SCHEDULE CARD
+  ========================================== */
+
+  function createScheduleCard(
+    item
+  ) {
+
+    const statusClass =
+      getStatusClass(
+        item.status
+      );
+
+
+    const date =
+      formatDate(
+        item.date
+      );
+
+
+    const time =
+      formatTimeRange(
+        item.startTime,
+        item.endTime
+      );
+
+
+    const tiktokLink =
+      item.tiktokLink;
+
+
+    return `
+
+      <article
+        class="schedule-card"
+      >
+
+        <div class="schedule-top">
+
+          <div class="schedule-date-box">
+
+            <div class="calendar-icon">
+              📅
+            </div>
+
+            <div class="date-text">
+
+              <strong>
+                ${escapeHtml(date)}
+              </strong>
+
+              <span>
+                ${escapeHtml(time)}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span
+            class="status ${statusClass}"
+          >
+
+            <span class="status-dot"></span>
+
+            ${escapeHtml(
+              item.status || "Upcoming"
+            )}
+
+          </span>
+
+        </div>
+
+
+        <div class="streamer">
+
+          <h3>
+            ${escapeHtml(
+              item.streamerName ||
+              "NIGHTFALL DEVILS"
+            )}
+          </h3>
+
+          ${
+            item.tiktokUsername
+              ? `
+                <p>
+                  ${escapeHtml(
+                    item.tiktokUsername
+                  )}
+                </p>
+              `
+              : ""
+          }
+
+        </div>
+
+
+        <div class="schedule-info">
+
+          <div class="info-item">
 
             <span>
-                Join the scheduled LIVE sessions,
-                support our members, and keep the
-                community united. Please respect
-                all streamers and other communities.
+              Time
             </span>
 
+            <strong>
+              ${escapeHtml(time)}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <span>
+              Activity
+            </span>
+
+            <strong>
+
+              <span class="type-badge">
+
+                ${escapeHtml(
+                  item.type ||
+                  "Community Schedule"
+                )}
+
+              </span>
+
+            </strong>
+
+          </div>
+
         </div>
 
 
-
-        <!-- SEARCH -->
-
-        <section class="schedule-controls">
-
-            <input
-                type="search"
-                id="scheduleSearch"
-                class="schedule-search"
-                placeholder="🔎 Search streamer..."
-                autocomplete="off"
-            >
-
-
-            <select
-                id="scheduleFilter"
-                class="schedule-filter"
-            >
-
-                <option value="all">
-                    All Activities
-                </option>
-
-                <option value="LIVE">
-                    LIVE
-                </option>
-
-                <option value="RAID">
-                    RAID
-                </option>
-
-                <option value="SUPPORT">
-                    SUPPORT
-                </option>
-
-            </select>
-
-        </section>
-
-
-
-        <!-- SCHEDULE -->
-
-        <section class="schedule-container">
-
-            <div
-                class="schedule-grid"
-                id="scheduleGrid"
-            >
-
-
-                <!-- =================================================
-                     SCHEDULE 1
-                ================================================== -->
-
-                <article
-                    class="schedule-card"
-                    data-name="JIN-WOO"
-                    data-username="@jinwoo"
-                    data-type="LIVE"
-                >
-
-                    <div class="schedule-top">
-
-                        <div class="schedule-date">
-                            📅 NOV 27, 2026
-                        </div>
-
-                        <div class="schedule-type">
-                            LIVE
-                        </div>
-
-                    </div>
-
-
-                    <h2 class="schedule-name">
-                        JIN-WOO
-                    </h2>
-
-                    <div class="schedule-username">
-                        🎤 @jinwoo
-                    </div>
-
-
-                    <div class="schedule-details">
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Time
-                            </span>
-
-                            <span class="detail-value">
-                                8:00 PM
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Activity
-                            </span>
-
-                            <span class="detail-value">
-                                Community LIVE
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="schedule-notes">
-
-                        Come and support the stream.
-                        Everyone is welcome to show
-                        positive support.
-
-                    </div>
-
-
-                    <div class="schedule-status">
-                        Scheduled
-                    </div>
-
-                </article>
-
-
-
-                <!-- =================================================
-                     SCHEDULE 2
-                ================================================== -->
-
-                <article
-                    class="schedule-card"
-                    data-name="SHIKAGU"
-                    data-username="@shikagu"
-                    data-type="RAID"
-                >
-
-                    <div class="schedule-top">
-
-                        <div class="schedule-date">
-                            📅 NOV 28, 2026
-                        </div>
-
-                        <div class="schedule-type">
-                            RAID
-                        </div>
-
-                    </div>
-
-
-                    <h2 class="schedule-name">
-                        SHIKAGU
-                    </h2>
-
-                    <div class="schedule-username">
-                        🎤 @shikagu
-                    </div>
-
-
-                    <div class="schedule-details">
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Time
-                            </span>
-
-                            <span class="detail-value">
-                                9:00 PM
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Activity
-                            </span>
-
-                            <span class="detail-value">
-                                Stream Raid
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="schedule-notes">
-
-                        Members may join the raid
-                        and support the streamer
-                        respectfully.
-
-                    </div>
-
-
-                    <div class="schedule-status">
-                        Scheduled
-                    </div>
-
-                </article>
-
-
-
-                <!-- =================================================
-                     SCHEDULE 3
-                ================================================== -->
-
-                <article
-                    class="schedule-card"
-                    data-name="ZERO"
-                    data-username="@zero"
-                    data-type="SUPPORT"
-                >
-
-                    <div class="schedule-top">
-
-                        <div class="schedule-date">
-                            📅 NOV 29, 2026
-                        </div>
-
-                        <div class="schedule-type">
-                            SUPPORT
-                        </div>
-
-                    </div>
-
-
-                    <h2 class="schedule-name">
-                        ZERO
-                    </h2>
-
-                    <div class="schedule-username">
-                        🎤 @zero
-                    </div>
-
-
-                    <div class="schedule-details">
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Time
-                            </span>
-
-                            <span class="detail-value">
-                                7:30 PM
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Activity
-                            </span>
-
-                            <span class="detail-value">
-                                Member Support
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="schedule-notes">
-
-                        Support the scheduled streamer
-                        through positive comments
-                        and community engagement.
-
-                    </div>
-
-
-                    <div class="schedule-status">
-                        Scheduled
-                    </div>
-
-                </article>
-
-
-
-                <!-- =================================================
-                     SCHEDULE 4
-                ================================================== -->
-
-                <article
-                    class="schedule-card"
-                    data-name="BASAGULERO"
-                    data-username="@basagulero"
-                    data-type="LIVE"
-                >
-
-                    <div class="schedule-top">
-
-                        <div class="schedule-date">
-                            📅 NOV 30, 2026
-                        </div>
-
-                        <div class="schedule-type">
-                            LIVE
-                        </div>
-
-                    </div>
-
-
-                    <h2 class="schedule-name">
-                        BASAGULERO
-                    </h2>
-
-                    <div class="schedule-username">
-                        🎤 @basagulero
-                    </div>
-
-
-                    <div class="schedule-details">
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Time
-                            </span>
-
-                            <span class="detail-value">
-                                8:30 PM
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-box">
-
-                            <span class="detail-label">
-                                Activity
-                            </span>
-
-                            <span class="detail-value">
-                                Community LIVE
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="schedule-notes">
-
-                        Members are encouraged to
-                        support respectfully and
-                        follow community rules.
-
-                    </div>
-
-
-                    <div class="schedule-status">
-                        Scheduled
-                    </div>
-
-                </article>
-
-
-            </div>
-
-
-
-            <!-- NO RESULTS -->
-
-            <div
-                class="schedule-no-results"
-                id="scheduleNoResults"
-            >
-                😈 No schedule found.
-            </div>
-
-
-            <div class="schedule-footer-note">
-
-                Schedule times may be updated by
-                Community Admins. Please check
-                the latest announcement before
-                joining a scheduled activity.
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ===================================================== -->
-
-    <footer class="site-footer">
-
-        <div class="container">
-
-            <p>
-                © 2026 NIGHTFALL DEVILS
-            </p>
-
-            <p>
-                Formerly TEAM MALALA
-                • Established October 18, 2026
-            </p>
-
-        </div>
-
-    </footer>
-
-
-
-    <!-- MAIN JS -->
-
-    <script src="../js/script.js"></script>
-
-
-
-    <!-- =====================================================
-         SCHEDULE SEARCH
-    ===================================================== -->
-
-    <script>
-
-        const scheduleSearch =
-            document.getElementById(
-                "scheduleSearch"
-            );
-
-        const scheduleFilter =
-            document.getElementById(
-                "scheduleFilter"
-            );
-
-        const scheduleCards =
-            document.querySelectorAll(
-                ".schedule-card"
-            );
-
-        const scheduleNoResults =
-            document.getElementById(
-                "scheduleNoResults"
-            );
-
-
-        function filterSchedule() {
-
-            const searchValue =
-                scheduleSearch.value
-                    .toLowerCase()
-                    .trim();
-
-            const selectedType =
-                scheduleFilter.value;
-
-            let visibleCount = 0;
-
-
-            scheduleCards.forEach(
-                function(card) {
-
-                    const name =
-                        card.dataset.name
-                            .toLowerCase();
-
-                    const username =
-                        card.dataset.username
-                            .toLowerCase();
-
-                    const type =
-                        card.dataset.type;
-
-
-                    const matchesSearch =
-                        name.includes(
-                            searchValue
-                        ) ||
-                        username.includes(
-                            searchValue
-                        );
-
-
-                    const matchesType =
-                        selectedType === "all" ||
-                        type === selectedType;
-
-
-                    if (
-                        matchesSearch &&
-                        matchesType
-                    ) {
-
-                        card.style.display =
-                            "block";
-
-                        visibleCount++;
-
-                    } else {
-
-                        card.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-
-            if (visibleCount === 0) {
-
-                scheduleNoResults.style.display =
-                    "block";
-
-            } else {
-
-                scheduleNoResults.style.display =
-                    "none";
-
-            }
-
+        ${
+          item.notes
+            ? `
+              <div class="notes">
+
+                ${escapeHtml(
+                  item.notes
+                )}
+
+              </div>
+            `
+            : ""
         }
 
 
-        scheduleSearch.addEventListener(
-            "input",
-            filterSchedule
+        <div class="schedule-actions">
+
+          ${
+            tiktokLink
+              ? `
+
+                <a
+                  href="${escapeAttribute(
+                    tiktokLink
+                  )}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="tiktok-btn"
+                >
+                  🎵 Open TikTok Live
+                </a>
+
+              `
+              : `
+
+                <div
+                  class="tiktok-btn disabled"
+                >
+                  TikTok Link Not Available
+                </div>
+
+              `
+          }
+
+        </div>
+
+      </article>
+
+    `;
+
+  }
+
+
+  /* ==========================================
+     LIVE SCHEDULES
+  ========================================== */
+
+  function renderLiveSchedules() {
+
+    const liveSchedules =
+      schedules.filter(
+        item =>
+          item.status === "Live Now"
+      );
+
+
+    if (!liveSchedules.length) {
+
+      liveSection.style.display =
+        "none";
+
+      liveContainer.innerHTML =
+        "";
+
+      return;
+
+    }
+
+
+    liveSection.style.display =
+      "block";
+
+
+    liveContainer.innerHTML =
+      liveSchedules
+        .map(
+          createLiveCard
+        )
+        .join("");
+
+  }
+
+
+  /* ==========================================
+     LIVE CARD
+  ========================================== */
+
+  function createLiveCard(
+    item
+  ) {
+
+    return `
+
+      <article
+        class="live-card"
+      >
+
+        <div class="live-label">
+
+          <span class="live-dot"></span>
+
+          LIVE NOW
+
+        </div>
+
+
+        <h3>
+
+          ${escapeHtml(
+            item.streamerName ||
+            "NIGHTFALL DEVILS"
+          )}
+
+        </h3>
+
+
+        ${
+          item.tiktokUsername
+            ? `
+              <div class="username">
+
+                ${escapeHtml(
+                  item.tiktokUsername
+                )}
+
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="live-meta">
+
+          <span>
+            🕐
+            ${escapeHtml(
+              formatTimeRange(
+                item.startTime,
+                item.endTime
+              )
+            )}
+          </span>
+
+
+          <span>
+            ${escapeHtml(
+              item.type ||
+              "Live"
+            )}
+          </span>
+
+        </div>
+
+
+        ${
+          item.tiktokLink
+            ? `
+
+              <a
+                href="${escapeAttribute(
+                  item.tiktokLink
+                )}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="watch-btn"
+              >
+                🎵 Watch Live
+              </a>
+
+            `
+            : ""
+        }
+
+      </article>
+
+    `;
+
+  }
+
+
+  /* ==========================================
+     STATUS CLASS
+  ========================================== */
+
+  function getStatusClass(
+    status
+  ) {
+
+    switch (status) {
+
+      case "Live Now":
+        return "live";
+
+      case "Completed":
+        return "completed";
+
+      case "Cancelled":
+        return "cancelled";
+
+      case "Upcoming":
+      default:
+        return "upcoming";
+
+    }
+
+  }
+
+
+  /* ==========================================
+     DATE FORMAT
+  ========================================== */
+
+  function formatDate(
+    dateString
+  ) {
+
+    if (!dateString) {
+      return "Date not set";
+    }
+
+
+    const date =
+      new Date(
+        `${dateString}T00:00:00`
+      );
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return dateString;
+
+    }
+
+
+    return date.toLocaleDateString(
+      "en-US",
+      {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      }
+    );
+
+  }
+
+
+  /* ==========================================
+     TIME FORMAT
+  ========================================== */
+
+  function formatTime(
+    time
+  ) {
+
+    if (!time) {
+      return "";
+    }
+
+
+    const parts =
+      time.split(":");
+
+
+    let hours =
+      parseInt(
+        parts[0],
+        10
+      );
+
+
+    const minutes =
+      parts[1] || "00";
+
+
+    const suffix =
+      hours >= 12
+        ? "PM"
+        : "AM";
+
+
+    hours =
+      hours % 12 || 12;
+
+
+    return `${hours}:${minutes} ${suffix}`;
+
+  }
+
+
+  function formatTimeRange(
+    start,
+    end
+  ) {
+
+    const startTime =
+      formatTime(start);
+
+
+    const endTime =
+      formatTime(end);
+
+
+    if (!startTime) {
+      return "Time not set";
+    }
+
+
+    if (!endTime) {
+      return startTime;
+    }
+
+
+    return `${startTime} – ${endTime}`;
+
+  }
+
+
+  /* ==========================================
+     FILTER EVENTS
+  ========================================== */
+
+  searchInput.addEventListener(
+    "input",
+    renderSchedules
+  );
+
+
+  typeFilter.addEventListener(
+    "change",
+    renderSchedules
+  );
+
+
+  statusFilter.addEventListener(
+    "change",
+    renderSchedules
+  );
+
+
+  dateFilter.addEventListener(
+    "change",
+    renderSchedules
+  );
+
+
+  /* ==========================================
+     CLEAR FILTERS
+  ========================================== */
+
+  clearFilters.addEventListener(
+    "click",
+    () => {
+
+      searchInput.value =
+        "";
+
+      typeFilter.value =
+        "all";
+
+      statusFilter.value =
+        "all";
+
+      dateFilter.value =
+        "";
+
+      renderSchedules();
+
+    }
+  );
+
+
+  /* ==========================================
+     MOBILE MENU
+  ========================================== */
+
+  const menuBtn =
+    document.getElementById(
+      "menuBtn"
+    );
+
+  const mobileNav =
+    document.getElementById(
+      "mobileNav"
+    );
+
+
+  menuBtn.addEventListener(
+    "click",
+    () => {
+
+      mobileNav.classList.toggle(
+        "show"
+      );
+
+    }
+  );
+
+
+  mobileNav
+    .querySelectorAll("a")
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            mobileNav.classList.remove(
+              "show"
+            );
+
+          }
         );
 
+      }
+    );
 
-        scheduleFilter.addEventListener(
-            "change",
-            filterSchedule
-        );
 
-    </script>
+  /* ==========================================
+     ESCAPE HTML
+  ========================================== */
 
+  function escapeHtml(
+    value
+  ) {
+
+    return String(value)
+
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
+
+  }
+
+
+  /* ==========================================
+     ESCAPE ATTRIBUTE
+  ========================================== */
+
+  function escapeAttribute(
+    value
+  ) {
+
+    return String(value)
+
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+
+      .replaceAll(
+        ">",
+        "&gt;"
+      );
+
+  }
+
+</script>
 
 </body>
-
 </html>
