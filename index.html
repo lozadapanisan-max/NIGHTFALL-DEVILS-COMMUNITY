@@ -230,6 +230,30 @@
 
 
         /* =====================================================
+           MEMBER LOGIN NAVIGATION
+        ===================================================== */
+
+        .site-header .nav-menu a.member-login-link {
+            color: var(--gold);
+
+            border:
+                1px solid
+                rgba(245, 197, 66, 0.45);
+
+            background:
+                rgba(245, 197, 66, 0.05);
+        }
+
+
+        .site-header .nav-menu a.member-login-link:hover {
+            color: #111111;
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+
+
+        /* =====================================================
            ADMIN NAVIGATION
         ===================================================== */
 
@@ -582,6 +606,42 @@
 
 
         /* =====================================================
+           MEMBER LOGIN BUTTON
+        ===================================================== */
+
+        .hero-btn-member-login {
+
+            background: #111111;
+
+            color: var(--gold);
+
+            border:
+                2px solid
+                var(--gold);
+
+            box-shadow:
+                0 8px 25px
+                rgba(245, 197, 66, 0.10);
+        }
+
+
+        .hero-btn-member-login:hover {
+
+            transform:
+                translateY(-3px);
+
+            background: var(--gold);
+
+            color: #111111;
+
+            box-shadow:
+                0 12px 30px
+                rgba(245, 197, 66, 0.25);
+        }
+
+
+
+        /* =====================================================
            PWA INSTALL BUTTON
            FIXED FOR CLICK / TOUCH
         ===================================================== */
@@ -886,6 +946,265 @@
             font-size: 13px;
 
             line-height: 1.5;
+        }
+
+
+
+        /* =====================================================
+           MEMBER ACCOUNT
+        ===================================================== */
+
+        .member-account-section {
+
+            padding: 75px 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #101010,
+                    #070707
+                );
+
+            border-top:
+                1px solid
+                rgba(245,197,66,0.15);
+
+            border-bottom:
+                1px solid
+                rgba(245,197,66,0.15);
+        }
+
+
+        .member-account-container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+        }
+
+
+        .member-account-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .member-account-card {
+
+            padding: 25px 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #181818,
+                    #0d0d0d
+                );
+
+            border:
+                1px solid
+                rgba(245,197,66,0.35);
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.3);
+        }
+
+
+        .member-account-icon {
+
+            width: 60px;
+            height: 60px;
+
+            margin:
+                0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(215,25,32,0.18);
+
+            border:
+                2px solid
+                var(--red);
+
+            color: var(--gold);
+
+            font-size: 26px;
+        }
+
+
+        .member-account-card h3 {
+
+            margin:
+                0 0 8px;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 900;
+        }
+
+
+        .member-account-card p {
+
+            margin: 0;
+
+            color: #aaaaaa;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .member-status-box {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 25px;
+
+            background:
+                rgba(245,197,66,0.06);
+
+            border:
+                1px solid
+                rgba(245,197,66,0.35);
+
+            border-radius: 14px;
+
+            text-align: center;
+        }
+
+
+        .member-status-box h3 {
+
+            margin:
+                0 0 8px;
+
+            color: var(--gold);
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        .member-status-box p {
+
+            margin:
+                0 0 18px;
+
+            color: #bbbbbb;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .member-account-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+
+        .member-account-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 180px;
+
+            padding: 13px 22px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+            transition: 0.25s ease;
+        }
+
+
+        .member-account-btn-login {
+
+            background: var(--red);
+
+            color: #ffffff;
+
+            border:
+                2px solid
+                var(--red);
+        }
+
+
+        .member-account-btn-login:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                var(--red-dark);
+        }
+
+
+        .member-account-btn-register {
+
+            background: transparent;
+
+            color: var(--gold);
+
+            border:
+                2px solid
+                var(--gold);
+        }
+
+
+        .member-account-btn-register:hover {
+
+            transform:
+                translateY(-3px);
+
+            background: var(--gold);
+
+            color: #111111;
         }
 
 
@@ -1902,6 +2221,26 @@
         }
 
 
+        .cta-member-login {
+
+            margin-left: 8px;
+
+            background: #111111;
+
+            color: var(--gold);
+
+            border-color: var(--gold);
+        }
+
+
+        .cta-member-login:hover {
+
+            background: var(--gold);
+
+            color: #111111;
+        }
+
+
 
         /* =====================================================
            FOOTER
@@ -1953,6 +2292,13 @@
 
                 grid-template-columns:
                     repeat(2, 1fr);
+            }
+
+
+            .member-account-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
 
 
@@ -2100,6 +2446,20 @@
             }
 
 
+            .site-header
+            .nav-menu a.member-login-link {
+
+                color: var(--gold);
+
+                border:
+                    1px solid
+                    rgba(245,197,66,0.45);
+
+                background:
+                    rgba(245,197,66,0.05);
+            }
+
+
 
             /* =================================================
                HERO
@@ -2147,6 +2507,54 @@
 
 
             /* =================================================
+               MEMBER ACCOUNT
+            ================================================== */
+
+            .member-account-section {
+
+                padding:
+                    55px 16px;
+            }
+
+
+            .member-account-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 12px;
+            }
+
+
+            .member-account-card {
+
+                padding:
+                    22px 18px;
+            }
+
+
+            .member-status-box {
+
+                padding:
+                    22px 16px;
+            }
+
+
+            .member-account-buttons {
+
+                flex-direction: column;
+            }
+
+
+            .member-account-btn {
+
+                width: 100%;
+
+                max-width: 320px;
+            }
+
+
+
+            /* =================================================
                SECTIONS
             ================================================== */
 
@@ -2175,6 +2583,14 @@
 
                 padding:
                     60px 16px;
+            }
+
+
+            .cta-member-login {
+
+                margin-left: 0;
+
+                margin-top: 10px;
             }
 
 
@@ -2831,6 +3247,19 @@
                     Members
                 </a>
 
+
+                <!-- =================================================
+                     NEW MEMBER LOGIN
+                ================================================== -->
+
+                <a
+                    href="pages/member-login.html"
+                    class="member-login-link"
+                >
+                    🔐 Member Login
+                </a>
+
+
                 <a
                     href="admin/login.html"
                     class="admin-link"
@@ -2944,6 +3373,20 @@
                     >
 
                         👥 VIEW MEMBERS
+
+                    </a>
+
+
+                    <!-- =================================================
+                         NEW MEMBER LOGIN BUTTON
+                    ================================================== -->
+
+                    <a
+                        href="pages/member-login.html"
+                        class="hero-btn hero-btn-member-login"
+                    >
+
+                        🔐 MEMBER LOGIN
 
                     </a>
 
@@ -3193,6 +3636,162 @@
 
                 </div>
 
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MEMBER ACCOUNT
+        ================================================== -->
+
+        <section
+            class="member-account-section"
+            id="member-account"
+        >
+
+            <div class="member-account-container">
+
+                <div class="section-heading">
+
+                    <h2>
+
+                        MEMBER
+
+                        <span>
+                            ACCOUNT
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Every approved NIGHTFALL DEVILS
+                        member can have an individual
+                        account to check their membership
+                        information and current status.
+
+                    </p>
+
+                </div>
+
+
+                <div class="member-account-grid">
+
+
+                    <div class="member-account-card">
+
+                        <div class="member-account-icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            Create Account
+                        </h3>
+
+                        <p>
+
+                            Create your own member
+                            account using your email
+                            and password.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="member-account-card">
+
+                        <div class="member-account-icon">
+                            🔍
+                        </div>
+
+                        <h3>
+                            Admin Review
+                        </h3>
+
+                        <p>
+
+                            Your account and membership
+                            information will be reviewed
+                            by the NIGHTFALL DEVILS Admin.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="member-account-card">
+
+                        <div class="member-account-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Check Your Status
+                        </h3>
+
+                        <p>
+
+                            Log in anytime to see whether
+                            your membership is Pending,
+                            Approved, Active, Suspended,
+                            or Rejected.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="member-status-box">
+
+                    <h3>
+                        🔐 MEMBER PORTAL
+                    </h3>
+
+
+                    <p>
+
+                        Already have a NIGHTFALL DEVILS
+                        account? Log in to check your
+                        membership status and account
+                        information.
+
+                    </p>
+
+
+                    <div class="member-account-buttons">
+
+                        <a
+                            href="pages/member-login.html"
+                            class="member-account-btn member-account-btn-login"
+                        >
+
+                            🔐 MEMBER LOGIN
+
+                        </a>
+
+
+                        <a
+                            href="pages/member-register.html"
+                            class="member-account-btn member-account-btn-register"
+                        >
+
+                            📝 CREATE ACCOUNT
+
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -3641,7 +4240,8 @@
                 If you want to be part of a
                 community built on friendship,
                 respect, unity, and support,
-                submit your membership request.
+                submit your membership request
+                or create your member account.
 
             </p>
 
@@ -3652,6 +4252,16 @@
             >
 
                 👿 REQUEST TO JOIN
+
+            </a>
+
+
+            <a
+                href="pages/member-login.html"
+                class="cta-btn cta-member-login"
+            >
+
+                🔐 MEMBER LOGIN
 
             </a>
 
