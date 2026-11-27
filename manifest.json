@@ -1,1 +1,30 @@
-
+{
+  "name": "NIGHTFALL DEVILS",
+  "short_name": "NIGHTFALL",
+  "description": "Official NIGHTFALL DEVILS TikTok Community",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050505",
+  "theme_color": "#d71920",
+  "lang": "en",
+  "categories": [
+    "social",
+    "community"
+  ],
+  "icons": [
+    {
+      "src": "assets/logo/nightfall-devils-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo/nightfall-devils-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
