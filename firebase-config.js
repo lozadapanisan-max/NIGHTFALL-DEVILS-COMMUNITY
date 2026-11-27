@@ -15,6 +15,10 @@ import {
     getFirestore
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
+import {
+    getStorage
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+
 
 // =====================================================
 // FIREBASE CONFIG
@@ -51,7 +55,9 @@ const firebaseConfig = {
 // =====================================================
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
 
 
 // =====================================================
@@ -59,7 +65,9 @@ const app =
 // =====================================================
 
 const auth =
-    getAuth(app);
+    getAuth(
+        app
+    );
 
 
 // =====================================================
@@ -67,7 +75,19 @@ const auth =
 // =====================================================
 
 const db =
-    getFirestore(app);
+    getFirestore(
+        app
+    );
+
+
+// =====================================================
+// FIREBASE STORAGE
+// =====================================================
+
+const storage =
+    getStorage(
+        app
+    );
 
 
 // =====================================================
@@ -77,5 +97,6 @@ const db =
 export {
     app,
     auth,
-    db
+    db,
+    storage
 };
