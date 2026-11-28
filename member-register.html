@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | NIGHTFALL DEVILS</title>
+
+    <link rel="icon" href="assets/logo.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(215, 25, 32, 0.18), transparent 35%),
+                #050505;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .register-card {
+            background: #101010;
+            border: 1px solid rgba(245, 197, 66, 0.25);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.65),
+                0 0 30px rgba(215, 25, 32, 0.08);
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+
+        .title {
+            color: #f5c542;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #ddd;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        input {
+            width: 100%;
+            height: 48px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #181818;
+            color: #fff;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #f5c542;
+            box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.08);
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        .rules-box {
+            background: rgba(215, 25, 32, 0.08);
+            border: 1px solid rgba(215, 25, 32, 0.25);
+            border-radius: 10px;
+            padding: 13px;
+            margin: 5px 0 18px;
+            font-size: 12px;
+            color: #bbb;
+            line-height: 1.5;
+        }
+
+        .rules-box strong {
+            color: #f5c542;
+        }
+
+        .agree {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin-bottom: 18px;
+            font-size: 12px;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        .agree input {
+            width: 17px;
+            height: 17px;
+            min-width: 17px;
+            margin-top: 1px;
+            accent-color: #d71920;
+        }
+
+        .agree label {
+            margin: 0;
+            font-size: 12px;
+            font-weight: 400;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .create-btn {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #d71920, #a70f15);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .create-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(215, 25, 32, 0.25);
+        }
+
+        .create-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(215, 25, 32, 0.12);
+            border: 1px solid rgba(215, 25, 32, 0.35);
+            color: #ff7777;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(46, 160, 67, 0.12);
+            border: 1px solid rgba(46, 160, 67, 0.35);
+            color: #7ee787;
+        }
+
+        .bottom-links {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .bottom-links a {
+            color: #f5c542;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .bottom-links a:hover {
+            text-decoration: underline;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #777 !important;
+            font-size: 12px;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .register-card {
+                padding: 22px 18px;
+                border-radius: 15px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .logo {
+                width: 75px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="register-container">
+
+    <div class="register-card">
+
+        <div class="logo-area">
+            <img
+                src="assets/logo.png"
+                alt="NIGHTFALL DEVILS"
+                class="logo"
+            >
+
+            <div class="title">
+                NIGHTFALL DEVILS
+            </div>
+
+            <div class="subtitle">
+                Create your member account
+            </div>
+        </div>
+
+        <form id="registerForm">
+
+            <div class="form-group">
+                <label for="displayName">
+                    Full Name / Display Name
+                </label>
+
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Enter your name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="tiktokUsername">
+                    TikTok Username
+                </label>
+
+                <input
+                    type="text"
+                    id="tiktokUsername"
+                    placeholder="@yourusername"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    minlength="6"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    minlength="6"
+                    required
+                >
+            </div>
+
+            <div class="rules-box">
+                <strong>COMMUNITY RULE</strong><br>
+                Do not disclose or share personal information
+                of yourself or other NIGHTFALL DEVILS members.
+            </div>
+
+            <div class="agree">
+                <input
+                    type="checkbox"
+                    id="agreeRules"
+                    required
+                >
+
+                <label for="agreeRules">
+                    I agree to follow the NIGHTFALL DEVILS
+                    community rules and understand that creating
+                    an account does not automatically mean that
+                    I am an approved member.
+                </label>
+            </div>
+
+            <button
+                type="submit"
+                class="create-btn"
+                id="createAccountBtn"
+            >
+                CREATE ACCOUNT
+            </button>
+
+            <div
+                class="loading"
+                id="loadingMessage"
+            >
+                Creating your account...
+            </div>
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+        </form>
+
+        <div class="bottom-links">
+
+            Already have an account?
+            <a href="pages/member-login.html">
+                LOGIN
+            </a>
+
+            <br>
+
+            <a
+                href="index.html"
+                class="home-link"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    import {
+        getFirestore,
+        doc,
+        setDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+    // ==============================
+    // FIREBASE CONFIG
+    // ==============================
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
+        authDomain: "nightfall-devils-b0d77.firebaseapp.com",
+        projectId: "nightfall-devils-b0d77",
+        storageBucket: "nightfall-devils-b0d77.firebasestorage.app",
+        messagingSenderId: "758952684668",
+        appId: "1:758952684668:web:5be641ca90c9d5134f2df9",
+        measurementId: "G-R6MZ05M4DR"
+    };
+
+
+    // ==============================
+    // INITIALIZE FIREBASE
+    // ==============================
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+    // ==============================
+    // ELEMENTS
+    // ==============================
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const displayNameInput =
+        document.getElementById("displayName");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const tiktokInput =
+        document.getElementById("tiktokUsername");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const confirmPasswordInput =
+        document.getElementById("confirmPassword");
+
+    const agreeRules =
+        document.getElementById("agreeRules");
+
+    const createAccountBtn =
+        document.getElementById("createAccountBtn");
+
+    const loadingMessage =
+        document.getElementById("loadingMessage");
+
+    const message =
+        document.getElementById("message");
+
+
+    // ==============================
+    // MESSAGE
+    // ==============================
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className = "message " + type;
+
+    }
+
+
+    // ==============================
+    // REGISTER
+    // ==============================
+
+    registerForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            const displayName =
+                displayNameInput.value.trim();
+
+            const email =
+                emailInput.value.trim().toLowerCase();
+
+            const tiktokUsername =
+                tiktokInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            // ==============================
+            // VALIDATION
+            // ==============================
+
+            if (!displayName) {
+
+                showMessage(
+                    "Please enter your name.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!email) {
+
+                showMessage(
+                    "Please enter your email address.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!tiktokUsername) {
+
+                showMessage(
+                    "Please enter your TikTok username.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                showMessage(
+                    "Password must be at least 6 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password !== confirmPassword) {
+
+                showMessage(
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!agreeRules.checked) {
+
+                showMessage(
+                    "Please agree to the community rules.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // ==============================
+            // START LOADING
+            // ==============================
+
+            createAccountBtn.disabled = true;
+
+            createAccountBtn.textContent =
+                "CREATING ACCOUNT...";
+
+            loadingMessage.style.display =
+                "block";
+
+            message.className =
+                "message";
+
+
+            try {
+
+                // ==============================
+                // CREATE FIREBASE AUTH ACCOUNT
+                // ==============================
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                // ==============================
+                // UPDATE AUTH PROFILE
+                // ==============================
+
+                await updateProfile(
+                    user,
+                    {
+                        displayName: displayName
+                    }
+                );
+
+
+                // ==============================
+                // CREATE USERS DOCUMENT
+                // ==============================
+
+                await setDoc(
+                    doc(db, "users", user.uid),
+                    {
+                        uid: user.uid,
+
+                        email: email,
+
+                        displayName: displayName,
+
+                        tiktokUsername: tiktokUsername,
+
+                        status: "active",
+
+                        membershipStatus: "not_requested",
+
+                        role: "member",
+
+                        createdAt: serverTimestamp(),
+
+                        updatedAt: serverTimestamp()
+                    }
+                );
+
+
+                // ==============================
+                // LOCAL STORAGE
+                // ==============================
+
+                localStorage.setItem(
+                    "nightfallMemberEmail",
+                    email
+                );
+
+                localStorage.setItem(
+                    "nightfallMemberName",
+                    displayName
+                );
+
+                localStorage.setItem(
+                    "nightfallMemberStatus",
+                    "not_requested"
+                );
+
+
+                // ==============================
+                // SUCCESS
+                // ==============================
+
+                showMessage(
+                    "Account created successfully! Redirecting to your Member Panel...",
+                    "success"
+                );
+
+
+                // ==============================
+                // REDIRECT
+                // ==============================
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "pages/member-dashboard.html";
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Registration error:",
+                    error
+                );
+
+
+                let errorMessage =
+                    "Unable to create account.";
+
+
+                if (
+                    error.code ===
+                    "auth/email-already-in-use"
+                ) {
+
+                    errorMessage =
+                        "This email is already registered. Please login instead.";
+
+                } else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    errorMessage =
+                        "Please enter a valid email address.";
+
+                } else if (
+                    error.code ===
+                    "auth/weak-password"
+                ) {
+
+                    errorMessage =
+                        "Password is too weak. Use at least 6 characters.";
+
+                } else if (
+                    error.code ===
+                    "permission-denied"
+                ) {
+
+                    errorMessage =
+                        "Account created, but Firestore permission was denied. Please check your Firestore rules.";
+
+                } else if (error.message) {
+
+                    errorMessage =
+                        error.message;
+                }
+
+
+                showMessage(
+                    errorMessage,
+                    "error"
+                );
+
+
+                createAccountBtn.disabled =
+                    false;
+
+                createAccountBtn.textContent =
+                    "CREATE ACCOUNT";
+
+                loadingMessage.style.display =
+                    "none";
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
