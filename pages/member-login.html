@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,414 +11,258 @@
 
     <meta
         name="theme-color"
-        content="#080808"
+        content="#050505"
     >
 
-    <meta
-        name="description"
-        content="NIGHTFALL DEVILS Member Login"
-    >
-
-    <title>Member Login | NIGHTFALL DEVILS</title>
+    <title>NIGHTFALL DEVILS - Member Login</title>
 
     <style>
-        :root {
-            --red: #d71920;
-            --red-dark: #a90f15;
-            --gold: #f5c542;
-            --bg: #080808;
-            --panel: #111111;
-            --panel-2: #151515;
-            --border: #292929;
-            --text: #ffffff;
-            --muted: #999999;
-            --green: #22c55e;
-            --danger: #ef4444;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html {
-            min-height: 100%;
+        :root {
+            --red: #d71920;
+            --red-dark: #a90f15;
+            --gold: #f5c542;
+            --black: #050505;
+            --card: #111111;
+            --border: #292929;
+            --text: #ffffff;
+            --muted: #999999;
         }
 
         body {
+            font-family: "Segoe UI", Arial, sans-serif;
             min-height: 100vh;
-            font-family:
-                "Segoe UI",
-                Arial,
-                Helvetica,
-                sans-serif;
-            color: var(--text);
-
             background:
                 radial-gradient(
-                    circle at 15% 15%,
-                    rgba(215, 25, 32, .18),
-                    transparent 30%
+                    circle at top right,
+                    rgba(215, 25, 32, 0.15),
+                    transparent 35%
                 ),
                 radial-gradient(
-                    circle at 85% 85%,
-                    rgba(245, 197, 66, .08),
-                    transparent 30%
+                    circle at bottom left,
+                    rgba(245, 197, 66, 0.07),
+                    transparent 35%
                 ),
-                var(--bg);
+                var(--black);
+            color: var(--text);
+        }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 14px;
+        }
+
+        .wrapper {
             width: 100%;
-            max-width: 470px;
+            max-width: 430px;
         }
 
-        .logo-area {
+        .brand {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        .logo {
-            width: 88px;
-            height: 88px;
+        .brand img {
+            width: 78px;
+            height: 78px;
             object-fit: contain;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            background: #000;
-
-            box-shadow:
-                0 0 0 5px rgba(245, 197, 66, .05),
-                0 12px 35px rgba(0, 0, 0, .5);
+            margin-bottom: 8px;
         }
 
         .brand-title {
-            margin-top: 13px;
-            font-size: 23px;
+            color: var(--gold);
+            font-size: 22px;
             font-weight: 900;
             letter-spacing: 1.5px;
-            color: var(--gold);
         }
 
         .brand-subtitle {
-            margin-top: 5px;
             color: var(--muted);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-top: 4px;
         }
 
         .card {
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.035),
-                    rgba(255,255,255,.012)
-                ),
-                var(--panel);
-
+            background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 28px;
-
+            border-radius: 17px;
+            padding: 25px;
             box-shadow:
-                0 25px 80px rgba(0,0,0,.45);
-
-            backdrop-filter: blur(12px);
+                0 20px 60px rgba(0, 0, 0, 0.45);
         }
 
-        .card-header {
-            text-align: center;
-            margin-bottom: 24px;
+        .title {
+            font-size: 21px;
+            font-weight: 900;
+            margin-bottom: 6px;
         }
 
-        .card-header h1 {
-            font-size: 22px;
-            margin-bottom: 7px;
-        }
-
-        .card-header p {
+        .description {
             color: var(--muted);
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 7px;
-            color: #d8d8d8;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .input-wrap {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 13px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--muted);
-            font-size: 15px;
-            pointer-events: none;
-        }
-
-        .form-control {
-            width: 100%;
-            height: 47px;
-            background: #0b0b0b;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            color: white;
-            padding: 0 44px 0 40px;
-            outline: none;
-            transition: .2s ease;
-        }
-
-        .form-control::placeholder {
-            color: #626262;
-        }
-
-        .form-control:focus {
-            border-color: var(--gold);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(245, 197, 66, .07);
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 7px;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 34px;
-            height: 34px;
-
-            border: 0;
-            background: transparent;
-            color: var(--muted);
-            border-radius: 7px;
-            cursor: pointer;
-        }
-
-        .password-toggle:hover {
-            background: #1c1c1c;
-            color: var(--gold);
-        }
-
-        .form-options {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-top: -5px;
-            margin-bottom: 18px;
-        }
-
-        .forgot-btn {
-            border: 0;
-            background: transparent;
-            color: var(--gold);
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .forgot-btn:hover {
-            text-decoration: underline;
-        }
-
-        .login-btn {
-            width: 100%;
-            height: 48px;
-
-            border: 1px solid var(--red);
-            border-radius: 9px;
-
-            background: var(--red);
-            color: white;
-
-            font-weight: 800;
-            letter-spacing: .5px;
-            cursor: pointer;
-            transition: .2s ease;
-        }
-
-        .login-btn:hover {
-            background: var(--red-dark);
-            border-color: var(--red-dark);
-            transform: translateY(-1px);
-
-            box-shadow:
-                0 8px 25px
-                rgba(215, 25, 32, .22);
-        }
-
-        .login-btn:active {
-            transform: scale(.99);
-        }
-
-        .login-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 22px 0;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            height: 1px;
-            flex: 1;
-            background: var(--border);
-        }
-
-        .divider span {
-            color: #666;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .register-link {
-            width: 100%;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            min-height: 45px;
-
-            border-radius: 9px;
-            border: 1px solid var(--border);
-            background: var(--panel-2);
-
-            color: white;
-            text-decoration: none;
-
-            font-size: 13px;
-            font-weight: 700;
-
-            transition: .2s ease;
-        }
-
-        .register-link:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 18px;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 12px;
-        }
-
-        .back-link:hover {
-            color: var(--gold);
+            margin-bottom: 22px;
         }
 
         .message {
             display: none;
-            padding: 11px 13px;
+            padding: 12px;
             border-radius: 9px;
-            margin-bottom: 16px;
+            margin-bottom: 15px;
             font-size: 12px;
             line-height: 1.5;
         }
 
-        .message.show {
-            display: block;
-        }
-
         .message.error {
-            color: #ff9999;
-            background: rgba(239, 68, 68, .08);
-            border: 1px solid rgba(239, 68, 68, .25);
+            display: block;
+            background: rgba(215, 25, 32, 0.10);
+            border: 1px solid rgba(215, 25, 32, 0.35);
+            color: #ff8b8b;
         }
 
         .message.success {
-            color: #7bea9c;
-            background: rgba(34, 197, 94, .08);
-            border: 1px solid rgba(34, 197, 94, .25);
+            display: block;
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: #6ee7a0;
         }
 
-        .message.info {
-            color: #fcd96a;
-            background: rgba(245, 197, 66, .08);
-            border: 1px solid rgba(245, 197, 66, .25);
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 18px;
+        label {
+            display: block;
+            color: #ccc;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 13px;
+            border-radius: 9px;
+            border: 1px solid #303030;
+            outline: none;
+            background: #090909;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        input::placeholder {
             color: #555;
-            font-size: 10px;
-            line-height: 1.5;
         }
 
-        /* ================================
-           LOADING
-        ================================= */
+        input:focus {
+            border-color: var(--gold);
+        }
 
-        .loading-overlay {
+        .forgot {
+            text-align: right;
+            margin-top: -5px;
+            margin-bottom: 17px;
+        }
+
+        .forgot button {
+            background: none;
+            border: 0;
+            color: var(--gold);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #6b1818;
+            border-radius: 9px;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+            color: #fff;
+            font-weight: 900;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .login-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .register-box {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid #222;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .register-box a {
+            color: var(--gold);
+            font-weight: 800;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 17px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        .home-link:hover {
+            color: var(--gold);
+        }
+
+        .loading {
+            display: none;
             position: fixed;
             inset: 0;
-            z-index: 5000;
-
-            background: rgba(0,0,0,.82);
-
-            display: none;
-            align-items: center;
+            z-index: 9999;
+            background: rgba(5, 5, 5, 0.94);
             justify-content: center;
-
-            padding: 20px;
-            backdrop-filter: blur(6px);
+            align-items: center;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .loading-overlay.show {
+        .loading.show {
             display: flex;
         }
 
-        .loading-box {
-            text-align: center;
-        }
-
         .spinner {
-            width: 38px;
-            height: 38px;
-
-            border: 3px solid #333;
-            border-top-color: var(--gold);
-
+            width: 35px;
+            height: 35px;
+            border: 4px solid #292929;
+            border-top-color: var(--red);
+            border-right-color: var(--gold);
             border-radius: 50%;
-
             animation: spin .8s linear infinite;
-
-            margin: 0 auto 12px;
         }
 
         .loading-text {
-            color: var(--muted);
+            color: #aaa;
             font-size: 12px;
         }
 
@@ -429,135 +272,23 @@
             }
         }
 
-        /* ================================
-           FORGOT PASSWORD MODAL
-        ================================= */
+        @media (max-width: 500px) {
 
-        .modal {
-            position: fixed;
-            inset: 0;
-            z-index: 4000;
-
-            display: none;
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            background: rgba(0,0,0,.78);
-            backdrop-filter: blur(7px);
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-card {
-            width: 100%;
-            max-width: 430px;
-
-            background: var(--panel);
-
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 23px;
-
-            box-shadow:
-                0 25px 80px
-                rgba(0,0,0,.6);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 16px;
-        }
-
-        .modal-header h2 {
-            font-size: 18px;
-            color: var(--gold);
-        }
-
-        .close-btn {
-            width: 34px;
-            height: 34px;
-
-            border: 1px solid var(--border);
-            background: #171717;
-            color: white;
-
-            border-radius: 7px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .close-btn:hover {
-            background: var(--red);
-            border-color: var(--red);
-        }
-
-        .modal-description {
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        .modal-actions button {
-            flex: 1;
-        }
-
-        .secondary-btn {
-            height: 45px;
-
-            border: 1px solid var(--border);
-            background: var(--panel-2);
-            color: white;
-
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .secondary-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        @media (max-width: 520px) {
-
-            body {
-                padding: 14px;
-                align-items: flex-start;
+            .card {
+                padding: 20px 16px;
             }
 
-            .page {
-                margin-top: 25px;
-            }
-
-            .logo {
-                width: 76px;
-                height: 76px;
+            .brand img {
+                width: 65px;
+                height: 65px;
             }
 
             .brand-title {
                 font-size: 20px;
             }
 
-            .card {
-                padding: 21px 17px;
-                border-radius: 15px;
-            }
-
-            .card-header h1 {
-                font-size: 20px;
+            .title {
+                font-size: 19px;
             }
         }
     </style>
@@ -565,920 +296,386 @@
 
 <body>
 
+    <div
+        id="loading"
+        class="loading"
+    >
+        <div class="spinner"></div>
+
+        <div class="loading-text">
+            Signing in...
+        </div>
+    </div>
+
+
     <main class="page">
 
-        <!-- LOGO -->
+        <div class="wrapper">
 
-        <div class="logo-area">
+            <div class="brand">
 
-            <img
-                src="../assets/logo.png"
-                alt="NIGHTFALL DEVILS"
-                class="logo"
-            >
+                <img
+                    src="../assets/logo.png"
+                    alt="NIGHTFALL DEVILS"
+                >
 
-            <div class="brand-title">
-                NIGHTFALL DEVILS
+                <div class="brand-title">
+                    NIGHTFALL DEVILS
+                </div>
+
+                <div class="brand-subtitle">
+                    MEMBER PORTAL
+                </div>
+
             </div>
 
-            <div class="brand-subtitle">
-                Official Member Portal
-            </div>
 
-        </div>
+            <section class="card">
 
-
-        <!-- LOGIN CARD -->
-
-        <section class="card">
-
-            <div class="card-header">
-
-                <h1>
-                    Member Login
+                <h1 class="title">
+                    MEMBER LOGIN
                 </h1>
 
-                <p>
-                    Sign in to access your
-                    NIGHTFALL DEVILS member portal.
+                <p class="description">
+                    Login to access your NIGHTFALL DEVILS
+                    Member Dashboard.
                 </p>
 
-            </div>
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
 
 
-            <!-- MESSAGE -->
+                <form id="loginForm">
 
-            <div
-                id="message"
-                class="message"
-            ></div>
+                    <div class="form-group">
 
-
-            <!-- LOGIN FORM -->
-
-            <form id="loginForm">
-
-                <!-- EMAIL -->
-
-                <div class="form-group">
-
-                    <label
-                        class="form-label"
-                        for="email"
-                    >
-                        Email Address
-                    </label>
-
-                    <div class="input-wrap">
-
-                        <span class="input-icon">
-                            ✉
-                        </span>
+                        <label for="email">
+                            EMAIL ADDRESS
+                        </label>
 
                         <input
                             type="email"
                             id="email"
-                            class="form-control"
-                            placeholder="Enter your email"
+                            placeholder="you@example.com"
                             autocomplete="email"
                             required
                         >
 
                     </div>
 
-                </div>
 
+                    <div class="form-group">
 
-                <!-- PASSWORD -->
-
-                <div class="form-group">
-
-                    <label
-                        class="form-label"
-                        for="password"
-                    >
-                        Password
-                    </label>
-
-                    <div class="input-wrap">
-
-                        <span class="input-icon">
-                            🔒
-                        </span>
+                        <label for="password">
+                            PASSWORD
+                        </label>
 
                         <input
                             type="password"
                             id="password"
-                            class="form-control"
                             placeholder="Enter your password"
                             autocomplete="current-password"
                             required
                         >
 
+                    </div>
+
+
+                    <div class="forgot">
+
                         <button
                             type="button"
-                            id="togglePassword"
-                            class="password-toggle"
-                            aria-label="Show password"
+                            id="forgotBtn"
                         >
-                            👁
+                            Forgot Password?
                         </button>
 
                     </div>
 
-                </div>
-
-
-                <!-- FORGOT -->
-
-                <div class="form-options">
 
                     <button
-                        type="button"
-                        id="forgotPasswordBtn"
-                        class="forgot-btn"
+                        type="submit"
+                        id="loginBtn"
+                        class="login-btn"
                     >
-                        Forgot password?
+                        LOGIN
                     </button>
+
+                </form>
+
+
+                <div class="register-box">
+
+                    Don't have an account?
+
+                    <a href="../member-register.html">
+                        CREATE ACCOUNT
+                    </a>
 
                 </div>
 
 
-                <!-- LOGIN -->
-
-                <button
-                    type="submit"
-                    id="loginBtn"
-                    class="login-btn"
+                <a
+                    href="../index.html"
+                    class="home-link"
                 >
-                    🔐 LOGIN
-                </button>
+                    ← Back to Home
+                </a>
 
-            </form>
+            </section>
 
-
-            <!-- DIVIDER -->
-
-            <div class="divider">
-                <span>or</span>
-            </div>
-
-
-            <!-- REGISTER -->
-
-            <a
-                href="member-register.html"
-                class="register-link"
-            >
-                📝 APPLY AS A MEMBER
-            </a>
-
-
-            <!-- BACK -->
-
-            <a
-                href="../index.html"
-                class="back-link"
-            >
-                ← Back to NIGHTFALL DEVILS
-            </a>
-
-        </section>
-
-
-        <div class="footer">
-            NIGHTFALL DEVILS © 2026
-            <br>
-            Official Community Member Portal
         </div>
 
     </main>
 
 
-    <!-- FORGOT PASSWORD MODAL -->
-
-    <div
-        id="forgotModal"
-        class="modal"
-    >
-
-        <div class="modal-card">
-
-            <div class="modal-header">
-
-                <h2>
-                    Reset Password
-                </h2>
-
-                <button
-                    type="button"
-                    id="closeForgotBtn"
-                    class="close-btn"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <p class="modal-description">
-
-                Enter the email address connected
-                to your NIGHTFALL DEVILS member
-                account. Firebase will send a
-                password reset email.
-
-                <br><br>
-
-                <strong style="color:#f5c542;">
-                    First-time members:
-                </strong>
-
-                use this option to create your
-                password before your first login.
-
-            </p>
-
-
-            <div
-                id="forgotMessage"
-                class="message"
-            ></div>
-
-
-            <div class="form-group">
-
-                <label
-                    class="form-label"
-                    for="forgotEmail"
-                >
-                    Email Address
-                </label>
-
-                <div class="input-wrap">
-
-                    <span class="input-icon">
-                        ✉
-                    </span>
-
-                    <input
-                        type="email"
-                        id="forgotEmail"
-                        class="form-control"
-                        placeholder="Enter your email"
-                        autocomplete="email"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="modal-actions">
-
-                <button
-                    type="button"
-                    id="cancelForgotBtn"
-                    class="secondary-btn"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="button"
-                    id="sendResetBtn"
-                    class="login-btn"
-                >
-                    SEND RESET LINK
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- LOADING -->
-
-    <div
-        id="loadingOverlay"
-        class="loading-overlay"
-    >
-
-        <div class="loading-box">
-
-            <div class="spinner"></div>
-
-            <div
-                id="loadingText"
-                class="loading-text"
-            >
-                Signing in...
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- FIREBASE -->
-
     <script type="module">
 
         import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+
+        import {
+            getAuth,
             signInWithEmailAndPassword,
             sendPasswordResetEmail,
-            onAuthStateChanged,
-            signOut
-        } from
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 
         import {
-            collection,
-            query,
-            where,
-            getDocs
-        } from
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+            getFirestore,
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
-        import {
-            auth,
-            db
-        } from "../js/firebase.js";
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
+
+            authDomain:
+                "nightfall-devils-b0d77.firebaseapp.com",
+
+            projectId:
+                "nightfall-devils-b0d77",
+
+            storageBucket:
+                "nightfall-devils-b0d77.firebasestorage.app",
+
+            messagingSenderId:
+                "758952684668",
+
+            appId:
+                "1:758952684668:web:5be641ca90c9d5134f2df9",
+
+            measurementId:
+                "G-R6MZ05M4DR"
+        };
 
 
-        /* ==========================================
-           DOM
-        ========================================== */
+        const app =
+            initializeApp(firebaseConfig);
+
+        const auth =
+            getAuth(app);
+
+        const db =
+            getFirestore(app);
+
 
         const loginForm =
-            document.getElementById("loginForm");
+            document.getElementById(
+                "loginForm"
+            );
 
         const emailInput =
-            document.getElementById("email");
+            document.getElementById(
+                "email"
+            );
 
         const passwordInput =
-            document.getElementById("password");
+            document.getElementById(
+                "password"
+            );
 
         const loginBtn =
-            document.getElementById("loginBtn");
+            document.getElementById(
+                "loginBtn"
+            );
 
-        const togglePassword =
-            document.getElementById("togglePassword");
-
-        const forgotPasswordBtn =
-            document.getElementById("forgotPasswordBtn");
-
-        const forgotModal =
-            document.getElementById("forgotModal");
-
-        const closeForgotBtn =
-            document.getElementById("closeForgotBtn");
-
-        const cancelForgotBtn =
-            document.getElementById("cancelForgotBtn");
-
-        const sendResetBtn =
-            document.getElementById("sendResetBtn");
-
-        const forgotEmail =
-            document.getElementById("forgotEmail");
+        const forgotBtn =
+            document.getElementById(
+                "forgotBtn"
+            );
 
         const message =
-            document.getElementById("message");
+            document.getElementById(
+                "message"
+            );
 
-        const forgotMessage =
-            document.getElementById("forgotMessage");
+        const loading =
+            document.getElementById(
+                "loading"
+            );
 
-        const loadingOverlay =
-            document.getElementById("loadingOverlay");
-
-        const loadingText =
-            document.getElementById("loadingText");
-
-
-        /* ==========================================
-           STATE
-        ========================================== */
-
-        let authCheckInProgress = false;
-
-        let redirecting = false;
-
-
-        /* ==========================================
-           MESSAGE
-        ========================================== */
 
         function showMessage(
             text,
             type = "error"
         ) {
 
-            message.textContent = text;
+            message.textContent =
+                text;
 
             message.className =
-                "message show " + type;
+                "message " + type;
         }
 
 
         function clearMessage() {
 
-            message.textContent = "";
+            message.textContent =
+                "";
 
-            message.className = "message";
+            message.className =
+                "message";
         }
 
 
-        function showForgotMessage(
-            text,
-            type = "error"
+        function setLoading(
+            state,
+            text = "Signing in..."
         ) {
 
-            forgotMessage.textContent = text;
+            if (state) {
 
-            forgotMessage.className =
-                "message show " + type;
-        }
+                loading.querySelector(
+                    ".loading-text"
+                ).textContent = text;
 
-
-        function clearForgotMessage() {
-
-            forgotMessage.textContent = "";
-
-            forgotMessage.className = "message";
-        }
-
-
-        /* ==========================================
-           LOADING
-        ========================================== */
-
-        function showLoading(
-            text = "Please wait..."
-        ) {
-
-            loadingText.textContent = text;
-
-            loadingOverlay.classList.add("show");
-        }
-
-
-        function hideLoading() {
-
-            loadingOverlay.classList.remove("show");
-        }
-
-
-        /* ==========================================
-           PASSWORD TOGGLE
-        ========================================== */
-
-        togglePassword.addEventListener(
-            "click",
-            () => {
-
-                const isPassword =
-                    passwordInput.type === "password";
-
-                passwordInput.type =
-                    isPassword
-                        ? "text"
-                        : "password";
-
-                togglePassword.textContent =
-                    isPassword
-                        ? "🙈"
-                        : "👁";
-
-                togglePassword.setAttribute(
-                    "aria-label",
-                    isPassword
-                        ? "Hide password"
-                        : "Show password"
+                loading.classList.add(
+                    "show"
                 );
+
+                loginBtn.disabled =
+                    true;
+
+            } else {
+
+                loading.classList.remove(
+                    "show"
+                );
+
+                loginBtn.disabled =
+                    false;
+
             }
-        );
+
+        }
 
 
-        /* ==========================================
-           FIREBASE ERROR MESSAGE
-        ========================================== */
+        function firebaseError(
+            error
+        ) {
 
-        function getAuthErrorMessage(error) {
+            switch (
+                error?.code
+            ) {
 
-            switch (error.code) {
-
-                case "auth/invalid-email":
-                    return "Please enter a valid email address.";
+                case "auth/invalid-credential":
+                case "auth/invalid-login-credentials":
+                    return "Incorrect email or password.";
 
                 case "auth/user-not-found":
-                    return "No account was found with this email address.";
+                    return "Incorrect email or password.";
 
                 case "auth/wrong-password":
                     return "Incorrect email or password.";
 
-                case "auth/invalid-credential":
-                    return "Incorrect email or password.";
+                case "auth/invalid-email":
+                    return "Please enter a valid email address.";
 
                 case "auth/too-many-requests":
-                    return "Too many login attempts. Please wait and try again.";
-
-                case "auth/user-disabled":
-                    return "This account has been disabled.";
+                    return "Too many login attempts. Please try again later.";
 
                 case "auth/network-request-failed":
                     return "Network error. Please check your internet connection.";
 
-                case "auth/operation-not-allowed":
-                    return "Email/password login is not enabled in Firebase Authentication.";
-
                 default:
                     return (
-                        error.message ||
-                        "Unable to sign in."
+                        error?.message ||
+                        "Unable to login. Please try again."
                     );
             }
+
         }
 
 
-        /* ==========================================
-           FIND MEMBER BY UID
-        ========================================== */
+        /*
+         * If already logged in,
+         * go directly to dashboard.
+         */
 
-        async function findMemberByUID(uid) {
+        onAuthStateChanged(
+            auth,
+            (user) => {
 
-            if (!uid) {
-                return null;
-            }
+                if (user) {
 
-            const uidQuery =
-                query(
-                    collection(db, "members"),
-                    where("uid", "==", uid)
-                );
-
-            const snapshot =
-                await getDocs(uidQuery);
-
-            if (snapshot.empty) {
-                return null;
-            }
-
-            const memberDoc =
-                snapshot.docs[0];
-
-            return {
-                id: memberDoc.id,
-                data: memberDoc.data()
-            };
-        }
-
-
-        /* ==========================================
-           FIND MEMBER BY EMAIL
-        ========================================== */
-
-        async function findMemberByEmail(email) {
-
-            if (!email) {
-                return null;
-            }
-
-            const normalizedEmail =
-                email
-                    .trim()
-                    .toLowerCase();
-
-
-            /*
-             * First try normalized email.
-             */
-
-            const emailQuery =
-                query(
-                    collection(db, "members"),
-                    where(
-                        "email",
-                        "==",
-                        normalizedEmail
-                    )
-                );
-
-            const emailSnapshot =
-                await getDocs(emailQuery);
-
-            if (!emailSnapshot.empty) {
-
-                const memberDoc =
-                    emailSnapshot.docs[0];
-
-                return {
-                    id: memberDoc.id,
-                    data: memberDoc.data()
-                };
-            }
-
-
-            /*
-             * Also try exact value.
-             */
-
-            if (email !== normalizedEmail) {
-
-                const exactQuery =
-                    query(
-                        collection(db, "members"),
-                        where(
-                            "email",
-                            "==",
-                            email
-                        )
+                    window.location.replace(
+                        "member-dashboard.html"
                     );
 
-                const exactSnapshot =
-                    await getDocs(exactQuery);
-
-                if (!exactSnapshot.empty) {
-
-                    const memberDoc =
-                        exactSnapshot.docs[0];
-
-                    return {
-                        id: memberDoc.id,
-                        data: memberDoc.data()
-                    };
                 }
+
             }
+        );
 
 
-            return null;
-        }
-
-
-        /* ==========================================
-           FIND MEMBER
-        ========================================== */
-
-        async function findMemberByUser(user) {
-
-            /*
-             * Primary:
-             * Firebase Auth UID.
-             */
-
-            const uidResult =
-                await findMemberByUID(
-                    user.uid
-                );
-
-            if (uidResult) {
-                return uidResult;
-            }
-
-
-            /*
-             * Fallback:
-             * Email.
-             */
-
-            if (user.email) {
-
-                return await findMemberByEmail(
-                    user.email
-                );
-            }
-
-
-            return null;
-        }
-
-
-        /* ==========================================
-           CHECK MEMBER ACCESS
-        ========================================== */
-
-        async function checkMemberAccess(user) {
-
-            if (!user) {
-                return false;
-            }
-
-
-            let result = null;
-
-            try {
-
-                result =
-                    await findMemberByUser(user);
-
-            } catch (error) {
-
-                /*
-                 * If the members query fails,
-                 * do not immediately block the
-                 * Firebase account.
-                 *
-                 * The Member Panel will handle
-                 * membership status.
-                 */
-
-                console.error(
-                    "Member lookup error:",
-                    error
-                );
-            }
-
-
-            /*
-             * ==================================================
-             * NEW MEMBER ACCOUNT FLOW
-             * ==================================================
-             *
-             * A Firebase account is allowed to enter
-             * the Member Panel even when there is no
-             * members document yet.
-             *
-             * The Member Panel will provide:
-             *
-             * - Request to Join
-             * - Request Status
-             * - Pending
-             * - Approved
-             * - Rejected
-             */
-
-            if (!result) {
-
-                localStorage.setItem(
-                    "nightfallMemberId",
-                    ""
-                );
-
-                localStorage.setItem(
-                    "nightfallMemberUsername",
-                    ""
-                );
-
-                localStorage.setItem(
-                    "nightfallMemberCode",
-                    ""
-                );
-
-                localStorage.setItem(
-                    "nightfallMemberRole",
-                    "member"
-                );
-
-                localStorage.setItem(
-                    "nightfallMemberEmail",
-                    user.email || ""
-                );
-
-                localStorage.setItem(
-                    "nightfallMemberStatus",
-                    "pending"
-                );
-
-                return true;
-            }
-
-
-            /*
-             * ==================================================
-             * MEMBER RECORD EXISTS
-             * ==================================================
-             */
-
-            const member =
-                result.data || {};
-
-
-            localStorage.setItem(
-                "nightfallMemberId",
-                result.id || ""
-            );
-
-            localStorage.setItem(
-                "nightfallMemberUsername",
-                member.tiktokUsername || ""
-            );
-
-            localStorage.setItem(
-                "nightfallMemberCode",
-                member.memberCode || ""
-            );
-
-            localStorage.setItem(
-                "nightfallMemberRole",
-                member.role || "member"
-            );
-
-            localStorage.setItem(
-                "nightfallMemberEmail",
-                member.email ||
-                user.email ||
-                ""
-            );
-
-            localStorage.setItem(
-                "nightfallMemberStatus",
-                member.status ||
-                "pending"
-            );
-
-
-            /*
-             * IMPORTANT:
-             *
-             * We intentionally do NOT block:
-             *
-             * pending
-             * approved
-             * active
-             * rejected
-             * suspended
-             * inactive
-             *
-             * The Member Panel will display the
-             * correct membership status.
-             */
-
-            return true;
-        }
-
-
-        /* ==========================================
-           LOGIN
-        ========================================== */
+        /*
+         * LOGIN
+         */
 
         loginForm.addEventListener(
             "submit",
-            async event => {
+            async (event) => {
 
                 event.preventDefault();
 
-
-                if (
-                    authCheckInProgress ||
-                    redirecting
-                ) {
-                    return;
-                }
-
-
                 clearMessage();
-
 
                 const email =
                     emailInput.value
                         .trim()
                         .toLowerCase();
 
-
                 const password =
                     passwordInput.value;
 
 
-                if (!email) {
+                if (!email || !password) {
 
                     showMessage(
-                        "Please enter your email address."
+                        "Please enter your email and password."
                     );
-
-                    emailInput.focus();
 
                     return;
                 }
-
-
-                if (!password) {
-
-                    showMessage(
-                        "Please enter your password."
-                    );
-
-                    passwordInput.focus();
-
-                    return;
-                }
-
-
-                loginBtn.disabled = true;
-
-                loginBtn.textContent =
-                    "SIGNING IN...";
-
-
-                showLoading(
-                    "Signing in..."
-                );
 
 
                 try {
+
+                    setLoading(
+                        true,
+                        "Signing in..."
+                    );
+
 
                     const credential =
                         await signInWithEmailAndPassword(
@@ -1488,36 +685,83 @@
                         );
 
 
-                    const allowed =
-                        await checkMemberAccess(
-                            credential.user
+                    const user =
+                        credential.user;
+
+
+                    /*
+                     * Read users/{uid}
+                     */
+
+                    let userData = null;
+
+                    try {
+
+                        const userSnap =
+                            await getDoc(
+                                doc(
+                                    db,
+                                    "users",
+                                    user.uid
+                                )
+                            );
+
+                        if (
+                            userSnap.exists()
+                        ) {
+
+                            userData =
+                                userSnap.data();
+
+                        }
+
+                    } catch (
+                        firestoreError
+                    ) {
+
+                        console.warn(
+                            "Unable to read user profile:",
+                            firestoreError
                         );
 
-
-                    if (!allowed) {
-
-                        hideLoading();
-
-                        loginBtn.disabled = false;
-
-                        loginBtn.textContent =
-                            "🔐 LOGIN";
-
-                        return;
                     }
 
 
-                    redirecting = true;
+                    /*
+                     * Save local session information.
+                     */
 
+                    localStorage.setItem(
+                        "nightfallMemberEmail",
+                        user.email || email
+                    );
 
-                    showLoading(
-                        "Opening member portal..."
+                    localStorage.setItem(
+                        "nightfallMemberName",
+                        user.displayName ||
+                        userData?.displayName ||
+                        ""
+                    );
+
+                    localStorage.setItem(
+                        "nightfallMemberStatus",
+                        userData?.membershipStatus ||
+                        "not_requested"
                     );
 
 
-                    window.location.href =
-                        "member-dashboard.html";
+                    /*
+                     * Dashboard handles:
+                     *
+                     * NOT REQUESTED
+                     * PENDING
+                     * APPROVED
+                     * REJECTED
+                     */
 
+                    window.location.replace(
+                        "member-dashboard.html"
+                    );
 
                 } catch (error) {
 
@@ -1526,185 +770,54 @@
                         error
                     );
 
-
-                    hideLoading();
-
+                    setLoading(false);
 
                     showMessage(
-                        getAuthErrorMessage(
-                            error
-                        )
+                        firebaseError(error),
+                        "error"
                     );
 
-
-                    loginBtn.disabled = false;
-
-                    loginBtn.textContent =
-                        "🔐 LOGIN";
                 }
 
             }
         );
 
 
-        /* ==========================================
-           OPEN FORGOT PASSWORD
-        ========================================== */
+        /*
+         * FORGOT PASSWORD
+         */
 
-        function openForgotModal() {
-
-            clearForgotMessage();
-
-
-            if (
-                emailInput.value.trim()
-            ) {
-
-                forgotEmail.value =
-                    emailInput.value
-                        .trim()
-                        .toLowerCase();
-            }
-
-
-            forgotModal.classList.add(
-                "show"
-            );
-
-
-            setTimeout(
-                () => {
-                    forgotEmail.focus();
-                },
-                100
-            );
-        }
-
-
-        /* ==========================================
-           CLOSE FORGOT PASSWORD
-        ========================================== */
-
-        function closeForgotModal() {
-
-            forgotModal.classList.remove(
-                "show"
-            );
-
-            clearForgotMessage();
-        }
-
-
-        forgotPasswordBtn.addEventListener(
-            "click",
-            openForgotModal
-        );
-
-
-        closeForgotBtn.addEventListener(
-            "click",
-            closeForgotModal
-        );
-
-
-        cancelForgotBtn.addEventListener(
-            "click",
-            closeForgotModal
-        );
-
-
-        forgotModal.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    forgotModal
-                ) {
-
-                    closeForgotModal();
-                }
-            }
-        );
-
-
-        /* ==========================================
-           CHECK MEMBER BEFORE RESET
-        ========================================== */
-
-        async function getMemberForReset(email) {
-
-            /*
-             * NEW FLOW:
-             *
-             * Password reset belongs to the
-             * Firebase account.
-             *
-             * We therefore do not require an
-             * approved members document.
-             *
-             * Firebase itself will determine
-             * whether the email belongs to an
-             * authentication account.
-             */
-
-            if (!email) {
-
-                return {
-                    ok: false,
-                    reason: "member-not-found"
-                };
-            }
-
-
-            return {
-                ok: true
-            };
-        }
-
-
-        /* ==========================================
-           SEND PASSWORD RESET
-        ========================================== */
-
-        sendResetBtn.addEventListener(
+        forgotBtn.addEventListener(
             "click",
             async () => {
 
-                clearForgotMessage();
-
+                clearMessage();
 
                 const email =
-                    forgotEmail.value
+                    emailInput.value
                         .trim()
                         .toLowerCase();
 
 
                 if (!email) {
 
-                    showForgotMessage(
-                        "Please enter your email address.",
-                        "error"
+                    showMessage(
+                        "Enter your email address first, then click Forgot Password."
                     );
 
-                    forgotEmail.focus();
+                    emailInput.focus();
 
                     return;
                 }
 
 
-                sendResetBtn.disabled = true;
-
-                sendResetBtn.textContent =
-                    "SENDING...";
-
-
                 try {
 
-                    /*
-                     * Firebase Authentication
-                     * handles account verification.
-                     */
+                    setLoading(
+                        true,
+                        "Sending password reset email..."
+                    );
+
 
                     await sendPasswordResetEmail(
                         auth,
@@ -1712,8 +825,10 @@
                     );
 
 
-                    showForgotMessage(
-                        "Password reset email sent successfully. Check your inbox and follow the Firebase password reset link. After creating your password, return here and login.",
+                    setLoading(false);
+
+                    showMessage(
+                        "If the email is registered, a password reset email has been sent.",
                         "success"
                     );
 
@@ -1725,182 +840,19 @@
                         error
                     );
 
+                    setLoading(false);
 
-                    let text =
-                        "Unable to send the password reset email.";
+                    /*
+                     * Generic message helps avoid
+                     * revealing whether an email
+                     * exists.
+                     */
 
-
-                    switch (error.code) {
-
-                        case "auth/invalid-email":
-
-                            text =
-                                "Please enter a valid email address.";
-
-                            break;
-
-
-                        case "auth/user-not-found":
-
-                            text =
-                                "No NIGHTFALL DEVILS Firebase account was found with this email address.";
-
-                            break;
-
-
-                        case "auth/too-many-requests":
-
-                            text =
-                                "Too many reset requests. Please wait and try again later.";
-
-                            break;
-
-
-                        case "auth/network-request-failed":
-
-                            text =
-                                "Network error. Please check your internet connection.";
-
-                            break;
-
-
-                        case "auth/operation-not-allowed":
-
-                            text =
-                                "Email/password authentication is not enabled in Firebase Authentication.";
-
-                            break;
-
-
-                        default:
-
-                            text =
-                                error.message ||
-                                text;
-                    }
-
-
-                    showForgotMessage(
-                        text,
-                        "error"
+                    showMessage(
+                        "If the email is registered, a password reset email has been sent.",
+                        "success"
                     );
 
-
-                } finally {
-
-                    sendResetBtn.disabled = false;
-
-                    sendResetBtn.textContent =
-                        "SEND RESET LINK";
-                }
-
-            }
-        );
-
-
-        /* ==========================================
-           AUTH STATE
-        ========================================== */
-
-        onAuthStateChanged(
-            auth,
-            async user => {
-
-                /*
-                 * No logged-in Firebase user.
-                 */
-
-                if (!user) {
-
-                    authCheckInProgress =
-                        false;
-
-                    return;
-                }
-
-
-                /*
-                 * Prevent duplicate auth checks.
-                 */
-
-                if (
-                    authCheckInProgress ||
-                    redirecting
-                ) {
-                    return;
-                }
-
-
-                authCheckInProgress = true;
-
-
-                try {
-
-                    showLoading(
-                        "Checking member account..."
-                    );
-
-
-                    const allowed =
-                        await checkMemberAccess(
-                            user
-                        );
-
-
-                    if (allowed) {
-
-                        redirecting = true;
-
-
-                        showLoading(
-                            "Opening member portal..."
-                        );
-
-
-                        window.location.href =
-                            "member-dashboard.html";
-
-
-                    } else {
-
-                        hideLoading();
-
-                        authCheckInProgress =
-                            false;
-                    }
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Auth state error:",
-                        error
-                    );
-
-
-                    hideLoading();
-
-                    authCheckInProgress =
-                        false;
-                }
-
-            }
-        );
-
-
-        /* ==========================================
-           ESC KEY
-        ========================================== */
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    closeForgotModal();
                 }
 
             }
@@ -1911,4 +863,3 @@
 </body>
 
 </html>
-```
