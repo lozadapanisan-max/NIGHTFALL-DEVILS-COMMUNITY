@@ -4311,35 +4311,37 @@ onAuthStateChanged(
              * LOAD SCHEDULES
              * =====================================
              */
-            try {
+         try {
+    await loadSchedules();
+} catch (scheduleError) {
+    console.error("Schedule loading error:", scheduleError);
 
-                loadSchedules();
+    scheduleList.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <strong>Unable to load schedules</strong>
+            <span>Please try refreshing the page.</span>
+        </div>
+    `;
 
-            } catch (scheduleError) {
+    scheduleCount.textContent = "0";
+}
 
-                console.error(
-                    "Schedule loading error:",
-                    scheduleError
-                );
+try {
+    await loadAnnouncements();
+} catch (announcementError) {
+    console.error("Announcement loading error:", announcementError);
 
-                scheduleList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">⚠️</div>
+    announcementList.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <strong>Unable to load announcements</strong>
+            <span>Please try refreshing the page.</span>
+        </div>
+    `;
 
-                        <strong>
-                            Unable to load schedules
-                        </strong>
-
-                        <span>
-                            Please try refreshing the page.
-                        </span>
-                    </div>
-                `;
-
-                scheduleCount.textContent = "0";
-
-            }
-
+    announcementCount.textContent = "0";
+}
 
             /*
              * =====================================
