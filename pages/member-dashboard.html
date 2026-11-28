@@ -75,7 +75,8 @@
         }
 
         button,
-        input {
+        input,
+        textarea {
             font-family: inherit;
         }
 
@@ -621,6 +622,215 @@
         }
 
         /* =========================
+           MEMBERSHIP
+        ========================= */
+
+        .membership-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .membership-status-box {
+            border-radius: 13px;
+            padding: 17px;
+            border: 1px solid #303030;
+            background: #0c0c0c;
+        }
+
+        .membership-status-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 9px;
+        }
+
+        .membership-status-title {
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .membership-status-description {
+            color: #999;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .membership-status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 105px;
+            padding: 7px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .membership-not-requested {
+            color: #ccc;
+            border: 1px solid #444;
+            background: #191919;
+        }
+
+        .membership-pending {
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            background: rgba(245, 158, 11, 0.09);
+        }
+
+        .membership-approved {
+            color: #5ee890;
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            background: rgba(34, 197, 94, 0.09);
+        }
+
+        .membership-rejected {
+            color: #ff7777;
+            border: 1px solid rgba(215, 25, 32, 0.4);
+            background: rgba(215, 25, 32, 0.1);
+        }
+
+        .membership-request-message {
+            margin-top: 12px;
+            padding: 11px;
+            background: #111;
+            border-left: 3px solid var(--gold);
+            color: #bbb;
+            font-size: 11px;
+            line-height: 1.5;
+            border-radius: 0 7px 7px 0;
+            white-space: pre-wrap;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .primary-btn,
+        .secondary-btn,
+        .danger-btn {
+            border-radius: 8px;
+            padding: 10px 13px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .primary-btn {
+            border: 1px solid var(--red);
+            background: var(--red);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: var(--red-dark);
+        }
+
+        .secondary-btn {
+            border: 1px solid #444;
+            background: #151515;
+            color: #ddd;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .danger-btn {
+            border: 1px solid #5b2020;
+            background: #170b0b;
+            color: #ff7777;
+        }
+
+        .danger-btn:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .primary-btn:disabled,
+        .secondary-btn:disabled,
+        .danger-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           REQUEST FORM
+        ========================= */
+
+        .request-form {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #292929;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            color: #aaa;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 1px solid #333;
+            background: #090909;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 11px;
+            outline: none;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.07);
+        }
+
+        textarea.form-control {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            color: #666;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        /* =========================
            EMPTY STATE
         ========================= */
 
@@ -850,6 +1060,23 @@
                 text-align: left;
             }
 
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .membership-status-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .membership-status-badge {
+                min-width: auto;
+            }
+
             #toast {
                 left: 12px;
                 right: 12px;
@@ -972,7 +1199,9 @@
         ></div>
 
 
-        <!-- WELCOME -->
+        <!-- =========================
+             WELCOME CARD
+        ========================= -->
 
         <section class="welcome-card">
 
@@ -1006,10 +1235,10 @@
                     </div>
 
                     <div
-                        id="memberCode"
+                        id="memberCodeBadge"
                         class="member-code-badge"
                     >
-                        NFD-26-MEM-000
+                        MEMBER ACCOUNT
                     </div>
 
                 </div>
@@ -1019,7 +1248,9 @@
         </section>
 
 
-        <!-- STATS -->
+        <!-- =========================
+             STATS
+        ========================= -->
 
         <section class="stats-grid">
 
@@ -1032,7 +1263,7 @@
                 <div class="stat-info">
 
                     <small>
-                        My Schedules
+                        My Schedule
                     </small>
 
                     <strong id="scheduleCount">
@@ -1074,11 +1305,14 @@
                 <div class="stat-info">
 
                     <small>
-                        Status
+                        Membership
                     </small>
 
-                    <strong id="statusText">
-                        Active
+                    <strong
+                        id="membershipStat"
+                        style="font-size:15px;"
+                    >
+                        NOT REQUESTED
                     </strong>
 
                 </div>
@@ -1088,17 +1322,223 @@
         </section>
 
 
-        <!-- CONTENT -->
+        <!-- =========================
+             CONTENT
+        ========================= -->
 
         <div class="content-grid">
 
 
-            <!-- LEFT -->
+            <!-- =========================
+                 LEFT COLUMN
+            ========================= -->
 
             <div>
 
 
-                <!-- MY SCHEDULE -->
+                <!-- =========================
+                     MEMBERSHIP STATUS
+                ========================= -->
+
+                <section class="section-card membership-card">
+
+                    <div class="section-header">
+
+                        <div class="section-title">
+
+                            <span class="section-title-icon">
+                                👿
+                            </span>
+
+                            MEMBERSHIP STATUS
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-body">
+
+                        <div
+                            id="membershipStatusBox"
+                            class="membership-status-box"
+                        >
+
+                            <div class="membership-status-top">
+
+                                <div
+                                    id="membershipStatusTitle"
+                                    class="membership-status-title"
+                                >
+                                    Membership Status
+                                </div>
+
+                                <div
+                                    id="membershipStatusBadge"
+                                    class="membership-status-badge membership-not-requested"
+                                >
+                                    NOT YET REQUESTED
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="membershipStatusDescription"
+                                class="membership-status-description"
+                            >
+                                Your Firebase account is active. You can submit a request to join NIGHTFALL DEVILS.
+                            </div>
+
+                            <div
+                                id="membershipRequestMessage"
+                                class="membership-request-message"
+                                style="display:none;"
+                            ></div>
+
+                            <div class="request-actions">
+
+                                <button
+                                    type="button"
+                                    id="openRequestBtn"
+                                    class="primary-btn"
+                                >
+                                    📩 REQUEST TO JOIN
+                                </button>
+
+                            </div>
+
+
+                            <!-- REQUEST FORM -->
+
+                            <form
+                                id="joinRequestForm"
+                                class="request-form"
+                            >
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label
+                                            class="form-label"
+                                            for="requestTikTok"
+                                        >
+                                            TIKTOK USERNAME
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="requestTikTok"
+                                            class="form-control"
+                                            placeholder="@username"
+                                            maxlength="50"
+                                            required
+                                        >
+
+                                        <div class="form-hint">
+                                            Enter your TikTok username.
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label
+                                            class="form-label"
+                                            for="requestDisplayName"
+                                        >
+                                            DISPLAY NAME
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="requestDisplayName"
+                                            class="form-control"
+                                            placeholder="Your display name"
+                                            maxlength="100"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label
+                                            class="form-label"
+                                            for="requestReferredBy"
+                                        >
+                                            REFERRED BY
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="requestReferredBy"
+                                            class="form-control"
+                                            placeholder="Optional"
+                                            maxlength="100"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label
+                                            class="form-label"
+                                            for="requestMessage"
+                                        >
+                                            MESSAGE
+                                        </label>
+
+                                        <textarea
+                                            id="requestMessage"
+                                            class="form-control"
+                                            maxlength="500"
+                                            placeholder="Tell us something about yourself..."
+                                        ></textarea>
+
+                                        <div class="form-hint">
+                                            Maximum 500 characters.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-actions">
+
+                                    <button
+                                        type="submit"
+                                        id="submitRequestBtn"
+                                        class="primary-btn"
+                                    >
+                                        SUBMIT REQUEST
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        id="cancelRequestBtn"
+                                        class="secondary-btn"
+                                    >
+                                        CANCEL
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     MY SCHEDULE
+                ========================= -->
 
                 <section class="section-card">
 
@@ -1114,13 +1554,6 @@
 
                         </div>
 
-                        <a
-                            href="schedule.html"
-                            class="view-all"
-                        >
-                            VIEW ALL →
-                        </a>
-
                     </div>
 
                     <div class="section-body">
@@ -1133,7 +1566,7 @@
                             <div class="empty-state">
 
                                 <div class="empty-icon">
-                                    ⏳
+                                    📅
                                 </div>
 
                                 <strong>
@@ -1153,7 +1586,9 @@
                 </section>
 
 
-                <!-- ANNOUNCEMENTS -->
+                <!-- =========================
+                     ANNOUNCEMENTS
+                ========================= -->
 
                 <section class="section-card">
 
@@ -1181,7 +1616,7 @@
                             <div class="empty-state">
 
                                 <div class="empty-icon">
-                                    ⏳
+                                    📢
                                 </div>
 
                                 <strong>
@@ -1203,12 +1638,16 @@
             </div>
 
 
-            <!-- RIGHT -->
+            <!-- =========================
+                 RIGHT COLUMN
+            ========================= -->
 
             <div>
 
 
-                <!-- MY PROFILE -->
+                <!-- =========================
+                     MY PROFILE
+                ========================= -->
 
                 <section class="section-card">
 
@@ -1233,112 +1672,96 @@
 
                             <div class="profile-row">
 
-                                <span class="profile-label">
+                                <div class="profile-label">
                                     Display Name
-                                </span>
+                                </div>
 
-                                <span
-                                    id="profileName"
+                                <div
+                                    id="profileDisplayName"
                                     class="profile-value"
                                 >
                                     —
-                                </span>
+                                </div>
 
                             </div>
 
 
                             <div class="profile-row">
 
-                                <span class="profile-label">
+                                <div class="profile-label">
                                     TikTok Username
-                                </span>
+                                </div>
 
-                                <span
+                                <div
                                     id="profileTikTok"
                                     class="profile-value"
                                 >
                                     —
-                                </span>
+                                </div>
 
                             </div>
 
 
                             <div class="profile-row">
 
-                                <span class="profile-label">
-                                    Member Code
-                                </span>
-
-                                <span
-                                    id="profileCode"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Role
-                                </span>
-
-                                <span
-                                    id="profileRole"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Status
-                                </span>
-
-                                <span
-                                    id="profileStatus"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
+                                <div class="profile-label">
                                     Email
-                                </span>
+                                </div>
 
-                                <span
+                                <div
                                     id="profileEmail"
                                     class="profile-value"
                                 >
                                     —
-                                </span>
+                                </div>
 
                             </div>
 
 
                             <div class="profile-row">
 
-                                <span class="profile-label">
-                                    Joined
-                                </span>
+                                <div class="profile-label">
+                                    Member Code
+                                </div>
 
-                                <span
-                                    id="profileJoined"
+                                <div
+                                    id="profileMemberCode"
                                     class="profile-value"
                                 >
                                     —
-                                </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="profile-row">
+
+                                <div class="profile-label">
+                                    Role
+                                </div>
+
+                                <div
+                                    id="profileRole"
+                                    class="profile-value"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+
+                            <div class="profile-row">
+
+                                <div class="profile-label">
+                                    Status
+                                </div>
+
+                                <div
+                                    id="profileStatus"
+                                    class="profile-value"
+                                >
+                                    —
+                                </div>
 
                             </div>
 
@@ -1350,7 +1773,9 @@
                 </section>
 
 
-                <!-- QUICK LINKS -->
+                <!-- =========================
+                     ACCOUNT
+                ========================= -->
 
                 <section class="section-card">
 
@@ -1359,7 +1784,71 @@
                         <div class="section-title">
 
                             <span class="section-title-icon">
-                                ⚡
+                                🔐
+                            </span>
+
+                            ACCOUNT
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-body">
+
+                        <div
+                            style="
+                                color:#999;
+                                font-size:12px;
+                                line-height:1.6;
+                            "
+                        >
+
+                            Your NIGHTFALL DEVILS account is connected to Firebase Authentication.
+
+                            <br><br>
+
+                            <strong
+                                style="color:#ddd;"
+                            >
+                                Account UID:
+                            </strong>
+
+                            <div
+                                id="accountUID"
+                                style="
+                                    margin-top:6px;
+                                    padding:9px;
+                                    background:#090909;
+                                    border:1px solid #292929;
+                                    border-radius:7px;
+                                    color:#777;
+                                    font-family:monospace;
+                                    font-size:10px;
+                                    word-break:break-all;
+                                "
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     QUICK LINKS
+                ========================= -->
+
+                <section class="section-card">
+
+                    <div class="section-header">
+
+                        <div class="section-title">
+
+                            <span class="section-title-icon">
+                                🔗
                             </span>
 
                             QUICK LINKS
@@ -1379,63 +1868,35 @@
                         >
 
                             <a
-                                href="schedule.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
-                            >
-                                📅 Community Schedule
-                            </a>
-
-                            <a
                                 href="rules.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
+                                class="secondary-btn"
+                                style="display:block;text-align:center;"
                             >
-                                📜 Community Rules
+                                📜 COMMUNITY RULES
                             </a>
 
                             <a
-                                href="members.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
+                                href="schedule.html"
+                                class="secondary-btn"
+                                style="display:block;text-align:center;"
                             >
-                                👥 Members
+                                📅 PUBLIC SCHEDULE
                             </a>
 
                             <a
                                 href="organization.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
+                                class="secondary-btn"
+                                style="display:block;text-align:center;"
                             >
-                                🏢 Organization
+                                👥 ORGANIZATION
+                            </a>
+
+                            <a
+                                href="members.html"
+                                class="secondary-btn"
+                                style="display:block;text-align:center;"
+                            >
+                                👿 MEMBERS
                             </a>
 
                         </div>
@@ -1449,18 +1910,32 @@
         </div>
 
 
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
         <footer>
 
-            © 2026
-            <strong>NIGHTFALL DEVILS</strong>
-            · Member Portal
+            <strong>
+                NIGHTFALL DEVILS
+            </strong>
+
+            &nbsp;•&nbsp;
+
+            Member Portal
+
+            <br>
+
+            Founded October 18, 2026
 
         </footer>
 
     </main>
 
 
-    <!-- TOAST -->
+    <!-- =========================
+         TOAST
+    ========================= -->
 
     <div id="toast"></div>
 
@@ -1487,6 +1962,8 @@
             query,
             where,
             getDocs,
+            addDoc,
+            serverTimestamp,
             onSnapshot
         } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -1521,15 +1998,18 @@
         };
 
 
-        const app = initializeApp(firebaseConfig);
+        const app =
+            initializeApp(firebaseConfig);
 
-        const auth = getAuth(app);
+        const auth =
+            getAuth(app);
 
-        const db = getFirestore(app);
+        const db =
+            getFirestore(app);
 
 
         /* =========================
-           ELEMENTS
+           DOM
         ========================= */
 
         const loadingScreen =
@@ -1538,14 +2018,17 @@
         const errorBox =
             document.getElementById("errorBox");
 
+        const toast =
+            document.getElementById("toast");
+
         const logoutBtn =
             document.getElementById("logoutBtn");
 
-        const headerAvatar =
-            document.getElementById("headerAvatar");
-
         const headerUserName =
             document.getElementById("headerUserName");
+
+        const headerAvatar =
+            document.getElementById("headerAvatar");
 
         const profileAvatar =
             document.getElementById("profileAvatar");
@@ -1556,8 +2039,8 @@
         const welcomeTikTok =
             document.getElementById("welcomeTikTok");
 
-        const memberCode =
-            document.getElementById("memberCode");
+        const memberCodeBadge =
+            document.getElementById("memberCodeBadge");
 
         const scheduleCount =
             document.getElementById("scheduleCount");
@@ -1565,102 +2048,133 @@
         const announcementCount =
             document.getElementById("announcementCount");
 
-        const statusText =
-            document.getElementById("statusText");
+        const membershipStat =
+            document.getElementById("membershipStat");
+
+        const membershipStatusBadge =
+            document.getElementById("membershipStatusBadge");
+
+        const membershipStatusTitle =
+            document.getElementById("membershipStatusTitle");
+
+        const membershipStatusDescription =
+            document.getElementById(
+                "membershipStatusDescription"
+            );
+
+        const membershipRequestMessage =
+            document.getElementById(
+                "membershipRequestMessage"
+            );
+
+        const openRequestBtn =
+            document.getElementById(
+                "openRequestBtn"
+            );
+
+        const joinRequestForm =
+            document.getElementById(
+                "joinRequestForm"
+            );
+
+        const cancelRequestBtn =
+            document.getElementById(
+                "cancelRequestBtn"
+            );
+
+        const submitRequestBtn =
+            document.getElementById(
+                "submitRequestBtn"
+            );
+
+        const requestTikTok =
+            document.getElementById(
+                "requestTikTok"
+            );
+
+        const requestDisplayName =
+            document.getElementById(
+                "requestDisplayName"
+            );
+
+        const requestReferredBy =
+            document.getElementById(
+                "requestReferredBy"
+            );
+
+        const requestMessage =
+            document.getElementById(
+                "requestMessage"
+            );
 
         const scheduleList =
-            document.getElementById("scheduleList");
+            document.getElementById(
+                "scheduleList"
+            );
 
         const announcementList =
-            document.getElementById("announcementList");
+            document.getElementById(
+                "announcementList"
+            );
 
-        const profileName =
-            document.getElementById("profileName");
+        const profileDisplayName =
+            document.getElementById(
+                "profileDisplayName"
+            );
 
         const profileTikTok =
-            document.getElementById("profileTikTok");
-
-        const profileCode =
-            document.getElementById("profileCode");
-
-        const profileRole =
-            document.getElementById("profileRole");
-
-        const profileStatus =
-            document.getElementById("profileStatus");
+            document.getElementById(
+                "profileTikTok"
+            );
 
         const profileEmail =
-            document.getElementById("profileEmail");
+            document.getElementById(
+                "profileEmail"
+            );
 
-        const profileJoined =
-            document.getElementById("profileJoined");
+        const profileMemberCode =
+            document.getElementById(
+                "profileMemberCode"
+            );
 
-        const toast =
-            document.getElementById("toast");
+        const profileRole =
+            document.getElementById(
+                "profileRole"
+            );
 
+        const profileStatus =
+            document.getElementById(
+                "profileStatus"
+            );
+
+        const accountUID =
+            document.getElementById(
+                "accountUID"
+            );
+
+
+        /* =========================
+           STATE
+        ========================= */
 
         let currentUser = null;
         let currentMember = null;
+        let currentRequest = null;
 
         let unsubscribeSchedules = null;
         let unsubscribeAnnouncements = null;
+        let unsubscribeRequest = null;
+
+        let toastTimer = null;
 
 
         /* =========================
            HELPERS
         ========================= */
 
-        function showError(message) {
-
-            errorBox.textContent = message;
-
-            errorBox.style.display = "block";
-
-        }
-
-
-        function hideError() {
-
-            errorBox.style.display = "none";
-
-            errorBox.textContent = "";
-
-        }
-
-
-        function showToast(
-            message,
-            type = "success"
-        ) {
-
-            toast.textContent = message;
-
-            toast.className = "";
-
-            toast.classList.add(
-                "show",
-                type
-            );
-
-            setTimeout(() => {
-
-                toast.classList.remove("show");
-
-            }, 3000);
-
-        }
-
-
         function escapeHTML(value) {
 
-            if (
-                value === null ||
-                value === undefined
-            ) {
-                return "";
-            }
-
-            return String(value)
+            return String(value ?? "")
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
@@ -1670,58 +2184,74 @@
         }
 
 
-        function normalizeUsername(username) {
+        function normalizeUsername(value) {
 
-            return String(username || "")
+            return String(value || "")
                 .trim()
-                .replace(/^@/, "")
+                .replace(/^@+/, "")
                 .toLowerCase();
 
         }
 
 
-        function getInitials(name) {
+        function formatUsername(value) {
 
-            const value =
-                String(name || "Member")
-                    .trim();
+            const username =
+                normalizeUsername(value);
 
-            const parts =
-                value.split(/\s+/);
-
-            if (parts.length >= 2) {
-
-                return (
-                    parts[0][0] +
-                    parts[1][0]
-                ).toUpperCase();
-
-            }
-
-            return value
-                .substring(0, 2)
-                .toUpperCase();
+            return username
+                ? `@${username}`
+                : "—";
 
         }
 
 
-        function getProfileImage(member) {
+        function showToast(
+            message,
+            type = "success"
+        ) {
 
-            return (
-                member?.imageUrl ||
-                member?.photoURL ||
-                member?.profileImage ||
-                member?.photo ||
-                ""
-            );
+            clearTimeout(toastTimer);
+
+            toast.textContent =
+                message;
+
+            toast.className =
+                `show ${type}`;
+
+            toastTimer =
+                setTimeout(() => {
+
+                    toast.className = "";
+
+                }, 3500);
 
         }
 
 
-        function formatDate(value) {
+        function showError(message) {
+
+            errorBox.textContent =
+                message;
+
+            errorBox.style.display =
+                "block";
+
+        }
+
+
+        function hideError() {
+
+            errorBox.style.display =
+                "none";
+
+        }
+
+
+        function formatDateTime(value) {
 
             if (!value) {
-                return "—";
+                return "";
             }
 
             try {
@@ -1729,7 +2259,6 @@
                 let date;
 
                 if (
-                    value &&
                     typeof value.toDate === "function"
                 ) {
 
@@ -1741,12 +2270,6 @@
 
                     date = value;
 
-                } else if (
-                    typeof value === "number"
-                ) {
-
-                    date = new Date(value);
-
                 } else {
 
                     date = new Date(value);
@@ -1754,199 +2277,74 @@
                 }
 
                 if (
-                    !date ||
-                    Number.isNaN(date.getTime())
-                ) {
-                    return "—";
-                }
-
-                return date.toLocaleDateString(
-                    "en-US",
-                    {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                    }
-                );
-
-            } catch (error) {
-
-                return "—";
-
-            }
-
-        }
-
-
-        function formatDateTime(value) {
-
-            if (!value) {
-                return "—";
-            }
-
-            try {
-
-                let date;
-
-                if (
-                    value &&
-                    typeof value.toDate === "function"
+                    Number.isNaN(
+                        date.getTime()
+                    )
                 ) {
 
-                    date = value.toDate();
+                    return "";
 
-                } else {
-
-                    date = new Date(value);
-
-                }
-
-                if (
-                    !date ||
-                    Number.isNaN(date.getTime())
-                ) {
-                    return "—";
                 }
 
                 return date.toLocaleString(
-                    "en-US",
+                    undefined,
                     {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                        hour: "numeric",
-                        minute: "2-digit"
+                        dateStyle: "medium",
+                        timeStyle: "short"
                     }
                 );
 
             } catch (error) {
 
-                return "—";
+                return "";
 
             }
 
         }
 
 
-        function getScheduleDateValue(item) {
+        function normalizeStatus(status) {
+
+            return String(
+                status || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
+
+        function statusLabel(status) {
 
             const value =
-                item.date ||
-                item.scheduleDate ||
-                "";
+                normalizeStatus(status);
 
-            return value;
+            if (
+                value === "approved" ||
+                value === "active"
+            ) {
 
-        }
+                return "APPROVED";
 
-
-        function getScheduleDateTime(item) {
-
-            const date =
-                getScheduleDateValue(item);
-
-            const time =
-                item.startTime ||
-                "00:00";
-
-            if (!date) {
-                return 0;
             }
 
-            const result =
-                new Date(
-                    `${date}T${time}`
-                );
+            if (
+                value === "pending"
+            ) {
 
-            const timestamp =
-                result.getTime();
+                return "PENDING";
 
-            return Number.isNaN(timestamp)
-                ? 0
-                : timestamp;
-
-        }
-
-
-        function isCurrentMemberSchedule(data) {
-
-            if (!currentMember) {
-                return false;
             }
 
-            const memberId =
-                String(
-                    data.memberId || ""
-                );
+            if (
+                value === "rejected"
+            ) {
 
-            const memberUID =
-                String(
-                    currentMember.uid || ""
-                );
+                return "REJECTED";
 
-            const memberEmail =
-                String(
-                    currentMember.email || ""
-                ).toLowerCase();
+            }
 
-            const dataEmail =
-                String(
-                    data.email || ""
-                ).toLowerCase();
-
-            const memberUsername =
-                normalizeUsername(
-                    currentMember.tiktokUsername
-                );
-
-            const dataUsername =
-                normalizeUsername(
-                    data.tiktokUsername
-                );
-
-            const memberCodeValue =
-                String(
-                    currentMember.memberCode || ""
-                ).toLowerCase();
-
-            const dataCode =
-                String(
-                    data.memberCode || ""
-                ).toLowerCase();
-
-            return (
-
-                (
-                    memberId &&
-                    memberUID &&
-                    memberId === memberUID
-                )
-
-                ||
-
-                (
-                    dataEmail &&
-                    memberEmail &&
-                    dataEmail === memberEmail
-                )
-
-                ||
-
-                (
-                    dataUsername &&
-                    memberUsername &&
-                    dataUsername === memberUsername
-                )
-
-                ||
-
-                (
-                    dataCode &&
-                    memberCodeValue &&
-                    dataCode === memberCodeValue
-                )
-
-            );
+            return "NOT YET REQUESTED";
 
         }
 
@@ -1957,13 +2355,12 @@
 
         async function findMember(user) {
 
-            let memberData = null;
+            if (!user) {
+                return null;
+            }
 
 
-            /*
-             * FIRST:
-             * Find using Firebase Auth UID
-             */
+            /* UID */
 
             try {
 
@@ -1981,19 +2378,20 @@
                     );
 
                 const uidSnapshot =
-                    await getDocs(uidQuery);
+                    await getDocs(
+                        uidQuery
+                    );
 
-                if (!uidSnapshot.empty) {
+                if (
+                    !uidSnapshot.empty
+                ) {
 
-                    const doc =
+                    const docSnap =
                         uidSnapshot.docs[0];
 
-                    memberData = {
-
-                        id: doc.id,
-
-                        ...doc.data()
-
+                    return {
+                        id: docSnap.id,
+                        ...docSnap.data()
                     };
 
                 }
@@ -2008,12 +2406,9 @@
             }
 
 
-            /*
-             * SECOND:
-             * Find using email
-             */
+            /* EMAIL */
 
-            if (!memberData && user.email) {
+            if (user.email) {
 
                 try {
 
@@ -2035,17 +2430,16 @@
                             emailQuery
                         );
 
-                    if (!emailSnapshot.empty) {
+                    if (
+                        !emailSnapshot.empty
+                    ) {
 
-                        const doc =
+                        const docSnap =
                             emailSnapshot.docs[0];
 
-                        memberData = {
-
-                            id: doc.id,
-
-                            ...doc.data()
-
+                        return {
+                            id: docSnap.id,
+                            ...docSnap.data()
                         };
 
                     }
@@ -2062,187 +2456,898 @@
             }
 
 
-            return memberData;
+            return null;
 
         }
 
 
         /* =========================
-           CHECK MEMBER
+           FIND CURRENT REQUEST
         ========================= */
 
-        function isApprovedMember(member) {
+        async function findCurrentRequest(
+            user
+        ) {
 
-            if (!member) {
-                return false;
+            if (!user) {
+                return null;
             }
 
-            const status =
-                String(
-                    member.status || ""
-                ).toLowerCase();
 
-            return (
-                status === "approved" ||
-                status === "active"
-            );
+            /* UID */
+
+            try {
+
+                const uidQuery =
+                    query(
+                        collection(
+                            db,
+                            "memberRequests"
+                        ),
+                        where(
+                            "uid",
+                            "==",
+                            user.uid
+                        )
+                    );
+
+                const uidSnapshot =
+                    await getDocs(
+                        uidQuery
+                    );
+
+                if (
+                    !uidSnapshot.empty
+                ) {
+
+                    const docs =
+                        uidSnapshot.docs
+                            .map(docSnap => ({
+                                id: docSnap.id,
+                                ...docSnap.data()
+                            }))
+                            .sort(
+                                (
+                                    a,
+                                    b
+                                ) => {
+
+                                    const aTime =
+                                        a.createdAt?.toMillis
+                                            ? a.createdAt.toMillis()
+                                            : 0;
+
+                                    const bTime =
+                                        b.createdAt?.toMillis
+                                            ? b.createdAt.toMillis()
+                                            : 0;
+
+                                    return bTime - aTime;
+
+                                }
+                            );
+
+                    return docs[0];
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "UID request lookup failed:",
+                    error
+                );
+
+            }
+
+
+            /* EMAIL FALLBACK */
+
+            if (user.email) {
+
+                try {
+
+                    const emailQuery =
+                        query(
+                            collection(
+                                db,
+                                "memberRequests"
+                            ),
+                            where(
+                                "email",
+                                "==",
+                                user.email
+                            )
+                        );
+
+                    const emailSnapshot =
+                        await getDocs(
+                            emailQuery
+                        );
+
+                    if (
+                        !emailSnapshot.empty
+                    ) {
+
+                        const docs =
+                            emailSnapshot.docs
+                                .map(docSnap => ({
+                                    id: docSnap.id,
+                                    ...docSnap.data()
+                                }))
+                                .sort(
+                                    (
+                                        a,
+                                        b
+                                    ) => {
+
+                                        const aTime =
+                                            a.createdAt?.toMillis
+                                                ? a.createdAt.toMillis()
+                                                : 0;
+
+                                        const bTime =
+                                            b.createdAt?.toMillis
+                                                ? b.createdAt.toMillis()
+                                                : 0;
+
+                                        return bTime - aTime;
+
+                                    }
+                                );
+
+                        return docs[0];
+
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "Email request lookup failed:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            return null;
 
         }
 
 
         /* =========================
-           LOAD PROFILE
+           PROFILE
         ========================= */
 
         function renderProfile() {
 
-            if (!currentMember) {
-                return;
-            }
+            const user =
+                currentUser;
 
-            const name =
-                currentMember.displayName ||
-                currentMember.name ||
-                "NIGHTFALL MEMBER";
+            const member =
+                currentMember;
 
-            const username =
-                normalizeUsername(
-                    currentMember.tiktokUsername
-                );
+            const request =
+                currentRequest;
 
-            const code =
-                currentMember.memberCode ||
-                "NOT ASSIGNED";
 
-            const role =
-                currentMember.role ||
+            const displayName =
+                member?.displayName ||
+                request?.displayName ||
+                user?.displayName ||
                 "Member";
 
-            const status =
-                currentMember.status ||
-                "active";
+            const tiktokUsername =
+                member?.tiktokUsername ||
+                request?.tiktokUsername ||
+                "";
 
             const email =
-                currentMember.email ||
-                currentUser?.email ||
-                "—";
+                member?.email ||
+                request?.email ||
+                user?.email ||
+                "";
 
-            const joined =
-                currentMember.joinedAt ||
-                currentMember.createdAt;
+            const memberCode =
+                member?.memberCode ||
+                "";
 
-            const image =
-                getProfileImage(
-                    currentMember
-                );
+            const role =
+                member?.role ||
+                "";
 
+            let status;
 
-            welcomeName.textContent =
-                name;
+            if (member) {
 
-            welcomeTikTok.textContent =
-                username
-                    ? `@${username}`
-                    : "Not set";
+                status =
+                    statusLabel(
+                        member.status ||
+                        "approved"
+                    );
 
-            memberCode.textContent =
-                code;
+            } else if (request) {
 
-            headerUserName.textContent =
-                name;
-
-            profileName.textContent =
-                name;
-
-            profileTikTok.textContent =
-                username
-                    ? `@${username}`
-                    : "—";
-
-            profileCode.textContent =
-                code;
-
-            profileEmail.textContent =
-                email;
-
-            profileJoined.textContent =
-                formatDate(joined);
-
-
-            profileRole.innerHTML = `
-                <span class="role-badge">
-                    ${escapeHTML(role)}
-                </span>
-            `;
-
-
-            profileStatus.innerHTML = `
-                <span class="status-badge">
-                    ${escapeHTML(status)}
-                </span>
-            `;
-
-
-            statusText.textContent =
-                status
-                    .charAt(0)
-                    .toUpperCase() +
-                status.slice(1);
-
-
-            if (image) {
-
-                profileAvatar.src =
-                    image;
-
-                headerAvatar.src =
-                    image;
+                status =
+                    statusLabel(
+                        request.status
+                    );
 
             } else {
 
-                profileAvatar.src =
-                    "../assets/logo.png";
-
-                headerAvatar.src =
-                    "../assets/logo.png";
+                status =
+                    "NOT YET REQUESTED";
 
             }
 
-            profileAvatar.onerror =
-                function () {
 
-                    this.src =
-                        "../assets/logo.png";
+            welcomeName.textContent =
+                displayName;
 
-                };
+            welcomeTikTok.textContent =
+                formatUsername(
+                    tiktokUsername
+                );
 
-            headerAvatar.onerror =
-                function () {
+            headerUserName.textContent =
+                displayName;
 
-                    this.src =
-                        "../assets/logo.png";
+            profileDisplayName.textContent =
+                displayName;
 
-                };
+            profileTikTok.textContent =
+                formatUsername(
+                    tiktokUsername
+                );
+
+            profileEmail.textContent =
+                email || "—";
+
+            profileMemberCode.textContent =
+                memberCode || "Not assigned";
+
+            profileRole.textContent =
+                role || "MEMBER ACCOUNT";
+
+            accountUID.textContent =
+                user?.uid || "—";
+
+
+            if (memberCode) {
+
+                memberCodeBadge.textContent =
+                    memberCode;
+
+            } else {
+
+                memberCodeBadge.textContent =
+                    "MEMBER ACCOUNT";
+
+            }
+
+
+            profileStatus.innerHTML =
+                `<span class="status-badge" style="${getStatusInlineStyle(status)}">${escapeHTML(status)}</span>`;
 
 
             /*
-             * Store useful member info locally.
+             * We do not have a dedicated avatar field
+             * in the current member/request structure.
+             * Keep the existing NIGHTFALL DEVILS logo.
              */
 
-            localStorage.setItem(
-                "nightfallMemberId",
-                currentMember.id || ""
-            );
+            profileAvatar.src =
+                "../assets/logo.png";
 
-            localStorage.setItem(
-                "nightfallMemberUsername",
-                username
-            );
+            headerAvatar.src =
+                "../assets/logo.png";
 
-            localStorage.setItem(
-                "nightfallMemberCode",
-                code
-            );
+            renderMembershipStatus();
+
+        }
+
+
+        function getStatusInlineStyle(status) {
+
+            const normalized =
+                normalizeStatus(status);
+
+            if (
+                normalized === "pending"
+            ) {
+
+                return `
+                    background:rgba(245,158,11,.10);
+                    border-color:rgba(245,158,11,.35);
+                    color:#fbbf24;
+                `;
+
+            }
+
+            if (
+                normalized === "rejected"
+            ) {
+
+                return `
+                    background:rgba(215,25,32,.10);
+                    border-color:rgba(215,25,32,.35);
+                    color:#ff7777;
+                `;
+
+            }
+
+            if (
+                normalized === "approved" ||
+                normalized === "active"
+            ) {
+
+                return `
+                    background:rgba(34,197,94,.10);
+                    border-color:rgba(34,197,94,.35);
+                    color:#5ee890;
+                `;
+
+            }
+
+            return `
+                background:#191919;
+                border-color:#444;
+                color:#ccc;
+            `;
+
+        }
+
+
+        /* =========================
+           MEMBERSHIP STATUS
+        ========================= */
+
+        function renderMembershipStatus() {
+
+            const member =
+                currentMember;
+
+            const request =
+                currentRequest;
+
+
+            let status =
+                "not_requested";
+
+
+            if (member) {
+
+                const memberStatus =
+                    normalizeStatus(
+                        member.status
+                    );
+
+                if (
+                    memberStatus === "rejected"
+                ) {
+
+                    status =
+                        "rejected";
+
+                } else {
+
+                    status =
+                        "approved";
+
+                }
+
+            } else if (request) {
+
+                const requestStatus =
+                    normalizeStatus(
+                        request.status
+                    );
+
+                if (
+                    requestStatus === "pending"
+                ) {
+
+                    status =
+                        "pending";
+
+                } else if (
+                    requestStatus === "rejected"
+                ) {
+
+                    status =
+                        "rejected";
+
+                } else if (
+                    requestStatus === "approved"
+                ) {
+
+                    status =
+                        "approved";
+
+                }
+
+            }
+
+
+            membershipRequestMessage.style.display =
+                "none";
+
+            membershipRequestMessage.textContent =
+                "";
+
+
+            if (
+                status === "approved"
+            ) {
+
+                membershipStatusBadge.textContent =
+                    "APPROVED";
+
+                membershipStatusBadge.className =
+                    "membership-status-badge membership-approved";
+
+                membershipStatusTitle.textContent =
+                    "You are an approved member";
+
+                membershipStatusDescription.textContent =
+                    "Your NIGHTFALL DEVILS membership is approved. You can now access member features and assigned schedules.";
+
+                membershipStat.textContent =
+                    "APPROVED";
+
+                openRequestBtn.style.display =
+                    "none";
+
+                joinRequestForm.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            if (
+                status === "pending"
+            ) {
+
+                membershipStatusBadge.textContent =
+                    "PENDING";
+
+                membershipStatusBadge.className =
+                    "membership-status-badge membership-pending";
+
+                membershipStatusTitle.textContent =
+                    "Membership request is pending";
+
+                membershipStatusDescription.textContent =
+                    "Your request has been submitted and is waiting for administrator review.";
+
+                membershipStat.textContent =
+                    "PENDING";
+
+                openRequestBtn.style.display =
+                    "none";
+
+                joinRequestForm.style.display =
+                    "none";
+
+
+                if (
+                    request?.message
+                ) {
+
+                    membershipRequestMessage.style.display =
+                        "block";
+
+                    membershipRequestMessage.innerHTML =
+                        `<strong style="color:#ddd;">Your message:</strong><br>${escapeHTML(request.message)}`;
+
+                }
+
+                return;
+
+            }
+
+
+            if (
+                status === "rejected"
+            ) {
+
+                membershipStatusBadge.textContent =
+                    "REJECTED";
+
+                membershipStatusBadge.className =
+                    "membership-status-badge membership-rejected";
+
+                membershipStatusTitle.textContent =
+                    "Membership request was rejected";
+
+                membershipStatusDescription.textContent =
+                    "Your previous request was rejected. You may submit a new request if you want the administrator to review your membership again.";
+
+                membershipStat.textContent =
+                    "REJECTED";
+
+                openRequestBtn.style.display =
+                    "inline-flex";
+
+                return;
+
+            }
+
+
+            membershipStatusBadge.textContent =
+                "NOT YET REQUESTED";
+
+            membershipStatusBadge.className =
+                "membership-status-badge membership-not-requested";
+
+            membershipStatusTitle.textContent =
+                "Membership request not submitted";
+
+            membershipStatusDescription.textContent =
+                "Your Firebase account is active, but you have not submitted a NIGHTFALL DEVILS membership request yet.";
+
+            membershipStat.textContent =
+                "NOT REQUESTED";
+
+            openRequestBtn.style.display =
+                "inline-flex";
+
+        }
+
+
+        /* =========================
+           REQUEST FORM
+        ========================= */
+
+        function populateRequestForm() {
+
+            const member =
+                currentMember;
+
+            const request =
+                currentRequest;
+
+            const user =
+                currentUser;
+
+
+            requestTikTok.value =
+                member?.tiktokUsername ||
+                request?.tiktokUsername ||
+                "";
+
+            requestDisplayName.value =
+                member?.displayName ||
+                request?.displayName ||
+                user?.displayName ||
+                "";
+
+            requestReferredBy.value =
+                request?.referredBy ||
+                member?.referredBy ||
+                "";
+
+            requestMessage.value =
+                request?.message ||
+                "";
+
+        }
+
+
+        /* =========================
+           CURRENT REQUEST LISTENER
+        ========================= */
+
+        async function loadCurrentRequest() {
+
+            if (
+                unsubscribeRequest
+            ) {
+
+                unsubscribeRequest();
+
+                unsubscribeRequest =
+                    null;
+
+            }
+
+
+            if (!currentUser) {
+                return;
+            }
+
+
+            /*
+             * Listen by UID so the status updates
+             * automatically when admin approves/rejects.
+             */
+
+            try {
+
+                const requestQuery =
+                    query(
+                        collection(
+                            db,
+                            "memberRequests"
+                        ),
+                        where(
+                            "uid",
+                            "==",
+                            currentUser.uid
+                        )
+                    );
+
+                unsubscribeRequest =
+                    onSnapshot(
+                        requestQuery,
+                        snapshot => {
+
+                            if (
+                                snapshot.empty
+                            ) {
+
+                                currentRequest =
+                                    null;
+
+                                renderProfile();
+
+                                return;
+
+                            }
+
+
+                            const requests =
+                                snapshot.docs
+                                    .map(
+                                        docSnap => ({
+                                            id: docSnap.id,
+                                            ...docSnap.data()
+                                        })
+                                    )
+                                    .sort(
+                                        (
+                                            a,
+                                            b
+                                        ) => {
+
+                                            const aTime =
+                                                a.createdAt?.toMillis
+                                                    ? a.createdAt.toMillis()
+                                                    : 0;
+
+                                            const bTime =
+                                                b.createdAt?.toMillis
+                                                    ? b.createdAt.toMillis()
+                                                    : 0;
+
+                                            return bTime - aTime;
+
+                                        }
+                                    );
+
+
+                            currentRequest =
+                                requests[0] || null;
+
+                            renderProfile();
+
+                        },
+                        error => {
+
+                            console.error(
+                                "Request listener error:",
+                                error
+                            );
+
+                            /*
+                             * Fallback to one-time lookup.
+                             */
+
+                            findCurrentRequest(
+                                currentUser
+                            )
+                                .then(request => {
+
+                                    currentRequest =
+                                        request;
+
+                                    renderProfile();
+
+                                })
+                                .catch(
+                                    requestError => {
+
+                                        console.error(
+                                            requestError
+                                        );
+
+                                        renderProfile();
+
+                                    }
+                                );
+
+                        }
+                    );
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to listen to request:",
+                    error
+                );
+
+                currentRequest =
+                    await findCurrentRequest(
+                        currentUser
+                    );
+
+                renderProfile();
+
+            }
+
+        }
+
+
+        /* =========================
+           SCHEDULE MATCHING
+        ========================= */
+
+        function isCurrentMemberSchedule(
+            data
+        ) {
+
+            if (!data) {
+                return false;
+            }
+
+            const member =
+                currentMember;
+
+            const user =
+                currentUser;
+
+            if (!member && !user) {
+                return false;
+            }
+
+
+            const scheduleMemberId =
+                String(
+                    data.memberId || ""
+                ).trim();
+
+            const memberDocId =
+                String(
+                    member?.id || ""
+                ).trim();
+
+            const memberUID =
+                String(
+                    member?.uid ||
+                    user?.uid ||
+                    ""
+                ).trim();
+
+            const memberEmail =
+                String(
+                    member?.email ||
+                    user?.email ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            const memberUsername =
+                normalizeUsername(
+                    member?.tiktokUsername ||
+                    currentRequest?.tiktokUsername ||
+                    ""
+                );
+
+            const memberCode =
+                String(
+                    member?.memberCode ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            /*
+             * IMPORTANT:
+             * admin/schedule.html saves the Firestore
+             * MEMBER DOCUMENT ID in schedule.memberId.
+             */
+
+            if (
+                scheduleMemberId &&
+                memberDocId &&
+                scheduleMemberId === memberDocId
+            ) {
+
+                return true;
+
+            }
+
+
+            /* UID fallback */
+
+            if (
+                scheduleMemberId &&
+                memberUID &&
+                scheduleMemberId === memberUID
+            ) {
+
+                return true;
+
+            }
+
+
+            /* Email */
+
+            const scheduleEmail =
+                String(
+                    data.email || ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            if (
+                scheduleEmail &&
+                memberEmail &&
+                scheduleEmail === memberEmail
+            ) {
+
+                return true;
+
+            }
+
+
+            /* TikTok */
+
+            const scheduleUsername =
+                normalizeUsername(
+                    data.tiktokUsername ||
+                    data.username ||
+                    ""
+                );
+
+            if (
+                scheduleUsername &&
+                memberUsername &&
+                scheduleUsername === memberUsername
+            ) {
+
+                return true;
+
+            }
+
+
+            /* Member Code */
+
+            const scheduleCode =
+                String(
+                    data.memberCode || ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            if (
+                scheduleCode &&
+                memberCode &&
+                scheduleCode === memberCode
+            ) {
+
+                return true;
+
+            }
+
+
+            return false;
 
         }
 
@@ -2253,79 +3358,225 @@
 
         function loadSchedules() {
 
-            if (unsubscribeSchedules) {
+            if (
+                unsubscribeSchedules
+            ) {
 
                 unsubscribeSchedules();
 
             }
 
 
-            const schedulesRef =
-                collection(
-                    db,
-                    "schedules"
+            const scheduleQuery =
+                query(
+                    collection(
+                        db,
+                        "schedules"
+                    )
                 );
 
 
             unsubscribeSchedules =
                 onSnapshot(
-                    schedulesRef,
-                    (snapshot) => {
+                    scheduleQuery,
+                    snapshot => {
 
-                        const schedules = [];
+                        const schedules =
+                            snapshot.docs
+                                .map(
+                                    docSnap => ({
+                                        id: docSnap.id,
+                                        ...docSnap.data()
+                                    })
+                                )
+                                .filter(
+                                    isCurrentMemberSchedule
+                                )
+                                .sort(
+                                    (
+                                        a,
+                                        b
+                                    ) => {
 
+                                        const aKey =
+                                            `${a.date || ""} ${a.startTime || ""}`;
 
-                        snapshot.forEach(
-                            (doc) => {
+                                        const bKey =
+                                            `${b.date || ""} ${b.startTime || ""}`;
 
-                                const data =
-                                    doc.data();
+                                        return aKey.localeCompare(
+                                            bKey
+                                        );
 
-                                if (
-                                    isCurrentMemberSchedule(
-                                        data
-                                    )
-                                ) {
-
-                                    schedules.push({
-
-                                        id: doc.id,
-
-                                        ...data
-
-                                    });
-
-                                }
-
-                            }
-                        );
-
-
-                        schedules.sort(
-                            (a, b) => {
-
-                                return (
-                                    getScheduleDateTime(a) -
-                                    getScheduleDateTime(b)
+                                    }
                                 );
-
-                            }
-                        );
 
 
                         scheduleCount.textContent =
                             schedules.length;
 
 
-                        renderSchedules(
-                            schedules.slice(0, 10)
-                        );
+                        if (
+                            !schedules.length
+                        ) {
+
+                            scheduleList.innerHTML = `
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        📅
+                                    </div>
+
+                                    <strong>
+                                        No schedule assigned
+                                    </strong>
+
+                                    <span>
+                                        Your schedule will appear here when an administrator assigns one.
+                                    </span>
+
+                                </div>
+
+                            `;
+
+                            return;
+
+                        }
+
+
+                        scheduleList.innerHTML =
+                            schedules
+                                .map(
+                                    item => `
+
+                                        <div class="schedule-item">
+
+                                            <div class="schedule-top">
+
+                                                <div class="schedule-date">
+                                                    ${escapeHTML(
+                                                        item.date ||
+                                                        "Date TBA"
+                                                    )}
+                                                </div>
+
+                                                <div class="schedule-type">
+                                                    ${escapeHTML(
+                                                        item.type ||
+                                                        "SCHEDULE"
+                                                    )}
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="schedule-main">
+
+                                                <div class="schedule-detail">
+
+                                                    🕐
+
+                                                    <strong>
+                                                        ${escapeHTML(
+                                                            item.startTime ||
+                                                            "TBA"
+                                                        )}
+                                                    </strong>
+
+                                                    ${
+                                                        item.endTime
+                                                            ? ` - <strong>${escapeHTML(item.endTime)}</strong>`
+                                                            : ""
+                                                    }
+
+                                                </div>
+
+
+                                                <div class="schedule-detail">
+
+                                                    🎥
+
+                                                    <strong>
+                                                        ${escapeHTML(
+                                                            item.streamerName ||
+                                                            item.tiktokUsername ||
+                                                            "N/A"
+                                                        )}
+                                                    </strong>
+
+                                                </div>
+
+
+                                                ${
+                                                    item.status
+                                                        ? `
+                                                            <div class="schedule-detail">
+
+                                                                📌
+
+                                                                <strong>
+                                                                    ${escapeHTML(
+                                                                        item.status
+                                                                    )}
+                                                                </strong>
+
+                                                            </div>
+                                                        `
+                                                        : ""
+                                                }
+
+                                            </div>
+
+
+                                            ${
+                                                item.notes
+                                                    ? `
+                                                        <div
+                                                            style="
+                                                                margin-top:9px;
+                                                                color:#999;
+                                                                font-size:11px;
+                                                                line-height:1.5;
+                                                            "
+                                                        >
+                                                            ${escapeHTML(
+                                                                item.notes
+                                                            )}
+                                                        </div>
+                                                    `
+                                                    : ""
+                                            }
+
+
+                                            ${
+                                                item.tiktokLink
+                                                    ? `
+                                                        <a
+                                                            class="schedule-link"
+                                                            href="${escapeHTML(
+                                                                item.tiktokLink
+                                                            )}"
+                                                            target="_blank"
+                                                            rel="noopener"
+                                                        >
+                                                            OPEN TIKTOK LINK ↗
+                                                        </a>
+                                                    `
+                                                    : ""
+                                            }
+
+                                        </div>
+
+                                    `
+                                )
+                                .join("");
 
                     },
-                    (error) => {
+                    error => {
 
                         console.error(
-                            "Schedule error:",
+                            "Schedule listener error:",
                             error
                         );
 
@@ -2345,7 +3596,7 @@
                                 </strong>
 
                                 <span>
-                                    Please try again later.
+                                    Please refresh the page.
                                 </span>
 
                             </div>
@@ -2359,246 +3610,143 @@
 
 
         /* =========================
-           RENDER SCHEDULES
-        ========================= */
-
-        function renderSchedules(
-            schedules
-        ) {
-
-            if (!schedules.length) {
-
-                scheduleList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📅
-                        </div>
-
-                        <strong>
-                            No schedules yet
-                        </strong>
-
-                        <span>
-                            Your assigned schedules will appear here.
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            scheduleList.innerHTML =
-                schedules.map(
-                    (item) => {
-
-                        const date =
-                            getScheduleDateValue(
-                                item
-                            );
-
-                        const start =
-                            item.startTime ||
-                            "—";
-
-                        const end =
-                            item.endTime ||
-                            "";
-
-                        const time =
-                            end
-                                ? `${start} - ${end}`
-                                : start;
-
-                        const type =
-                            item.type ||
-                            "Regular Live";
-
-                        const status =
-                            item.status ||
-                            "";
-
-                        const notes =
-                            item.notes ||
-                            "";
-
-                        const link =
-                            item.tiktokLink ||
-                            "";
-
-
-                        return `
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-top">
-
-                                    <div class="schedule-date">
-                                        📅 ${escapeHTML(
-                                            formatDate(date)
-                                        )}
-                                    </div>
-
-                                    <div class="schedule-type">
-                                        ${escapeHTML(type)}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="schedule-main">
-
-                                    <div class="schedule-detail">
-                                        🕐
-                                        <strong>
-                                            ${escapeHTML(time)}
-                                        </strong>
-                                    </div>
-
-
-                                    ${
-                                        status
-                                            ? `
-                                                <div class="schedule-detail">
-                                                    📌
-                                                    ${escapeHTML(status)}
-                                                </div>
-                                            `
-                                            : ""
-                                    }
-
-                                </div>
-
-
-                                ${
-                                    notes
-                                        ? `
-                                            <div
-                                                style="
-                                                    margin-top:9px;
-                                                    color:#888;
-                                                    font-size:11px;
-                                                    line-height:1.45;
-                                                "
-                                            >
-                                                📝
-                                                ${escapeHTML(notes)}
-                                            </div>
-                                        `
-                                        : ""
-                                }
-
-
-                                ${
-                                    link
-                                        ? `
-                                            <a
-                                                class="schedule-link"
-                                                href="${escapeHTML(link)}"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                🎵 OPEN TIKTOK
-                                            </a>
-                                        `
-                                        : ""
-                                }
-
-                            </div>
-
-                        `;
-
-                    }
-                ).join("");
-
-        }
-
-
-        /* =========================
            LOAD ANNOUNCEMENTS
         ========================= */
 
         function loadAnnouncements() {
 
-            if (unsubscribeAnnouncements) {
+            if (
+                unsubscribeAnnouncements
+            ) {
 
                 unsubscribeAnnouncements();
 
             }
 
 
-            const announcementsRef =
-                collection(
-                    db,
-                    "announcements"
+            const announcementQuery =
+                query(
+                    collection(
+                        db,
+                        "announcements"
+                    )
                 );
 
 
             unsubscribeAnnouncements =
                 onSnapshot(
-                    announcementsRef,
-                    (snapshot) => {
+                    announcementQuery,
+                    snapshot => {
 
-                        const announcements = [];
+                        const announcements =
+                            snapshot.docs
+                                .map(
+                                    docSnap => ({
+                                        id: docSnap.id,
+                                        ...docSnap.data()
+                                    })
+                                )
+                                .sort(
+                                    (
+                                        a,
+                                        b
+                                    ) => {
 
+                                        const aTime =
+                                            a.createdAt?.toMillis
+                                                ? a.createdAt.toMillis()
+                                                : 0;
 
-                        snapshot.forEach(
-                            (doc) => {
+                                        const bTime =
+                                            b.createdAt?.toMillis
+                                                ? b.createdAt.toMillis()
+                                                : 0;
 
-                                announcements.push({
+                                        return bTime - aTime;
 
-                                    id: doc.id,
-
-                                    ...doc.data()
-
-                                });
-
-                            }
-                        );
-
-
-                        announcements.sort(
-                            (a, b) => {
-
-                                const aTime =
-                                    getTimeValue(
-                                        a.createdAt ||
-                                        a.updatedAt
-                                    );
-
-                                const bTime =
-                                    getTimeValue(
-                                        b.createdAt ||
-                                        b.updatedAt
-                                    );
-
-                                return bTime - aTime;
-
-                            }
-                        );
+                                    }
+                                );
 
 
                         announcementCount.textContent =
                             announcements.length;
 
 
-                        renderAnnouncements(
-                            announcements.slice(
-                                0,
-                                10
-                            )
-                        );
+                        if (
+                            !announcements.length
+                        ) {
+
+                            announcementList.innerHTML = `
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        📢
+                                    </div>
+
+                                    <strong>
+                                        No announcements
+                                    </strong>
+
+                                    <span>
+                                        New community announcements will appear here.
+                                    </span>
+
+                                </div>
+
+                            `;
+
+                            return;
+
+                        }
+
+
+                        announcementList.innerHTML =
+                            announcements
+                                .slice(
+                                    0,
+                                    10
+                                )
+                                .map(
+                                    item => `
+
+                                        <div class="announcement-item">
+
+                                            <div class="announcement-title">
+                                                ${escapeHTML(
+                                                    item.title ||
+                                                    "NIGHTFALL DEVILS Announcement"
+                                                )}
+                                            </div>
+
+                                            <div class="announcement-message">
+                                                ${escapeHTML(
+                                                    item.message ||
+                                                    item.content ||
+                                                    ""
+                                                )}
+                                            </div>
+
+                                            <div class="announcement-meta">
+                                                ${escapeHTML(
+                                                    formatDateTime(
+                                                        item.createdAt ||
+                                                        item.updatedAt
+                                                    )
+                                                )}
+                                            </div>
+
+                                        </div>
+
+                                    `
+                                )
+                                .join("");
 
                     },
-                    (error) => {
+                    error => {
 
                         console.error(
-                            "Announcement error:",
+                            "Announcement listener error:",
                             error
                         );
 
@@ -2618,7 +3766,7 @@
                                 </strong>
 
                                 <span>
-                                    Please try again later.
+                                    Please refresh the page.
                                 </span>
 
                             </div>
@@ -2632,126 +3780,265 @@
 
 
         /* =========================
-           TIME VALUE
+           OPEN REQUEST
         ========================= */
 
-        function getTimeValue(value) {
+        openRequestBtn.addEventListener(
+            "click",
+            () => {
 
-            if (!value) {
-                return 0;
-            }
+                populateRequestForm();
 
-            try {
+                joinRequestForm.style.display =
+                    "block";
 
-                if (
-                    value &&
-                    typeof value.toDate === "function"
-                ) {
+                openRequestBtn.style.display =
+                    "none";
 
-                    return value.toDate().getTime();
-
-                }
-
-                const date =
-                    new Date(value);
-
-                const time =
-                    date.getTime();
-
-                return Number.isNaN(time)
-                    ? 0
-                    : time;
-
-            } catch (error) {
-
-                return 0;
+                requestTikTok.focus();
 
             }
-
-        }
+        );
 
 
         /* =========================
-           RENDER ANNOUNCEMENTS
+           CANCEL REQUEST
         ========================= */
 
-        function renderAnnouncements(
-            announcements
-        ) {
+        cancelRequestBtn.addEventListener(
+            "click",
+            () => {
 
-            if (!announcements.length) {
+                joinRequestForm.style.display =
+                    "none";
 
-                announcementList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📢
-                        </div>
-
-                        <strong>
-                            No announcements
-                        </strong>
-
-                        <span>
-                            Community announcements will appear here.
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
+                openRequestBtn.style.display =
+                    "inline-flex";
 
             }
+        );
 
 
-            announcementList.innerHTML =
-                announcements.map(
-                    (item) => {
+        /* =========================
+           SUBMIT REQUEST
+        ========================= */
 
-                        const title =
-                            item.title ||
-                            item.subject ||
-                            "NIGHTFALL DEVILS Announcement";
+        joinRequestForm.addEventListener(
+            "submit",
+            async event => {
 
-                        const message =
-                            item.message ||
-                            item.content ||
-                            item.description ||
-                            "";
-
-                        const created =
-                            item.createdAt ||
-                            item.updatedAt;
+                event.preventDefault();
 
 
-                        return `
+                if (!currentUser) {
 
-                            <article class="announcement-item">
+                    showToast(
+                        "Your account session has expired. Please login again.",
+                        "error"
+                    );
 
-                                <div class="announcement-title">
-                                    ${escapeHTML(title)}
-                                </div>
+                    return;
 
-                                <div class="announcement-message">
-                                    ${escapeHTML(message)}
-                                </div>
+                }
 
-                                <div class="announcement-meta">
-                                    ${escapeHTML(
-                                        formatDateTime(created)
-                                    )}
-                                </div>
 
-                            </article>
+                const tiktokUsername =
+                    normalizeUsername(
+                        requestTikTok.value
+                    );
 
-                        `;
+                const displayName =
+                    requestDisplayName.value.trim();
+
+                const referredBy =
+                    requestReferredBy.value.trim();
+
+                const message =
+                    requestMessage.value.trim();
+
+
+                if (
+                    !tiktokUsername ||
+                    tiktokUsername.length < 2
+                ) {
+
+                    showToast(
+                        "Please enter your TikTok username.",
+                        "error"
+                    );
+
+                    requestTikTok.focus();
+
+                    return;
+
+                }
+
+
+                if (!displayName) {
+
+                    showToast(
+                        "Please enter your display name.",
+                        "error"
+                    );
+
+                    requestDisplayName.focus();
+
+                    return;
+
+                }
+
+
+                /*
+                 * If already approved, do not allow another request.
+                 */
+
+                if (currentMember) {
+
+                    const memberStatus =
+                        normalizeStatus(
+                            currentMember.status
+                        );
+
+                    if (
+                        memberStatus === "approved" ||
+                        memberStatus === "active"
+                    ) {
+
+                        showToast(
+                            "You are already an approved member.",
+                            "error"
+                        );
+
+                        return;
 
                     }
-                ).join("");
 
-        }
+                }
+
+
+                /*
+                 * Prevent duplicate pending request.
+                 */
+
+                if (
+                    currentRequest &&
+                    normalizeStatus(
+                        currentRequest.status
+                    ) === "pending"
+                ) {
+
+                    showToast(
+                        "You already have a pending membership request.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                submitRequestBtn.disabled =
+                    true;
+
+                submitRequestBtn.textContent =
+                    "SUBMITTING...";
+
+
+                try {
+
+                    await addDoc(
+                        collection(
+                            db,
+                            "memberRequests"
+                        ),
+                        {
+
+                            uid:
+                                currentUser.uid,
+
+                            email:
+                                currentUser.email ||
+                                "",
+
+                            tiktokUsername,
+
+                            displayName,
+
+                            referredBy,
+
+                            message,
+
+                            status:
+                                "pending",
+
+                            submittedBy:
+                                currentUser.uid,
+
+                            source:
+                                "member-dashboard.html",
+
+                            createdAt:
+                                serverTimestamp(),
+
+                            updatedAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+
+                    showToast(
+                        "Membership request submitted successfully."
+                    );
+
+
+                    joinRequestForm.style.display =
+                        "none";
+
+                    openRequestBtn.style.display =
+                        "none";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Request submission error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Unable to submit your request. Please try again.";
+
+
+                    if (
+                        error?.code ===
+                        "permission-denied"
+                    ) {
+
+                        message =
+                            "Request permission was denied. Please check your Firestore rules.";
+
+                    }
+
+
+                    showToast(
+                        message,
+                        "error"
+                    );
+
+                } finally {
+
+                    submitRequestBtn.disabled =
+                        false;
+
+                    submitRequestBtn.textContent =
+                        "SUBMIT REQUEST";
+
+                }
+
+            }
+        );
 
 
         /* =========================
@@ -2762,7 +4049,8 @@
             "click",
             async () => {
 
-                logoutBtn.disabled = true;
+                logoutBtn.disabled =
+                    true;
 
                 logoutBtn.textContent =
                     "LOGGING OUT...";
@@ -2770,13 +4058,30 @@
 
                 try {
 
-                    if (unsubscribeSchedules) {
+                    if (
+                        unsubscribeSchedules
+                    ) {
+
                         unsubscribeSchedules();
+
                     }
 
-                    if (unsubscribeAnnouncements) {
+                    if (
+                        unsubscribeAnnouncements
+                    ) {
+
                         unsubscribeAnnouncements();
+
                     }
+
+                    if (
+                        unsubscribeRequest
+                    ) {
+
+                        unsubscribeRequest();
+
+                    }
+
 
                     localStorage.removeItem(
                         "nightfallMemberId"
@@ -2790,11 +4095,28 @@
                         "nightfallMemberCode"
                     );
 
-                    await signOut(auth);
+                    localStorage.removeItem(
+                        "nightfallMemberRole"
+                    );
+
+                    localStorage.removeItem(
+                        "nightfallMemberEmail"
+                    );
+
+                    localStorage.removeItem(
+                        "nightfallMemberStatus"
+                    );
+
+
+                    await signOut(
+                        auth
+                    );
+
 
                     window.location.replace(
                         "member-login.html"
                     );
+
 
                 } catch (error) {
 
@@ -2826,13 +4148,9 @@
 
         onAuthStateChanged(
             auth,
-            async (user) => {
+            async user => {
 
                 try {
-
-                    /*
-                     * No logged-in user
-                     */
 
                     if (!user) {
 
@@ -2850,7 +4168,11 @@
 
 
                     /*
-                     * Find member record
+                     * IMPORTANT:
+                     * Do NOT block the Firebase account
+                     * when there is no members document.
+                     *
+                     * This is the new account-first flow.
                      */
 
                     currentMember =
@@ -2859,80 +4181,20 @@
                         );
 
 
-                    /*
-                     * Auth account exists,
-                     * but member document doesn't.
-                     */
-
-                    if (!currentMember) {
-
-                        showError(
-                            "Your Firebase account exists, but your NIGHTFALL DEVILS member profile was not found. Please contact an administrator."
-                        );
-
-                        loadingScreen.style.display =
-                            "none";
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Verify member status.
-                     */
-
-                    if (
-                        !isApprovedMember(
-                            currentMember
-                        )
-                    ) {
-
-                        showError(
-                            "Your member account is not currently active. Please contact a NIGHTFALL DEVILS administrator."
-                        );
-
-                        await signOut(
-                            auth
-                        );
-
-                        setTimeout(
-                            () => {
-
-                                window.location.replace(
-                                    "member-login.html"
-                                );
-
-                            },
-                            1800
-                        );
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Render profile
-                     */
-
                     renderProfile();
 
 
-                    /*
-                     * Load live data
-                     */
+                    await loadCurrentRequest();
+
 
                     loadSchedules();
+
 
                     loadAnnouncements();
 
 
-                    /*
-                     * Show dashboard
-                     */
-
                     hideError();
+
 
                     loadingScreen.style.display =
                         "none";
@@ -2942,6 +4204,7 @@
                         "Welcome to NIGHTFALL DEVILS! 👿"
                     );
 
+
                 } catch (error) {
 
                     console.error(
@@ -2949,9 +4212,11 @@
                         error
                     );
 
+
                     showError(
                         "Unable to load your member dashboard. Please refresh the page and try again."
                     );
+
 
                     loadingScreen.style.display =
                         "none";
@@ -2960,7 +4225,6 @@
 
             }
         );
-
 
     </script>
 
