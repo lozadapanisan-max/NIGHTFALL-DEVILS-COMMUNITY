@@ -37,6 +37,7 @@
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             min-height: 100vh;
+
             background:
                 radial-gradient(
                     circle at top right,
@@ -49,6 +50,7 @@
                     transparent 35%
                 ),
                 var(--black);
+
             color: var(--text);
         }
 
@@ -59,9 +61,11 @@
 
         .page {
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             padding: 20px 14px;
         }
 
@@ -69,6 +73,10 @@
             width: 100%;
             max-width: 430px;
         }
+
+        /* =========================
+           BRAND
+        ========================= */
 
         .brand {
             text-align: center;
@@ -96,11 +104,18 @@
             margin-top: 4px;
         }
 
+        /* =========================
+           CARD
+        ========================= */
+
         .card {
             background: var(--card);
+
             border: 1px solid var(--border);
             border-radius: 17px;
+
             padding: 25px;
+
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.45);
         }
@@ -118,28 +133,49 @@
             margin-bottom: 22px;
         }
 
+        /* =========================
+           MESSAGE
+        ========================= */
+
         .message {
             display: none;
+
             padding: 12px;
             border-radius: 9px;
+
             margin-bottom: 15px;
+
             font-size: 12px;
             line-height: 1.5;
         }
 
         .message.error {
             display: block;
-            background: rgba(215, 25, 32, 0.10);
-            border: 1px solid rgba(215, 25, 32, 0.35);
+
+            background:
+                rgba(215, 25, 32, 0.10);
+
+            border:
+                1px solid rgba(215, 25, 32, 0.35);
+
             color: #ff8b8b;
         }
 
         .message.success {
             display: block;
-            background: rgba(34, 197, 94, 0.10);
-            border: 1px solid rgba(34, 197, 94, 0.35);
+
+            background:
+                rgba(34, 197, 94, 0.10);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.35);
+
             color: #6ee7a0;
         }
+
+        /* =========================
+           FORM
+        ========================= */
 
         .form-group {
             margin-bottom: 15px;
@@ -147,20 +183,31 @@
 
         label {
             display: block;
+
             color: #ccc;
+
             font-size: 11px;
             font-weight: 800;
+
             margin-bottom: 7px;
         }
 
         input {
             width: 100%;
+
             padding: 12px 13px;
+
             border-radius: 9px;
-            border: 1px solid #303030;
+
+            border:
+                1px solid #303030;
+
             outline: none;
+
             background: #090909;
+
             color: #fff;
+
             font-size: 13px;
         }
 
@@ -172,8 +219,13 @@
             border-color: var(--gold);
         }
 
+        /* =========================
+           FORGOT PASSWORD
+        ========================= */
+
         .forgot {
             text-align: right;
+
             margin-top: -5px;
             margin-bottom: 17px;
         }
@@ -181,53 +233,127 @@
         .forgot button {
             background: none;
             border: 0;
+
             color: var(--gold);
+
             cursor: pointer;
+
             font-size: 11px;
             font-weight: 700;
         }
 
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
         .login-btn {
             width: 100%;
+
             padding: 13px;
-            border: 1px solid #6b1818;
+
+            border:
+                1px solid #6b1818;
+
             border-radius: 9px;
+
             background:
                 linear-gradient(
                     135deg,
                     var(--red),
                     var(--red-dark)
                 );
+
             color: #fff;
+
             font-weight: 900;
             font-size: 13px;
+
             cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 20px rgba(215, 25, 32, 0.20);
         }
 
         .login-btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
+            transform: none;
         }
+
+        /* =========================
+           CREATE ACCOUNT
+        ========================= */
 
         .register-box {
             text-align: center;
+
             margin-top: 20px;
             padding-top: 18px;
-            border-top: 1px solid #222;
+
+            border-top:
+                1px solid #222;
+
             color: #777;
+
             font-size: 12px;
         }
 
-        .register-box a {
+        .register-title {
+            margin-bottom: 10px;
+        }
+
+        .register-btn {
+            display: block;
+
+            width: 100%;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            border:
+                1px solid rgba(245, 197, 66, 0.45);
+
+            background:
+                rgba(245, 197, 66, 0.08);
+
             color: var(--gold);
-            font-weight: 800;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .register-btn:hover {
+            background:
+                rgba(245, 197, 66, 0.15);
+
+            border-color:
+                var(--gold);
+
+            transform: translateY(-1px);
         }
 
         .home-link {
             display: block;
+
             text-align: center;
+
             margin-top: 17px;
+
             color: #777;
+
             font-size: 11px;
         }
 
@@ -235,15 +361,26 @@
             color: var(--gold);
         }
 
+        /* =========================
+           LOADING
+        ========================= */
+
         .loading {
             display: none;
+
             position: fixed;
             inset: 0;
+
             z-index: 9999;
-            background: rgba(5, 5, 5, 0.94);
+
+            background:
+                rgba(5, 5, 5, 0.94);
+
             justify-content: center;
             align-items: center;
+
             flex-direction: column;
+
             gap: 12px;
         }
 
@@ -254,11 +391,20 @@
         .spinner {
             width: 35px;
             height: 35px;
-            border: 4px solid #292929;
-            border-top-color: var(--red);
-            border-right-color: var(--gold);
+
+            border:
+                4px solid #292929;
+
+            border-top-color:
+                var(--red);
+
+            border-right-color:
+                var(--gold);
+
             border-radius: 50%;
-            animation: spin .8s linear infinite;
+
+            animation:
+                spin .8s linear infinite;
         }
 
         .loading-text {
@@ -267,10 +413,16 @@
         }
 
         @keyframes spin {
+
             to {
                 transform: rotate(360deg);
             }
+
         }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 500px) {
 
@@ -290,27 +442,42 @@
             .title {
                 font-size: 19px;
             }
+
         }
     </style>
 </head>
 
 <body>
 
+    <!-- =========================
+         LOADING
+    ========================= -->
+
     <div
         id="loading"
         class="loading"
     >
+
         <div class="spinner"></div>
 
         <div class="loading-text">
             Signing in...
         </div>
+
     </div>
 
+
+    <!-- =========================
+         PAGE
+    ========================= -->
 
     <main class="page">
 
         <div class="wrapper">
+
+            <!-- =========================
+                 BRAND
+            ========================= -->
 
             <div class="brand">
 
@@ -330,6 +497,10 @@
             </div>
 
 
+            <!-- =========================
+                 LOGIN CARD
+            ========================= -->
+
             <section class="card">
 
                 <h1 class="title">
@@ -342,13 +513,19 @@
                 </p>
 
 
+                <!-- MESSAGE -->
+
                 <div
                     id="message"
                     class="message"
                 ></div>
 
 
+                <!-- LOGIN FORM -->
+
                 <form id="loginForm">
+
+                    <!-- EMAIL -->
 
                     <div class="form-group">
 
@@ -367,6 +544,8 @@
                     </div>
 
 
+                    <!-- PASSWORD -->
+
                     <div class="form-group">
 
                         <label for="password">
@@ -384,6 +563,8 @@
                     </div>
 
 
+                    <!-- FORGOT -->
+
                     <div class="forgot">
 
                         <button
@@ -396,6 +577,8 @@
                     </div>
 
 
+                    <!-- LOGIN -->
+
                     <button
                         type="submit"
                         id="loginBtn"
@@ -407,16 +590,33 @@
                 </form>
 
 
+                <!-- =========================
+                     CREATE ACCOUNT
+                ========================= -->
+
                 <div class="register-box">
 
-                    Don't have an account?
+                    <div class="register-title">
+                        Don't have a NIGHTFALL DEVILS account?
+                    </div>
 
-                    <a href="../member-register.html">
+                    <!--
+                        IMPORTANT:
+                        member-login.html is inside /pages/
+                        member-register.html is in ROOT
+                    -->
+
+                    <a
+                        href="../member-register.html"
+                        class="register-btn"
+                    >
                         CREATE ACCOUNT
                     </a>
 
                 </div>
 
+
+                <!-- HOME -->
 
                 <a
                     href="../index.html"
@@ -432,11 +632,16 @@
     </main>
 
 
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
     <script type="module">
 
         import {
             initializeApp
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
 
         import {
@@ -444,15 +649,21 @@
             signInWithEmailAndPassword,
             sendPasswordResetEmail,
             onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 
         import {
             getFirestore,
             doc,
             getDoc
-        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+        } from
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
+
+        /* =========================
+           FIREBASE CONFIG
+        ========================= */
 
         const firebaseConfig = {
 
@@ -476,11 +687,18 @@
 
             measurementId:
                 "G-R6MZ05M4DR"
+
         };
 
 
+        /* =========================
+           INITIALIZE FIREBASE
+        ========================= */
+
         const app =
-            initializeApp(firebaseConfig);
+            initializeApp(
+                firebaseConfig
+            );
 
         const auth =
             getAuth(app);
@@ -488,6 +706,10 @@
         const db =
             getFirestore(app);
 
+
+        /* =========================
+           ELEMENTS
+        ========================= */
 
         const loginForm =
             document.getElementById(
@@ -525,6 +747,10 @@
             );
 
 
+        /* =========================
+           MESSAGE
+        ========================= */
+
         function showMessage(
             text,
             type = "error"
@@ -535,6 +761,7 @@
 
             message.className =
                 "message " + type;
+
         }
 
 
@@ -545,8 +772,13 @@
 
             message.className =
                 "message";
+
         }
 
+
+        /* =========================
+           LOADING
+        ========================= */
 
         function setLoading(
             state,
@@ -555,9 +787,11 @@
 
             if (state) {
 
-                loading.querySelector(
-                    ".loading-text"
-                ).textContent = text;
+                loading
+                    .querySelector(
+                        ".loading-text"
+                    )
+                    .textContent = text;
 
                 loading.classList.add(
                     "show"
@@ -580,6 +814,10 @@
         }
 
 
+        /* =========================
+           FIREBASE ERROR
+        ========================= */
+
         function firebaseError(
             error
         ) {
@@ -589,38 +827,54 @@
             ) {
 
                 case "auth/invalid-credential":
+
                 case "auth/invalid-login-credentials":
-                    return "Incorrect email or password.";
 
                 case "auth/user-not-found":
-                    return "Incorrect email or password.";
 
                 case "auth/wrong-password":
-                    return "Incorrect email or password.";
+
+                    return (
+                        "Incorrect email or password."
+                    );
+
 
                 case "auth/invalid-email":
-                    return "Please enter a valid email address.";
+
+                    return (
+                        "Please enter a valid email address."
+                    );
+
 
                 case "auth/too-many-requests":
-                    return "Too many login attempts. Please try again later.";
+
+                    return (
+                        "Too many login attempts. Please try again later."
+                    );
+
 
                 case "auth/network-request-failed":
-                    return "Network error. Please check your internet connection.";
+
+                    return (
+                        "Network error. Please check your internet connection."
+                    );
+
 
                 default:
+
                     return (
                         error?.message ||
                         "Unable to login. Please try again."
                     );
+
             }
 
         }
 
 
-        /*
-         * If already logged in,
-         * go directly to dashboard.
-         */
+        /* =========================
+           ALREADY LOGGED IN
+        ========================= */
 
         onAuthStateChanged(
             auth,
@@ -638,9 +892,9 @@
         );
 
 
-        /*
-         * LOGIN
-         */
+        /* =========================
+           LOGIN
+        ========================= */
 
         loginForm.addEventListener(
             "submit",
@@ -650,22 +904,28 @@
 
                 clearMessage();
 
+
                 const email =
                     emailInput.value
                         .trim()
                         .toLowerCase();
 
+
                 const password =
                     passwordInput.value;
 
 
-                if (!email || !password) {
+                if (
+                    !email ||
+                    !password
+                ) {
 
                     showMessage(
                         "Please enter your email and password."
                     );
 
                     return;
+
                 }
 
 
@@ -678,7 +938,8 @@
 
 
                     const credential =
-                        await signInWithEmailAndPassword(
+                        await
+                        signInWithEmailAndPassword(
                             auth,
                             email,
                             password
@@ -689,11 +950,13 @@
                         credential.user;
 
 
-                    /*
-                     * Read users/{uid}
-                     */
+                    /* =========================
+                       READ USER PROFILE
+                    ========================= */
 
-                    let userData = null;
+                    let userData =
+                        null;
+
 
                     try {
 
@@ -705,6 +968,7 @@
                                     user.uid
                                 )
                             );
+
 
                         if (
                             userSnap.exists()
@@ -727,14 +991,16 @@
                     }
 
 
-                    /*
-                     * Save local session information.
-                     */
+                    /* =========================
+                       LOCAL SESSION
+                    ========================= */
 
                     localStorage.setItem(
                         "nightfallMemberEmail",
-                        user.email || email
+                        user.email ||
+                        email
                     );
+
 
                     localStorage.setItem(
                         "nightfallMemberName",
@@ -743,6 +1009,7 @@
                         ""
                     );
 
+
                     localStorage.setItem(
                         "nightfallMemberStatus",
                         userData?.membershipStatus ||
@@ -750,18 +1017,14 @@
                     );
 
 
-                    /*
-                     * Dashboard handles:
-                     *
-                     * NOT REQUESTED
-                     * PENDING
-                     * APPROVED
-                     * REJECTED
-                     */
+                    /* =========================
+                       DASHBOARD
+                    ========================= */
 
                     window.location.replace(
                         "member-dashboard.html"
                     );
+
 
                 } catch (error) {
 
@@ -770,7 +1033,11 @@
                         error
                     );
 
-                    setLoading(false);
+
+                    setLoading(
+                        false
+                    );
+
 
                     showMessage(
                         firebaseError(error),
@@ -783,15 +1050,16 @@
         );
 
 
-        /*
-         * FORGOT PASSWORD
-         */
+        /* =========================
+           FORGOT PASSWORD
+        ========================= */
 
         forgotBtn.addEventListener(
             "click",
             async () => {
 
                 clearMessage();
+
 
                 const email =
                     emailInput.value
@@ -808,6 +1076,7 @@
                     emailInput.focus();
 
                     return;
+
                 }
 
 
@@ -819,13 +1088,17 @@
                     );
 
 
-                    await sendPasswordResetEmail(
+                    await
+                    sendPasswordResetEmail(
                         auth,
                         email
                     );
 
 
-                    setLoading(false);
+                    setLoading(
+                        false
+                    );
+
 
                     showMessage(
                         "If the email is registered, a password reset email has been sent.",
@@ -840,12 +1113,15 @@
                         error
                     );
 
-                    setLoading(false);
+
+                    setLoading(
+                        false
+                    );
+
 
                     /*
-                     * Generic message helps avoid
-                     * revealing whether an email
-                     * exists.
+                     * Generic response
+                     * for account privacy.
                      */
 
                     showMessage(
