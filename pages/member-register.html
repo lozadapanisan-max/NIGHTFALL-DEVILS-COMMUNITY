@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -17,18 +16,17 @@
 
     <meta
         name="description"
-        content="NIGHTFALL DEVILS Member Dashboard"
+        content="NIGHTFALL DEVILS Member Registration"
     >
 
-    <title>NIGHTFALL DEVILS - Member Dashboard</title>
+    <title>NIGHTFALL DEVILS - Create Account</title>
 
     <link
         rel="icon"
-        href="../assets/icon-192.png"
+        href="assets/icon-192.png"
     >
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -39,17 +37,13 @@
             --red: #d71920;
             --red-dark: #a90f15;
             --gold: #f5c542;
-            --gold-dark: #c89c20;
             --black: #050505;
             --dark: #0b0b0b;
             --card: #111111;
-            --card-2: #151515;
             --border: #292929;
             --text: #ffffff;
-            --muted: #9a9a9a;
+            --muted: #999999;
             --green: #22c55e;
-            --blue: #3b82f6;
-            --orange: #f59e0b;
         }
 
         html {
@@ -61,24 +55,17 @@
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(215, 25, 32, 0.13),
-                    transparent 30%
+                    rgba(215, 25, 32, 0.15),
+                    transparent 35%
                 ),
                 radial-gradient(
                     circle at bottom left,
                     rgba(245, 197, 66, 0.07),
-                    transparent 30%
+                    transparent 35%
                 ),
                 var(--black);
             color: var(--text);
             min-height: 100vh;
-        }
-
-        button,
-        input,
-        textarea,
-        select {
-            font-family: inherit;
         }
 
         a {
@@ -86,32 +73,275 @@
             text-decoration: none;
         }
 
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .brand img {
+            width: 78px;
+            height: 78px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .brand-title {
+            color: var(--gold);
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        .brand-subtitle {
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .register-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(215, 25, 32, 0.08),
+                    rgba(245, 197, 66, 0.025)
+                ),
+                var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .card-title {
+            font-size: 21px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .card-description {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            color: #cfcfcf;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: var(--red);
+        }
+
+        .form-input {
+            width: 100%;
+            border: 1px solid #303030;
+            background: #090909;
+            color: white;
+            border-radius: 9px;
+            padding: 12px 13px;
+            outline: none;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .form-input::placeholder {
+            color: #555;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold);
+            box-shadow:
+                0 0 0 2px rgba(245, 197, 66, 0.06);
+        }
+
+        .form-help {
+            color: #666;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           CHECKBOX
+        ========================= */
+
+        .rules-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 18px 0;
+            color: #aaa;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .rules-row input {
+            margin-top: 2px;
+            accent-color: var(--red);
+        }
+
+        .rules-row a {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .register-btn {
+            width: 100%;
+            border: 1px solid #6b1818;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+            color: white;
+            padding: 13px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 900;
+            transition: 0.2s;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 10px 25px rgba(215, 25, 32, 0.22);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* =========================
+           ERROR / SUCCESS
+        ========================= */
+
+        .message {
+            display: none;
+            padding: 12px;
+            border-radius: 9px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(215, 25, 32, 0.1);
+            border: 1px solid rgba(215, 25, 32, 0.35);
+            color: #ff8585;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: #67e895;
+        }
+
+        /* =========================
+           FOOTER LINKS
+        ========================= */
+
+        .bottom-links {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .bottom-links a {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .bottom-links .separator {
+            color: #444;
+            margin: 0 6px;
+        }
+
         /* =========================
            LOADING
         ========================= */
 
-        #loadingScreen {
+        .loading-screen {
             position: fixed;
             inset: 0;
             z-index: 99999;
             background: #050505;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 18px;
+            gap: 14px;
         }
 
-        .loader-logo {
-            width: 85px;
-            height: 85px;
+        .loading-screen.show {
+            display: flex;
+        }
+
+        .loading-logo {
+            width: 70px;
+            height: 70px;
             object-fit: contain;
-            animation: pulseLogo 1.5s infinite;
+            animation: pulse 1.4s infinite;
         }
 
-        .loader-spinner {
-            width: 38px;
-            height: 38px;
+        .spinner {
+            width: 34px;
+            height: 34px;
             border: 4px solid #292929;
             border-top-color: var(--red);
             border-right-color: var(--gold);
@@ -119,9 +349,9 @@
             animation: spin 0.8s linear infinite;
         }
 
-        .loader-text {
+        .loading-text {
             color: var(--muted);
-            font-size: 14px;
+            font-size: 12px;
         }
 
         @keyframes spin {
@@ -130,7 +360,7 @@
             }
         }
 
-        @keyframes pulseLogo {
+        @keyframes pulse {
             0%,
             100% {
                 transform: scale(1);
@@ -138,1731 +368,314 @@
             }
 
             50% {
-                transform: scale(1.08);
+                transform: scale(1.07);
                 opacity: 0.75;
             }
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            background: rgba(5, 5, 5, 0.96);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand img {
-            width: 43px;
-            height: 43px;
-            object-fit: contain;
-        }
-
-        .brand-text strong {
-            display: block;
-            color: var(--gold);
-            font-size: 17px;
-            letter-spacing: 1px;
-        }
-
-        .brand-text span {
-            display: block;
-            color: var(--muted);
-            font-size: 10px;
-            letter-spacing: 1.5px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-user {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 7px 11px;
-            border: 1px solid var(--border);
-            background: #0e0e0e;
-            border-radius: 30px;
-        }
-
-        .header-avatar {
-            width: 31px;
-            height: 31px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #222;
-            border: 1px solid var(--gold);
-        }
-
-        .header-user-name {
-            font-size: 13px;
-            font-weight: 700;
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .logout-btn {
-            border: 1px solid #4a2020;
-            background: #170b0b;
-            color: #ff7777;
-            padding: 9px 13px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .logout-btn:hover {
-            background: var(--red);
-            color: white;
-            border-color: var(--red);
-        }
-
-        /* =========================
-           LAYOUT
-        ========================= */
-
-        .page {
-            width: min(1200px, calc(100% - 30px));
-            margin: 0 auto;
-            padding: 30px 0 50px;
-        }
-
-        /* =========================
-           WELCOME
-        ========================= */
-
-        .welcome-card {
-            position: relative;
-            overflow: hidden;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(215, 25, 32, 0.18),
-                    rgba(245, 197, 66, 0.05)
-                ),
-                var(--card);
-            border: 1px solid #3b2222;
-            border-radius: 18px;
-            padding: 28px;
-            margin-bottom: 22px;
-        }
-
-        .welcome-card::before {
-            content: "";
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            right: -80px;
-            top: -100px;
-            background: rgba(215, 25, 32, 0.16);
-            border-radius: 50%;
-            filter: blur(5px);
-        }
-
-        .welcome-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .profile-avatar {
-            width: 90px;
-            height: 90px;
-            flex: 0 0 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #222;
-            border: 3px solid var(--gold);
-            box-shadow:
-                0 0 0 4px rgba(245, 197, 66, 0.08),
-                0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .welcome-info {
-            min-width: 0;
-        }
-
-        .welcome-label {
-            color: var(--gold);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .welcome-name {
-            font-size: clamp(25px, 4vw, 38px);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 7px;
-        }
-
-        .welcome-tiktok {
-            color: #ddd;
-            font-size: 14px;
-        }
-
-        .welcome-tiktok span {
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        .member-code-badge {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 13px;
-            padding: 7px 11px;
-            background: #090909;
-            border: 1px solid #3b3b3b;
-            border-radius: 7px;
-            color: var(--gold);
-            font-family: monospace;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        /* =========================
-           STATS
-        ========================= */
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 22px;
-        }
-
-        .stat-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-size: 22px;
-            background: #1a1a1a;
-            border: 1px solid #303030;
-        }
-
-        .stat-info small {
-            display: block;
-            color: var(--muted);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .stat-info strong {
-            display: block;
-            font-size: 23px;
-        }
-
-        /* =========================
-           MEMBERSHIP STATUS
-        ========================= */
-
-        .membership-card {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(215, 25, 32, 0.08),
-                    rgba(245, 197, 66, 0.03)
-                ),
-                var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .membership-body {
-            padding: 18px;
-        }
-
-        .membership-status-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .membership-status-info {
-            flex: 1;
-            min-width: 220px;
-        }
-
-        .membership-status-info strong {
-            display: block;
-            font-size: 17px;
-            margin-bottom: 6px;
-        }
-
-        .membership-status-info span {
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .membership-status-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 110px;
-            padding: 9px 13px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.7px;
-        }
-
-        .status-pending {
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            color: #fbbf24;
-        }
-
-        .status-approved {
-            background: rgba(34, 197, 94, 0.12);
-            border: 1px solid rgba(34, 197, 94, 0.35);
-            color: #5ee890;
-        }
-
-        .status-rejected {
-            background: rgba(215, 25, 32, 0.12);
-            border: 1px solid rgba(215, 25, 32, 0.35);
-            color: #ff7777;
-        }
-
-        .status-none {
-            background: rgba(59, 130, 246, 0.12);
-            border: 1px solid rgba(59, 130, 246, 0.35);
-            color: #60a5fa;
-        }
-
-        .request-btn {
-            width: 100%;
-            margin-top: 16px;
-            border: 1px solid #6b1818;
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--red),
-                    #a90f15
-                );
-            color: white;
-            padding: 13px 16px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 800;
-            transition: 0.2s;
-        }
-
-        .request-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(215, 25, 32, 0.2);
-        }
-
-        .request-btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .admin-message {
-            margin-top: 14px;
-            padding: 12px;
-            background: #0b0b0b;
-            border: 1px solid #292929;
-            border-radius: 9px;
-            color: #bbb;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .admin-message strong {
-            display: block;
-            color: var(--gold);
-            margin-bottom: 5px;
-        }
-
-        /* =========================
-           REQUEST FORM
-        ========================= */
-
-        .request-form {
-            display: none;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-        }
-
-        .request-form.show {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 13px;
-        }
-
-        .form-label {
-            display: block;
-            color: #aaa;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            border: 1px solid #303030;
-            background: #090909;
-            color: white;
-            border-radius: 8px;
-            padding: 11px 12px;
-            outline: none;
-            font-size: 12px;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-            border-color: var(--gold);
-        }
-
-        .form-textarea {
-            min-height: 85px;
-            resize: vertical;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .form-submit,
-        .form-cancel {
-            flex: 1;
-            border-radius: 8px;
-            padding: 11px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .form-submit {
-            background: var(--red);
-            border: 1px solid var(--red);
-            color: white;
-        }
-
-        .form-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .form-cancel {
-            background: #151515;
-            border: 1px solid #333;
-            color: #bbb;
-        }
-
-        /* =========================
-           GRID
-        ========================= */
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1.35fr 0.9fr;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .section-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .section-header {
-            min-height: 62px;
-            padding: 16px 19px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-weight: 800;
-            font-size: 16px;
-        }
-
-        .section-title-icon {
-            color: var(--gold);
-        }
-
-        .view-all {
-            color: var(--gold);
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .section-body {
-            padding: 17px;
-        }
-
-        /* =========================
-           SCHEDULE
-        ========================= */
-
-        .schedule-list {
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-        }
-
-        .schedule-item {
-            background: #0c0c0c;
-            border: 1px solid #252525;
-            border-radius: 11px;
-            padding: 14px;
-            transition: 0.2s;
-        }
-
-        .schedule-item:hover {
-            border-color: #4a3030;
-            transform: translateY(-1px);
-        }
-
-        .schedule-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .schedule-date {
-            color: var(--gold);
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .schedule-type {
-            font-size: 10px;
-            padding: 5px 8px;
-            border-radius: 20px;
-            background: rgba(215, 25, 32, 0.12);
-            color: #ff8d8d;
-            border: 1px solid rgba(215, 25, 32, 0.3);
-            white-space: nowrap;
-        }
-
-        .schedule-main {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            color: #ddd;
-            font-size: 12px;
-        }
-
-        .schedule-detail {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .schedule-detail strong {
-            color: white;
-        }
-
-        .schedule-link {
-            display: inline-flex;
-            margin-top: 11px;
-            padding: 7px 10px;
-            background: #170b0b;
-            border: 1px solid #4b2020;
-            color: #ff7777;
-            border-radius: 7px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .schedule-link:hover {
-            background: var(--red);
-            color: white;
-        }
-
-        /* =========================
-           ANNOUNCEMENTS
-        ========================= */
-
-        .announcement-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .announcement-item {
-            background: #0c0c0c;
-            border: 1px solid #252525;
-            border-radius: 11px;
-            padding: 14px;
-        }
-
-        .announcement-title {
-            font-size: 14px;
-            font-weight: 800;
-            margin-bottom: 7px;
-        }
-
-        .announcement-message {
-            color: #bbb;
-            font-size: 12px;
-            line-height: 1.55;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .announcement-meta {
-            margin-top: 10px;
-            color: #777;
-            font-size: 10px;
-        }
-
-        /* =========================
-           PROFILE
-        ========================= */
-
-        .profile-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .profile-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .profile-row:last-child {
-            border-bottom: none;
-        }
-
-        .profile-label {
-            color: #777;
-            font-size: 11px;
-        }
-
-        .profile-value {
-            text-align: right;
-            font-size: 12px;
-            font-weight: 700;
-            word-break: break-word;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 9px;
-            border-radius: 20px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #5ee890;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .role-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 9px;
-            border-radius: 20px;
-            background: rgba(245, 197, 66, 0.1);
-            border: 1px solid rgba(245, 197, 66, 0.3);
-            color: var(--gold);
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        /* =========================
-           EMPTY STATE
-        ========================= */
-
-        .empty-state {
-            text-align: center;
-            padding: 35px 15px;
-            color: var(--muted);
-        }
-
-        .empty-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .empty-state strong {
-            display: block;
-            color: #ddd;
-            margin-bottom: 5px;
-        }
-
-        .empty-state span {
-            font-size: 12px;
-        }
-
-        /* =========================
-           ERROR
-        ========================= */
-
-        .error-box {
-            display: none;
-            background: rgba(215, 25, 32, 0.1);
-            border: 1px solid rgba(215, 25, 32, 0.35);
-            color: #ff8d8d;
-            border-radius: 10px;
-            padding: 13px;
-            margin-bottom: 18px;
-            font-size: 13px;
-        }
-
-        /* =========================
-           TOAST
-        ========================= */
-
-        #toast {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 99999;
-            max-width: 340px;
-            padding: 13px 16px;
-            border-radius: 10px;
-            background: #171717;
-            border: 1px solid #333;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            color: white;
-            font-size: 13px;
-            transform: translateY(120px);
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.25s;
-        }
-
-        #toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        #toast.success {
-            border-color: rgba(34, 197, 94, 0.5);
-        }
-
-        #toast.error {
-            border-color: rgba(215, 25, 32, 0.5);
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-            padding: 20px 0 5px;
-            color: #555;
-            font-size: 11px;
-        }
-
-        footer strong {
-            color: #777;
         }
 
         /* =========================
            MOBILE
         ========================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 600px) {
 
-            .content-grid {
-                grid-template-columns: 1fr;
+            .page {
+                padding: 18px 12px;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            .topbar {
-                height: 62px;
-                padding: 0 12px;
+            .register-card {
+                padding: 20px 16px;
+                border-radius: 15px;
             }
 
             .brand img {
-                width: 37px;
-                height: 37px;
+                width: 65px;
+                height: 65px;
             }
 
-            .brand-text strong {
-                font-size: 14px;
+            .brand-title {
+                font-size: 20px;
             }
 
-            .brand-text span {
-                display: none;
+            .card-title {
+                font-size: 19px;
             }
-
-            .header-user {
-                display: none;
-            }
-
-            .logout-btn {
-                padding: 8px 10px;
-                font-size: 11px;
-            }
-
-            .page {
-                width: min(100% - 20px, 1200px);
-                padding-top: 18px;
-            }
-
-            .welcome-card {
-                padding: 20px;
-            }
-
-            .welcome-content {
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .profile-avatar {
-                width: 68px;
-                height: 68px;
-                flex-basis: 68px;
-            }
-
-            .welcome-name {
-                font-size: 23px;
-            }
-
-            .welcome-label {
-                font-size: 9px;
-                letter-spacing: 1.5px;
-            }
-
-            .welcome-tiktok {
-                font-size: 12px;
-            }
-
-            .member-code-badge {
-                font-size: 10px;
-            }
-
-            .stats-grid {
-                gap: 8px;
-            }
-
-            .stat-card {
-                padding: 13px 8px;
-                flex-direction: column;
-                text-align: center;
-                gap: 7px;
-            }
-
-            .stat-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 17px;
-            }
-
-            .stat-info small {
-                font-size: 8px;
-                letter-spacing: 0.5px;
-            }
-
-            .stat-info strong {
-                font-size: 17px;
-            }
-
-            .section-header {
-                padding: 14px;
-            }
-
-            .section-body {
-                padding: 12px;
-            }
-
-            .section-title {
-                font-size: 14px;
-            }
-
-            .schedule-item {
-                padding: 12px;
-            }
-
-            .schedule-top {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 7px;
-            }
-
-            .profile-row {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .profile-value {
-                text-align: left;
-            }
-
-            .membership-status-row {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .membership-status-badge {
-                width: 100%;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            #toast {
-                left: 12px;
-                right: 12px;
-                bottom: 12px;
-                max-width: none;
-            }
-
         }
-
-        @media (max-width: 380px) {
-
-            .welcome-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .member-code-badge {
-                justify-content: center;
-            }
-
-        }
-
     </style>
-
 </head>
 
 <body>
 
-
     <!-- =========================
-         LOADING SCREEN
+         LOADING
     ========================= -->
 
-    <div id="loadingScreen">
+    <div
+        id="loadingScreen"
+        class="loading-screen"
+    >
 
         <img
-            src="../assets/logo.png"
-            class="loader-logo"
+            src="assets/logo.png"
+            class="loading-logo"
             alt="NIGHTFALL DEVILS"
         >
 
-        <div class="loader-spinner"></div>
+        <div class="spinner"></div>
 
-        <div class="loader-text">
-            Loading member portal...
+        <div class="loading-text">
+            Creating your account...
         </div>
 
     </div>
 
 
     <!-- =========================
-         TOP BAR
-    ========================= -->
-
-    <header class="topbar">
-
-        <a
-            href="member-dashboard.html"
-            class="brand"
-        >
-
-            <img
-                src="../assets/logo.png"
-                alt="NIGHTFALL DEVILS"
-            >
-
-            <div class="brand-text">
-
-                <strong>NIGHTFALL DEVILS</strong>
-
-                <span>MEMBER PORTAL</span>
-
-            </div>
-
-        </a>
-
-
-        <div class="header-actions">
-
-            <div class="header-user">
-
-                <img
-                    id="headerAvatar"
-                    class="header-avatar"
-                    src="../assets/logo.png"
-                    alt="Member"
-                >
-
-                <span
-                    id="headerUserName"
-                    class="header-user-name"
-                >
-                    Member
-                </span>
-
-            </div>
-
-            <button
-                type="button"
-                class="logout-btn"
-                id="logoutBtn"
-            >
-                LOGOUT
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================
-         MAIN
+         PAGE
     ========================= -->
 
     <main class="page">
 
-        <div
-            id="errorBox"
-            class="error-box"
-        ></div>
+        <div class="register-wrapper">
 
+            <!-- BRAND -->
 
-        <!-- =========================
-             WELCOME
-        ========================= -->
-
-        <section class="welcome-card">
-
-            <div class="welcome-content">
+            <div class="brand">
 
                 <img
-                    id="profileAvatar"
-                    class="profile-avatar"
-                    src="../assets/logo.png"
-                    alt="Profile"
+                    src="assets/logo.png"
+                    alt="NIGHTFALL DEVILS"
                 >
 
-                <div class="welcome-info">
-
-                    <div class="welcome-label">
-                        WELCOME BACK
-                    </div>
-
-                    <h1
-                        id="welcomeName"
-                        class="welcome-name"
-                    >
-                        Member
-                    </h1>
-
-                    <div class="welcome-tiktok">
-
-                        TikTok:
-
-                        <span id="welcomeTikTok">
-                            @username
-                        </span>
-
-                    </div>
-
-                    <div
-                        id="memberCode"
-                        class="member-code-badge"
-                    >
-                        NOT YET A MEMBER
-                    </div>
-
+                <div class="brand-title">
+                    NIGHTFALL DEVILS
                 </div>
 
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             STATS
-        ========================= -->
-
-        <section class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📅
-                </div>
-
-                <div class="stat-info">
-
-                    <small>
-                        My Schedules
-                    </small>
-
-                    <strong id="scheduleCount">
-                        0
-                    </strong>
-
+                <div class="brand-subtitle">
+                    MEMBER PORTAL
                 </div>
 
             </div>
 
 
-            <div class="stat-card">
+            <!-- REGISTER CARD -->
 
-                <div class="stat-icon">
-                    📢
-                </div>
+            <section class="register-card">
 
-                <div class="stat-info">
+                <h1 class="card-title">
+                    CREATE YOUR ACCOUNT
+                </h1>
 
-                    <small>
-                        Announcements
-                    </small>
-
-                    <strong id="announcementCount">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
+                <p class="card-description">
+                    Create your NIGHTFALL DEVILS member portal
+                    account first. Creating an account does not
+                    automatically make you an approved member.
+                </p>
 
 
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    👿
-                </div>
-
-                <div class="stat-info">
-
-                    <small>
-                        Status
-                    </small>
-
-                    <strong id="statusText">
-                        Pending
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             MEMBERSHIP STATUS
-        ========================= -->
-
-        <section class="membership-card">
-
-            <div class="section-header">
-
-                <div class="section-title">
-
-                    <span class="section-title-icon">
-                        👿
-                    </span>
-
-                    MEMBERSHIP STATUS
-
-                </div>
-
-            </div>
-
-            <div class="membership-body">
-
-                <div class="membership-status-row">
-
-                    <div class="membership-status-info">
-
-                        <strong id="membershipTitle">
-                            Checking membership status...
-                        </strong>
-
-                        <span id="membershipDescription">
-                            Please wait while we check your membership request.
-                        </span>
-
-                    </div>
-
-                    <div
-                        id="membershipBadge"
-                        class="membership-status-badge status-none"
-                    >
-                        CHECKING
-                    </div>
-
-                </div>
-
+                <!-- MESSAGE -->
 
                 <div
-                    id="adminMessage"
-                    class="admin-message"
-                    style="display:none;"
-                >
-
-                    <strong>
-                        ADMIN MESSAGE
-                    </strong>
-
-                    <span id="adminMessageText"></span>
-
-                </div>
+                    id="messageBox"
+                    class="message"
+                ></div>
 
 
-                <button
-                    type="button"
-                    id="requestJoinBtn"
-                    class="request-btn"
-                    style="display:none;"
-                >
-                    📩 REQUEST TO JOIN NIGHTFALL DEVILS
-                </button>
+                <!-- FORM -->
 
+                <form id="registerForm">
 
-                <!-- REQUEST FORM -->
-
-                <div
-                    id="requestForm"
-                    class="request-form"
-                >
+                    <!-- DISPLAY NAME -->
 
                     <div class="form-group">
 
-                        <label class="form-label">
+                        <label
+                            class="form-label"
+                            for="displayName"
+                        >
+                            Full / Display Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="displayName"
+                            class="form-input"
+                            placeholder="Enter your name"
+                            maxlength="100"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="email"
+                        >
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            class="form-input"
+                            placeholder="you@example.com"
+                            maxlength="150"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <div class="form-help">
+                            This email will be used for your member login.
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIKTOK -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="tiktokUsername"
+                        >
                             TikTok Username
+                            <span class="required">*</span>
                         </label>
 
                         <input
                             type="text"
-                            id="requestTikTok"
+                            id="tiktokUsername"
                             class="form-input"
-                            placeholder="@username"
+                            placeholder="@yourusername"
                             maxlength="50"
+                            autocomplete="off"
+                            required
                         >
+
+                        <div class="form-help">
+                            Example: @nightfalldevils
+                        </div>
 
                     </div>
 
 
+                    <!-- PASSWORD -->
+
                     <div class="form-group">
 
-                        <label class="form-label">
-                            Display Name
+                        <label
+                            class="form-label"
+                            for="password"
+                        >
+                            Password
+                            <span class="required">*</span>
                         </label>
 
                         <input
-                            type="text"
-                            id="requestDisplayName"
+                            type="password"
+                            id="password"
                             class="form-input"
-                            placeholder="Your display name"
-                            maxlength="100"
+                            placeholder="Minimum 6 characters"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
                         >
 
                     </div>
 
 
+                    <!-- CONFIRM PASSWORD -->
+
                     <div class="form-group">
 
-                        <label class="form-label">
-                            Referred By
+                        <label
+                            class="form-label"
+                            for="confirmPassword"
+                        >
+                            Confirm Password
+                            <span class="required">*</span>
                         </label>
 
                         <input
-                            type="text"
-                            id="requestReferredBy"
+                            type="password"
+                            id="confirmPassword"
                             class="form-input"
-                            placeholder="Optional"
-                            maxlength="100"
+                            placeholder="Re-enter your password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
                         >
 
                     </div>
 
 
-                    <div class="form-group">
+                    <!-- RULES -->
 
-                        <label class="form-label">
-                            Message
-                        </label>
+                    <label class="rules-row">
 
-                        <textarea
-                            id="requestMessage"
-                            class="form-textarea"
-                            maxlength="500"
-                            placeholder="Tell the admins why you want to join..."
-                        ></textarea>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button
-                            type="button"
-                            id="submitRequestBtn"
-                            class="form-submit"
+                        <input
+                            type="checkbox"
+                            id="agreeRules"
+                            required
                         >
-                            SUBMIT REQUEST
-                        </button>
 
-                        <button
-                            type="button"
-                            id="cancelRequestBtn"
-                            class="form-cancel"
-                        >
-                            CANCEL
-                        </button>
+                        <span>
+                            I agree to follow the
+                            <a href="pages/rules.html">
+                                NIGHTFALL DEVILS Community Rules
+                            </a>
+                            and understand that creating an account
+                            does not automatically approve my membership.
+                        </span>
 
-                    </div>
+                    </label>
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                        type="submit"
+                        id="registerBtn"
+                        class="register-btn"
+                    >
+                        CREATE ACCOUNT
+                    </button>
+
+                </form>
+
+
+                <!-- BOTTOM LINKS -->
+
+                <div class="bottom-links">
+
+                    Already have an account?
+
+                    <a href="pages/member-login.html">
+                        LOGIN HERE
+                    </a>
+
+                    <span class="separator">•</span>
+
+                    <a href="index.html">
+                        HOME
+                    </a>
 
                 </div>
 
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CONTENT
-        ========================= -->
-
-        <div class="content-grid">
-
-
-            <!-- =========================
-                 LEFT
-            ========================= -->
-
-            <div>
-
-
-                <!-- MY SCHEDULE -->
-
-                <section class="section-card">
-
-                    <div class="section-header">
-
-                        <div class="section-title">
-
-                            <span class="section-title-icon">
-                                📅
-                            </span>
-
-                            MY SCHEDULE
-
-                        </div>
-
-                        <a
-                            href="schedule.html"
-                            class="view-all"
-                        >
-                            VIEW ALL →
-                        </a>
-
-                    </div>
-
-                    <div class="section-body">
-
-                        <div
-                            id="scheduleList"
-                            class="schedule-list"
-                        >
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    🔒
-                                </div>
-
-                                <strong>
-                                    Membership required
-                                </strong>
-
-                                <span>
-                                    Your assigned schedules will appear after approval.
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- ANNOUNCEMENTS -->
-
-                <section class="section-card">
-
-                    <div class="section-header">
-
-                        <div class="section-title">
-
-                            <span class="section-title-icon">
-                                📢
-                            </span>
-
-                            ANNOUNCEMENTS
-
-                        </div>
-
-                    </div>
-
-                    <div class="section-body">
-
-                        <div
-                            id="announcementList"
-                            class="announcement-list"
-                        >
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    ⏳
-                                </div>
-
-                                <strong>
-                                    Loading announcements...
-                                </strong>
-
-                                <span>
-                                    Please wait.
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </div>
-
-
-            <!-- =========================
-                 RIGHT
-            ========================= -->
-
-            <div>
-
-
-                <!-- MY PROFILE -->
-
-                <section class="section-card">
-
-                    <div class="section-header">
-
-                        <div class="section-title">
-
-                            <span class="section-title-icon">
-                                👤
-                            </span>
-
-                            MY PROFILE
-
-                        </div>
-
-                    </div>
-
-                    <div class="section-body">
-
-                        <div class="profile-list">
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Display Name
-                                </span>
-
-                                <span
-                                    id="profileName"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    TikTok Username
-                                </span>
-
-                                <span
-                                    id="profileTikTok"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Member Code
-                                </span>
-
-                                <span
-                                    id="profileCode"
-                                    class="profile-value"
-                                >
-                                    Not assigned
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Role
-                                </span>
-
-                                <span
-                                    id="profileRole"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Status
-                                </span>
-
-                                <span
-                                    id="profileStatus"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Email
-                                </span>
-
-                                <span
-                                    id="profileEmail"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="profile-row">
-
-                                <span class="profile-label">
-                                    Joined
-                                </span>
-
-                                <span
-                                    id="profileJoined"
-                                    class="profile-value"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- QUICK LINKS -->
-
-                <section class="section-card">
-
-                    <div class="section-header">
-
-                        <div class="section-title">
-
-                            <span class="section-title-icon">
-                                ⚡
-                            </span>
-
-                            QUICK LINKS
-
-                        </div>
-
-                    </div>
-
-                    <div class="section-body">
-
-                        <div
-                            style="
-                                display:flex;
-                                flex-direction:column;
-                                gap:9px;
-                            "
-                        >
-
-                            <a
-                                href="schedule.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
-                            >
-                                📅 Community Schedule
-                            </a>
-
-
-                            <a
-                                href="rules.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
-                            >
-                                📜 Community Rules
-                            </a>
-
-
-                            <a
-                                href="members.html"
-                                style="
-                                    padding:12px;
-                                    border:1px solid #292929;
-                                    background:#0c0c0c;
-                                    border-radius:9px;
-                                    color:#ddd;
-                                    font-size:12px;
-                                    font-weight:700;
-                                "
-                            >
-                                🏢 Organization
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </div>
+            </section>
 
         </div>
 
-
-        <footer>
-
-            © 2026
-            <strong>NIGHTFALL DEVILS</strong>
-            · Member Portal
-
-        </footer>
-
     </main>
-
-
-    <!-- TOAST -->
-
-    <div id="toast"></div>
 
 
     <!-- =========================
@@ -1875,20 +688,18 @@
             initializeApp
         } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
+
         import {
             getAuth,
-            onAuthStateChanged,
-            signOut
+            createUserWithEmailAndPassword,
+            updateProfile
         } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
 
         import {
             getFirestore,
-            collection,
-            query,
-            where,
-            getDocs,
-            addDoc,
-            onSnapshot,
+            doc,
+            setDoc,
             serverTimestamp
         } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -1919,14 +730,15 @@
 
             measurementId:
                 "G-R6MZ05M4DR"
-
         };
 
 
+        /* =========================
+           INITIALIZE
+        ========================= */
+
         const app =
-            initializeApp(
-                firebaseConfig
-            );
+            initializeApp(firebaseConfig);
 
         const auth =
             getAuth(app);
@@ -1939,237 +751,89 @@
            ELEMENTS
         ========================= */
 
+        const registerForm =
+            document.getElementById(
+                "registerForm"
+            );
+
+        const displayNameInput =
+            document.getElementById(
+                "displayName"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
+
+        const tiktokInput =
+            document.getElementById(
+                "tiktokUsername"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+        const confirmPasswordInput =
+            document.getElementById(
+                "confirmPassword"
+            );
+
+        const agreeRules =
+            document.getElementById(
+                "agreeRules"
+            );
+
+        const registerBtn =
+            document.getElementById(
+                "registerBtn"
+            );
+
+        const messageBox =
+            document.getElementById(
+                "messageBox"
+            );
+
         const loadingScreen =
             document.getElementById(
                 "loadingScreen"
             );
 
-        const errorBox =
-            document.getElementById(
-                "errorBox"
-            );
-
-        const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
-            );
-
-        const headerAvatar =
-            document.getElementById(
-                "headerAvatar"
-            );
-
-        const headerUserName =
-            document.getElementById(
-                "headerUserName"
-            );
-
-        const profileAvatar =
-            document.getElementById(
-                "profileAvatar"
-            );
-
-        const welcomeName =
-            document.getElementById(
-                "welcomeName"
-            );
-
-        const welcomeTikTok =
-            document.getElementById(
-                "welcomeTikTok"
-            );
-
-        const memberCode =
-            document.getElementById(
-                "memberCode"
-            );
-
-        const scheduleCount =
-            document.getElementById(
-                "scheduleCount"
-            );
-
-        const announcementCount =
-            document.getElementById(
-                "announcementCount"
-            );
-
-        const statusText =
-            document.getElementById(
-                "statusText"
-            );
-
-        const scheduleList =
-            document.getElementById(
-                "scheduleList"
-            );
-
-        const announcementList =
-            document.getElementById(
-                "announcementList"
-            );
-
-        const profileName =
-            document.getElementById(
-                "profileName"
-            );
-
-        const profileTikTok =
-            document.getElementById(
-                "profileTikTok"
-            );
-
-        const profileCode =
-            document.getElementById(
-                "profileCode"
-            );
-
-        const profileRole =
-            document.getElementById(
-                "profileRole"
-            );
-
-        const profileStatus =
-            document.getElementById(
-                "profileStatus"
-            );
-
-        const profileEmail =
-            document.getElementById(
-                "profileEmail"
-            );
-
-        const profileJoined =
-            document.getElementById(
-                "profileJoined"
-            );
-
-        const membershipTitle =
-            document.getElementById(
-                "membershipTitle"
-            );
-
-        const membershipDescription =
-            document.getElementById(
-                "membershipDescription"
-            );
-
-        const membershipBadge =
-            document.getElementById(
-                "membershipBadge"
-            );
-
-        const requestJoinBtn =
-            document.getElementById(
-                "requestJoinBtn"
-            );
-
-        const requestForm =
-            document.getElementById(
-                "requestForm"
-            );
-
-        const requestTikTok =
-            document.getElementById(
-                "requestTikTok"
-            );
-
-        const requestDisplayName =
-            document.getElementById(
-                "requestDisplayName"
-            );
-
-        const requestReferredBy =
-            document.getElementById(
-                "requestReferredBy"
-            );
-
-        const requestMessage =
-            document.getElementById(
-                "requestMessage"
-            );
-
-        const submitRequestBtn =
-            document.getElementById(
-                "submitRequestBtn"
-            );
-
-        const cancelRequestBtn =
-            document.getElementById(
-                "cancelRequestBtn"
-            );
-
-        const adminMessage =
-            document.getElementById(
-                "adminMessage"
-            );
-
-        const adminMessageText =
-            document.getElementById(
-                "adminMessageText"
-            );
-
-        const toast =
-            document.getElementById(
-                "toast"
-            );
-
 
         /* =========================
-           VARIABLES
+           MESSAGE
         ========================= */
 
-        let currentUser = null;
+        function showMessage(
+            message,
+            type = "error"
+        ) {
 
-        let currentMember = null;
+            messageBox.textContent =
+                message;
 
-        let currentRequest = null;
-
-        let unsubscribeSchedules = null;
-
-        let unsubscribeAnnouncements = null;
-
-        let unsubscribeRequest = null;
+            messageBox.className =
+                "message " + type;
+        }
 
 
-        /* =========================
-           ESCAPE HTML
-        ========================= */
+        function clearMessage() {
 
-        function escapeHTML(value) {
+            messageBox.textContent =
+                "";
 
-            return String(
-                value ?? ""
-            )
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
-
+            messageBox.className =
+                "message";
         }
 
 
         /* =========================
-           NORMALIZE USERNAME
+           NORMALIZE TIKTOK
         ========================= */
 
-        function normalizeUsername(
+        function normalizeTikTok(
             username
         ) {
 
@@ -2177,2340 +841,394 @@
                 username || ""
             )
                 .trim()
-                .replace(
-                    /^@/,
-                    ""
-                )
+                .replace(/^@+/, "")
                 .toLowerCase();
 
         }
 
 
         /* =========================
-           PROFILE IMAGE
+           EMAIL
         ========================= */
 
-        function getProfileImage(
-            member
+        function normalizeEmail(
+            email
         ) {
 
-            return (
-                member?.imageUrl ||
-                member?.photoURL ||
-                member?.profileImage ||
-                member?.photo ||
-                ""
-            );
+            return String(
+                email || ""
+            )
+                .trim()
+                .toLowerCase();
 
         }
 
 
         /* =========================
-           DATE
+           BUTTON STATE
         ========================= */
 
-        function formatDate(
-            value
+        function setLoading(
+            loading
         ) {
 
-            if (!value) {
-                return "—";
-            }
+            registerBtn.disabled =
+                loading;
 
-            try {
+            if (loading) {
 
-                let date;
+                registerBtn.textContent =
+                    "CREATING ACCOUNT...";
 
-                if (
-                    value &&
-                    typeof value.toDate ===
-                    "function"
-                ) {
-
-                    date =
-                        value.toDate();
-
-                } else if (
-                    value instanceof Date
-                ) {
-
-                    date =
-                        value;
-
-                } else if (
-                    typeof value ===
-                    "number"
-                ) {
-
-                    date =
-                        new Date(value);
-
-                } else {
-
-                    date =
-                        new Date(value);
-
-                }
-
-                if (
-                    !date ||
-                    Number.isNaN(
-                        date.getTime()
-                    )
-                ) {
-
-                    return "—";
-
-                }
-
-                return date.toLocaleDateString(
-                    "en-US",
-                    {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                    }
+                loadingScreen.classList.add(
+                    "show"
                 );
 
-            } catch (error) {
+            } else {
 
-                return "—";
+                registerBtn.textContent =
+                    "CREATE ACCOUNT";
 
-            }
-
-        }
-
-
-        /* =========================
-           DATE TIME
-        ========================= */
-
-        function formatDateTime(
-            value
-        ) {
-
-            if (!value) {
-                return "—";
-            }
-
-            try {
-
-                let date;
-
-                if (
-                    value &&
-                    typeof value.toDate ===
-                    "function"
-                ) {
-
-                    date =
-                        value.toDate();
-
-                } else {
-
-                    date =
-                        new Date(value);
-
-                }
-
-                if (
-                    !date ||
-                    Number.isNaN(
-                        date.getTime()
-                    )
-                ) {
-
-                    return "—";
-
-                }
-
-                return date.toLocaleString(
-                    "en-US",
-                    {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                        hour: "numeric",
-                        minute: "2-digit"
-                    }
-                );
-
-            } catch (error) {
-
-                return "—";
-
-            }
-
-        }
-
-
-        /* =========================
-           TIME VALUE
-        ========================= */
-
-        function getTimeValue(
-            value
-        ) {
-
-            if (!value) {
-                return 0;
-            }
-
-            try {
-
-                if (
-                    value &&
-                    typeof value.toDate ===
-                    "function"
-                ) {
-
-                    return value
-                        .toDate()
-                        .getTime();
-
-                }
-
-                const date =
-                    new Date(value);
-
-                const time =
-                    date.getTime();
-
-                return Number.isNaN(time)
-                    ? 0
-                    : time;
-
-            } catch (error) {
-
-                return 0;
-
-            }
-
-        }
-
-
-        /* =========================
-           SHOW ERROR
-        ========================= */
-
-        function showError(
-            message
-        ) {
-
-            errorBox.textContent =
-                message;
-
-            errorBox.style.display =
-                "block";
-
-        }
-
-
-        function hideError() {
-
-            errorBox.style.display =
-                "none";
-
-            errorBox.textContent =
-                "";
-
-        }
-
-
-        /* =========================
-           TOAST
-        ========================= */
-
-        let toastTimer = null;
-
-        function showToast(
-            message,
-            type = "success"
-        ) {
-
-            toast.textContent =
-                message;
-
-            toast.className =
-                "";
-
-            toast.classList.add(
-                "show",
-                type
-            );
-
-            clearTimeout(
-                toastTimer
-            );
-
-            toastTimer =
-                setTimeout(
-                    () => {
-
-                        toast.classList.remove(
-                            "show"
-                        );
-
-                    },
-                    3500
-                );
-
-        }
-
-
-        /* =========================
-           FIND MEMBER
-        ========================= */
-
-        async function findMember(
-            user
-        ) {
-
-            let memberData = null;
-
-
-            /*
-             * FIRST:
-             * Firebase Auth UID
-             */
-
-            try {
-
-                const uidQuery =
-                    query(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        where(
-                            "uid",
-                            "==",
-                            user.uid
-                        )
-                    );
-
-                const uidSnapshot =
-                    await getDocs(
-                        uidQuery
-                    );
-
-                if (
-                    !uidSnapshot.empty
-                ) {
-
-                    const doc =
-                        uidSnapshot.docs[0];
-
-                    memberData = {
-
-                        id: doc.id,
-
-                        ...doc.data()
-
-                    };
-
-                }
-
-            } catch (error) {
-
-                console.warn(
-                    "UID member lookup failed:",
-                    error
-                );
-
-            }
-
-
-            /*
-             * SECOND:
-             * Email
-             */
-
-            if (
-                !memberData &&
-                user.email
-            ) {
-
-                try {
-
-                    const emailQuery =
-                        query(
-                            collection(
-                                db,
-                                "members"
-                            ),
-                            where(
-                                "email",
-                                "==",
-                                user.email
-                            )
-                        );
-
-                    const emailSnapshot =
-                        await getDocs(
-                            emailQuery
-                        );
-
-                    if (
-                        !emailSnapshot.empty
-                    ) {
-
-                        const doc =
-                            emailSnapshot.docs[0];
-
-                        memberData = {
-
-                            id: doc.id,
-
-                            ...doc.data()
-
-                        };
-
-                    }
-
-                } catch (error) {
-
-                    console.warn(
-                        "Email member lookup failed:",
-                        error
-                    );
-
-                }
-
-            }
-
-
-            return memberData;
-
-        }
-
-
-        /* =========================
-           FIND MEMBER REQUEST
-        ========================= */
-
-        async function findMemberRequest(
-            user
-        ) {
-
-            if (!user) {
-                return null;
-            }
-
-            try {
-
-                const requestQuery =
-                    query(
-                        collection(
-                            db,
-                            "memberRequests"
-                        ),
-                        where(
-                            "uid",
-                            "==",
-                            user.uid
-                        )
-                    );
-
-                const snapshot =
-                    await getDocs(
-                        requestQuery
-                    );
-
-                if (
-                    snapshot.empty
-                ) {
-
-                    return null;
-
-                }
-
-                const docs =
-                    snapshot.docs.map(
-                        doc => ({
-                            id: doc.id,
-                            ...doc.data()
-                        })
-                    );
-
-                docs.sort(
-                    (a, b) =>
-                        getTimeValue(
-                            b.createdAt ||
-                            b.submittedAt
-                        ) -
-                        getTimeValue(
-                            a.createdAt ||
-                            a.submittedAt
-                        )
-                );
-
-                return docs[0];
-
-            } catch (error) {
-
-                console.error(
-                    "Request lookup error:",
-                    error
-                );
-
-                return null;
-
-            }
-
-        }
-
-
-        /* =========================
-           LIVE REQUEST LISTENER
-        ========================= */
-
-        function listenToMemberRequest() {
-
-            if (
-                unsubscribeRequest
-            ) {
-
-                unsubscribeRequest();
-
-            }
-
-            if (
-                !currentUser
-            ) {
-
-                return;
-
-            }
-
-            const requestQuery =
-                query(
-                    collection(
-                        db,
-                        "memberRequests"
-                    ),
-                    where(
-                        "uid",
-                        "==",
-                        currentUser.uid
-                    )
-                );
-
-
-            unsubscribeRequest =
-                onSnapshot(
-                    requestQuery,
-                    (snapshot) => {
-
-                        if (
-                            snapshot.empty
-                        ) {
-
-                            currentRequest =
-                                null;
-
-                            renderMembershipStatus();
-
-                            return;
-
-                        }
-
-
-                        const requests =
-                            snapshot.docs.map(
-                                doc => ({
-                                    id: doc.id,
-                                    ...doc.data()
-                                })
-                            );
-
-
-                        requests.sort(
-                            (a, b) =>
-                                getTimeValue(
-                                    b.createdAt ||
-                                    b.submittedAt
-                                ) -
-                                getTimeValue(
-                                    a.createdAt ||
-                                    a.submittedAt
-                                )
-                        );
-
-
-                        currentRequest =
-                            requests[0];
-
-
-                        renderMembershipStatus();
-
-                    },
-                    (error) => {
-
-                        console.error(
-                            "Membership request listener error:",
-                            error
-                        );
-
-                        renderMembershipStatus();
-
-                    }
-                );
-
-        }
-
-
-        /* =========================
-           APPROVED STATUS
-        ========================= */
-
-        function isApprovedMember(
-            member
-        ) {
-
-            if (!member) {
-                return false;
-            }
-
-            const status =
-                String(
-                    member.status || ""
-                ).toLowerCase();
-
-            return (
-                status === "approved" ||
-                status === "active"
-            );
-
-        }
-
-
-        /* =========================
-           MEMBERSHIP STATUS
-        ========================= */
-
-        function renderMembershipStatus() {
-
-            let status = "none";
-
-            if (currentMember) {
-
-                const memberStatus =
-                    String(
-                        currentMember.status ||
-                        ""
-                    ).toLowerCase();
-
-                if (
-                    memberStatus ===
-                    "approved" ||
-                    memberStatus ===
-                    "active"
-                ) {
-
-                    status = "approved";
-
-                } else if (
-                    memberStatus ===
-                    "rejected"
-                ) {
-
-                    status = "rejected";
-
-                }
-
-            }
-
-
-            if (
-                status === "none" &&
-                currentRequest
-            ) {
-
-                const requestStatus =
-                    String(
-                        currentRequest.status ||
-                        "pending"
-                    ).toLowerCase();
-
-                if (
-                    requestStatus ===
-                    "approved"
-                ) {
-
-                    status = "approved";
-
-                } else if (
-                    requestStatus ===
-                    "rejected"
-                ) {
-
-                    status = "rejected";
-
-                } else {
-
-                    status = "pending";
-
-                }
-
-            }
-
-
-            membershipBadge.className =
-                "membership-status-badge";
-
-
-            adminMessage.style.display =
-                "none";
-
-
-            requestJoinBtn.style.display =
-                "none";
-
-
-            if (
-                status === "approved"
-            ) {
-
-                membershipBadge.classList.add(
-                    "status-approved"
-                );
-
-                membershipBadge.textContent =
-                    "APPROVED";
-
-                membershipTitle.textContent =
-                    "You are an approved member! 👿";
-
-                membershipDescription.textContent =
-                    "Welcome to NIGHTFALL DEVILS. Your member access is active.";
-
-                statusText.textContent =
-                    "Approved";
-
-                requestForm.classList.remove(
+                loadingScreen.classList.remove(
                     "show"
                 );
 
             }
 
-            else if (
-                status === "pending"
-            ) {
-
-                membershipBadge.classList.add(
-                    "status-pending"
-                );
-
-                membershipBadge.textContent =
-                    "PENDING";
-
-                membershipTitle.textContent =
-                    "Membership request is pending.";
-
-                membershipDescription.textContent =
-                    "Your request has been submitted. Please wait for an administrator to review it.";
-
-                statusText.textContent =
-                    "Pending";
-
-                requestForm.classList.remove(
-                    "show"
-                );
-
-            }
-
-            else if (
-                status === "rejected"
-            ) {
-
-                membershipBadge.classList.add(
-                    "status-rejected"
-                );
-
-                membershipBadge.textContent =
-                    "REJECTED";
-
-                membershipTitle.textContent =
-                    "Your membership request was rejected.";
-
-                membershipDescription.textContent =
-                    "Please review the administrator message below. You may submit a new request if allowed.";
-
-                statusText.textContent =
-                    "Rejected";
-
-                requestJoinBtn.style.display =
-                    "block";
-
-                if (
-                    currentRequest &&
-                    currentRequest.adminMessage
-                ) {
-
-                    adminMessage.style.display =
-                        "block";
-
-                    adminMessageText.textContent =
-                        currentRequest.adminMessage;
-
-                }
-
-            }
-
-            else {
-
-                membershipBadge.classList.add(
-                    "status-none"
-                );
-
-                membershipBadge.textContent =
-                    "NOT REQUESTED";
-
-                membershipTitle.textContent =
-                    "You have not requested membership yet.";
-
-                membershipDescription.textContent =
-                    "Your Firebase account is ready. Submit a request to join NIGHTFALL DEVILS.";
-
-                statusText.textContent =
-                    "Not Requested";
-
-                requestJoinBtn.style.display =
-                    "block";
-
-            }
+        }
 
 
-            /*
-             * Admin message for pending / rejected
-             */
+        /* =========================
+           FIREBASE ERROR
+        ========================= */
 
-            if (
-                currentRequest &&
-                currentRequest.adminMessage &&
-                status !== "approved"
-            ) {
+        function getFirebaseErrorMessage(
+            error
+        ) {
 
-                adminMessage.style.display =
-                    "block";
+            const code =
+                error?.code || "";
 
-                adminMessageText.textContent =
-                    currentRequest.adminMessage;
+            switch (code) {
 
+                case "auth/email-already-in-use":
+                    return "This email address is already registered. Please login instead.";
+
+                case "auth/invalid-email":
+                    return "Please enter a valid email address.";
+
+                case "auth/weak-password":
+                    return "Password is too weak. Please use at least 6 characters.";
+
+                case "auth/network-request-failed":
+                    return "Network error. Please check your internet connection and try again.";
+
+                case "auth/operation-not-allowed":
+                    return "Email/password registration is not enabled in Firebase Authentication.";
+
+                default:
+                    return (
+                        error?.message ||
+                        "Unable to create your account. Please try again."
+                    );
             }
 
         }
 
 
         /* =========================
-           OPEN REQUEST FORM
+           REGISTER
         ========================= */
 
-        requestJoinBtn.addEventListener(
-            "click",
-            () => {
+        registerForm.addEventListener(
+            "submit",
+            async (event) => {
 
-                requestTikTok.value =
-                    normalizeUsername(
-                        currentMember?.tiktokUsername ||
-                        currentRequest?.tiktokUsername ||
-                        ""
-                    );
+                event.preventDefault();
 
-                requestDisplayName.value =
-                    currentMember?.displayName ||
-                    currentRequest?.displayName ||
-                    currentUser?.displayName ||
-                    "";
+                clearMessage();
 
-                requestReferredBy.value =
-                    currentRequest?.referredBy ||
-                    "";
-
-                requestMessage.value =
-                    "";
-
-                requestForm.classList.add(
-                    "show"
-                );
-
-                requestJoinBtn.style.display =
-                    "none";
-
-                requestTikTok.focus();
-
-            }
-        );
-
-
-        /* =========================
-           CANCEL REQUEST
-        ========================= */
-
-        cancelRequestBtn.addEventListener(
-            "click",
-            () => {
-
-                requestForm.classList.remove(
-                    "show"
-                );
-
-                requestJoinBtn.style.display =
-                    "block";
-
-            }
-        );
-
-
-        /* =========================
-           SUBMIT REQUEST
-        ========================= */
-
-        submitRequestBtn.addEventListener(
-            "click",
-            async () => {
-
-                if (
-                    !currentUser
-                ) {
-
-                    showToast(
-                        "Please login first.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                const username =
-                    normalizeUsername(
-                        requestTikTok.value
-                    );
 
                 const displayName =
-                    requestDisplayName.value
-                        .trim();
+                    displayNameInput.value.trim();
 
-                const referredBy =
-                    requestReferredBy.value
-                        .trim();
+                const email =
+                    normalizeEmail(
+                        emailInput.value
+                    );
 
-                const message =
-                    requestMessage.value
-                        .trim();
+                const tiktokUsername =
+                    normalizeTikTok(
+                        tiktokInput.value
+                    );
+
+                const password =
+                    passwordInput.value;
+
+                const confirmPassword =
+                    confirmPasswordInput.value;
 
 
-                if (!username) {
+                /* =========================
+                   VALIDATION
+                ========================= */
 
-                    showToast(
-                        "Please enter your TikTok username.",
+                if (
+                    !displayName ||
+                    !email ||
+                    !tiktokUsername ||
+                    !password ||
+                    !confirmPassword
+                ) {
+
+                    showMessage(
+                        "Please complete all required fields.",
                         "error"
                     );
 
-                    requestTikTok.focus();
-
                     return;
-
                 }
 
 
                 if (
-                    !displayName
+                    !emailInput.checkValidity()
                 ) {
 
-                    showToast(
-                        "Please enter your display name.",
+                    showMessage(
+                        "Please enter a valid email address.",
                         "error"
                     );
 
-                    requestDisplayName.focus();
-
                     return;
-
                 }
 
 
                 if (
-                    username.length < 2
+                    password.length < 6
                 ) {
 
-                    showToast(
-                        "Invalid TikTok username.",
+                    showMessage(
+                        "Password must contain at least 6 characters.",
                         "error"
                     );
 
                     return;
-
                 }
 
 
-                submitRequestBtn.disabled =
-                    true;
+                if (
+                    password !==
+                    confirmPassword
+                ) {
 
-                submitRequestBtn.textContent =
-                    "SUBMITTING...";
+                    showMessage(
+                        "Passwords do not match.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    !agreeRules.checked
+                ) {
+
+                    showMessage(
+                        "Please agree to the NIGHTFALL DEVILS Community Rules.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    tiktokUsername.length < 2
+                ) {
+
+                    showMessage(
+                        "Please enter a valid TikTok username.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* =========================
+                   CREATE ACCOUNT
+                ========================= */
+
+                setLoading(true);
+
+                let createdUser = null;
 
 
                 try {
 
-                    /*
-                     * Check for existing pending request.
-                     */
-
-                    const existingQuery =
-                        query(
-                            collection(
-                                db,
-                                "memberRequests"
-                            ),
-                            where(
-                                "uid",
-                                "==",
-                                currentUser.uid
-                            )
+                    const credential =
+                        await createUserWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
                         );
 
 
-                    const existingSnapshot =
-                        await getDocs(
-                            existingQuery
-                        );
+                    createdUser =
+                        credential.user;
 
 
-                    let hasPending =
-                        false;
+                    /* =========================
+                       UPDATE AUTH PROFILE
+                    ========================= */
 
-
-                    existingSnapshot.forEach(
-                        doc => {
-
-                            const data =
-                                doc.data();
-
-                            if (
-                                String(
-                                    data.status ||
-                                    ""
-                                ).toLowerCase() ===
-                                "pending"
-                            ) {
-
-                                hasPending =
-                                    true;
-
-                            }
-
+                    await updateProfile(
+                        createdUser,
+                        {
+                            displayName:
+                                displayName
                         }
                     );
 
 
-                    if (
-                        hasPending
-                    ) {
+                    /* =========================
+                       CREATE USERS DOCUMENT
+                    ========================= */
 
-                        showToast(
-                            "You already have a pending membership request.",
-                            "error"
-                        );
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Create request.
-                     */
-
-                    await addDoc(
-                        collection(
+                    await setDoc(
+                        doc(
                             db,
-                            "memberRequests"
+                            "users",
+                            createdUser.uid
                         ),
                         {
 
                             uid:
-                                currentUser.uid,
+                                createdUser.uid,
 
                             email:
-                                currentUser.email ||
-                                "",
-
-                            tiktokUsername:
-                                username,
+                                email,
 
                             displayName:
                                 displayName,
 
-                            referredBy:
-                                referredBy,
-
-                            message:
-                                message,
+                            tiktokUsername:
+                                tiktokUsername,
 
                             status:
-                                "pending",
+                                "active",
 
-                            submittedAt:
-                                serverTimestamp(),
+                            membershipStatus:
+                                "not_requested",
+
+                            role:
+                                "member",
 
                             createdAt:
                                 serverTimestamp(),
 
-                            source:
-                                "member-dashboard.html"
+                            updatedAt:
+                                serverTimestamp()
 
                         }
                     );
 
 
-                    requestForm.classList.remove(
+                    /* =========================
+                       LOCAL STORAGE
+                    ========================= */
+
+                    localStorage.setItem(
+                        "nightfallMemberStatus",
+                        "not_requested"
+                    );
+
+                    localStorage.setItem(
+                        "nightfallMemberEmail",
+                        email
+                    );
+
+                    localStorage.setItem(
+                        "nightfallMemberName",
+                        displayName
+                    );
+
+
+                    /* =========================
+                       SUCCESS
+                    ========================= */
+
+                    loadingScreen.classList.remove(
                         "show"
                     );
 
-
-                    showToast(
-                        "Membership request submitted successfully! 👿"
+                    showMessage(
+                        "Account created successfully! Redirecting to your Member Dashboard...",
+                        "success"
                     );
 
 
-                    await loadRequestOnce();
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "pages/member-dashboard.html";
+
+                        },
+                        1200
+                    );
+
 
                 } catch (error) {
 
                     console.error(
-                        "Submit request error:",
+                        "Registration error:",
                         error
                     );
 
-                    showToast(
-                        "Unable to submit request. Please try again.",
+
+                    /*
+                     * If Firebase Auth account was
+                     * created but Firestore failed,
+                     * keep the account so the user
+                     * can still login.
+                     */
+
+                    if (
+                        createdUser
+                    ) {
+
+                        try {
+
+                            localStorage.setItem(
+                                "nightfallMemberStatus",
+                                "not_requested"
+                            );
+
+                        } catch (_) {}
+
+                    }
+
+
+                    loadingScreen.classList.remove(
+                        "show"
+                    );
+
+                    showMessage(
+                        getFirebaseErrorMessage(
+                            error
+                        ),
                         "error"
                     );
 
                 } finally {
 
-                    submitRequestBtn.disabled =
+                    registerBtn.disabled =
                         false;
 
-                    submitRequestBtn.textContent =
-                        "SUBMIT REQUEST";
-
-                }
-
-            }
-        );
-
-
-        /* =========================
-           LOAD REQUEST ONCE
-        ========================= */
-
-        async function loadRequestOnce() {
-
-            currentRequest =
-                await findMemberRequest(
-                    currentUser
-                );
-
-            renderMembershipStatus();
-
-        }
-
-
-        /* =========================
-           RENDER PROFILE
-        ========================= */
-
-        function renderProfile() {
-
-            const member =
-                currentMember ||
-                currentRequest ||
-                {};
-
-
-            const name =
-                member.displayName ||
-                member.name ||
-                currentUser?.displayName ||
-                "NIGHTFALL MEMBER";
-
-
-            const username =
-                normalizeUsername(
-                    member.tiktokUsername ||
-                    ""
-                );
-
-
-            const code =
-                currentMember?.memberCode ||
-                "NOT ASSIGNED";
-
-
-            const role =
-                currentMember?.role ||
-                "Member";
-
-
-            const status =
-                currentMember?.status ||
-                currentRequest?.status ||
-                "not requested";
-
-
-            const email =
-                currentMember?.email ||
-                currentRequest?.email ||
-                currentUser?.email ||
-                "—";
-
-
-            const joined =
-                currentMember?.joinedAt ||
-                currentMember?.createdAt ||
-                currentRequest?.submittedAt ||
-                currentRequest?.createdAt;
-
-
-            const image =
-                getProfileImage(
-                    member
-                );
-
-
-            welcomeName.textContent =
-                name;
-
-
-            welcomeTikTok.textContent =
-                username
-                    ? `@${username}`
-                    : "Not set";
-
-
-            memberCode.textContent =
-                code;
-
-
-            headerUserName.textContent =
-                name;
-
-
-            profileName.textContent =
-                name;
-
-
-            profileTikTok.textContent =
-                username
-                    ? `@${username}`
-                    : "—";
-
-
-            profileCode.textContent =
-                code;
-
-
-            profileEmail.textContent =
-                email;
-
-
-            profileJoined.textContent =
-                formatDate(
-                    joined
-                );
-
-
-            profileRole.innerHTML = `
-                <span class="role-badge">
-                    ${escapeHTML(role)}
-                </span>
-            `;
-
-
-            profileStatus.innerHTML = `
-                <span class="status-badge">
-                    ${escapeHTML(status)}
-                </span>
-            `;
-
-
-            if (image) {
-
-                profileAvatar.src =
-                    image;
-
-                headerAvatar.src =
-                    image;
-
-            } else {
-
-                profileAvatar.src =
-                    "../assets/logo.png";
-
-                headerAvatar.src =
-                    "../assets/logo.png";
-
-            }
-
-
-            profileAvatar.onerror =
-                function () {
-
-                    this.src =
-                        "../assets/logo.png";
-
-                };
-
-
-            headerAvatar.onerror =
-                function () {
-
-                    this.src =
-                        "../assets/logo.png";
-
-                };
-
-
-            localStorage.setItem(
-                "nightfallMemberId",
-                currentMember?.id ||
-                ""
-            );
-
-
-            localStorage.setItem(
-                "nightfallMemberUsername",
-                username
-            );
-
-
-            localStorage.setItem(
-                "nightfallMemberCode",
-                code
-            );
-
-
-            localStorage.setItem(
-                "nightfallMemberStatus",
-                status
-            );
-
-        }
-
-
-        /* =========================
-           SCHEDULE DATE
-        ========================= */
-
-        function getScheduleDateValue(
-            item
-        ) {
-
-            return (
-                item.date ||
-                item.scheduleDate ||
-                ""
-            );
-
-        }
-
-
-        /* =========================
-           SCHEDULE DATE TIME
-        ========================= */
-
-        function getScheduleDateTime(
-            item
-        ) {
-
-            const date =
-                getScheduleDateValue(
-                    item
-                );
-
-            const time =
-                item.startTime ||
-                "00:00";
-
-
-            if (!date) {
-                return 0;
-            }
-
-
-            const result =
-                new Date(
-                    `${date}T${time}`
-                );
-
-
-            const timestamp =
-                result.getTime();
-
-
-            return Number.isNaN(
-                timestamp
-            )
-                ? 0
-                : timestamp;
-
-        }
-
-
-        /* =========================
-           SCHEDULE MATCHING
-        ========================= */
-
-        function isCurrentMemberSchedule(
-            data
-        ) {
-
-            if (
-                !currentUser
-            ) {
-
-                return false;
-
-            }
-
-
-            const dataMemberId =
-                String(
-                    data.memberId ||
-                    ""
-                );
-
-
-            const currentMemberId =
-                String(
-                    currentMember?.id ||
-                    ""
-                );
-
-
-            const memberUID =
-                String(
-                    currentMember?.uid ||
-                    currentUser.uid ||
-                    ""
-                );
-
-
-            const memberEmail =
-                String(
-                    currentMember?.email ||
-                    currentUser.email ||
-                    ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            const dataEmail =
-                String(
-                    data.email ||
-                    ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            const memberUsername =
-                normalizeUsername(
-                    currentMember?.tiktokUsername ||
-                    currentRequest?.tiktokUsername ||
-                    ""
-                );
-
-
-            const dataUsername =
-                normalizeUsername(
-                    data.tiktokUsername ||
-                    ""
-                );
-
-
-            const memberCodeValue =
-                String(
-                    currentMember?.memberCode ||
-                    ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            const dataCode =
-                String(
-                    data.memberCode ||
-                    ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            return (
-
-                /*
-                 * PRIMARY:
-                 * Admin schedule stores member document ID.
-                 */
-
-                (
-                    dataMemberId &&
-                    currentMemberId &&
-                    dataMemberId ===
-                    currentMemberId
-                )
-
-                ||
-
-                /*
-                 * UID fallback
-                 */
-
-                (
-                    dataMemberId &&
-                    memberUID &&
-                    dataMemberId ===
-                    memberUID
-                )
-
-                ||
-
-                /*
-                 * Email fallback
-                 */
-
-                (
-                    dataEmail &&
-                    memberEmail &&
-                    dataEmail ===
-                    memberEmail
-                )
-
-                ||
-
-                /*
-                 * TikTok username fallback
-                 */
-
-                (
-                    dataUsername &&
-                    memberUsername &&
-                    dataUsername ===
-                    memberUsername
-                )
-
-                ||
-
-                /*
-                 * Member code fallback
-                 */
-
-                (
-                    dataCode &&
-                    memberCodeValue &&
-                    dataCode ===
-                    memberCodeValue
-                )
-
-            );
-
-        }
-
-
-        /* =========================
-           LOAD SCHEDULES
-        ========================= */
-
-        function loadSchedules() {
-
-            if (
-                unsubscribeSchedules
-            ) {
-
-                unsubscribeSchedules();
-
-            }
-
-
-            /*
-             * Do not load member schedules
-             * until member is approved.
-             */
-
-            if (
-                !isApprovedMember(
-                    currentMember
-                )
-            ) {
-
-                scheduleCount.textContent =
-                    "0";
-
-                scheduleList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            🔒
-                        </div>
-
-                        <strong>
-                            Membership required
-                        </strong>
-
-                        <span>
-                            Your assigned schedules will appear after your membership is approved.
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            const schedulesRef =
-                collection(
-                    db,
-                    "schedules"
-                );
-
-
-            unsubscribeSchedules =
-                onSnapshot(
-                    schedulesRef,
-                    (snapshot) => {
-
-                        const schedules =
-                            [];
-
-
-                        snapshot.forEach(
-                            (doc) => {
-
-                                const data =
-                                    doc.data();
-
-
-                                if (
-                                    isCurrentMemberSchedule(
-                                        data
-                                    )
-                                ) {
-
-                                    schedules.push({
-
-                                        id:
-                                            doc.id,
-
-                                        ...data
-
-                                    });
-
-                                }
-
-                            }
-                        );
-
-
-                        schedules.sort(
-                            (a, b) =>
-                                getScheduleDateTime(
-                                    a
-                                ) -
-                                getScheduleDateTime(
-                                    b
-                                )
-                        );
-
-
-                        scheduleCount.textContent =
-                            schedules.length;
-
-
-                        renderSchedules(
-                            schedules.slice(
-                                0,
-                                10
-                            )
-                        );
-
-                    },
-                    (error) => {
-
-                        console.error(
-                            "Schedule error:",
-                            error
-                        );
-
-
-                        scheduleCount.textContent =
-                            "0";
-
-
-                        scheduleList.innerHTML = `
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
-
-                                <strong>
-                                    Unable to load schedules
-                                </strong>
-
-                                <span>
-                                    Please try again later.
-                                </span>
-
-                            </div>
-
-                        `;
-
-                    }
-                );
-
-        }
-
-
-        /* =========================
-           RENDER SCHEDULES
-        ========================= */
-
-        function renderSchedules(
-            schedules
-        ) {
-
-            if (
-                !schedules.length
-            ) {
-
-                scheduleList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📅
-                        </div>
-
-                        <strong>
-                            No schedules yet
-                        </strong>
-
-                        <span>
-                            Your assigned schedules will appear here.
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            scheduleList.innerHTML =
-                schedules.map(
-                    (item) => {
-
-                        const date =
-                            getScheduleDateValue(
-                                item
-                            );
-
-
-                        const start =
-                            item.startTime ||
-                            "—";
-
-
-                        const end =
-                            item.endTime ||
-                            "";
-
-
-                        const time =
-                            end
-                                ? `${start} - ${end}`
-                                : start;
-
-
-                        const type =
-                            item.type ||
-                            "Regular Live";
-
-
-                        const status =
-                            item.status ||
-                            "";
-
-
-                        const notes =
-                            item.notes ||
-                            "";
-
-
-                        const link =
-                            item.tiktokLink ||
-                            "";
-
-
-                        return `
-
-                            <div class="schedule-item">
-
-                                <div class="schedule-top">
-
-                                    <div class="schedule-date">
-                                        📅
-                                        ${escapeHTML(
-                                            formatDate(
-                                                date
-                                            )
-                                        )}
-                                    </div>
-
-                                    <div class="schedule-type">
-                                        ${escapeHTML(
-                                            type
-                                        )}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="schedule-main">
-
-                                    <div class="schedule-detail">
-                                        🕐
-                                        <strong>
-                                            ${escapeHTML(
-                                                time
-                                            )}
-                                        </strong>
-                                    </div>
-
-
-                                    ${
-                                        status
-                                            ? `
-                                                <div class="schedule-detail">
-                                                    📌
-                                                    ${escapeHTML(
-                                                        status
-                                                    )}
-                                                </div>
-                                            `
-                                            : ""
-                                    }
-
-                                </div>
-
-
-                                ${
-                                    notes
-                                        ? `
-                                            <div
-                                                style="
-                                                    margin-top:9px;
-                                                    color:#888;
-                                                    font-size:11px;
-                                                    line-height:1.45;
-                                                "
-                                            >
-                                                📝
-                                                ${escapeHTML(
-                                                    notes
-                                                )}
-                                            </div>
-                                        `
-                                        : ""
-                                }
-
-
-                                ${
-                                    link
-                                        ? `
-                                            <a
-                                                class="schedule-link"
-                                                href="${escapeHTML(
-                                                    link
-                                                )}"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                🎵 OPEN TIKTOK
-                                            </a>
-                                        `
-                                        : ""
-                                }
-
-                            </div>
-
-                        `;
-
-                    }
-                ).join("");
-
-        }
-
-
-        /* =========================
-           LOAD ANNOUNCEMENTS
-        ========================= */
-
-        function loadAnnouncements() {
-
-            if (
-                unsubscribeAnnouncements
-            ) {
-
-                unsubscribeAnnouncements();
-
-            }
-
-
-            const announcementsRef =
-                collection(
-                    db,
-                    "announcements"
-                );
-
-
-            unsubscribeAnnouncements =
-                onSnapshot(
-                    announcementsRef,
-                    (snapshot) => {
-
-                        const announcements =
-                            [];
-
-
-                        snapshot.forEach(
-                            (doc) => {
-
-                                announcements.push({
-
-                                    id:
-                                        doc.id,
-
-                                    ...doc.data()
-
-                                });
-
-                            }
-                        );
-
-
-                        announcements.sort(
-                            (a, b) => {
-
-                                const aTime =
-                                    getTimeValue(
-                                        a.createdAt ||
-                                        a.updatedAt
-                                    );
-
-
-                                const bTime =
-                                    getTimeValue(
-                                        b.createdAt ||
-                                        b.updatedAt
-                                    );
-
-
-                                return (
-                                    bTime -
-                                    aTime
-                                );
-
-                            }
-                        );
-
-
-                        announcementCount.textContent =
-                            announcements.length;
-
-
-                        renderAnnouncements(
-                            announcements.slice(
-                                0,
-                                10
-                            )
-                        );
-
-                    },
-                    (error) => {
-
-                        console.error(
-                            "Announcement error:",
-                            error
-                        );
-
-
-                        announcementCount.textContent =
-                            "0";
-
-
-                        announcementList.innerHTML = `
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
-
-                                <strong>
-                                    Unable to load announcements
-                                </strong>
-
-                                <span>
-                                    Please try again later.
-                                </span>
-
-                            </div>
-
-                        `;
-
-                    }
-                );
-
-        }
-
-
-        /* =========================
-           RENDER ANNOUNCEMENTS
-        ========================= */
-
-        function renderAnnouncements(
-            announcements
-        ) {
-
-            if (
-                !announcements.length
-            ) {
-
-                announcementList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📢
-                        </div>
-
-                        <strong>
-                            No announcements
-                        </strong>
-
-                        <span>
-                            Community announcements will appear here.
-                        </span>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            announcementList.innerHTML =
-                announcements.map(
-                    (item) => {
-
-                        const title =
-                            item.title ||
-                            item.subject ||
-                            "NIGHTFALL DEVILS Announcement";
-
-
-                        const message =
-                            item.message ||
-                            item.content ||
-                            item.description ||
-                            "";
-
-
-                        const created =
-                            item.createdAt ||
-                            item.updatedAt;
-
-
-                        return `
-
-                            <article class="announcement-item">
-
-                                <div class="announcement-title">
-                                    ${escapeHTML(
-                                        title
-                                    )}
-                                </div>
-
-                                <div class="announcement-message">
-                                    ${escapeHTML(
-                                        message
-                                    )}
-                                </div>
-
-                                <div class="announcement-meta">
-                                    ${escapeHTML(
-                                        formatDateTime(
-                                            created
-                                        )
-                                    )}
-                                </div>
-
-                            </article>
-
-                        `;
-
-                    }
-                ).join("");
-
-        }
-
-
-        /* =========================
-           LOGOUT
-        ========================= */
-
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
-
-                logoutBtn.disabled =
-                    true;
-
-                logoutBtn.textContent =
-                    "LOGGING OUT...";
-
-
-                try {
-
-                    if (
-                        unsubscribeSchedules
-                    ) {
-
-                        unsubscribeSchedules();
-
-                    }
-
-
-                    if (
-                        unsubscribeAnnouncements
-                    ) {
-
-                        unsubscribeAnnouncements();
-
-                    }
-
-
-                    if (
-                        unsubscribeRequest
-                    ) {
-
-                        unsubscribeRequest();
-
-                    }
-
-
-                    localStorage.removeItem(
-                        "nightfallMemberId"
-                    );
-
-
-                    localStorage.removeItem(
-                        "nightfallMemberUsername"
-                    );
-
-
-                    localStorage.removeItem(
-                        "nightfallMemberCode"
-                    );
-
-
-                    localStorage.removeItem(
-                        "nightfallMemberStatus"
-                    );
-
-
-                    await signOut(
-                        auth
-                    );
-
-
-                    window.location.replace(
-                        "member-login.html"
-                    );
-
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-
-                    logoutBtn.disabled =
-                        false;
-
-
-                    logoutBtn.textContent =
-                        "LOGOUT";
-
-
-                    showToast(
-                        "Unable to logout. Please try again.",
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =========================
-           AUTH STATE
-        ========================= */
-
-        onAuthStateChanged(
-            auth,
-            async (user) => {
-
-                try {
-
-                    /*
-                     * No logged-in Firebase account.
-                     */
-
-                    if (!user) {
-
-                        window.location.replace(
-                            "member-login.html"
-                        );
-
-                        return;
-
-                    }
-
-
-                    currentUser =
-                        user;
-
-
-                    /*
-                     * Find approved member.
-                     */
-
-                    currentMember =
-                        await findMember(
-                            user
-                        );
-
-
-                    /*
-                     * Find membership request.
-                     */
-
-                    currentRequest =
-                        await findMemberRequest(
-                            user
-                        );
-
-
-                    /*
-                     * Render account/member information.
-                     *
-                     * IMPORTANT:
-                     * We DO NOT logout if there is
-                     * no members document.
-                     */
-
-                    renderProfile();
-
-
-                    renderMembershipStatus();
-
-
-                    /*
-                     * Listen for admin status changes.
-                     */
-
-                    listenToMemberRequest();
-
-
-                    /*
-                     * Load announcements for
-                     * every authenticated member account.
-                     */
-
-                    loadAnnouncements();
-
-
-                    /*
-                     * Load schedules only when approved.
-                     */
-
-                    loadSchedules();
-
-
-                    hideError();
-
-
-                    loadingScreen.style.display =
-                        "none";
-
-
-                    /*
-                     * Welcome message.
-                     */
-
-                    if (
-                        isApprovedMember(
-                            currentMember
-                        )
-                    ) {
-
-                        showToast(
-                            "Welcome to NIGHTFALL DEVILS! 👿"
-                        );
-
-                    } else {
-
-                        showToast(
-                            "Welcome to your NIGHTFALL DEVILS Member Panel."
-                        );
-
-                    }
-
-                } catch (error) {
-
-                    console.error(
-                        "Dashboard error:",
-                        error
-                    );
-
-
-                    showError(
-                        "Unable to load your member panel. Please refresh the page and try again."
-                    );
-
-
-                    loadingScreen.style.display =
-                        "none";
+                    registerBtn.textContent =
+                        "CREATE ACCOUNT";
 
                 }
 
