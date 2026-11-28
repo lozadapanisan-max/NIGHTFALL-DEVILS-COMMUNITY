@@ -987,9 +987,6 @@
             getFirestore,
             collection,
             addDoc,
-            query,
-            where,
-            getDocs,
             serverTimestamp
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
@@ -1140,43 +1137,6 @@
 
 
         /* ==========================================
-           CHECK EXISTING PENDING REQUEST
-        ========================================== */
-
-        async function hasPendingRequest(
-            username
-        ) {
-
-            const requestsRef =
-                collection(
-                    db,
-                    "memberRequests"
-                );
-
-            const q =
-                query(
-                    requestsRef,
-                    where(
-                        "tiktokUsername",
-                        "==",
-                        username
-                    ),
-                    where(
-                        "status",
-                        "==",
-                        "pending"
-                    )
-                );
-
-            const snapshot =
-                await getDocs(q);
-
-            return !snapshot.empty;
-
-        }
-
-
-        /* ==========================================
            RESET BUTTON
         ========================================== */
 
@@ -1309,30 +1269,6 @@
                 try {
 
                     /* --------------------------
-                       CHECK DUPLICATE
-                    -------------------------- */
-
-                    const alreadyPending =
-                        await hasPendingRequest(
-                            username
-                        );
-
-
-                    if (alreadyPending) {
-
-                        showStatus(
-                            "You already have a pending membership request. Please wait for the NIGHTFALL DEVILS admin team to review it.",
-                            "info"
-                        );
-
-                        resetSubmitButton();
-
-                        return;
-
-                    }
-
-
-                    /* --------------------------
                        CREATE REQUEST
                     -------------------------- */
 
@@ -1400,6 +1336,7 @@
                     let errorMessage =
                         "Unable to submit your request. Please try again.";
 
+
                     if (
                         error &&
                         error.code ===
@@ -1407,7 +1344,7 @@
                     ) {
 
                         errorMessage =
-                            "Permission denied by Firebase. Please check your Firestore Rules.";
+                            "Permission denied by Firebase. Please make sure the memberRequests CREATE rule is enabled.";
 
                     }
 
