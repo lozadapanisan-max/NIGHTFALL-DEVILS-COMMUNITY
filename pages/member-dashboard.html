@@ -1197,9 +1197,7 @@
             id="errorBox"
             class="error-box"
         ></div>
-
-
-        <!-- =========================
+                <!-- =========================
              WELCOME CARD
         ========================= -->
 
@@ -1941,6 +1939,60 @@
 
 
     <!-- =========================
+         LOADING SAFETY FALLBACK
+         Prevents the screen from staying
+         forever if Firebase Auth/Firestore
+         takes too long to initialize.
+    ========================= -->
+
+    <script>
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                const loader =
+                    document.getElementById("loadingScreen");
+
+                if (loader) {
+                    loader.style.display = "none";
+                }
+            }, 7000);
+        });
+    </script>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            collection,
+            query,
+            where,
+            getDocs,
+            addDoc,
+            serverTimestamp,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        /* =========================
+           FIREBASE CONFIG
+        ========================= */
+
+        const firebaseConfig = {
+                <!-- =========================
          FIREBASE
     ========================= -->
 
@@ -2465,9 +2517,7 @@
            FIND CURRENT REQUEST
         ========================= */
 
-        async function findCurrentRequest(
-            user
-        ) {
+        async function findCurrentRequest(user) {
 
             if (!user) {
                 return null;
@@ -2731,12 +2781,6 @@
             profileStatus.innerHTML =
                 `<span class="status-badge" style="${getStatusInlineStyle(status)}">${escapeHTML(status)}</span>`;
 
-
-            /*
-             * We do not have a dedicated avatar field
-             * in the current member/request structure.
-             * Keep the existing NIGHTFALL DEVILS logo.
-             */
 
             profileAvatar.src =
                 "../assets/logo.png";
@@ -3061,11 +3105,6 @@
             }
 
 
-            /*
-             * Listen by UID so the status updates
-             * automatically when admin approves/rejects.
-             */
-
             try {
 
                 const requestQuery =
@@ -3142,10 +3181,6 @@
                                 "Request listener error:",
                                 error
                             );
-
-                            /*
-                             * Fallback to one-time lookup.
-                             */
 
                             findCurrentRequest(
                                 currentUser
@@ -3257,12 +3292,6 @@
                     .toLowerCase();
 
 
-            /*
-             * IMPORTANT:
-             * admin/schedule.html saves the Firestore
-             * MEMBER DOCUMENT ID in schedule.memberId.
-             */
-
             if (
                 scheduleMemberId &&
                 memberDocId &&
@@ -3274,8 +3303,6 @@
             }
 
 
-            /* UID fallback */
-
             if (
                 scheduleMemberId &&
                 memberUID &&
@@ -3286,8 +3313,6 @@
 
             }
 
-
-            /* Email */
 
             const scheduleEmail =
                 String(
@@ -3307,8 +3332,6 @@
             }
 
 
-            /* TikTok */
-
             const scheduleUsername =
                 normalizeUsername(
                     data.tiktokUsername ||
@@ -3326,8 +3349,6 @@
 
             }
 
-
-            /* Member Code */
 
             const scheduleCode =
                 String(
@@ -3888,10 +3909,6 @@
                 }
 
 
-                /*
-                 * If already approved, do not allow another request.
-                 */
-
                 if (currentMember) {
 
                     const memberStatus =
@@ -3915,10 +3932,6 @@
 
                 }
 
-
-                /*
-                 * Prevent duplicate pending request.
-                 */
 
                 if (
                     currentRequest &&
@@ -4142,275 +4155,300 @@
         );
 
 
-       /* =========================
-   AUTH STATE
-========================= */
+        /* =========================
+           AUTH STATE
+        ========================= */
 
-onAuthStateChanged(
-    auth,
-    async user => {
+        onAuthStateChanged(
+            auth,
+            async user => {
 
-        try {
-
-            /*
-             * NO USER
-             * Send back to member login.
-             */
-            if (!user) {
-
-                window.location.replace(
-                    "member-login.html"
+                console.log(
+                    "NIGHTFALL AUTH STATE:",
+                    user ? user.email : "NO USER"
                 );
 
-                return;
+                try {
+
+                    if (!user) {
+
+                        if (loadingScreen) {
+                            loadingScreen.style.display = "none";
+                        }
+
+                        window.location.replace(
+                            "member-login.html"
+                        );
+
+                        return;
+                    }
+
+
+                    /* =========================
+                       USER FOUND
+                    ========================= */
+
+                    currentUser = user;
+
+
+                    /* =========================
+                       IMPORTANT:
+                       HIDE LOADING IMMEDIATELY.
+                       FIRESTORE MUST NOT BLOCK UI.
+                    ========================= */
+
+                    if (loadingScreen) {
+                        loadingScreen.style.display = "none";
+                    }
+
+
+                    /* =========================
+                       BASIC ACCOUNT INFO
+                    ========================= */
+
+                    const basicDisplayName =
+                        user.displayName ||
+                        user.email ||
+                        "Member";
+
+
+                    if (welcomeName) {
+                        welcomeName.textContent =
+                            basicDisplayName;
+                    }
+
+                    if (headerUserName) {
+                        headerUserName.textContent =
+                            basicDisplayName;
+                    }
+
+                    if (profileDisplayName) {
+                        profileDisplayName.textContent =
+                            basicDisplayName;
+                    }
+
+                    if (profileEmail) {
+                        profileEmail.textContent =
+                            user.email || "—";
+                    }
+
+                    if (profileRole) {
+                        profileRole.textContent =
+                            "MEMBER ACCOUNT";
+                    }
+
+                    if (accountUID) {
+                        accountUID.textContent =
+                            user.uid || "—";
+                    }
+
+                    if (welcomeTikTok) {
+                        welcomeTikTok.textContent =
+                            "—";
+                    }
+
+                    if (memberCodeBadge) {
+                        memberCodeBadge.textContent =
+                            "MEMBER ACCOUNT";
+                    }
+
+
+                    /* =========================
+                       DEFAULT ACCOUNT STATE
+                    ========================= */
+
+                    currentMember = null;
+                    currentRequest = null;
+
+                    renderMembershipStatus();
+
+                    showToast(
+                        "Welcome to NIGHTFALL DEVILS! 👿"
+                    );
+
+
+                    /* =========================
+                       LOAD MEMBER PROFILE
+                       WITHOUT BLOCKING DASHBOARD
+                    ========================= */
+
+                    try {
+
+                        console.log(
+                            "Searching member profile..."
+                        );
+
+                        currentMember =
+                            await findMember(user);
+
+                        console.log(
+                            "Member profile:",
+                            currentMember
+                        );
+
+                        renderProfile();
+
+                    } catch (memberError) {
+
+                        console.error(
+                            "Member profile loading error:",
+                            memberError
+                        );
+
+                        currentMember = null;
+
+                        renderProfile();
+
+                    }
+
+
+                    /* =========================
+                       LOAD MEMBERSHIP REQUEST
+                    ========================= */
+
+                    try {
+
+                        console.log(
+                            "Loading membership request..."
+                        );
+
+                        await loadCurrentRequest();
+
+                        console.log(
+                            "Membership request loaded."
+                        );
+
+                    } catch (requestError) {
+
+                        console.error(
+                            "Membership request loading error:",
+                            requestError
+                        );
+
+                        currentRequest = null;
+
+                        renderProfile();
+
+                    }
+
+
+                    /* =========================
+                       LOAD SCHEDULES
+                    ========================= */
+
+                    try {
+
+                        console.log(
+                            "Loading schedules..."
+                        );
+
+                        loadSchedules();
+
+                    } catch (scheduleError) {
+
+                        console.error(
+                            "Schedule loading error:",
+                            scheduleError
+                        );
+
+                        if (scheduleList) {
+
+                            scheduleList.innerHTML = `
+                                <div class="empty-state">
+                                    <div class="empty-icon">⚠️</div>
+                                    <strong>Unable to load schedules</strong>
+                                    <span>Please try refreshing the page.</span>
+                                </div>
+                            `;
+
+                        }
+
+                        if (scheduleCount) {
+                            scheduleCount.textContent = "0";
+                        }
+
+                    }
+
+
+                    /* =========================
+                       LOAD ANNOUNCEMENTS
+                    ========================= */
+
+                    try {
+
+                        console.log(
+                            "Loading announcements..."
+                        );
+
+                        loadAnnouncements();
+
+                    } catch (announcementError) {
+
+                        console.error(
+                            "Announcement loading error:",
+                            announcementError
+                        );
+
+                        if (announcementList) {
+
+                            announcementList.innerHTML = `
+                                <div class="empty-state">
+                                    <div class="empty-icon">⚠️</div>
+                                    <strong>Unable to load announcements</strong>
+                                    <span>Please refresh the page.</span>
+                                </div>
+                            `;
+
+                        }
+
+                        if (announcementCount) {
+                            announcementCount.textContent = "0";
+                        }
+
+                    }
+
+
+                    /* =========================
+                       FINISHED
+                    ========================= */
+
+                    hideError();
+
+                    if (loadingScreen) {
+                        loadingScreen.style.display = "none";
+                    }
+
+                    console.log(
+                        "NIGHTFALL DEVILS MEMBER DASHBOARD READY"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Dashboard authentication error:",
+                        error
+                    );
+
+
+                    /* NEVER LEAVE LOADING SCREEN */
+
+                    if (loadingScreen) {
+                        loadingScreen.style.display = "none";
+                    }
+
+
+                    showError(
+                        "Unable to initialize the member dashboard. Please refresh the page and try again."
+                    );
+
+                }
 
             }
+        );
 
 
-            /*
-             * SAVE CURRENT USER IMMEDIATELY
-             */
-            currentUser = user;
-
-
-            /*
-             * IMPORTANT:
-             *
-             * Hide loading screen immediately after
-             * Firebase Authentication confirms the user.
-             *
-             * Do NOT wait for Firestore.
-             *
-             * This prevents the dashboard from being
-             * stuck forever on "Loading member portal..."
-             */
-            loadingScreen.style.display = "none";
-
-
-            /*
-             * BASIC ACCOUNT INFORMATION
-             *
-             * Show the Firebase account immediately,
-             * even if the members document does not exist.
-             */
-            const basicDisplayName =
-                user.displayName ||
-                user.email ||
-                "Member";
-
-
-            welcomeName.textContent =
-                basicDisplayName;
-
-            headerUserName.textContent =
-                basicDisplayName;
-
-            profileDisplayName.textContent =
-                basicDisplayName;
-
-            profileEmail.textContent =
-                user.email || "—";
-
-            profileRole.textContent =
-                "MEMBER ACCOUNT";
-
-            profileStatus.innerHTML =
-                `<span class="status-badge" style="${getStatusInlineStyle("not_requested")}">NOT YET REQUESTED</span>`;
-
-            accountUID.textContent =
-                user.uid || "—";
-
-            welcomeTikTok.textContent =
-                "—";
-
-            memberCodeBadge.textContent =
-                "MEMBER ACCOUNT";
-
-
-            /*
-             * Show default membership state first.
-             */
-            currentMember = null;
-            currentRequest = null;
-
-            renderMembershipStatus();
-
-
-            /*
-             * WELCOME MESSAGE
-             */
-            showToast(
-                "Welcome to NIGHTFALL DEVILS! 👿"
-            );
-
-
-            /*
-             * =====================================
-             * LOAD MEMBER PROFILE
-             * =====================================
-             *
-             * Firestore loading happens AFTER the
-             * loading screen is already hidden.
-             */
-            try {
-
-                currentMember =
-                    await findMember(user);
-
-                /*
-                 * Re-render profile after member
-                 * document is found.
-                 */
-                renderProfile();
-
-            } catch (memberError) {
-
-                console.error(
-                    "Member profile loading error:",
-                    memberError
-                );
-
-                /*
-                 * Do NOT logout the Firebase account.
-                 *
-                 * The user is still allowed to access
-                 * the Member Panel.
-                 */
-                currentMember = null;
-
-                renderProfile();
-
-            }
-
-
-            /*
-             * =====================================
-             * LOAD MEMBERSHIP REQUEST
-             * =====================================
-             */
-            try {
-
-                await loadCurrentRequest();
-
-            } catch (requestError) {
-
-                console.error(
-                    "Membership request loading error:",
-                    requestError
-                );
-
-                currentRequest = null;
-
-                renderProfile();
-
-            }
-
-
-            /*
-             * =====================================
-             * LOAD SCHEDULES
-             * =====================================
-             */
-         try {
-    await loadSchedules();
-} catch (scheduleError) {
-    console.error("Schedule loading error:", scheduleError);
-
-    scheduleList.innerHTML = `
-        <div class="empty-state">
-            <div class="empty-icon">⚠️</div>
-            <strong>Unable to load schedules</strong>
-            <span>Please try refreshing the page.</span>
-        </div>
-    `;
-
-    scheduleCount.textContent = "0";
-}
-
-try {
-    await loadAnnouncements();
-} catch (announcementError) {
-    console.error("Announcement loading error:", announcementError);
-
-    announcementList.innerHTML = `
-        <div class="empty-state">
-            <div class="empty-icon">⚠️</div>
-            <strong>Unable to load announcements</strong>
-            <span>Please try refreshing the page.</span>
-        </div>
-    `;
-
-    announcementCount.textContent = "0";
-}
-
-            /*
-             * =====================================
-             * LOAD ANNOUNCEMENTS
-             * =====================================
-             */
-            try {
-
-                loadAnnouncements();
-
-            } catch (announcementError) {
-
-                console.error(
-                    "Announcement loading error:",
-                    announcementError
-                );
-
-                announcementList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">⚠️</div>
-
-                        <strong>
-                            Unable to load announcements
-                        </strong>
-
-                        <span>
-                            Please try refreshing the page.
-                        </span>
-                    </div>
-                `;
-
-                announcementCount.textContent = "0";
-
-            }
-
-
-            /*
-             * Dashboard is already visible.
-             */
-            hideError();
-
-
-        } catch (error) {
-
-            console.error(
-                "Dashboard authentication error:",
-                error
-            );
-
-
-            /*
-             * IMPORTANT:
-             * Never leave the user stuck on
-             * the loading screen.
-             */
-            loadingScreen.style.display =
-                "none";
-
-
-            showError(
-                "Unable to initialize the member dashboard. Please refresh the page and try again."
-            );
-
-        }
-
-    }
-);
-
-</script>
+    </script>
 
 </body>
 
