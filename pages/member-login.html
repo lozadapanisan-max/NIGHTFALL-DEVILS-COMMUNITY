@@ -1010,6 +1010,15 @@
                 account. Firebase will send a
                 password reset email.
 
+                <br><br>
+
+                <strong style="color:#f5c542;">
+                    First-time members:
+                </strong>
+
+                use this option to create your
+                password before your first login.
+
             </p>
 
 
@@ -1101,13 +1110,6 @@
     <script type="module">
 
         import {
-            initializeApp
-        } from
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-
-
-        import {
-            getAuth,
             signInWithEmailAndPassword,
             sendPasswordResetEmail,
             onAuthStateChanged,
@@ -1117,7 +1119,6 @@
 
 
         import {
-            getFirestore,
             collection,
             query,
             where,
@@ -1126,52 +1127,10 @@
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
-        /* ==========================================
-           FIREBASE CONFIG
-        ========================================== */
-
-        const firebaseConfig = {
-
-            apiKey:
-                "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
-
-            authDomain:
-                "nightfall-devils-b0d77.firebaseapp.com",
-
-            projectId:
-                "nightfall-devils-b0d77",
-
-            storageBucket:
-                "nightfall-devils-b0d77.firebasestorage.app",
-
-            messagingSenderId:
-                "758952684668",
-
-            appId:
-                "1:758952684668:web:5be641ca90c9d5134f2df9",
-
-            measurementId:
-                "G-R6MZ05M4DR"
-
-        };
-
-
-        /* ==========================================
-           INITIALIZE
-        ========================================== */
-
-        const app =
-            initializeApp(
-                firebaseConfig
-            );
-
-
-        const auth =
-            getAuth(app);
-
-
-        const db =
-            getFirestore(app);
+        import {
+            auth,
+            db
+        } from "../js/firebase.js";
 
 
         /* ==========================================
@@ -1266,6 +1225,15 @@
             document.getElementById(
                 "loadingText"
             );
+
+
+        /* ==========================================
+           STATE
+        ========================================== */
+
+        let authCheckInProgress = false;
+
+        let redirecting = false;
 
 
         /* ==========================================
@@ -1460,16 +1428,17 @@
 
 
         /* ==========================================
-           FIND MEMBER
+           FIND MEMBER BY UID
         ========================================== */
 
-        async function findMemberByUser(
-            user
+        async function findMemberByUID(
+            uid
         ) {
 
-            /*
-             * First try UID.
-             */
+            if (!uid) {
+                return null;
+            }
+
 
             const uidQuery =
                 query(
@@ -1480,41 +1449,118 @@
                     where(
                         "uid",
                         "==",
-                        user.uid
+                        uid
                     )
                 );
 
 
-            const uidSnapshot =
+            const snapshot =
                 await getDocs(
                     uidQuery
                 );
 
 
             if (
-                !uidSnapshot.empty
+                snapshot.empty
             ) {
 
+                return null;
+
+            }
+
+
+            const memberDoc =
+                snapshot.docs[0];
+
+
+            return {
+
+                id:
+                    memberDoc.id,
+
+                data:
+                    memberDoc.data()
+
+            };
+
+        }
+
+
+        /* ==========================================
+           FIND MEMBER BY EMAIL
+        ========================================== */
+
+        async function findMemberByEmail(
+            email
+        ) {
+
+            if (!email) {
+                return null;
+            }
+
+
+            const normalizedEmail =
+                email
+                    .trim()
+                    .toLowerCase();
+
+
+            /*
+             * First try normalized email.
+             */
+
+            const emailQuery =
+                query(
+                    collection(
+                        db,
+                        "members"
+                    ),
+                    where(
+                        "email",
+                        "==",
+                        normalizedEmail
+                    )
+                );
+
+
+            const emailSnapshot =
+                await getDocs(
+                    emailQuery
+                );
+
+
+            if (
+                !emailSnapshot.empty
+            ) {
+
+                const memberDoc =
+                    emailSnapshot.docs[0];
+
+
                 return {
+
                     id:
-                        uidSnapshot.docs[0].id,
+                        memberDoc.id,
 
                     data:
-                        uidSnapshot.docs[0].data()
+                        memberDoc.data()
+
                 };
 
             }
 
 
             /*
-             * Fallback to email.
+             * Also try the exact value.
+             * This helps with older records
+             * where email capitalization differs.
              */
 
             if (
-                user.email
+                email !== normalizedEmail
             ) {
 
-                const emailQuery =
+                const exactQuery =
                     query(
                         collection(
                             db,
@@ -1523,30 +1569,85 @@
                         where(
                             "email",
                             "==",
-                            user.email
+                            email
                         )
                     );
 
 
-                const emailSnapshot =
+                const exactSnapshot =
                     await getDocs(
-                        emailQuery
+                        exactQuery
                     );
 
 
                 if (
-                    !emailSnapshot.empty
+                    !exactSnapshot.empty
                 ) {
 
+                    const memberDoc =
+                        exactSnapshot.docs[0];
+
+
                     return {
+
                         id:
-                            emailSnapshot.docs[0].id,
+                            memberDoc.id,
 
                         data:
-                            emailSnapshot.docs[0].data()
+                            memberDoc.data()
+
                     };
 
                 }
+
+            }
+
+
+            return null;
+
+        }
+
+
+        /* ==========================================
+           FIND MEMBER
+        ========================================== */
+
+        async function findMemberByUser(
+            user
+        ) {
+
+            /*
+             * Primary:
+             * Firebase Auth UID.
+             */
+
+            const uidResult =
+                await findMemberByUID(
+                    user.uid
+                );
+
+
+            if (
+                uidResult
+            ) {
+
+                return uidResult;
+
+            }
+
+
+            /*
+             * Fallback:
+             * Email.
+             */
+
+            if (
+                user.email
+            ) {
+
+                return await findMemberByEmail(
+                    user.email
+                );
 
             }
 
@@ -1564,11 +1665,23 @@
             user
         ) {
 
+            if (!user) {
+
+                return false;
+
+            }
+
+
             const result =
                 await findMemberByUser(
                     user
                 );
 
+
+            /*
+             * Firebase account exists,
+             * but member record does not.
+             */
 
             if (!result) {
 
@@ -1576,10 +1689,12 @@
                     auth
                 );
 
+
                 showMessage(
                     "Your Firebase account exists, but no NIGHTFALL DEVILS member record was found. Please contact an administrator.",
                     "error"
                 );
+
 
                 return false;
 
@@ -1641,6 +1756,15 @@
                         "error"
                     );
 
+                } else if (
+                    status === "inactive"
+                ) {
+
+                    showMessage(
+                        "Your member account is currently inactive.",
+                        "error"
+                    );
+
                 } else {
 
                     showMessage(
@@ -1650,13 +1774,14 @@
 
                 }
 
+
                 return false;
 
             }
 
 
             /*
-             * Save useful member data.
+             * Save member information.
              */
 
             localStorage.setItem(
@@ -1679,6 +1804,25 @@
             );
 
 
+            /*
+             * Useful additional information.
+             */
+
+            localStorage.setItem(
+                "nightfallMemberRole",
+                member.role ||
+                "member"
+            );
+
+
+            localStorage.setItem(
+                "nightfallMemberEmail",
+                member.email ||
+                user.email ||
+                ""
+            );
+
+
             return true;
 
         }
@@ -1693,6 +1837,17 @@
             async event => {
 
                 event.preventDefault();
+
+
+                if (
+                    authCheckInProgress ||
+                    redirecting
+                ) {
+
+                    return;
+
+                }
+
 
                 clearMessage();
 
@@ -1776,6 +1931,10 @@
                     }
 
 
+                    redirecting =
+                        true;
+
+
                     showLoading(
                         "Opening member portal..."
                     );
@@ -1816,7 +1975,7 @@
 
 
         /* ==========================================
-           FORGOT PASSWORD
+           OPEN FORGOT PASSWORD
         ========================================== */
 
         function openForgotModal() {
@@ -1852,6 +2011,10 @@
 
         }
 
+
+        /* ==========================================
+           CLOSE FORGOT PASSWORD
+        ========================================== */
 
         function closeForgotModal() {
 
@@ -1899,6 +2062,99 @@
         );
 
 
+        /* ==========================================
+           CHECK MEMBER BEFORE RESET
+        ========================================== */
+
+        async function getMemberForReset(
+            email
+        ) {
+
+            const member =
+                await findMemberByEmail(
+                    email
+                );
+
+
+            if (!member) {
+
+                return {
+
+                    ok: false,
+
+                    reason: "member-not-found"
+
+                };
+
+            }
+
+
+            const status =
+                String(
+                    member.data.status ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            if (
+                status !== "approved" &&
+                status !== "active"
+            ) {
+
+                return {
+
+                    ok: false,
+
+                    reason: "member-not-active",
+
+                    status
+
+                };
+
+            }
+
+
+            /*
+             * The Cloud Function should
+             * create the Firebase Auth UID.
+             *
+             * If UID is not yet present,
+             * the account may still be
+             * processing.
+             */
+
+            if (
+                !member.data.uid
+            ) {
+
+                return {
+
+                    ok: false,
+
+                    reason: "auth-not-ready"
+
+                };
+
+            }
+
+
+            return {
+
+                ok: true,
+
+                member
+
+            };
+
+        }
+
+
+        /* ==========================================
+           SEND PASSWORD RESET
+        ========================================== */
+
         sendResetBtn.addEventListener(
             "click",
             async () => {
@@ -1930,10 +2186,100 @@
                     true;
 
                 sendResetBtn.textContent =
-                    "SENDING...";
+                    "CHECKING...";
 
 
                 try {
+
+                    /*
+                     * Step 1:
+                     * Verify member record.
+                     */
+
+                    const memberCheck =
+                        await getMemberForReset(
+                            email
+                        );
+
+
+                    if (
+                        !memberCheck.ok
+                    ) {
+
+                        if (
+                            memberCheck.reason ===
+                            "member-not-found"
+                        ) {
+
+                            showForgotMessage(
+                                "This email is not registered as a NIGHTFALL DEVILS member. Please check the email or contact an administrator.",
+                                "error"
+                            );
+
+                        } else if (
+                            memberCheck.reason ===
+                            "auth-not-ready"
+                        ) {
+
+                            showForgotMessage(
+                                "Your member account is approved, but the Firebase login account is still being created. Please wait a few moments and try again.",
+                                "info"
+                            );
+
+                        } else if (
+                            memberCheck.status ===
+                            "pending"
+                        ) {
+
+                            showForgotMessage(
+                                "Your membership is still pending approval. Password setup is available after approval.",
+                                "info"
+                            );
+
+                        } else if (
+                            memberCheck.status ===
+                            "rejected"
+                        ) {
+
+                            showForgotMessage(
+                                "Your membership request was rejected. Please contact NIGHTFALL DEVILS administration.",
+                                "error"
+                            );
+
+                        } else if (
+                            memberCheck.status ===
+                            "suspended"
+                        ) {
+
+                            showForgotMessage(
+                                "Your member account is currently suspended.",
+                                "error"
+                            );
+
+                        } else {
+
+                            showForgotMessage(
+                                "Your member account is not currently active.",
+                                "error"
+                            );
+
+                        }
+
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Step 2:
+                     * Send Firebase password
+                     * reset email.
+                     */
+
+                    sendResetBtn.textContent =
+                        "SENDING...";
+
 
                     await sendPasswordResetEmail(
                         auth,
@@ -1942,7 +2288,7 @@
 
 
                     showForgotMessage(
-                        "Password reset email sent. Please check your inbox and follow the reset link.",
+                        "Password reset email sent successfully. Check your inbox and follow the Firebase password reset link. After creating your password, return here and login.",
                         "success"
                     );
 
@@ -1976,7 +2322,7 @@
                             "auth/user-not-found":
 
                             text =
-                                "No Firebase Authentication account was found with this email.";
+                                "Your member record exists, but the Firebase login account has not been created yet. Please wait a few moments and try again.";
 
                             break;
 
@@ -1985,7 +2331,7 @@
                             "auth/too-many-requests":
 
                             text =
-                                "Too many requests. Please try again later.";
+                                "Too many reset requests. Please wait and try again later.";
 
                             break;
 
@@ -1995,6 +2341,15 @@
 
                             text =
                                 "Network error. Please check your internet connection.";
+
+                            break;
+
+
+                        case
+                            "auth/operation-not-allowed":
+
+                            text =
+                                "Email/password authentication is not enabled in Firebase Authentication.";
 
                             break;
 
@@ -2037,14 +2392,35 @@
             async user => {
 
                 /*
-                 * If already logged in,
-                 * check whether this is a
-                 * valid NIGHTFALL member.
+                 * No logged-in Firebase user.
                  */
 
                 if (!user) {
+
+                    authCheckInProgress =
+                        false;
+
                     return;
+
                 }
+
+
+                /*
+                 * Prevent duplicate auth checks.
+                 */
+
+                if (
+                    authCheckInProgress ||
+                    redirecting
+                ) {
+
+                    return;
+
+                }
+
+
+                authCheckInProgress =
+                    true;
 
 
                 try {
@@ -2064,12 +2440,25 @@
                         allowed
                     ) {
 
+                        redirecting =
+                            true;
+
+
+                        showLoading(
+                            "Opening member portal..."
+                        );
+
+
                         window.location.href =
                             "member-dashboard.html";
+
 
                     } else {
 
                         hideLoading();
+
+                        authCheckInProgress =
+                            false;
 
                     }
 
@@ -2080,7 +2469,11 @@
                         error
                     );
 
+
                     hideLoading();
+
+                    authCheckInProgress =
+                        false;
 
                 }
 
