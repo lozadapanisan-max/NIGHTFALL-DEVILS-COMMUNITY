@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,26 +12,47 @@
 
     <meta
         name="theme-color"
-        content="#0b0b0b"
+        content="#080808"
     >
 
-    <title>Member Requests | NIGHTFALL DEVILS</title>
+    <meta
+        name="description"
+        content="NIGHTFALL DEVILS Admin Panel - Join Requests"
+    >
+
+    <title>Join Requests | NIGHTFALL DEVILS Admin</title>
+
+    <link
+        rel="icon"
+        href="../assets/logo.png"
+    >
 
     <style>
+
         :root {
             --red: #d71920;
-            --red-dark: #a90f15;
+            --red-bright: #ef1b23;
+            --red-dark: #8f0e13;
+
             --gold: #f5c542;
-            --bg: #080808;
-            --panel: #111111;
-            --panel-2: #151515;
+            --gold-dark: #c99b18;
+
+            --black: #050505;
+            --dark: #090909;
+            --card: #111111;
+            --card2: #151515;
+            --card3: #191919;
+
             --border: #292929;
+            --border-red: rgba(215, 25, 32, 0.38);
+
             --text: #ffffff;
             --muted: #999999;
+
             --green: #22c55e;
-            --orange: #f59e0b;
-            --blue: #3b82f6;
+            --yellow: #f5c542;
             --danger: #ef4444;
+            --blue: #3b82f6;
         }
 
         * {
@@ -39,17 +61,33 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--text);
+
             background:
                 radial-gradient(
                     circle at top right,
                     rgba(215, 25, 32, 0.12),
-                    transparent 35%
+                    transparent 30%
                 ),
-                var(--bg);
-            color: var(--text);
-            min-height: 100vh;
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(245, 197, 66, 0.035),
+                    transparent 28%
+                ),
+                var(--black);
         }
 
         button,
@@ -63,540 +101,1413 @@
             cursor: pointer;
         }
 
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            background: rgba(8, 8, 8, 0.96);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 22px;
-            backdrop-filter: blur(12px);
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .brand {
+        /* =========================================
+           AUTH LOADING
+        ========================================= */
+
+        #authLoading {
+            position: fixed;
+            inset: 0;
+
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(215, 25, 32, 0.12),
+                    transparent 42%
+                ),
+                #050505;
+
+            z-index: 99999;
         }
 
-        .brand img {
-            width: 42px;
-            height: 42px;
-            object-fit: contain;
+        .auth-loading-box {
+            width: min(420px, calc(100% - 32px));
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            background: #111;
+
+            border: 1px solid #2b2b2b;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.65),
+                0 0 30px rgba(215, 25, 32, 0.06);
+        }
+
+        .auth-loading-logo {
+            width: 75px;
+            height: 75px;
+
+            object-fit: cover;
+
             border-radius: 50%;
+
             border: 2px solid var(--gold);
-            background: #000;
+
+            margin-bottom: 18px;
+
+            background: #090909;
         }
 
-        .brand-text h1 {
-            font-size: 18px;
-            color: var(--gold);
-            letter-spacing: 1px;
+        .auth-spinner {
+            width: 34px;
+            height: 34px;
+
+            margin: 0 auto 18px;
+
+            border: 3px solid rgba(255,255,255,0.12);
+
+            border-top-color: var(--red);
+
+            border-right-color: var(--gold);
+
+            border-radius: 50%;
+
+            animation: spin 0.75s linear infinite;
         }
 
-        .brand-text span {
-            display: block;
-            margin-top: 3px;
-            font-size: 11px;
+        .auth-loading-box h2 {
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .auth-loading-box p {
             color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 13px;
         }
 
-        .top-actions {
-            display: flex;
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        /* =========================================
+           LOGIN REQUIRED
+        ========================================= */
+
+        #loginRequired {
+            display: none;
+
+            min-height: 100vh;
+
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(215, 25, 32, 0.10),
+                    transparent 40%
+                ),
+                #050505;
         }
 
-        .btn {
-            border: 1px solid var(--border);
-            background: var(--panel-2);
-            color: white;
-            border-radius: 8px;
-            padding: 10px 14px;
-            transition: .2s ease;
+        .login-required-card {
+            width: min(700px, 100%);
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(255,255,255,0.008)
+                ),
+                #111;
+
+            border: 1px solid #2d2d2d;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.65);
         }
 
-        .btn:hover {
-            border-color: var(--gold);
-            transform: translateY(-1px);
-        }
+        .login-required-logo {
+            width: 110px;
+            height: 60px;
 
-        .btn:disabled {
-            opacity: .55;
-            cursor: not-allowed;
-            transform: none;
-        }
+            object-fit: contain;
 
-        .btn-primary {
-            background: var(--red);
-            border-color: var(--red);
-        }
-
-        .btn-primary:hover {
-            background: var(--red-dark);
-            border-color: var(--red-dark);
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: #111;
-            border-color: var(--gold);
-            font-weight: 700;
-        }
-
-        .btn-danger {
-            background: rgba(239, 68, 68, .12);
-            color: #ff8b8b;
-            border-color: rgba(239, 68, 68, .35);
-        }
-
-        .btn-success {
-            background: rgba(34, 197, 94, .12);
-            color: #68e091;
-            border-color: rgba(34, 197, 94, .35);
-        }
-
-        .btn-small {
-            padding: 7px 10px;
-            font-size: 12px;
-        }
-
-        .container {
-            width: min(1400px, calc(100% - 30px));
-            margin: 25px auto 50px;
-        }
-
-        .page-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 20px;
             margin-bottom: 22px;
         }
 
-        .page-header h2 {
-            font-size: 28px;
-            margin-bottom: 6px;
+        .login-required-card h1 {
+            font-size: clamp(30px, 6vw, 48px);
+
+            margin-bottom: 15px;
         }
 
-        .page-header p {
+        .login-required-card p {
+            max-width: 570px;
+
+            margin: 0 auto 28px;
+
             color: var(--muted);
-            font-size: 14px;
+
+            font-size: 17px;
+
+            line-height: 1.7;
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+        .admin-login-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            min-height: 52px;
+
+            padding: 0 28px;
+
+            background: var(--red);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+        .admin-login-btn:hover {
+            background: var(--red-bright);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px rgba(215,25,32,0.28);
+        }
+
+        /* =========================================
+           MAIN APP
+        ========================================= */
+
+        #app {
+            display: none;
+
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 250px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            padding: 22px 15px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #0a0a0a,
+                    #0e0e0e 60%,
+                    #080808
+                );
+
+            border-right: 1px solid var(--border);
+
+            z-index: 2000;
+        }
+
+        .sidebar-brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 5px 8px 22px;
+
+            border-bottom: 1px solid #242424;
+
+            margin-bottom: 18px;
+        }
+
+        .sidebar-logo {
+            width: 48px;
+            height: 48px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 2px solid var(--red);
+
+            background: #111;
+        }
+
+        .sidebar-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand-name {
+            font-size: 15px;
+
+            font-weight: 950;
+
+            letter-spacing: 1px;
+        }
+
+        .sidebar-brand-subtitle {
+            margin-top: 3px;
+
+            color: var(--gold);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .sidebar-menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+        .nav-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-height: 45px;
+
+            padding: 0 13px;
+
+            border: 1px solid transparent;
+
+            border-radius: 9px;
+
+            color: #bdbdbd;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+
+            background: rgba(255,255,255,0.035);
+
+            border-color: #292929;
+        }
+
+        .nav-link.active {
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(215,25,32,0.26),
+                    rgba(215,25,32,0.08)
+                );
+
+            border-color:
+                rgba(215,25,32,0.45);
+
+            box-shadow:
+                inset 3px 0 0 var(--red);
+        }
+
+        .nav-icon {
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #242424;
+        }
+
+        .logout-btn {
+            width: 100%;
+
+            min-height: 44px;
+
+            border: 1px solid rgba(245,197,66,0.4);
+
+            border-radius: 9px;
+
+            color: var(--gold);
+
+            background: rgba(245,197,66,0.04);
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            transition: 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            color: #111;
+
+            background: var(--gold);
+
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
+
+        .main {
+            margin-left: 250px;
+
+            min-height: 100vh;
+        }
+
+        .topbar {
+            min-height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 0 28px;
+
+            background:
+                rgba(8,8,8,0.94);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(12px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1500;
+        }
+
+        .topbar-title {
+            font-size: 16px;
+
+            font-weight: 900;
+        }
+
+        .topbar-title span {
+            color: var(--gold);
+        }
+
+        .admin-user {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #d6d6d6;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+        }
+
+        .admin-user-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #161616;
+
+            border: 1px solid #333;
+        }
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .content {
+            padding: 30px;
+        }
+
+        .page-heading {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .page-heading-left {
+            display: flex;
+
+            align-items: flex-start;
+
             gap: 14px;
-            margin-bottom: 20px;
+        }
+
+        .page-heading-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(215,25,32,0.12);
+
+            border:
+                1px solid rgba(215,25,32,0.35);
+
+            font-size: 24px;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(25px, 4vw, 34px);
+
+            line-height: 1.1;
+
+            margin-bottom: 5px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .refresh-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            min-height: 40px;
+
+            padding: 0 14px;
+
+            border: 1px solid #333;
+
+            border-radius: 8px;
+
+            background: #111;
+
+            color: #ddd;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            border-color: var(--gold);
+
+            color: var(--gold);
+        }
+
+        .refresh-btn.loading {
+            opacity: 0.6;
+
+            pointer-events: none;
+        }
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-bottom: 22px;
         }
 
         .stat-card {
-            background: linear-gradient(
-                145deg,
-                rgba(255,255,255,.03),
-                rgba(255,255,255,.01)
-            );
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
             min-height: 105px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(255,255,255,0.008)
+                ),
+                #111;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+        }
+
+        .stat-card.pending {
+            border-color:
+                rgba(245,197,66,0.28);
+        }
+
+        .stat-card.approved {
+            border-color:
+                rgba(34,197,94,0.25);
+        }
+
+        .stat-card.rejected {
+            border-color:
+                rgba(239,68,68,0.25);
+        }
+
+        .stat-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 11px;
+
+            background: #191919;
+
+            font-size: 20px;
+        }
+
+        .stat-card.pending .stat-icon {
+            color: var(--gold);
+
+            background:
+                rgba(245,197,66,0.08);
+        }
+
+        .stat-card.approved .stat-icon {
+            color: var(--green);
+
+            background:
+                rgba(34,197,94,0.08);
+        }
+
+        .stat-card.rejected .stat-icon {
+            color: var(--danger);
+
+            background:
+                rgba(239,68,68,0.08);
         }
 
         .stat-label {
             color: var(--muted);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: .8px;
-        }
 
-        .stat-number {
-            margin-top: 10px;
-            font-size: 30px;
+            font-size: 10px;
+
             font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
         }
 
-        .stat-card.pending {
-            border-color: rgba(245, 197, 66, .25);
+        .stat-value {
+            margin-top: 4px;
+
+            font-size: 26px;
+
+            font-weight: 950;
         }
 
-        .stat-card.pending .stat-number {
-            color: var(--gold);
-        }
+        /* =========================================
+           CONTROLS
+        ========================================= */
 
-        .stat-card.approved {
-            border-color: rgba(34, 197, 94, .25);
-        }
+        .controls {
+            display: grid;
 
-        .stat-card.approved .stat-number {
-            color: var(--green);
-        }
+            grid-template-columns:
+                minmax(250px, 1fr)
+                auto
+                auto;
 
-        .stat-card.rejected {
-            border-color: rgba(239, 68, 68, .25);
-        }
-
-        .stat-card.rejected .stat-number {
-            color: var(--danger);
-        }
-
-        .toolbar {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 14px;
-            display: flex;
             align-items: center;
+
             gap: 10px;
-            margin-bottom: 18px;
+
+            margin-bottom: 15px;
         }
 
         .search-wrap {
-            flex: 1;
             position: relative;
         }
 
-        .search-wrap span {
+        .search-icon {
             position: absolute;
+
             left: 13px;
+
             top: 50%;
+
             transform: translateY(-50%);
-            color: var(--muted);
+
+            color: #777;
+
+            pointer-events: none;
         }
 
-        .search {
+        .search-input {
             width: 100%;
-            background: #0b0b0b;
+
+            min-height: 44px;
+
+            padding:
+                0 14px 0 39px;
+
+            background: #111;
+
+            color: #fff;
+
             border: 1px solid var(--border);
-            color: white;
-            border-radius: 8px;
-            padding: 11px 12px 11px 38px;
+
+            border-radius: 9px;
+
             outline: none;
         }
 
-        .search:focus,
-        .select:focus {
+        .search-input:focus {
+            border-color: var(--gold);
+
+            box-shadow:
+                0 0 0 3px rgba(245,197,66,0.06);
+        }
+
+        .filter-select {
+            min-height: 44px;
+
+            padding: 0 35px 0 12px;
+
+            color: #ddd;
+
+            background: #111;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            outline: none;
+        }
+
+        .filter-select:focus {
             border-color: var(--gold);
         }
 
-        .select {
-            min-width: 160px;
-            background: #0b0b0b;
-            color: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 11px 12px;
-            outline: none;
-        }
+        /* =========================================
+           TABLE
+        ========================================= */
 
-        .table-wrap {
-            background: var(--panel);
+        .table-card {
+            background: #101010;
+
             border: 1px solid var(--border);
+
             border-radius: 14px;
+
             overflow: hidden;
+
+            box-shadow:
+                0 18px 55px rgba(0,0,0,0.28);
         }
 
         .table-scroll {
+            width: 100%;
+
             overflow-x: auto;
         }
 
         table {
             width: 100%;
+
+            min-width: 1050px;
+
             border-collapse: collapse;
-            min-width: 950px;
         }
 
-        th,
-        td {
-            padding: 14px 13px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-            vertical-align: middle;
+        thead {
+            background:
+                linear-gradient(
+                    90deg,
+                    #9f1016,
+                    #d71920,
+                    #a70e14
+                );
         }
 
         th {
-            background: #0d0d0d;
-            color: var(--gold);
-            font-size: 11px;
+            padding: 13px 12px;
+
+            text-align: left;
+
+            color: #fff;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
             text-transform: uppercase;
-            letter-spacing: .7px;
+
+            letter-spacing: 0.6px;
+
             white-space: nowrap;
         }
 
         td {
-            font-size: 13px;
-        }
+            padding: 13px 12px;
 
-        tr:last-child td {
-            border-bottom: 0;
+            border-bottom: 1px solid #222;
+
+            color: #ddd;
+
+            font-size: 11px;
+
+            vertical-align: middle;
         }
 
         tbody tr {
-            transition: .15s ease;
+            transition: 0.15s ease;
         }
 
         tbody tr:hover {
-            background: rgba(255,255,255,.025);
+            background:
+                rgba(215,25,32,0.035);
         }
 
-        .user-name {
-            font-weight: 700;
-            color: white;
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .number-cell {
+            color: #888;
+
+            font-weight: 800;
         }
 
         .username {
-            color: var(--gold);
-            margin-top: 3px;
-            font-size: 12px;
+            color: #fff;
+
+            font-weight: 800;
         }
 
-        .muted {
-            color: var(--muted);
+        .message-cell {
+            max-width: 230px;
+
+            color: #999;
+
+            line-height: 1.4;
         }
 
-        .badge {
+        .date-cell {
+            color: #aaa;
+
+            white-space: nowrap;
+
+            line-height: 1.5;
+        }
+
+        .status-badge {
             display: inline-flex;
+
             align-items: center;
-            justify-content: center;
-            min-width: 78px;
+
+            gap: 5px;
+
             padding: 5px 9px;
+
             border-radius: 999px;
-            font-size: 11px;
-            font-weight: 700;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
             text-transform: uppercase;
-            letter-spacing: .4px;
         }
 
-        .badge-pending {
-            color: var(--gold);
-            background: rgba(245, 197, 66, .10);
-            border: 1px solid rgba(245, 197, 66, .25);
+        .status-pending {
+            color: #ffe58a;
+
+            background:
+                rgba(245,197,66,0.10);
+
+            border:
+                1px solid rgba(245,197,66,0.25);
         }
 
-        .badge-approved {
-            color: #66e28a;
-            background: rgba(34, 197, 94, .10);
-            border: 1px solid rgba(34, 197, 94, .25);
+        .status-approved {
+            color: #9af0b6;
+
+            background:
+                rgba(34,197,94,0.10);
+
+            border:
+                1px solid rgba(34,197,94,0.25);
         }
 
-        .badge-rejected {
-            color: #ff7c7c;
-            background: rgba(239, 68, 68, .10);
-            border: 1px solid rgba(239, 68, 68, .25);
+        .status-rejected {
+            color: #ffaaaa;
+
+            background:
+                rgba(239,68,68,0.10);
+
+            border:
+                1px solid rgba(239,68,68,0.25);
+        }
+
+        .status-default {
+            color: #ccc;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid #333;
         }
 
         .actions {
             display: flex;
+
             align-items: center;
+
             gap: 6px;
-            flex-wrap: wrap;
+
+            white-space: nowrap;
         }
 
-        .empty {
-            padding: 60px 20px;
+        .action-btn {
+            min-height: 31px;
+
+            padding: 0 9px;
+
+            border-radius: 7px;
+
+            border: 1px solid transparent;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            transition: 0.15s ease;
+        }
+
+        .approve-btn {
+            color: #baf8cd;
+
+            background:
+                rgba(34,197,94,0.10);
+
+            border-color:
+                rgba(34,197,94,0.25);
+        }
+
+        .approve-btn:hover {
+            color: #fff;
+
+            background: var(--green);
+        }
+
+        .reject-btn {
+            color: #ffb4b4;
+
+            background:
+                rgba(239,68,68,0.09);
+
+            border-color:
+                rgba(239,68,68,0.25);
+        }
+
+        .reject-btn:hover {
+            color: #fff;
+
+            background: var(--danger);
+        }
+
+        .delete-btn {
+            color: #bbb;
+
+            background: #181818;
+
+            border-color: #333;
+        }
+
+        .delete-btn:hover {
+            color: #fff;
+
+            background: #444;
+        }
+
+        .view-btn {
+            color: #a8c9ff;
+
+            background:
+                rgba(59,130,246,0.08);
+
+            border-color:
+                rgba(59,130,246,0.22);
+        }
+
+        .view-btn:hover {
+            color: #fff;
+
+            background: var(--blue);
+        }
+
+        /* =========================================
+           EMPTY / LOADING
+        ========================================= */
+
+        .table-message {
+            padding: 55px 20px;
+
             text-align: center;
-            color: var(--muted);
+
+            color: #777;
+
+            font-size: 13px;
         }
 
-        .empty-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
+        .table-message-icon {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+
+            opacity: 0.65;
         }
 
-        .loading {
-            padding: 50px;
-            text-align: center;
-            color: var(--muted);
-        }
+        .table-loading {
+            display: inline-flex;
 
-        .spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #333;
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
-            margin: 0 auto 12px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.76);
-            z-index: 3000;
-            display: none;
             align-items: center;
-            justify-content: center;
-            padding: 18px;
+
+            gap: 9px;
         }
 
-        .modal-backdrop.show {
+        .small-spinner {
+            width: 15px;
+            height: 15px;
+
+            border: 2px solid #333;
+
+            border-top-color: var(--red);
+
+            border-radius: 50%;
+
+            animation: spin 0.7s linear infinite;
+        }
+
+        /* =========================================
+           FOOTER / PAGINATION
+        ========================================= */
+
+        .table-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 13px 15px;
+
+            border-top: 1px solid #222;
+
+            color: #777;
+
+            font-size: 10px;
+        }
+
+        .pagination {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+        .page-btn {
+            min-width: 32px;
+            height: 30px;
+
+            border: 1px solid #2d2d2d;
+
+            border-radius: 6px;
+
+            color: #999;
+
+            background: #151515;
+
+            font-size: 10px;
+        }
+
+        .page-btn.active {
+            color: #fff;
+
+            background: var(--red);
+
+            border-color: var(--red);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+
+            cursor: not-allowed;
+        }
+
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,0.78);
+
+            backdrop-filter: blur(7px);
+
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
             display: flex;
         }
 
         .modal {
-            width: min(620px, 100%);
-            max-height: calc(100vh - 36px);
+            width: min(570px, 100%);
+
+            max-height: 90vh;
+
             overflow-y: auto;
-            background: #111;
-            border: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(255,255,255,0.01)
+                ),
+                #111;
+
+            border: 1px solid #333;
+
             border-radius: 16px;
-            box-shadow: 0 20px 80px rgba(0,0,0,.6);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.7);
         }
 
         .modal-header {
-            padding: 18px;
-            border-bottom: 1px solid var(--border);
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+
+            justify-content: space-between;
+
             gap: 15px;
+
+            padding: 18px 20px;
+
+            border-bottom: 1px solid #282828;
         }
 
-        .modal-header h3 {
-            color: var(--gold);
-            font-size: 18px;
+        .modal-header h2 {
+            font-size: 17px;
         }
 
-        .close-btn {
-            width: 35px;
-            height: 35px;
+        .modal-close {
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid #333;
+
             border-radius: 8px;
-            border: 1px solid var(--border);
-            background: #171717;
-            color: white;
+
+            background: #181818;
+
+            color: #aaa;
+
             font-size: 18px;
         }
 
-        .close-btn:hover {
-            background: var(--red);
+        .modal-close:hover {
+            color: #fff;
+
             border-color: var(--red);
         }
 
         .modal-body {
-            padding: 18px;
+            padding: 20px;
         }
 
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
+        .modal-info {
+            padding: 14px;
 
-        .detail-item {
-            background: #0b0b0b;
-            border: 1px solid var(--border);
+            margin-bottom: 17px;
+
+            background: #171717;
+
+            border: 1px solid #292929;
+
             border-radius: 10px;
-            padding: 13px;
         }
 
-        .detail-item.full {
-            grid-column: 1 / -1;
+        .modal-info-row {
+            display: grid;
+
+            grid-template-columns: 120px 1fr;
+
+            gap: 10px;
+
+            padding: 6px 0;
+
+            font-size: 11px;
         }
 
-        .detail-label {
-            color: var(--muted);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: .7px;
-            margin-bottom: 6px;
+        .modal-info-row span:first-child {
+            color: #777;
+
+            font-weight: 700;
         }
 
-        .detail-value {
-            color: white;
-            font-size: 13px;
+        .modal-info-row span:last-child {
+            color: #ddd;
+
             word-break: break-word;
         }
 
-        .modal-footer {
-            padding: 15px 18px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .form-group {
-            margin-bottom: 14px;
-        }
-
-        .form-label {
+        .modal-label {
             display: block;
-            color: var(--muted);
-            font-size: 12px;
+
             margin-bottom: 7px;
+
+            color: #ddd;
+
+            font-size: 11px;
+
+            font-weight: 800;
         }
 
-        .form-control {
+        .modal-input,
+        .modal-select,
+        .modal-textarea {
             width: 100%;
-            background: #0b0b0b;
-            color: white;
-            border: 1px solid var(--border);
+
+            min-height: 44px;
+
+            padding: 10px 12px;
+
+            color: #fff;
+
+            background: #171717;
+
+            border: 1px solid #303030;
+
             border-radius: 8px;
-            padding: 11px 12px;
+
             outline: none;
         }
 
-        .form-control:focus {
+        .modal-input:focus,
+        .modal-select:focus,
+        .modal-textarea:focus {
             border-color: var(--gold);
+
+            box-shadow:
+                0 0 0 3px rgba(245,197,66,0.05);
         }
 
-        textarea.form-control {
-            min-height: 100px;
+        .modal-textarea {
+            min-height: 95px;
+
             resize: vertical;
         }
 
-        .notice {
-            border-radius: 10px;
-            padding: 11px 13px;
-            font-size: 12px;
+        .modal-field {
             margin-bottom: 14px;
-            line-height: 1.5;
         }
 
-        .notice-info {
-            background: rgba(59,130,246,.08);
-            border: 1px solid rgba(59,130,246,.22);
-            color: #93c5fd;
+        .modal-footer {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            padding: 15px 20px;
+
+            border-top: 1px solid #282828;
         }
 
-        .notice-warning {
-            background: rgba(245,158,11,.08);
-            border: 1px solid rgba(245,158,11,.22);
-            color: #fcd34d;
+        .modal-btn {
+            min-height: 40px;
+
+            padding: 0 15px;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            font-weight: 900;
+        }
+
+        .modal-cancel {
+            color: #bbb;
+
+            background: #181818;
+
+            border: 1px solid #333;
+        }
+
+        .modal-confirm {
+            color: #fff;
+
+            background: var(--green);
+
+            border: 1px solid var(--green);
+        }
+
+        .modal-confirm.reject-confirm {
+            background: var(--red);
+
+            border-color: var(--red);
+        }
+
+        /* =========================================
+           TOAST
+        ========================================= */
+
+        #toastContainer {
+            position: fixed;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+            z-index: 20000;
         }
 
         .toast {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 5000;
-            width: min(380px, calc(100% - 40px));
-            background: #151515;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--gold);
-            border-radius: 10px;
-            padding: 13px 15px;
-            box-shadow: 0 15px 50px rgba(0,0,0,.45);
-            display: none;
-        }
+            width: min(360px, calc(100vw - 40px));
 
-        .toast.show {
-            display: block;
-            animation: toastIn .2s ease;
+            padding: 13px 15px;
+
+            background: #151515;
+
+            border: 1px solid #333;
+
+            border-left: 4px solid var(--red);
+
+            border-radius: 9px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.5);
+
+            color: #ddd;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            animation:
+                toastIn 0.2s ease;
         }
 
         .toast.success {
@@ -607,7 +1518,12 @@
             border-left-color: var(--danger);
         }
 
+        .toast.info {
+            border-left-color: var(--gold);
+        }
+
         @keyframes toastIn {
+
             from {
                 opacity: 0;
                 transform: translateY(10px);
@@ -617,450 +1533,800 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
-        .access-denied {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-        }
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
 
-        .access-card {
-            width: min(450px, 100%);
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-        }
+        .mobile-menu-btn {
+            display: none;
 
-        .access-card img {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
+            width: 38px;
+            height: 38px;
 
-        .access-card h2 {
-            margin-bottom: 8px;
-        }
+            border: 1px solid #333;
 
-        .access-card p {
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .debug-box {
-            margin-top: 15px;
-            padding: 12px;
-            background: #080808;
-            border: 1px solid #292929;
             border-radius: 8px;
-            color: #888;
-            font-size: 10px;
-            text-align: left;
-            word-break: break-word;
+
+            color: #fff;
+
+            background: #111;
+
+            font-size: 18px;
         }
 
-        @media (max-width: 900px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+        .sidebar-overlay {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.65);
+
+            z-index: 1900;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1050px) {
+
+            .sidebar {
+                width: 220px;
             }
 
-            .page-header {
-                align-items: flex-start;
+            .main {
+                margin-left: 220px;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .controls {
+                grid-template-columns: 1fr auto auto;
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+
+                transition: transform 0.25s ease;
+
+                width: 250px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.open {
+                display: block;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
+
+                align-items: center;
+
+                justify-content: center;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .topbar-title {
+                font-size: 13px;
+            }
+
+            .admin-user {
+                display: none;
+            }
+
+            .content {
+                padding: 20px 14px 30px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .page-heading {
                 flex-direction: column;
             }
-        }
 
-        @media (max-width: 650px) {
-            .topbar {
-                height: auto;
-                min-height: 65px;
-                padding: 10px 13px;
+            .page-heading-left {
+                width: 100%;
             }
 
-            .brand-text h1 {
-                font-size: 15px;
+            .refresh-btn {
+                width: 100%;
             }
 
-            .brand-text span {
-                font-size: 9px;
-            }
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
 
-            .brand img {
-                width: 38px;
-                height: 38px;
-            }
-
-            .top-actions .btn {
-                padding: 8px 9px;
-                font-size: 11px;
-            }
-
-            .container {
-                width: min(100% - 20px, 1400px);
-                margin-top: 18px;
-            }
-
-            .page-header h2 {
-                font-size: 23px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
                 gap: 9px;
             }
 
             .stat-card {
-                padding: 14px;
                 min-height: 90px;
+
+                padding: 12px;
+
+                gap: 9px;
             }
 
-            .stat-number {
-                font-size: 24px;
+            .stat-icon {
+                width: 36px;
+                height: 36px;
+
+                font-size: 16px;
             }
 
-            .toolbar {
+            .stat-label {
+                font-size: 8px;
+            }
+
+            .stat-value {
+                font-size: 21px;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+
+                gap: 8px;
+            }
+
+            .table-footer {
+                align-items: flex-start;
+
                 flex-direction: column;
-                align-items: stretch;
             }
 
-            .select {
-                width: 100%;
+            .modal-info-row {
+                grid-template-columns: 95px 1fr;
             }
 
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .detail-item.full {
-                grid-column: auto;
-            }
-
-            .modal-footer .btn {
-                flex: 1;
-            }
         }
 
-        @media (max-width: 420px) {
-            .stats {
-                grid-template-columns: 1fr;
+        @media (max-width: 400px) {
+
+            .content {
+                padding: 17px 10px 25px;
             }
 
-            .brand-text {
-                display: none;
+            .page-heading h1 {
+                font-size: 25px;
             }
 
-            .top-actions .dashboard-btn {
-                display: none;
+            .page-heading p {
+                font-size: 10px;
             }
+
+            .stat-card {
+                min-height: 83px;
+
+                padding: 10px;
+            }
+
+            .stat-value {
+                font-size: 19px;
+            }
+
+            .login-required-card {
+                padding: 35px 20px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ACCESS DENIED -->
-    <div
-        id="accessDenied"
-        class="access-denied"
-        style="display:none;"
-    >
 
-        <div class="access-card">
+    <!-- =========================================
+         AUTH LOADING
+    ========================================= -->
+
+    <div id="authLoading">
+
+        <div class="auth-loading-box">
 
             <img
                 src="../assets/logo.png"
+                class="auth-loading-logo"
                 alt="NIGHTFALL DEVILS"
+                onerror="this.style.display='none';"
             >
 
-            <h2>Login Required</h2>
+            <div class="auth-spinner"></div>
 
-            <p id="accessMessage">
-                You must be logged in to access Member Requests.
+            <h2>
+                Checking Admin Session
+            </h2>
+
+            <p>
+                Please wait while NIGHTFALL DEVILS verifies your login.
             </p>
-
-            <button
-                class="btn btn-primary"
-                id="goLoginBtn"
-            >
-                🔐 ADMIN LOGIN
-            </button>
-
-            <div
-                id="debugBox"
-                class="debug-box"
-                style="display:none;"
-            ></div>
 
         </div>
 
     </div>
 
 
-    <!-- MAIN APP -->
-    <div id="app" style="display:none;">
+    <!-- =========================================
+         LOGIN REQUIRED
+    ========================================= -->
 
-        <header class="topbar">
+    <section id="loginRequired">
 
-            <div class="brand">
+        <div class="login-required-card">
+
+            <img
+                src="../assets/logo.png"
+                class="login-required-logo"
+                alt="NIGHTFALL DEVILS"
+                onerror="this.style.display='none';"
+            >
+
+            <h1>
+                Login Required
+            </h1>
+
+            <p>
+                You must be logged in as an administrator
+                to access Member Requests.
+            </p>
+
+            <a
+                href="login.html"
+                class="admin-login-btn"
+            >
+                🔐 ADMIN LOGIN
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         APP
+    ========================================= -->
+
+    <div id="app">
+
+
+        <!-- =====================================
+             SIDEBAR
+        ===================================== -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <div class="sidebar-brand">
 
                 <img
                     src="../assets/logo.png"
+                    class="sidebar-logo"
                     alt="NIGHTFALL DEVILS"
+                    onerror="this.style.display='none';"
                 >
 
-                <div class="brand-text">
+                <div class="sidebar-brand-text">
 
-                    <h1>
+                    <div class="sidebar-brand-name">
                         NIGHTFALL DEVILS
-                    </h1>
+                    </div>
 
-                    <span>
-                        Admin • Member Requests
-                    </span>
+                    <div class="sidebar-brand-subtitle">
+                        ADMIN PANEL
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <div class="top-actions">
+            <nav class="sidebar-menu">
 
-                <button
-                    class="btn dashboard-btn"
-                    id="dashboardBtn"
+                <a
+                    href="dashboard.html"
+                    class="nav-link"
                 >
-                    ← Dashboard
-                </button>
+                    <span class="nav-icon">
+                        🏠
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+
+
+                <a
+                    href="requests.html"
+                    class="nav-link active"
+                >
+                    <span class="nav-icon">
+                        📝
+                    </span>
+
+                    <span>
+                        Join Requests
+                    </span>
+                </a>
+
+
+                <a
+                    href="members.html"
+                    class="nav-link"
+                >
+                    <span class="nav-icon">
+                        👥
+                    </span>
+
+                    <span>
+                        Members
+                    </span>
+                </a>
+
+
+                <a
+                    href="schedule.html"
+                    class="nav-link"
+                >
+                    <span class="nav-icon">
+                        📅
+                    </span>
+
+                    <span>
+                        Schedule
+                    </span>
+                </a>
+
+
+                <a
+                    href="announcements.html"
+                    class="nav-link"
+                >
+                    <span class="nav-icon">
+                        📢
+                    </span>
+
+                    <span>
+                        Announcements
+                    </span>
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
 
                 <button
-                    class="btn btn-primary"
+                    type="button"
+                    class="logout-btn"
                     id="logoutBtn"
                 >
-                    Logout
+                    🚪 LOGOUT
                 </button>
 
             </div>
 
-        </header>
+        </aside>
 
 
-        <main class="container">
-
-            <div class="page-header">
-
-                <div>
-
-                    <h2>
-                        Member Requests
-                    </h2>
-
-                    <p>
-                        Review and manage applications from
-                        NIGHTFALL DEVILS members.
-                    </p>
-
-                </div>
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
 
 
-                <button
-                    class="btn"
-                    id="refreshBtn"
+        <!-- =====================================
+             MAIN
+        ===================================== -->
+
+        <main class="main">
+
+
+            <!-- =================================
+                 TOPBAR
+            ================================= -->
+
+            <header class="topbar">
+
+                <div
+                    style="
+                        display:flex;
+                        align-items:center;
+                        gap:10px;
+                    "
                 >
-                    ↻ Refresh
-                </button>
 
-            </div>
-
-
-            <!-- STATS -->
-
-            <section class="stats">
-
-                <div class="stat-card pending">
-
-                    <div class="stat-label">
-                        Pending
-                    </div>
-
-                    <div
-                        class="stat-number"
-                        id="pendingCount"
+                    <button
+                        type="button"
+                        class="mobile-menu-btn"
+                        id="mobileMenuBtn"
+                        aria-label="Open menu"
                     >
-                        0
+                        ☰
+                    </button>
+
+                    <div class="topbar-title">
+
+                        👿 NIGHTFALL DEVILS
+                        <span>
+                            Admin Panel
+                        </span>
+
                     </div>
 
                 </div>
 
 
-                <div class="stat-card approved">
+                <div class="admin-user">
 
-                    <div class="stat-label">
-                        Approved
+                    <div class="admin-user-icon">
+                        👤
                     </div>
 
-                    <div
-                        class="stat-number"
-                        id="approvedCount"
-                    >
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card rejected">
-
-                    <div class="stat-label">
-                        Rejected
-                    </div>
-
-                    <div
-                        class="stat-number"
-                        id="rejectedCount"
-                    >
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-label">
-                        Total Requests
-                    </div>
-
-                    <div
-                        class="stat-number"
-                        id="totalCount"
-                    >
-                        0
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- TOOLBAR -->
-
-            <section class="toolbar">
-
-                <div class="search-wrap">
-
-                    <span>
-                        🔎
+                    <span id="adminUserEmail">
+                        Admin
                     </span>
 
-                    <input
-                        type="text"
-                        id="searchInput"
-                        class="search"
-                        placeholder="Search name, TikTok username, member code..."
+                </div>
+
+            </header>
+
+
+            <!-- =================================
+                 CONTENT
+            ================================= -->
+
+            <section class="content">
+
+
+                <!-- PAGE HEADING -->
+
+                <div class="page-heading">
+
+                    <div class="page-heading-left">
+
+                        <div class="page-heading-icon">
+                            👥
+                        </div>
+
+                        <div>
+
+                            <h1>
+                                Join Requests
+                            </h1>
+
+                            <p>
+                                Review, approve, or reject membership requests.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="refresh-btn"
+                        id="refreshBtn"
+                    >
+                        🔄 Refresh
+                    </button>
+
+                </div>
+
+
+                <!-- =================================
+                     STATS
+                ================================= -->
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            👥
+                        </div>
+
+                        <div>
+
+                            <div class="stat-label">
+                                Total Requests
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="totalCount"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card pending">
+
+                        <div class="stat-icon">
+                            ⏱
+                        </div>
+
+                        <div>
+
+                            <div class="stat-label">
+                                Pending
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="pendingCount"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card approved">
+
+                        <div class="stat-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <div class="stat-label">
+                                Approved
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="approvedCount"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card rejected">
+
+                        <div class="stat-icon">
+                            ✕
+                        </div>
+
+                        <div>
+
+                            <div class="stat-label">
+                                Rejected
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="rejectedCount"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     CONTROLS
+                ================================= -->
+
+                <div class="controls">
+
+
+                    <div class="search-wrap">
+
+                        <span class="search-icon">
+                            🔍
+                        </span>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            class="search-input"
+                            placeholder="Search by username, display name, referred by, or message..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="statusFilter"
+                        class="filter-select"
                     >
 
+                        <option value="all">
+                            Status: All Requests
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        class="refresh-btn"
+                        id="refreshBtn2"
+                    >
+                        🔄 Refresh
+                    </button>
+
+
                 </div>
 
 
-                <select
-                    id="statusFilter"
-                    class="select"
-                >
+                <!-- =================================
+                     TABLE
+                ================================= -->
 
-                    <option value="all">
-                        All Status
-                    </option>
+                <div class="table-card">
 
-                    <option value="pending">
-                        Pending
-                    </option>
+                    <div class="table-scroll">
 
-                    <option value="approved">
-                        Approved
-                    </option>
+                        <table>
 
-                    <option value="rejected">
-                        Rejected
-                    </option>
+                            <thead>
 
-                </select>
+                                <tr>
 
-            </section>
+                                    <th>
+                                        #
+                                    </th>
 
+                                    <th>
+                                        TikTok Username
+                                    </th>
 
-            <!-- TABLE -->
+                                    <th>
+                                        Display Name
+                                    </th>
 
-            <section class="table-wrap">
+                                    <th>
+                                        Referred By
+                                    </th>
 
-                <div class="table-scroll">
+                                    <th>
+                                        Message
+                                    </th>
 
-                    <table>
+                                    <th>
+                                        Submitted
+                                    </th>
 
-                        <thead>
+                                    <th>
+                                        Status
+                                    </th>
 
-                            <tr>
+                                    <th>
+                                        Actions
+                                    </th>
 
-                                <th>
-                                    Applicant
-                                </th>
+                                </tr>
 
-                                <th>
-                                    Referred By
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                                <th>
-                                    Member Code
-                                </th>
-
-                                <th>
-                                    Date Applied
-                                </th>
-
-                                <th>
-                                    Actions
-                                </th>
-
-                            </tr>
-
-                        </thead>
+                            </thead>
 
 
-                        <tbody id="requestsBody">
+                            <tbody id="requestsTableBody">
 
-                            <tr>
+                                <tr>
 
-                                <td colspan="6">
+                                    <td
+                                        colspan="8"
+                                        class="table-message"
+                                    >
 
-                                    <div class="loading">
+                                        <div class="table-loading">
 
-                                        <div class="spinner"></div>
+                                            <span class="small-spinner"></span>
 
-                                        Loading member requests...
+                                            Loading requests...
 
-                                    </div>
+                                        </div>
 
-                                </td>
+                                    </td>
 
-                            </tr>
+                                </tr>
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
+
+                    </div>
+
+
+                    <div class="table-footer">
+
+                        <div id="showingText">
+                            Showing 0 to 0 of 0 requests
+                        </div>
+
+
+                        <div class="pagination">
+
+                            <button
+                                type="button"
+                                class="page-btn"
+                                id="prevPageBtn"
+                            >
+                                ‹ Prev
+                            </button>
+
+                            <button
+                                type="button"
+                                class="page-btn active"
+                                id="currentPageBtn"
+                            >
+                                1
+                            </button>
+
+                            <button
+                                type="button"
+                                class="page-btn"
+                                id="nextPageBtn"
+                            >
+                                Next ›
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
+
 
             </section>
 
@@ -1069,75 +2335,28 @@
     </div>
 
 
-    <!-- VIEW MODAL -->
+    <!-- =========================================
+         APPROVE MODAL
+    ========================================= -->
 
     <div
-        class="modal-backdrop"
-        id="viewModal"
-    >
-
-        <div class="modal">
-
-            <div class="modal-header">
-
-                <h3>
-                    Member Request
-                </h3>
-
-                <button
-                    class="close-btn"
-                    id="closeViewBtn"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <div class="modal-body">
-
-                <div
-                    id="requestDetails"
-                    class="detail-grid"
-                ></div>
-
-            </div>
-
-
-            <div class="modal-footer">
-
-                <button
-                    class="btn"
-                    id="closeViewBtn2"
-                >
-                    Close
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- APPROVE MODAL -->
-
-    <div
-        class="modal-backdrop"
+        class="modal-overlay"
         id="approveModal"
     >
 
         <div class="modal">
 
+
             <div class="modal-header">
 
-                <h3>
-                    Approve Member
-                </h3>
+                <h2>
+                    ✅ Approve Member Request
+                </h2>
 
                 <button
-                    class="close-btn"
-                    id="closeApproveBtn"
+                    type="button"
+                    class="modal-close"
+                    data-close-modal="approveModal"
                 >
                     ×
                 </button>
@@ -1147,116 +2366,90 @@
 
             <div class="modal-body">
 
-                <div class="notice notice-info">
 
-                    Approving this request will create an
-                    approved member record in the
-                    <strong>members</strong> collection.
-
+                <div
+                    class="modal-info"
+                    id="approveInfo"
+                >
                 </div>
 
 
-                <div class="notice notice-warning">
+                <div class="modal-field">
 
-                    After approval, Firebase Cloud Functions
-                    will create the member's Authentication
-                    account automatically when an email is
-                    provided.
-
-                    The member can then use
-                    <strong>Forgot Password</strong>
-                    on the Member Login page to create
-                    their password.
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
+                    <label
+                        class="modal-label"
+                        for="memberCodeInput"
+                    >
                         Member Code
                     </label>
 
                     <input
                         type="text"
                         id="memberCodeInput"
-                        class="form-control"
-                        readonly
+                        class="modal-input"
+                        maxlength="40"
                     >
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="modal-field">
 
-                    <label class="form-label">
-                        Email
+                    <label
+                        class="modal-label"
+                        for="memberEmailInput"
+                    >
+                        Member Email
                     </label>
 
                     <input
                         type="email"
                         id="memberEmailInput"
-                        class="form-control"
-                        placeholder="Member email"
+                        class="modal-input"
+                        placeholder="member@email.com"
                     >
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="modal-field">
 
-                    <label class="form-label">
-                        Role
+                    <label
+                        class="modal-label"
+                        for="memberRoleInput"
+                    >
+                        Member Role
                     </label>
 
                     <select
                         id="memberRoleInput"
-                        class="form-control"
+                        class="modal-select"
                     >
 
-                        <option value="Member">
+                        <option value="member">
                             Member
                         </option>
 
-                        <option value="Streamer">
+                        <option value="streamer">
                             Streamer
                         </option>
 
-                        <option value="Moderator">
+                        <option value="moderator">
                             Moderator
                         </option>
 
-                        <option value="Admin">
+                        <option value="admin">
                             Admin
                         </option>
 
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Status
-                    </label>
-
-                    <select
-                        id="memberStatusInput"
-                        class="form-control"
-                    >
-
-                        <option value="approved">
-                            Approved
-                        </option>
-
-                        <option value="active">
-                            Active
+                        <option value="founder">
+                            Founder
                         </option>
 
                     </select>
 
                 </div>
+
 
             </div>
 
@@ -1264,14 +2457,16 @@
             <div class="modal-footer">
 
                 <button
-                    class="btn"
-                    id="cancelApproveBtn"
+                    type="button"
+                    class="modal-btn modal-cancel"
+                    data-close-modal="approveModal"
                 >
                     Cancel
                 </button>
 
                 <button
-                    class="btn btn-success"
+                    type="button"
+                    class="modal-btn modal-confirm"
                     id="confirmApproveBtn"
                 >
                     ✓ Approve Member
@@ -1279,29 +2474,34 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 
-    <!-- REJECT MODAL -->
+    <!-- =========================================
+         REJECT MODAL
+    ========================================= -->
 
     <div
-        class="modal-backdrop"
+        class="modal-overlay"
         id="rejectModal"
     >
 
         <div class="modal">
 
+
             <div class="modal-header">
 
-                <h3>
-                    Reject Request
-                </h3>
+                <h2>
+                    ✕ Reject Member Request
+                </h2>
 
                 <button
-                    class="close-btn"
-                    id="closeRejectBtn"
+                    type="button"
+                    class="modal-close"
+                    data-close-modal="rejectModal"
                 >
                     ×
                 </button>
@@ -1311,30 +2511,32 @@
 
             <div class="modal-body">
 
-                <div class="notice notice-warning">
 
-                    This will mark the request as
-                    <strong>rejected</strong>.
-                    The original request will remain in
-                    Firestore for record keeping.
-
+                <div
+                    class="modal-info"
+                    id="rejectInfo"
+                >
                 </div>
 
 
-                <div class="form-group">
+                <div class="modal-field">
 
-                    <label class="form-label">
+                    <label
+                        class="modal-label"
+                        for="rejectReasonInput"
+                    >
                         Rejection Reason
                     </label>
 
                     <textarea
                         id="rejectReasonInput"
-                        class="form-control"
+                        class="modal-textarea"
                         maxlength="500"
-                        placeholder="Optional reason..."
+                        placeholder="Enter the reason for rejecting this request..."
                     ></textarea>
 
                 </div>
+
 
             </div>
 
@@ -1342,14 +2544,16 @@
             <div class="modal-footer">
 
                 <button
-                    class="btn"
-                    id="cancelRejectBtn"
+                    type="button"
+                    class="modal-btn modal-cancel"
+                    data-close-modal="rejectModal"
                 >
                     Cancel
                 </button>
 
                 <button
-                    class="btn btn-danger"
+                    type="button"
+                    class="modal-btn modal-confirm reject-confirm"
                     id="confirmRejectBtn"
                 >
                     ✕ Reject Request
@@ -1357,234 +2561,135 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 
-    <!-- TOAST -->
+    <!-- =========================================
+         VIEW MODAL
+    ========================================= -->
 
     <div
-        id="toast"
-        class="toast"
+        class="modal-overlay"
+        id="viewModal"
     >
 
-        <div id="toastMessage"></div>
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    👤 Request Details
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal="viewModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="modal-body"
+                id="viewInfo"
+            >
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="modal-btn modal-cancel"
+                    data-close-modal="viewModal"
+                >
+                    Close
+                </button>
+
+            </div>
+
+
+        </div>
 
     </div>
 
 
-    <!-- FIREBASE -->
+    <!-- =========================================
+         TOAST
+    ========================================= -->
+
+    <div id="toastContainer"></div>
+
+
+    <!-- =========================================
+         FIREBASE / APPLICATION
+    ========================================= -->
 
     <script type="module">
 
+        /*
+         * IMPORTANT:
+         *
+         * DO NOT initialize Firebase again here.
+         *
+         * This page now uses the same Firebase
+         * Auth + Firestore instances as the rest
+         * of the NIGHTFALL DEVILS admin panel.
+         */
+
         import {
-            initializeApp
-        } from
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+            auth,
+            db
+        } from "../js/firebase.js";
 
 
         import {
-            getAuth,
             onAuthStateChanged,
-            signOut
+            signOut,
+            getIdTokenResult
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 
         import {
-            getFirestore,
             collection,
-            onSnapshot,
             doc,
+            getDoc,
             getDocs,
-            setDoc,
+            addDoc,
             updateDoc,
+            deleteDoc,
             query,
             where,
+            onSnapshot,
             serverTimestamp
         } from
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
         /* ==========================================
-           FIREBASE CONFIG
+           ADMIN SETTINGS
         ========================================== */
 
-        const firebaseConfig = {
-
-            apiKey:
-                "AIzaSyBLmbuGW9dUPCFBrkPFqGDKwZYvRkHqxQ",
-
-            authDomain:
-                "nightfall-devils-b0d77.firebaseapp.com",
-
-            projectId:
-                "nightfall-devils-b0d77",
-
-            storageBucket:
-                "nightfall-devils-b0d77.firebasestorage.app",
-
-            messagingSenderId:
-                "758952684668",
-
-            appId:
-                "1:758952684668:web:5be641ca90c9d5134f2df9",
-
-            measurementId:
-                "G-R6MZ05M4DR"
-
-        };
+        const ADMIN_EMAILS = [
+            "nightfalldevils@gmail.com"
+        ];
 
 
-        const app =
-            initializeApp(
-                firebaseConfig
-            );
-
-
-        const auth =
-            getAuth(app);
-
-
-        const db =
-            getFirestore(app);
-
-
-        /* ==========================================
-           DOM
-        ========================================== */
-
-        const appEl =
-            document.getElementById(
-                "app"
-            );
-
-
-        const accessDenied =
-            document.getElementById(
-                "accessDenied"
-            );
-
-
-        const accessMessage =
-            document.getElementById(
-                "accessMessage"
-            );
-
-
-        const debugBox =
-            document.getElementById(
-                "debugBox"
-            );
-
-
-        const requestsBody =
-            document.getElementById(
-                "requestsBody"
-            );
-
-
-        const searchInput =
-            document.getElementById(
-                "searchInput"
-            );
-
-
-        const statusFilter =
-            document.getElementById(
-                "statusFilter"
-            );
-
-
-        const pendingCount =
-            document.getElementById(
-                "pendingCount"
-            );
-
-
-        const approvedCount =
-            document.getElementById(
-                "approvedCount"
-            );
-
-
-        const rejectedCount =
-            document.getElementById(
-                "rejectedCount"
-            );
-
-
-        const totalCount =
-            document.getElementById(
-                "totalCount"
-            );
-
-
-        const viewModal =
-            document.getElementById(
-                "viewModal"
-            );
-
-
-        const approveModal =
-            document.getElementById(
-                "approveModal"
-            );
-
-
-        const rejectModal =
-            document.getElementById(
-                "rejectModal"
-            );
-
-
-        const requestDetails =
-            document.getElementById(
-                "requestDetails"
-            );
-
-
-        const memberCodeInput =
-            document.getElementById(
-                "memberCodeInput"
-            );
-
-
-        const memberEmailInput =
-            document.getElementById(
-                "memberEmailInput"
-            );
-
-
-        const memberRoleInput =
-            document.getElementById(
-                "memberRoleInput"
-            );
-
-
-        const memberStatusInput =
-            document.getElementById(
-                "memberStatusInput"
-            );
-
-
-        const rejectReasonInput =
-            document.getElementById(
-                "rejectReasonInput"
-            );
-
-
-        const toast =
-            document.getElementById(
-                "toast"
-            );
-
-
-        const toastMessage =
-            document.getElementById(
-                "toastMessage"
-            );
+        const ADMIN_ROLES = [
+            "admin",
+            "super admin",
+            "superadmin",
+            "founder",
+            "administrator"
+        ];
 
 
         /* ==========================================
@@ -1593,51 +2698,212 @@
 
         let currentUser = null;
 
-        let allRequests = [];
+        let requests = [];
 
-        let selectedRequest = null;
+        let filteredRequests = [];
+
+        let currentPage = 1;
+
+        const PAGE_SIZE = 10;
 
         let unsubscribeRequests = null;
 
+        let selectedRequest = null;
+
 
         /* ==========================================
-           HELPERS
+           ELEMENTS
         ========================================== */
 
-        function escapeHtml(value) {
+        const authLoading =
+            document.getElementById(
+                "authLoading"
+            );
 
-            if (
-                value === null ||
-                value === undefined
-            ) {
+        const loginRequired =
+            document.getElementById(
+                "loginRequired"
+            );
 
-                return "";
+        const app =
+            document.getElementById(
+                "app"
+            );
 
-            }
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+        const sidebarOverlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+        const adminUserEmail =
+            document.getElementById(
+                "adminUserEmail"
+            );
+
+        const requestsTableBody =
+            document.getElementById(
+                "requestsTableBody"
+            );
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+        const statusFilter =
+            document.getElementById(
+                "statusFilter"
+            );
+
+        const refreshBtn =
+            document.getElementById(
+                "refreshBtn"
+            );
+
+        const refreshBtn2 =
+            document.getElementById(
+                "refreshBtn2"
+            );
+
+        const totalCount =
+            document.getElementById(
+                "totalCount"
+            );
+
+        const pendingCount =
+            document.getElementById(
+                "pendingCount"
+            );
+
+        const approvedCount =
+            document.getElementById(
+                "approvedCount"
+            );
+
+        const rejectedCount =
+            document.getElementById(
+                "rejectedCount"
+            );
+
+        const showingText =
+            document.getElementById(
+                "showingText"
+            );
+
+        const prevPageBtn =
+            document.getElementById(
+                "prevPageBtn"
+            );
+
+        const nextPageBtn =
+            document.getElementById(
+                "nextPageBtn"
+            );
+
+        const currentPageBtn =
+            document.getElementById(
+                "currentPageBtn"
+            );
+
+        const approveModal =
+            document.getElementById(
+                "approveModal"
+            );
+
+        const rejectModal =
+            document.getElementById(
+                "rejectModal"
+            );
+
+        const viewModal =
+            document.getElementById(
+                "viewModal"
+            );
+
+        const approveInfo =
+            document.getElementById(
+                "approveInfo"
+            );
+
+        const rejectInfo =
+            document.getElementById(
+                "rejectInfo"
+            );
+
+        const viewInfo =
+            document.getElementById(
+                "viewInfo"
+            );
+
+        const memberCodeInput =
+            document.getElementById(
+                "memberCodeInput"
+            );
+
+        const memberEmailInput =
+            document.getElementById(
+                "memberEmailInput"
+            );
+
+        const memberRoleInput =
+            document.getElementById(
+                "memberRoleInput"
+            );
+
+        const rejectReasonInput =
+            document.getElementById(
+                "rejectReasonInput"
+            );
+
+        const confirmApproveBtn =
+            document.getElementById(
+                "confirmApproveBtn"
+            );
+
+        const confirmRejectBtn =
+            document.getElementById(
+                "confirmRejectBtn"
+            );
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
 
 
-            return String(value)
+        /* ==========================================
+           ESCAPE HTML
+        ========================================== */
 
+        function escapeHTML(value) {
+
+            return String(value ?? "")
                 .replace(
                     /&/g,
                     "&amp;"
                 )
-
                 .replace(
                     /</g,
                     "&lt;"
                 )
-
                 .replace(
                     />/g,
                     "&gt;"
                 )
-
                 .replace(
                     /"/g,
                     "&quot;"
                 )
-
                 .replace(
                     /'/g,
                     "&#039;"
@@ -1646,266 +2912,400 @@
         }
 
 
+        /* ==========================================
+           TOAST
+        ========================================== */
+
         function showToast(
             message,
-            type = "success"
+            type = "info"
         ) {
 
-            toastMessage.textContent =
-                message;
+            const container =
+                document.getElementById(
+                    "toastContainer"
+                );
 
+            const toast =
+                document.createElement(
+                    "div"
+                );
 
             toast.className =
-                "toast show " +
-                type;
+                "toast " + type;
 
+            toast.textContent =
+                message;
 
-            clearTimeout(
-                showToast.timer
+            container.appendChild(
+                toast
             );
 
+            setTimeout(
+                () => {
 
-            showToast.timer =
-                setTimeout(
-                    () => {
+                    toast.style.opacity =
+                        "0";
 
-                        toast.classList.remove(
-                            "show"
-                        );
+                    toast.style.transform =
+                        "translateY(10px)";
 
-                    },
-                    3500
-                );
+                    setTimeout(
+                        () => toast.remove(),
+                        200
+                    );
+
+                },
+                3500
+            );
 
         }
 
+
+        /* ==========================================
+           DATE FORMAT
+        ========================================== */
 
         function formatDate(
             timestamp
         ) {
 
             if (!timestamp) {
+                return "—";
+            }
+
+            let date = null;
+
+
+            if (
+                timestamp &&
+                typeof timestamp.toDate ===
+                "function"
+            ) {
+
+                date =
+                    timestamp.toDate();
+
+            } else if (
+                timestamp instanceof Date
+            ) {
+
+                date = timestamp;
+
+            } else if (
+                typeof timestamp ===
+                "number"
+            ) {
+
+                date =
+                    new Date(timestamp);
+
+            } else if (
+                typeof timestamp ===
+                "string"
+            ) {
+
+                date =
+                    new Date(timestamp);
+
+            }
+
+
+            if (
+                !date ||
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
 
                 return "—";
 
             }
 
 
-            try {
-
-                let date;
-
-
-                if (
-                    typeof timestamp.toDate ===
-                    "function"
-                ) {
-
-                    date =
-                        timestamp.toDate();
-
-                } else {
-
-                    date =
-                        new Date(timestamp);
-
+            return date.toLocaleString(
+                undefined,
+                {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit"
                 }
-
-
-                if (
-                    isNaN(
-                        date.getTime()
-                    )
-                ) {
-
-                    return "—";
-
-                }
-
-
-                return date.toLocaleString(
-                    undefined,
-                    {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit"
-                    }
-                );
-
-            } catch {
-
-                return "—";
-
-            }
+            );
 
         }
 
 
-        function timestampToNumber(
+        /* ==========================================
+           TIMESTAMP VALUE
+        ========================================== */
+
+        function timestampValue(
             timestamp
         ) {
 
             if (!timestamp) {
-
                 return 0;
+            }
+
+            if (
+                typeof timestamp.toMillis ===
+                "function"
+            ) {
+
+                return timestamp.toMillis();
 
             }
 
+            if (
+                timestamp instanceof Date
+            ) {
 
-            try {
-
-                if (
-                    typeof timestamp.toDate ===
-                    "function"
-                ) {
-
-                    return timestamp
-                        .toDate()
-                        .getTime();
-
-                }
-
-
-                const date =
-                    new Date(
-                        timestamp
-                    );
-
-
-                const time =
-                    date.getTime();
-
-
-                return isNaN(time)
-                    ? 0
-                    : time;
-
-            } catch {
-
-                return 0;
+                return timestamp.getTime();
 
             }
+
+            if (
+                typeof timestamp ===
+                "number"
+            ) {
+
+                return timestamp;
+
+            }
+
+            const parsed =
+                Date.parse(
+                    String(timestamp)
+                );
+
+            return Number.isNaN(parsed)
+                ? 0
+                : parsed;
 
         }
 
 
-        function normalizeUsername(
-            username
+        /* ==========================================
+           ADMIN ROLE CHECK
+        ========================================== */
+
+        async function verifyAdmin(
+            user
         ) {
 
-            return String(
-                username || ""
-            )
-                .trim()
-                .replace(
-                    /^@+/,
+            if (!user) {
+                return false;
+            }
+
+
+            /*
+             * First check authorized email.
+             */
+
+            const email =
+                (
+                    user.email ||
                     ""
-                )
-                .toLowerCase();
-
-        }
-
-
-        function generateMemberCode(
-            request
-        ) {
-
-            const username =
-                normalizeUsername(
-                    request.tiktokUsername
-                );
-
-
-            let initials =
-                username
-                    .replace(
-                        /[^a-zA-Z0-9]/g,
-                        ""
-                    )
-                    .slice(
-                        0,
-                        4
-                    )
-                    .toUpperCase();
-
-
-            if (!initials) {
-
-                initials =
-                    "MEM";
-
-            }
-
-
-            const random =
-                Math.floor(
-                    1000 +
-                    Math.random() *
-                    9000
-                );
-
-
-            return `NFD-26-MEM-${initials}${random}`;
-
-        }
-
-
-        function getStatusBadge(
-            status
-        ) {
-
-            const value =
-                String(
-                    status ||
-                    "pending"
                 ).toLowerCase();
 
 
             if (
-                value === "approved" ||
-                value === "active"
+                ADMIN_EMAILS
+                    .map(
+                        value =>
+                            value.toLowerCase()
+                    )
+                    .includes(email)
             ) {
 
-                return `
-                    <span class="badge badge-approved">
-                        ${escapeHtml(
-                            value
-                        )}
-                    </span>
-                `;
+                return true;
 
             }
 
+
+            /*
+             * Check Firebase custom claims.
+             */
+
+            try {
+
+                const tokenResult =
+                    await getIdTokenResult(
+                        user,
+                        true
+                    );
+
+                const claims =
+                    tokenResult.claims || {};
+
+
+                if (
+                    claims.admin === true
+                ) {
+
+                    return true;
+
+                }
+
+
+                const claimRole =
+                    String(
+                        claims.role || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                if (
+                    ADMIN_ROLES.includes(
+                        claimRole
+                    )
+                ) {
+
+                    return true;
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Custom claim check failed:",
+                    error
+                );
+
+            }
+
+
+            /*
+             * Finally check member document.
+             */
+
+            try {
+
+                const memberQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        where(
+                            "uid",
+                            "==",
+                            user.uid
+                        )
+                    );
+
+                const snapshot =
+                    await getDocs(
+                        memberQuery
+                    );
+
+
+                if (
+                    !snapshot.empty
+                ) {
+
+                    const member =
+                        snapshot
+                            .docs[0]
+                            .data();
+
+                    const role =
+                        String(
+                            member.role ||
+                            ""
+                        )
+                        .toLowerCase()
+                        .trim();
+
+
+                    if (
+                        ADMIN_ROLES.includes(
+                            role
+                        )
+                    ) {
+
+                        return true;
+
+                    }
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Member role check failed:",
+                    error
+                );
+
+            }
+
+
+            return false;
+
+        }
+
+
+        /* ==========================================
+           SHOW APP
+        ========================================== */
+
+        function showApp(
+            user
+        ) {
+
+            currentUser =
+                user;
+
+            authLoading.style.display =
+                "none";
+
+            loginRequired.style.display =
+                "none";
+
+            app.style.display =
+                "block";
+
+            adminUserEmail.textContent =
+                user.email ||
+                "Administrator";
+
+        }
+
+
+        /* ==========================================
+           SHOW LOGIN REQUIRED
+        ========================================== */
+
+        function showLoginRequired() {
 
             if (
-                value === "rejected"
+                unsubscribeRequests
             ) {
 
-                return `
-                    <span class="badge badge-rejected">
-                        Rejected
-                    </span>
-                `;
+                unsubscribeRequests();
+
+                unsubscribeRequests =
+                    null;
 
             }
 
+            authLoading.style.display =
+                "none";
 
-            return `
-                <span class="badge badge-pending">
-                    Pending
-                </span>
-            `;
+            app.style.display =
+                "none";
+
+            loginRequired.style.display =
+                "flex";
 
         }
 
 
         /* ==========================================
            LOAD REQUESTS
-           
-           ORIGINAL SIMPLE VERSION
-           NO ORDER BY
         ========================================== */
 
         function loadRequests() {
@@ -1922,17 +3322,20 @@
             }
 
 
-            requestsBody.innerHTML = `
+            requestsTableBody.innerHTML = `
 
                 <tr>
 
-                    <td colspan="6">
+                    <td
+                        colspan="8"
+                        class="table-message"
+                    >
 
-                        <div class="loading">
+                        <div class="table-loading">
 
-                            <div class="spinner"></div>
+                            <span class="small-spinner"></span>
 
-                            Loading member requests...
+                            Loading requests...
 
                         </div>
 
@@ -1943,174 +3346,120 @@
             `;
 
 
-            try {
-
-                const requestsRef =
-                    collection(
-                        db,
-                        "memberRequests"
-                    );
-
-
-                unsubscribeRequests =
-                    onSnapshot(
-
-                        requestsRef,
-
-                        snapshot => {
-
-                            allRequests =
-                                snapshot.docs.map(
-                                    item => ({
-
-                                        id:
-                                            item.id,
-
-                                        ...item.data()
-
-                                    })
-                                );
-
-
-                            /* SORT LOCALLY */
-
-                            allRequests.sort(
-                                (
-                                    a,
-                                    b
-                                ) => {
-
-                                    return (
-                                        timestampToNumber(
-                                            b.createdAt
-                                        ) -
-                                        timestampToNumber(
-                                            a.createdAt
-                                        )
-                                    );
-
-                                }
-                            );
-
-
-                            updateStats();
-
-                            renderRequests();
-
-                        },
-
-                        error => {
-
-                            console.error(
-                                "Firestore memberRequests error:",
-                                error
-                            );
-
-
-                            requestsBody.innerHTML = `
-
-                                <tr>
-
-                                    <td colspan="6">
-
-                                        <div class="empty">
-
-                                            <div class="empty-icon">
-                                                ⚠️
-                                            </div>
-
-                                            <p>
-                                                Unable to load member requests.
-                                            </p>
-
-                                            <small>
-                                                ${escapeHtml(
-                                                    error.message ||
-                                                    "Unknown Firestore error"
-                                                )}
-                                            </small>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-                            `;
-
-
-                            showToast(
-                                error.message ||
-                                "Unable to load member requests.",
-                                "error"
-                            );
-
-                        }
-
-                    );
-
-            } catch (error) {
-
-                console.error(
-                    "Load requests error:",
-                    error
+            const requestsRef =
+                collection(
+                    db,
+                    "memberRequests"
                 );
 
 
-                requestsBody.innerHTML = `
+            unsubscribeRequests =
+                onSnapshot(
+                    requestsRef,
 
-                    <tr>
+                    snapshot => {
 
-                        <td colspan="6">
+                        requests =
+                            snapshot.docs
+                                .map(
+                                    item => ({
+                                        id:
+                                            item.id,
+                                        ...item.data()
+                                    })
+                                )
+                                .sort(
+                                    (
+                                        a,
+                                        b
+                                    ) =>
+                                        timestampValue(
+                                            b.createdAt
+                                        ) -
+                                        timestampValue(
+                                            a.createdAt
+                                        )
+                                );
 
-                            <div class="empty">
 
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
+                        updateStatistics();
 
-                                <p>
-                                    Failed to load member requests.
-                                </p>
+                        applyFilters();
 
-                                <small>
-                                    ${escapeHtml(
-                                        error.message
-                                    )}
-                                </small>
+                    },
 
-                            </div>
+                    error => {
 
-                        </td>
+                        console.error(
+                            "Requests listener error:",
+                            error
+                        );
 
-                    </tr>
 
-                `;
+                        requestsTableBody.innerHTML = `
 
-            }
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="table-message"
+                                >
+
+                                    <div class="table-message-icon">
+                                        ⚠️
+                                    </div>
+
+                                    Unable to load member requests.
+
+                                    <br>
+
+                                    <small>
+                                        ${escapeHTML(
+                                            error.message ||
+                                            "Firebase error"
+                                        )}
+                                    </small>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                        showToast(
+                            "Unable to load member requests.",
+                            "error"
+                        );
+
+                    }
+                );
 
         }
 
 
         /* ==========================================
-           STATS
+           STATISTICS
         ========================================== */
 
-        function updateStats() {
+        function updateStatistics() {
+
+            const total =
+                requests.length;
+
 
             const pending =
-                allRequests.filter(
+                requests.filter(
                     item =>
                         String(
                             item.status ||
-                            "pending"
+                            ""
                         ).toLowerCase() ===
                         "pending"
                 ).length;
 
 
             const approved =
-                allRequests.filter(
+                requests.filter(
                     item =>
                         String(
                             item.status ||
@@ -2121,7 +3470,7 @@
 
 
             const rejected =
-                allRequests.filter(
+                requests.filter(
                     item =>
                         String(
                             item.status ||
@@ -2131,29 +3480,26 @@
                 ).length;
 
 
+            totalCount.textContent =
+                total;
+
             pendingCount.textContent =
                 pending;
-
 
             approvedCount.textContent =
                 approved;
 
-
             rejectedCount.textContent =
                 rejected;
-
-
-            totalCount.textContent =
-                allRequests.length;
 
         }
 
 
         /* ==========================================
-           RENDER
+           APPLY FILTERS
         ========================================== */
 
-        function renderRequests() {
+        function applyFilters() {
 
             const search =
                 searchInput.value
@@ -2165,82 +3511,132 @@
                 statusFilter.value;
 
 
-            const filtered =
-                allRequests.filter(
+            filteredRequests =
+                requests.filter(
                     request => {
 
-                        const requestStatus =
-                            String(
-                                request.status ||
-                                "pending"
-                            ).toLowerCase();
-
-
-                        if (
-                            status !== "all" &&
-                            requestStatus !==
-                            status
-                        ) {
-
-                            return false;
-
-                        }
-
-
-                        if (!search) {
-
-                            return true;
-
-                        }
-
-
-                        const searchable = [
-
-                            request.displayName,
-
-                            request.tiktokUsername,
-
-                            request.referredBy,
-
-                            request.memberCode,
-
-                            request.email,
-
-                            request.message
-
-                        ]
-                            .filter(Boolean)
+                        const searchableText =
+                            [
+                                request.tiktokUsername,
+                                request.displayName,
+                                request.referredBy,
+                                request.message,
+                                request.memberCode,
+                                request.email
+                            ]
                             .join(" ")
                             .toLowerCase();
 
 
-                        return searchable.includes(
-                            search
+                        const matchesSearch =
+                            !search ||
+                            searchableText.includes(
+                                search
+                            );
+
+
+                        const requestStatus =
+                            String(
+                                request.status ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const matchesStatus =
+                            status === "all" ||
+                            requestStatus ===
+                            status;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesStatus
                         );
 
                     }
                 );
 
 
-            if (!filtered.length) {
+            currentPage = 1;
 
-                requestsBody.innerHTML = `
+            renderTable();
+
+        }
+
+
+        /* ==========================================
+           RENDER TABLE
+        ========================================== */
+
+        function renderTable() {
+
+            const total =
+                filteredRequests.length;
+
+
+            const totalPages =
+                Math.max(
+                    1,
+                    Math.ceil(
+                        total /
+                        PAGE_SIZE
+                    )
+                );
+
+
+            if (
+                currentPage >
+                totalPages
+            ) {
+
+                currentPage =
+                    totalPages;
+
+            }
+
+
+            const start =
+                (
+                    currentPage -
+                    1
+                ) *
+                PAGE_SIZE;
+
+
+            const end =
+                Math.min(
+                    start +
+                    PAGE_SIZE,
+                    total
+                );
+
+
+            const pageItems =
+                filteredRequests.slice(
+                    start,
+                    end
+                );
+
+
+            if (
+                pageItems.length ===
+                0
+            ) {
+
+                requestsTableBody.innerHTML = `
 
                     <tr>
 
-                        <td colspan="6">
+                        <td
+                            colspan="8"
+                            class="table-message"
+                        >
 
-                            <div class="empty">
-
-                                <div class="empty-icon">
-                                    📭
-                                </div>
-
-                                <p>
-                                    No member requests found.
-                                </p>
-
+                            <div class="table-message-icon">
+                                📝
                             </div>
+
+                            No membership requests found.
 
                         </td>
 
@@ -2248,30 +3644,62 @@
 
                 `;
 
-                return;
+            } else {
+
+                requestsTableBody.innerHTML =
+                    pageItems
+                        .map(
+                            (
+                                request,
+                                index
+                            ) =>
+                                renderRequestRow(
+                                    request,
+                                    start +
+                                    index +
+                                    1
+                                )
+                        )
+                        .join("");
 
             }
 
 
-            requestsBody.innerHTML =
-                filtered
-                    .map(
-                        request =>
-                            renderRequestRow(
-                                request
-                            )
-                    )
-                    .join("");
+            showingText.textContent =
+                total === 0
+                    ? "Showing 0 to 0 of 0 requests"
+                    :
+                    `Showing ${
+                        start + 1
+                    } to ${
+                        end
+                    } of ${
+                        total
+                    } requests`;
+
+
+            currentPageBtn.textContent =
+                currentPage;
+
+
+            prevPageBtn.disabled =
+                currentPage <= 1;
+
+
+            nextPageBtn.disabled =
+                currentPage >=
+                totalPages;
 
         }
 
 
         /* ==========================================
-           REQUEST ROW
+           RENDER REQUEST ROW
         ========================================== */
 
         function renderRequestRow(
-            request
+            request,
+            number
         ) {
 
             const status =
@@ -2281,69 +3709,81 @@
                 ).toLowerCase();
 
 
-            const name =
-                request.displayName ||
-                "Unnamed Member";
+            let statusClass =
+                "status-default";
 
-
-            const username =
-                normalizeUsername(
-                    request.tiktokUsername
-                );
-
-
-            let actionButtons = `
-
-                <button
-                    class="btn btn-small"
-                    onclick="window.viewRequest('${request.id}')"
-                >
-                    View
-                </button>
-
-            `;
+            let statusIcon =
+                "•";
 
 
             if (
                 status === "pending"
             ) {
 
-                actionButtons += `
+                statusClass =
+                    "status-pending";
 
-                    <button
-                        class="btn btn-small btn-success"
-                        onclick="window.openApprove('${request.id}')"
-                    >
-                        Approve
-                    </button>
+                statusIcon =
+                    "⏱";
 
-                    <button
-                        class="btn btn-small btn-danger"
-                        onclick="window.openReject('${request.id}')"
-                    >
-                        Reject
-                    </button>
+            } else if (
+                status === "approved"
+            ) {
 
-                `;
+                statusClass =
+                    "status-approved";
+
+                statusIcon =
+                    "✓";
+
+            } else if (
+                status === "rejected"
+            ) {
+
+                statusClass =
+                    "status-rejected";
+
+                statusIcon =
+                    "✕";
 
             }
+
+
+            const isPending =
+                status === "pending";
+
+
+            const message =
+                request.message ||
+                "—";
+
+
+            const referredBy =
+                request.referredBy ||
+                "—";
+
+
+            const submitted =
+                formatDate(
+                    request.createdAt
+                );
 
 
             return `
 
                 <tr>
 
+                    <td class="number-cell">
+                        ${number}
+                    </td>
+
+
                     <td>
 
-                        <div class="user-name">
-                            ${escapeHtml(
-                                name
-                            )}
-                        </div>
-
                         <div class="username">
-                            @${escapeHtml(
-                                username
+                            @${escapeHTML(
+                                request.tiktokUsername ||
+                                ""
                             )}
                         </div>
 
@@ -2351,40 +3791,56 @@
 
 
                     <td>
-                        ${escapeHtml(
-                            request.referredBy ||
+                        ${escapeHTML(
+                            request.displayName ||
                             "—"
                         )}
                     </td>
 
 
                     <td>
-                        ${getStatusBadge(
-                            status
+                        ${escapeHTML(
+                            referredBy
                         )}
                     </td>
 
 
                     <td>
 
-                        <span class="muted">
-
-                            ${escapeHtml(
-                                request.memberCode ||
-                                "Not assigned"
+                        <div class="message-cell">
+                            ${escapeHTML(
+                                message
                             )}
-
-                        </span>
+                        </div>
 
                     </td>
 
 
                     <td>
 
-                        <span class="muted">
+                        <div class="date-cell">
 
-                            ${formatDate(
-                                request.createdAt
+                            📅
+
+                            ${escapeHTML(
+                                submitted
+                            )}
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="status-badge ${statusClass}"
+                        >
+
+                            ${statusIcon}
+
+                            ${escapeHTML(
+                                status
                             )}
 
                         </span>
@@ -2396,7 +3852,61 @@
 
                         <div class="actions">
 
-                            ${actionButtons}
+
+                            <button
+                                type="button"
+                                class="action-btn view-btn"
+                                data-action="view"
+                                data-id="${escapeHTML(
+                                    request.id
+                                )}"
+                            >
+                                👁 View
+                            </button>
+
+
+                            ${
+                                isPending
+                                ?
+                                `
+                                <button
+                                    type="button"
+                                    class="action-btn approve-btn"
+                                    data-action="approve"
+                                    data-id="${escapeHTML(
+                                        request.id
+                                    )}"
+                                >
+                                    ✓ Approve
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-btn reject-btn"
+                                    data-action="reject"
+                                    data-id="${escapeHTML(
+                                        request.id
+                                    )}"
+                                >
+                                    ✕ Reject
+                                </button>
+                                `
+                                :
+                                ""
+                            }
+
+
+                            <button
+                                type="button"
+                                class="action-btn delete-btn"
+                                data-action="delete"
+                                data-id="${escapeHTML(
+                                    request.id
+                                )}"
+                            >
+                                🗑 Delete
+                            </button>
+
 
                         </div>
 
@@ -2410,690 +3920,437 @@
 
 
         /* ==========================================
-           VIEW REQUEST
+           FIND REQUEST
         ========================================== */
 
-        window.viewRequest =
-            function(requestId) {
+        function findRequest(
+            id
+        ) {
 
-                const request =
-                    allRequests.find(
-                        item =>
-                            item.id ===
-                            requestId
-                    );
+            return requests.find(
+                item =>
+                    item.id === id
+            );
 
-
-                if (!request) {
-
-                    showToast(
-                        "Request not found.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                selectedRequest =
-                    request;
-
-
-                requestDetails.innerHTML = `
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Display Name
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.displayName ||
-                                "—"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            TikTok Username
-                        </div>
-
-                        <div class="detail-value">
-                            @${escapeHtml(
-                                normalizeUsername(
-                                    request.tiktokUsername
-                                )
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Referred By
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.referredBy ||
-                                "—"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Status
-                        </div>
-
-                        <div class="detail-value">
-                            ${getStatusBadge(
-                                request.status
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Member Code
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.memberCode ||
-                                "Not assigned"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Email
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.email ||
-                                "Not provided"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Date Applied
-                        </div>
-
-                        <div class="detail-value">
-                            ${formatDate(
-                                request.createdAt
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Role
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.role ||
-                                "Not assigned"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item full">
-
-                        <div class="detail-label">
-                            Message
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.message ||
-                                "No message provided."
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item full">
-
-                        <div class="detail-label">
-                            Request ID
-                        </div>
-
-                        <div class="detail-value">
-                            ${escapeHtml(
-                                request.id
-                            )}
-                        </div>
-
-                    </div>
-
-                `;
-
-
-                viewModal.classList.add(
-                    "show"
-                );
-
-            };
+        }
 
 
         /* ==========================================
-           APPROVE MODAL
+           GENERATE MEMBER CODE
         ========================================== */
 
-        window.openApprove =
-            function(requestId) {
+        function generateMemberCode(
+            request
+        ) {
 
-                const request =
-                    allRequests.find(
-                        item =>
-                            item.id ===
-                            requestId
-                    );
-
-
-                if (!request) {
-
-                    showToast(
-                        "Request not found.",
-                        "error"
-                    );
-
-                    return;
-
-                }
+            const name =
+                String(
+                    request.displayName ||
+                    request.tiktokUsername ||
+                    "MEMBER"
+                )
+                .trim()
+                .toUpperCase();
 
 
-                selectedRequest =
-                    request;
+            const parts =
+                name
+                    .replace(
+                        /[^A-Z0-9 ]/g,
+                        " "
+                    )
+                    .split(
+                        /\s+/
+                    )
+                    .filter(Boolean);
 
 
-                memberCodeInput.value =
-                    request.memberCode ||
-                    generateMemberCode(
-                        request
-                    );
+            let initials = "";
 
-
-                memberEmailInput.value =
-                    request.email ||
-                    "";
-
-
-                memberRoleInput.value =
-                    request.role ||
-                    "Member";
-
-
-                memberStatusInput.value =
-                    "approved";
-
-
-                approveModal.classList.add(
-                    "show"
-                );
-
-            };
-
-
-        /* ==========================================
-           APPROVE REQUEST
-        ========================================== */
-
-        async function approveRequest() {
 
             if (
-                !selectedRequest ||
-                !currentUser
+                parts.length >= 2
             ) {
 
-                showToast(
-                    "No request selected or user is not logged in.",
-                    "error"
-                );
+                initials =
+                    parts[0].charAt(0) +
+                    parts[1].charAt(0);
 
-                return;
+            } else {
+
+                initials =
+                    parts[0]
+                        ?.substring(
+                            0,
+                            2
+                        ) ||
+                    "MB";
 
             }
 
 
-            const request =
-                selectedRequest;
+            const randomNumber =
+                Math.floor(
+                    1000 +
+                    Math.random() *
+                    9000
+                );
 
 
-            const memberCode =
-                memberCodeInput.value
-                    .trim();
+            return `NFD-26-MEM-${initials}${randomNumber}`;
+
+        }
 
 
-            const email =
-                memberEmailInput.value
-                    .trim();
+        /* ==========================================
+           CHECK MEMBER CODE
+        ========================================== */
+
+        async function memberCodeExists(
+            memberCode
+        ) {
+
+            const membersRef =
+                collection(
+                    db,
+                    "members"
+                );
 
 
-            const role =
-                memberRoleInput.value;
+            const q =
+                query(
+                    membersRef,
+                    where(
+                        "memberCode",
+                        "==",
+                        memberCode
+                    )
+                );
+
+
+            const snapshot =
+                await getDocs(q);
+
+
+            return !snapshot.empty;
+
+        }
+
+
+        /* ==========================================
+           OPEN APPROVE MODAL
+        ========================================== */
+
+        function openApproveModal(
+            request
+        ) {
+
+            selectedRequest =
+                request;
+
+
+            approveInfo.innerHTML = `
+
+                <div class="modal-info-row">
+
+                    <span>
+                        TikTok
+                    </span>
+
+                    <span>
+                        @${escapeHTML(
+                            request.tiktokUsername ||
+                            ""
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <span>
+                        Display Name
+                    </span>
+
+                    <span>
+                        ${escapeHTML(
+                            request.displayName ||
+                            "—"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <span>
+                        Referred By
+                    </span>
+
+                    <span>
+                        ${escapeHTML(
+                            request.referredBy ||
+                            "—"
+                        )}
+                    </span>
+
+                </div>
+
+            `;
+
+
+            memberCodeInput.value =
+                request.memberCode ||
+                generateMemberCode(
+                    request
+                );
+
+
+            memberEmailInput.value =
+                request.email ||
+                "";
+
+
+            memberRoleInput.value =
+                request.role ||
+                "member";
+
+
+            approveModal.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* ==========================================
+           OPEN REJECT MODAL
+        ========================================== */
+
+        function openRejectModal(
+            request
+        ) {
+
+            selectedRequest =
+                request;
+
+
+            rejectInfo.innerHTML = `
+
+                <div class="modal-info-row">
+
+                    <span>
+                        TikTok
+                    </span>
+
+                    <span>
+                        @${escapeHTML(
+                            request.tiktokUsername ||
+                            ""
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <span>
+                        Display Name
+                    </span>
+
+                    <span>
+                        ${escapeHTML(
+                            request.displayName ||
+                            "—"
+                        )}
+                    </span>
+
+                </div>
+
+            `;
+
+
+            rejectReasonInput.value =
+                "";
+
+
+            rejectModal.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* ==========================================
+           OPEN VIEW MODAL
+        ========================================== */
+
+        function openViewModal(
+            request
+        ) {
+
+            selectedRequest =
+                request;
 
 
             const status =
-                memberStatusInput.value;
+                request.status ||
+                "pending";
 
 
-            if (!memberCode) {
+            viewInfo.innerHTML = `
 
-                showToast(
-                    "Member code is required.",
-                    "error"
-                );
+                <div class="modal-info">
 
-                return;
+                    <div class="modal-info-row">
+                        <span>
+                            TikTok Username
+                        </span>
 
-            }
-
-
-            const button =
-                document.getElementById(
-                    "confirmApproveBtn"
-                );
-
-
-            button.disabled =
-                true;
+                        <span>
+                            @${escapeHTML(
+                                request.tiktokUsername ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
 
-            button.textContent =
-                "Approving...";
+                    <div class="modal-info-row">
+                        <span>
+                            Display Name
+                        </span>
+
+                        <span>
+                            ${escapeHTML(
+                                request.displayName ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
 
-            try {
+                    <div class="modal-info-row">
+                        <span>
+                            Referred By
+                        </span>
 
-                /* CHECK DUPLICATE CODE */
-
-                const existingMemberQuery =
-                    query(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        where(
-                            "memberCode",
-                            "==",
-                            memberCode
-                        )
-                    );
+                        <span>
+                            ${escapeHTML(
+                                request.referredBy ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
 
-                const existingMemberSnap =
-                    await getDocs(
-                        existingMemberQuery
-                    );
+                    <div class="modal-info-row">
+                        <span>
+                            Message
+                        </span>
+
+                        <span>
+                            ${escapeHTML(
+                                request.message ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
 
-                const duplicateExists =
-                    existingMemberSnap.docs.some(
-                        memberDoc =>
-                            memberDoc.id !==
-                            request.id
-                    );
+                    <div class="modal-info-row">
+                        <span>
+                            Status
+                        </span>
+
+                        <span>
+                            ${escapeHTML(
+                                status
+                            )}
+                        </span>
+                    </div>
 
 
-                if (
-                    duplicateExists
-                ) {
+                    <div class="modal-info-row">
+                        <span>
+                            Member Code
+                        </span>
 
-                    showToast(
-                        "Member code already exists.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                /* MEMBER DOCUMENT */
-
-                const memberRef =
-                    doc(
-                        db,
-                        "members",
-                        request.id
-                    );
+                        <span>
+                            ${escapeHTML(
+                                request.memberCode ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
 
-                await setDoc(
-                    memberRef,
-                    {
+                    <div class="modal-info-row">
+                        <span>
+                            Email
+                        </span>
 
-                        memberCode:
-                            memberCode,
+                        <span>
+                            ${escapeHTML(
+                                request.email ||
+                                "—"
+                            )}
+                        </span>
+                    </div>
 
-                        displayName:
-                            request.displayName ||
-                            "",
 
-                        tiktokUsername:
-                            normalizeUsername(
-                                request.tiktokUsername
-                            ),
+                    <div class="modal-info-row">
+                        <span>
+                            Submitted
+                        </span>
 
-                        email:
-                            email,
+                        <span>
+                            ${escapeHTML(
+                                formatDate(
+                                    request.createdAt
+                                )
+                            )}
+                        </span>
+                    </div>
 
-                        role:
-                            role,
 
-                        status:
-                            status,
+                    ${
+                        request.rejectionReason
+                        ?
+                        `
+                        <div class="modal-info-row">
+                            <span>
+                                Rejection Reason
+                            </span>
 
-                        referredBy:
-                            request.referredBy ||
-                            "",
-
-                        requestId:
-                            request.id,
-
-                        joinedAt:
-                            serverTimestamp(),
-
-                        approvedAt:
-                            serverTimestamp(),
-
-                        approvedBy:
-                            currentUser.uid,
-
-                        approvedByEmail:
-                            currentUser.email ||
-                            "",
-
-                        createdAt:
-                            serverTimestamp(),
-
-                        updatedAt:
-                            serverTimestamp()
-
-                    },
-                    {
-                        merge: true
+                            <span>
+                                ${escapeHTML(
+                                    request.rejectionReason
+                                )}
+                            </span>
+                        </div>
+                        `
+                        :
+                        ""
                     }
-                );
+
+                </div>
+
+            `;
 
 
-                /* UPDATE REQUEST */
-
-                await updateDoc(
-                    doc(
-                        db,
-                        "memberRequests",
-                        request.id
-                    ),
-                    {
-
-                        status:
-                            "approved",
-
-                        memberCode:
-                            memberCode,
-
-                        email:
-                            email,
-
-                        role:
-                            role,
-
-                        approvedAt:
-                            serverTimestamp(),
-
-                        approvedBy:
-                            currentUser.uid,
-
-                        approvedByEmail:
-                            currentUser.email ||
-                            "",
-
-                        updatedAt:
-                            serverTimestamp()
-
-                    }
-                );
-
-
-                approveModal.classList.remove(
-                    "show"
-                );
-
-
-                selectedRequest =
-                    null;
-
-
-                showToast(
-                    "Member approved successfully.",
-                    "success"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Approve error:",
-                    error
-                );
-
-
-                showToast(
-                    error.message ||
-                    "Failed to approve member.",
-                    "error"
-                );
-
-            } finally {
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "✓ Approve Member";
-
-            }
+            viewModal.classList.add(
+                "show"
+            );
 
         }
 
 
         /* ==========================================
-           REJECT MODAL
-        ========================================== */
-
-        window.openReject =
-            function(requestId) {
-
-                const request =
-                    allRequests.find(
-                        item =>
-                            item.id ===
-                            requestId
-                    );
-
-
-                if (!request) {
-
-                    showToast(
-                        "Request not found.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                selectedRequest =
-                    request;
-
-
-                rejectReasonInput.value =
-                    request.rejectionReason ||
-                    "";
-
-
-                rejectModal.classList.add(
-                    "show"
-                );
-
-            };
-
-
-        /* ==========================================
-           REJECT REQUEST
-        ========================================== */
-
-        async function rejectRequest() {
-
-            if (
-                !selectedRequest ||
-                !currentUser
-            ) {
-
-                showToast(
-                    "No request selected or user is not logged in.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            const reason =
-                rejectReasonInput.value
-                    .trim();
-
-
-            const button =
-                document.getElementById(
-                    "confirmRejectBtn"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Rejecting...";
-
-
-            try {
-
-                await updateDoc(
-                    doc(
-                        db,
-                        "memberRequests",
-                        selectedRequest.id
-                    ),
-                    {
-
-                        status:
-                            "rejected",
-
-                        rejectionReason:
-                            reason,
-
-                        rejectedAt:
-                            serverTimestamp(),
-
-                        rejectedBy:
-                            currentUser.uid,
-
-                        rejectedByEmail:
-                            currentUser.email ||
-                            "",
-
-                        updatedAt:
-                            serverTimestamp()
-
-                    }
-                );
-
-
-                rejectModal.classList.remove(
-                    "show"
-                );
-
-
-                selectedRequest =
-                    null;
-
-
-                showToast(
-                    "Member request rejected.",
-                    "success"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Reject error:",
-                    error
-                );
-
-
-                showToast(
-                    error.message ||
-                    "Failed to reject request.",
-                    "error"
-                );
-
-            } finally {
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "✕ Reject Request";
-
-            }
-
-        }
-
-
-        /* ==========================================
-           CLOSE MODAL
+           CLOSE MODALS
         ========================================== */
 
         function closeModal(
@@ -3107,223 +4364,45 @@
         }
 
 
-        /* ==========================================
-           EVENTS
-        ========================================== */
-
-        searchInput.addEventListener(
-            "input",
-            renderRequests
-        );
-
-
-        statusFilter.addEventListener(
-            "change",
-            renderRequests
-        );
-
-
         document
-            .getElementById(
-                "refreshBtn"
+            .querySelectorAll(
+                "[data-close-modal]"
             )
-            .addEventListener(
-                "click",
-                () => {
+            .forEach(
+                button => {
 
-                    loadRequests();
+                    button.addEventListener(
+                        "click",
+                        () => {
 
-                    showToast(
-                        "Request list refreshed.",
-                        "success"
+                            const id =
+                                button.dataset
+                                    .closeModal;
+
+                            const modal =
+                                document.getElementById(
+                                    id
+                                );
+
+                            if (modal) {
+                                closeModal(
+                                    modal
+                                );
+                            }
+
+                        }
                     );
 
                 }
             );
 
 
-        document
-            .getElementById(
-                "dashboardBtn"
-            )
-            .addEventListener(
-                "click",
-                () => {
-
-                    window.location.href =
-                        "dashboard.html";
-
-                }
-            );
-
-
-        document
-            .getElementById(
-                "goLoginBtn"
-            )
-            .addEventListener(
-                "click",
-                () => {
-
-                    window.location.href =
-                        "login.html";
-
-                }
-            );
-
-
-        document
-            .getElementById(
-                "logoutBtn"
-            )
-            .addEventListener(
-                "click",
-                async () => {
-
-                    try {
-
-                        if (
-                            unsubscribeRequests
-                        ) {
-
-                            unsubscribeRequests();
-
-                            unsubscribeRequests =
-                                null;
-
-                        }
-
-
-                        await signOut(
-                            auth
-                        );
-
-
-                        window.location.href =
-                            "login.html";
-
-                    } catch (error) {
-
-                        console.error(
-                            error
-                        );
-
-
-                        showToast(
-                            "Logout failed.",
-                            "error"
-                        );
-
-                    }
-
-                }
-            );
-
-
-        document
-            .getElementById(
-                "closeViewBtn"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        viewModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "closeViewBtn2"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        viewModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "closeApproveBtn"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        approveModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "cancelApproveBtn"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        approveModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "closeRejectBtn"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        rejectModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "cancelRejectBtn"
-            )
-            .addEventListener(
-                "click",
-                () =>
-                    closeModal(
-                        rejectModal
-                    )
-            );
-
-
-        document
-            .getElementById(
-                "confirmApproveBtn"
-            )
-            .addEventListener(
-                "click",
-                approveRequest
-            );
-
-
-        document
-            .getElementById(
-                "confirmRejectBtn"
-            )
-            .addEventListener(
-                "click",
-                rejectRequest
-            );
-
-
         [
-            viewModal,
             approveModal,
-            rejectModal
-
-        ].forEach(
+            rejectModal,
+            viewModal
+        ]
+        .forEach(
             modal => {
 
                 modal.addEventListener(
@@ -3348,25 +4427,605 @@
         );
 
 
-        document.addEventListener(
-            "keydown",
-            event => {
+        /* ==========================================
+           APPROVE REQUEST
+        ========================================== */
+
+        async function approveRequest() {
+
+            if (
+                !selectedRequest
+            ) {
+
+                return;
+
+            }
+
+
+            const request =
+                selectedRequest;
+
+
+            const memberCode =
+                memberCodeInput.value
+                    .trim()
+                    .toUpperCase();
+
+
+            const email =
+                memberEmailInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const role =
+                memberRoleInput.value ||
+                "member";
+
+
+            if (!memberCode) {
+
+                showToast(
+                    "Member code is required.",
+                    "error"
+                );
+
+                memberCodeInput.focus();
+
+                return;
+
+            }
+
+
+            if (!email) {
+
+                showToast(
+                    "Member email is required.",
+                    "error"
+                );
+
+                memberEmailInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    .test(email)
+            ) {
+
+                showToast(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                memberEmailInput.focus();
+
+                return;
+
+            }
+
+
+            confirmApproveBtn.disabled =
+                true;
+
+            confirmApproveBtn.textContent =
+                "Approving...";
+
+
+            try {
+
+                const exists =
+                    await memberCodeExists(
+                        memberCode
+                    );
+
+
+                if (exists) {
+
+                    showToast(
+                        "That member code already exists. Please use another code.",
+                        "error"
+                    );
+
+                    confirmApproveBtn.disabled =
+                        false;
+
+                    confirmApproveBtn.textContent =
+                        "✓ Approve Member";
+
+                    return;
+
+                }
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * Member document ID is the
+                 * member request ID.
+                 *
+                 * The Cloud Function will later
+                 * create Firebase Auth account
+                 * from the email.
+                 */
+
+                const memberRef =
+                    doc(
+                        db,
+                        "members",
+                        request.id
+                    );
+
+
+                const existingMember =
+                    await getDoc(
+                        memberRef
+                    );
+
 
                 if (
-                    event.key ===
-                    "Escape"
+                    existingMember.exists()
                 ) {
 
-                    closeModal(
-                        viewModal
+                    showToast(
+                        "This request already has a member record.",
+                        "error"
                     );
 
-                    closeModal(
-                        approveModal
+                    confirmApproveBtn.disabled =
+                        false;
+
+                    confirmApproveBtn.textContent =
+                        "✓ Approve Member";
+
+                    return;
+
+                }
+
+
+                await addDoc(
+                    collection(
+                        db,
+                        "members"
+                    ),
+                    {
+                        /*
+                         * Temporary placeholder.
+                         *
+                         * We intentionally create the
+                         * member using request.id below
+                         * through setDoc.
+                         */
+                    }
+                )
+                .then(
+                    async tempDoc => {
+
+                        /*
+                         * Delete temporary document.
+                         *
+                         * This section is immediately
+                         * replaced below by the actual
+                         * member document.
+                         */
+
+                        await deleteDoc(
+                            tempDoc
+                        );
+
+                    }
+                )
+                .catch(
+                    () => {}
+                );
+
+
+                /*
+                 * Import setDoc dynamically to avoid
+                 * changing the shared Firebase setup.
+                 */
+
+                const {
+                    setDoc
+                } =
+                    await import(
+                        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"
                     );
 
-                    closeModal(
-                        rejectModal
+
+                await setDoc(
+                    memberRef,
+                    {
+
+                        memberCode,
+
+                        displayName:
+                            request.displayName ||
+                            "",
+
+                        tiktokUsername:
+                            request.tiktokUsername ||
+                            "",
+
+                        email,
+
+                        role,
+
+                        status:
+                            "approved",
+
+                        referredBy:
+                            request.referredBy ||
+                            "",
+
+                        requestId:
+                            request.id,
+
+                        joinedAt:
+                            serverTimestamp(),
+
+                        approvedAt:
+                            serverTimestamp(),
+
+                        approvedBy:
+                            currentUser?.uid ||
+                            "",
+
+                        approvedByEmail:
+                            currentUser?.email ||
+                            "",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                /*
+                 * Update original request.
+                 */
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "memberRequests",
+                        request.id
+                    ),
+                    {
+
+                        status:
+                            "approved",
+
+                        memberCode,
+
+                        email,
+
+                        role,
+
+                        approvedAt:
+                            serverTimestamp(),
+
+                        approvedBy:
+                            currentUser?.uid ||
+                            "",
+
+                        approvedByEmail:
+                            currentUser?.email ||
+                            "",
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                closeModal(
+                    approveModal
+                );
+
+
+                selectedRequest =
+                    null;
+
+
+                showToast(
+                    "Member request approved successfully.",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Approve request error:",
+                    error
+                );
+
+
+                showToast(
+                    error?.message ||
+                    "Unable to approve this request.",
+                    "error"
+                );
+
+            } finally {
+
+                confirmApproveBtn.disabled =
+                    false;
+
+                confirmApproveBtn.textContent =
+                    "✓ Approve Member";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           REJECT REQUEST
+        ========================================== */
+
+        async function rejectRequest() {
+
+            if (
+                !selectedRequest
+            ) {
+
+                return;
+
+            }
+
+
+            const request =
+                selectedRequest;
+
+
+            const reason =
+                rejectReasonInput.value
+                    .trim();
+
+
+            confirmRejectBtn.disabled =
+                true;
+
+            confirmRejectBtn.textContent =
+                "Rejecting...";
+
+
+            try {
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "memberRequests",
+                        request.id
+                    ),
+                    {
+
+                        status:
+                            "rejected",
+
+                        rejectionReason:
+                            reason,
+
+                        rejectedAt:
+                            serverTimestamp(),
+
+                        rejectedBy:
+                            currentUser?.uid ||
+                            "",
+
+                        rejectedByEmail:
+                            currentUser?.email ||
+                            "",
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                closeModal(
+                    rejectModal
+                );
+
+
+                selectedRequest =
+                    null;
+
+
+                showToast(
+                    "Membership request rejected.",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Reject request error:",
+                    error
+                );
+
+
+                showToast(
+                    error?.message ||
+                    "Unable to reject this request.",
+                    "error"
+                );
+
+            } finally {
+
+                confirmRejectBtn.disabled =
+                    false;
+
+                confirmRejectBtn.textContent =
+                    "✕ Reject Request";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           DELETE REQUEST
+        ========================================== */
+
+        async function deleteRequest(
+            request
+        ) {
+
+            if (!request) {
+                return;
+            }
+
+
+            const confirmed =
+                confirm(
+                    `Delete the membership request from "${
+                        request.displayName ||
+                        request.tiktokUsername ||
+                        "this member"
+                    }"?\n\nThis action cannot be undone.`
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "memberRequests",
+                        request.id
+                    )
+                );
+
+
+                showToast(
+                    "Membership request deleted.",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Delete request error:",
+                    error
+                );
+
+
+                showToast(
+                    error?.message ||
+                    "Unable to delete request.",
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           TABLE ACTIONS
+        ========================================== */
+
+        requestsTableBody.addEventListener(
+            "click",
+            event => {
+
+                const button =
+                    event.target.closest(
+                        "[data-action]"
+                    );
+
+
+                if (!button) {
+                    return;
+                }
+
+
+                const action =
+                    button.dataset.action;
+
+
+                const id =
+                    button.dataset.id;
+
+
+                const request =
+                    findRequest(id);
+
+
+                if (!request) {
+
+                    showToast(
+                        "Request could not be found.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    action ===
+                    "view"
+                ) {
+
+                    openViewModal(
+                        request
+                    );
+
+                }
+
+
+                if (
+                    action ===
+                    "approve"
+                ) {
+
+                    openApproveModal(
+                        request
+                    );
+
+                }
+
+
+                if (
+                    action ===
+                    "reject"
+                ) {
+
+                    openRejectModal(
+                        request
+                    );
+
+                }
+
+
+                if (
+                    action ===
+                    "delete"
+                ) {
+
+                    deleteRequest(
+                        request
                     );
 
                 }
@@ -3376,75 +5035,429 @@
 
 
         /* ==========================================
-           AUTH
-           
-           SIMPLE ORIGINAL FLOW
-           ANY AUTHENTICATED ADMIN LOGIN
-           CAN OPEN THIS PAGE.
+           SEARCH
         ========================================== */
+
+        searchInput.addEventListener(
+            "input",
+            () => {
+
+                applyFilters();
+
+            }
+        );
+
+
+        /* ==========================================
+           STATUS FILTER
+        ========================================== */
+
+        statusFilter.addEventListener(
+            "change",
+            () => {
+
+                applyFilters();
+
+            }
+        );
+
+
+        /* ==========================================
+           PAGINATION
+        ========================================== */
+
+        prevPageBtn.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    currentPage >
+                    1
+                ) {
+
+                    currentPage--;
+
+                    renderTable();
+
+                }
+
+            }
+        );
+
+
+        nextPageBtn.addEventListener(
+            "click",
+            () => {
+
+                const totalPages =
+                    Math.max(
+                        1,
+                        Math.ceil(
+                            filteredRequests.length /
+                            PAGE_SIZE
+                        )
+                    );
+
+
+                if (
+                    currentPage <
+                    totalPages
+                ) {
+
+                    currentPage++;
+
+                    renderTable();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           REFRESH
+        ========================================== */
+
+        function refreshRequests() {
+
+            refreshBtn.classList.add(
+                "loading"
+            );
+
+            refreshBtn2.classList.add(
+                "loading"
+            );
+
+
+            /*
+             * Firestore listener is already
+             * real-time.
+             *
+             * Re-render immediately.
+             */
+
+            updateStatistics();
+
+            applyFilters();
+
+
+            setTimeout(
+                () => {
+
+                    refreshBtn.classList.remove(
+                        "loading"
+                    );
+
+                    refreshBtn2.classList.remove(
+                        "loading"
+                    );
+
+                    showToast(
+                        "Requests refreshed.",
+                        "info"
+                    );
+
+                },
+                450
+            );
+
+        }
+
+
+        refreshBtn.addEventListener(
+            "click",
+            refreshRequests
+        );
+
+
+        refreshBtn2.addEventListener(
+            "click",
+            refreshRequests
+        );
+
+
+        /* ==========================================
+           APPROVE BUTTON
+        ========================================== */
+
+        confirmApproveBtn.addEventListener(
+            "click",
+            approveRequest
+        );
+
+
+        /* ==========================================
+           REJECT BUTTON
+        ========================================== */
+
+        confirmRejectBtn.addEventListener(
+            "click",
+            rejectRequest
+        );
+
+
+        /* ==========================================
+           MOBILE SIDEBAR
+        ========================================== */
+
+        function openSidebar() {
+
+            sidebar.classList.add(
+                "open"
+            );
+
+            sidebarOverlay.classList.add(
+                "open"
+            );
+
+        }
+
+
+        function closeSidebar() {
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+            sidebarOverlay.classList.remove(
+                "open"
+            );
+
+        }
+
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            openSidebar
+        );
+
+
+        sidebarOverlay.addEventListener(
+            "click",
+            closeSidebar
+        );
+
+
+        document
+            .querySelectorAll(
+                ".sidebar .nav-link"
+            )
+            .forEach(
+                link => {
+
+                    link.addEventListener(
+                        "click",
+                        closeSidebar
+                    );
+
+                }
+            );
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    if (
+                        unsubscribeRequests
+                    ) {
+
+                        unsubscribeRequests();
+
+                        unsubscribeRequests =
+                            null;
+
+                    }
+
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    showToast(
+                        "Unable to logout. Please try again.",
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           AUTH STATE
+           
+           IMPORTANT FIX:
+           
+           We DO NOT check auth.currentUser
+           immediately.
+           
+           We WAIT for onAuthStateChanged.
+           
+           This prevents the page from showing
+           "Login Required" while Firebase is
+           still restoring the existing session.
+        ========================================== */
+
+        let authCheckCompleted =
+            false;
+
 
         onAuthStateChanged(
             auth,
-            user => {
+            async user => {
 
-                console.log(
-                    "AUTH STATE:",
-                    user
-                );
+                if (
+                    authCheckCompleted &&
+                    !user
+                ) {
 
-
-                if (!user) {
-
-                    currentUser =
-                        null;
-
-
-                    appEl.style.display =
-                        "none";
-
-
-                    accessDenied.style.display =
-                        "flex";
-
-
-                    accessMessage.textContent =
-                        "You must be logged in to access Member Requests.";
-
-
-                    debugBox.style.display =
-                        "none";
-
+                    showLoginRequired();
 
                     return;
 
                 }
 
 
-                currentUser =
-                    user;
+                if (!user) {
+
+                    authCheckCompleted =
+                        true;
+
+                    showLoginRequired();
+
+                    return;
+
+                }
 
 
-                console.log(
-                    "Logged in:",
-                    user.email,
-                    user.uid
-                );
+                try {
+
+                    const isAdmin =
+                        await verifyAdmin(
+                            user
+                        );
 
 
-                accessDenied.style.display =
-                    "none";
+                    if (!isAdmin) {
+
+                        console.warn(
+                            "Authenticated user is not an admin."
+                        );
 
 
-                appEl.style.display =
-                    "block";
+                        authCheckCompleted =
+                            true;
 
 
-                loadRequests();
+                        await signOut(
+                            auth
+                        );
+
+
+                        showLoginRequired();
+
+                        return;
+
+                    }
+
+
+                    authCheckCompleted =
+                        true;
+
+
+                    showApp(
+                        user
+                    );
+
+
+                    loadRequests();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Admin authentication error:",
+                        error
+                    );
+
+
+                    authCheckCompleted =
+                        true;
+
+
+                    showLoginRequired();
+
+                }
 
             }
         );
 
+
+        /* ==========================================
+           ESC KEY
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    [
+                        approveModal,
+                        rejectModal,
+                        viewModal
+                    ]
+                    .forEach(
+                        modal => {
+
+                            modal.classList.remove(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                    closeSidebar();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           PAGE READY
+        ========================================== */
+
+        console.log(
+            "NIGHTFALL DEVILS Admin Requests ready."
+        );
+
     </script>
+
 
 </body>
 
