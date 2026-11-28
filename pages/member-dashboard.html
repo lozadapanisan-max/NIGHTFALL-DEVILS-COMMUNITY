@@ -4142,92 +4142,271 @@
         );
 
 
-        /* =========================
-           AUTH STATE
-        ========================= */
+       /* =========================
+   AUTH STATE
+========================= */
 
-        onAuthStateChanged(
-            auth,
-            async user => {
+onAuthStateChanged(
+    auth,
+    async user => {
 
-                try {
+        try {
 
-                    if (!user) {
+            /*
+             * NO USER
+             * Send back to member login.
+             */
+            if (!user) {
 
-                        window.location.replace(
-                            "member-login.html"
-                        );
+                window.location.replace(
+                    "member-login.html"
+                );
 
-                        return;
-
-                    }
-
-
-                    currentUser =
-                        user;
-
-
-                    /*
-                     * IMPORTANT:
-                     * Do NOT block the Firebase account
-                     * when there is no members document.
-                     *
-                     * This is the new account-first flow.
-                     */
-
-                    currentMember =
-                        await findMember(
-                            user
-                        );
-
-
-                    renderProfile();
-
-
-                    await loadCurrentRequest();
-
-
-                    loadSchedules();
-
-
-                    loadAnnouncements();
-
-
-                    hideError();
-
-
-                    loadingScreen.style.display =
-                        "none";
-
-
-                    showToast(
-                        "Welcome to NIGHTFALL DEVILS! 👿"
-                    );
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Dashboard error:",
-                        error
-                    );
-
-
-                    showError(
-                        "Unable to load your member dashboard. Please refresh the page and try again."
-                    );
-
-
-                    loadingScreen.style.display =
-                        "none";
-
-                }
+                return;
 
             }
-        );
 
-    </script>
 
+            /*
+             * SAVE CURRENT USER IMMEDIATELY
+             */
+            currentUser = user;
+
+
+            /*
+             * IMPORTANT:
+             *
+             * Hide loading screen immediately after
+             * Firebase Authentication confirms the user.
+             *
+             * Do NOT wait for Firestore.
+             *
+             * This prevents the dashboard from being
+             * stuck forever on "Loading member portal..."
+             */
+            loadingScreen.style.display = "none";
+
+
+            /*
+             * BASIC ACCOUNT INFORMATION
+             *
+             * Show the Firebase account immediately,
+             * even if the members document does not exist.
+             */
+            const basicDisplayName =
+                user.displayName ||
+                user.email ||
+                "Member";
+
+
+            welcomeName.textContent =
+                basicDisplayName;
+
+            headerUserName.textContent =
+                basicDisplayName;
+
+            profileDisplayName.textContent =
+                basicDisplayName;
+
+            profileEmail.textContent =
+                user.email || "—";
+
+            profileRole.textContent =
+                "MEMBER ACCOUNT";
+
+            profileStatus.innerHTML =
+                `<span class="status-badge" style="${getStatusInlineStyle("not_requested")}">NOT YET REQUESTED</span>`;
+
+            accountUID.textContent =
+                user.uid || "—";
+
+            welcomeTikTok.textContent =
+                "—";
+
+            memberCodeBadge.textContent =
+                "MEMBER ACCOUNT";
+
+
+            /*
+             * Show default membership state first.
+             */
+            currentMember = null;
+            currentRequest = null;
+
+            renderMembershipStatus();
+
+
+            /*
+             * WELCOME MESSAGE
+             */
+            showToast(
+                "Welcome to NIGHTFALL DEVILS! 👿"
+            );
+
+
+            /*
+             * =====================================
+             * LOAD MEMBER PROFILE
+             * =====================================
+             *
+             * Firestore loading happens AFTER the
+             * loading screen is already hidden.
+             */
+            try {
+
+                currentMember =
+                    await findMember(user);
+
+                /*
+                 * Re-render profile after member
+                 * document is found.
+                 */
+                renderProfile();
+
+            } catch (memberError) {
+
+                console.error(
+                    "Member profile loading error:",
+                    memberError
+                );
+
+                /*
+                 * Do NOT logout the Firebase account.
+                 *
+                 * The user is still allowed to access
+                 * the Member Panel.
+                 */
+                currentMember = null;
+
+                renderProfile();
+
+            }
+
+
+            /*
+             * =====================================
+             * LOAD MEMBERSHIP REQUEST
+             * =====================================
+             */
+            try {
+
+                await loadCurrentRequest();
+
+            } catch (requestError) {
+
+                console.error(
+                    "Membership request loading error:",
+                    requestError
+                );
+
+                currentRequest = null;
+
+                renderProfile();
+
+            }
+
+
+            /*
+             * =====================================
+             * LOAD SCHEDULES
+             * =====================================
+             */
+            try {
+
+                loadSchedules();
+
+            } catch (scheduleError) {
+
+                console.error(
+                    "Schedule loading error:",
+                    scheduleError
+                );
+
+                scheduleList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+
+                        <strong>
+                            Unable to load schedules
+                        </strong>
+
+                        <span>
+                            Please try refreshing the page.
+                        </span>
+                    </div>
+                `;
+
+                scheduleCount.textContent = "0";
+
+            }
+
+
+            /*
+             * =====================================
+             * LOAD ANNOUNCEMENTS
+             * =====================================
+             */
+            try {
+
+                loadAnnouncements();
+
+            } catch (announcementError) {
+
+                console.error(
+                    "Announcement loading error:",
+                    announcementError
+                );
+
+                announcementList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+
+                        <strong>
+                            Unable to load announcements
+                        </strong>
+
+                        <span>
+                            Please try refreshing the page.
+                        </span>
+                    </div>
+                `;
+
+                announcementCount.textContent = "0";
+
+            }
+
+
+            /*
+             * Dashboard is already visible.
+             */
+            hideError();
+
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard authentication error:",
+                error
+            );
+
+
+            /*
+             * IMPORTANT:
+             * Never leave the user stuck on
+             * the loading screen.
+             */
+            loadingScreen.style.display =
+                "none";
+
+
+            showError(
+                "Unable to initialize the member dashboard. Please refresh the page and try again."
+            );
+
+        }
+
+    }
+);
 </body>
 
 </html>
